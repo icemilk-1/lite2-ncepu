@@ -1,0 +1,10 @@
+.venv/
+.venv-mujoco/
+__pycache__/
+runs/
+*.py[cod]
+*.log
+.env
+.env.*
+!.env.example
+worlds/.*.wbproj
