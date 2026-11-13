@@ -899,3 +899,4 @@
 "tmp/pdfs/competition-page-1.png" filter=lfs diff=lfs merge=lfs -text
 "tmp/pdfs/official-20261110/doc-2-page-1.png" filter=lfs diff=lfs merge=lfs -text
 "tmp/work/test2.mp4" filter=lfs diff=lfs merge=lfs -text
+"resources/archives/绝影机器人资料_20261113.zip" filter=lfs diff=lfs merge=lfs -text
