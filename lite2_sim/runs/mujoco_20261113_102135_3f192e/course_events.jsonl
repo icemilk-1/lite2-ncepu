@@ -1,0 +1,3 @@
+{"timestamp_s": 0.0, "stage_id": "ramp", "checkpoint_index": 0, "event": "checkpoint_started", "estimated_pose_m_rad": [-5.02, -4.25, 0.0], "goal_xy_m": [-4.0, 4.1], "state": "approaching"}
+{"timestamp_s": 97.3, "stage_id": "ramp", "checkpoint_index": 0, "event": "recovery_started", "estimated_pose_m_rad": [-4.885946286862363, 2.6944611293527614, 1.5057649918876637], "recovery_status": "stalled", "recovery_attempt": 1}
+{"timestamp_s": 97.35, "stage_id": "ramp", "checkpoint_index": 0, "event": "recovery_started", "estimated_pose_m_rad": [-4.885946286862363, 2.6944611293527614, 1.5082821832285207], "recovery_status": "recovering", "recovery_attempt": 2}

@@ -1,0 +1,27 @@
+{
+  "horizontal_beams_per_layer": 360,
+  "vertical_layers": 32,
+  "frame_id": "front_lidar",
+  "timestamp_s": 4.999999999999671,
+  "sensor_model": "ideal_navigation_multilayer_lidar_placeholder_pending_hardware",
+  "self_filter": "environment_collision_geoms_only_group_3",
+  "status_codes": {
+    "0": "invalid",
+    "1": "hit",
+    "2": "no_hit",
+    "3": "beyond_range"
+  },
+  "status_counts": {
+    "0": 0,
+    "1": 6417,
+    "2": 5018,
+    "3": 85
+  },
+  "range_limits_m": [
+    0.08,
+    8.0
+  ],
+  "frequency_hz": 10.0,
+  "projection_reference_height_world_m": 0.43000000000000005,
+  "projection_status": "fixed_fixture_reference_height"
+}

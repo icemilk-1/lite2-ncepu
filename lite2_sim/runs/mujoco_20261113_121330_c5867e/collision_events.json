@@ -1,0 +1,18 @@
+[
+  {
+    "timestamp_s": 379.85,
+    "proposed_pose": [
+      2.252663846186088,
+      0.856444772724584,
+      0.45115340859230635
+    ],
+    "retained_pose": [
+      2.251310675829147,
+      0.8557975247156285,
+      0.44115340859230656
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_66"
+  }
+]

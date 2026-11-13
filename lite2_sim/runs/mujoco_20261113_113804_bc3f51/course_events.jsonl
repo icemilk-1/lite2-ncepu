@@ -1,0 +1,5 @@
+{"timestamp_s": 0.0, "stage_id": "ramp", "checkpoint_index": 0, "event": "checkpoint_started", "estimated_pose_m_rad": [-5.02, -4.25, 0.0], "goal_xy_m": [-4.0, 4.1], "state": "approaching"}
+{"timestamp_s": 87.65, "stage_id": "ramp", "checkpoint_index": 0, "event": "recovery_started", "estimated_pose_m_rad": [-4.91363943416335, 2.703436510469001, 0.6447056991126856], "recovery_status": "stalled", "recovery_attempt": 1}
+{"timestamp_s": 87.7, "stage_id": "ramp", "checkpoint_index": 0, "event": "recovery_started", "estimated_pose_m_rad": [-4.91363943416335, 2.703436510469001, 0.6437584702993941], "recovery_status": "recovering", "recovery_attempt": 2}
+{"timestamp_s": 89.5, "stage_id": "ramp", "checkpoint_index": 0, "event": "recovery_succeeded", "estimated_pose_m_rad": [-4.968746540771379, 2.676935534989587, 0.4195731664328526], "recovery_status": "recovering", "recovery_attempt": 2}
+{"timestamp_s": 120.0, "stage_id": "ramp", "checkpoint_index": 0, "event": "stage_failed", "estimated_pose_m_rad": [-4.935617168033196, 2.748301547603315, 1.198616048830658], "reason": "stage_timeout"}

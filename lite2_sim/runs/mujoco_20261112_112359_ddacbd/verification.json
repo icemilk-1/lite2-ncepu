@@ -1,0 +1,21 @@
+{
+  "result": "passed",
+  "scope": "fixed_base_model_and_sensors",
+  "scene_id": "sensor_lab",
+  "joint_count": 12,
+  "max_joint_error_rad": 0.010694951822415035,
+  "center_depth_m": 2.2199902534484863,
+  "expected_depth_m": 2.2199999999999998,
+  "depth_valid_fraction": 0.521314858490566,
+  "backend": "mujoco",
+  "mujoco_version": "3.17.0",
+  "floating_root": true,
+  "actuator_count": 12,
+  "source_model_mass_kg": 10.03,
+  "fixture_drift_m": 1.929471433459451e-05,
+  "gyro_norm_rad_s": 1.163888900328349e-10,
+  "imu_gravity_error_m_s2": 3.7869984553213734e-09,
+  "max_inertia_relative_error": 3.0824836748832284e-06,
+  "geometry_count": 10,
+  "lidar_wall_error_m": 3.088780816162817e-05
+}

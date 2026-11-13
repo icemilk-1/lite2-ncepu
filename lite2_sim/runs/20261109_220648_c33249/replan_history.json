@@ -1,0 +1,20 @@
+[
+  {
+    "sim_time_s": 4.0,
+    "from_xy_m": [
+      -5.47,
+      -3.67
+    ],
+    "poses_xy_m": [],
+    "path_length_m": 0
+  },
+  {
+    "sim_time_s": 4.0,
+    "from_xy_m": [
+      -5.47,
+      -3.67
+    ],
+    "poses_xy_m": [],
+    "path_length_m": 0
+  }
+]

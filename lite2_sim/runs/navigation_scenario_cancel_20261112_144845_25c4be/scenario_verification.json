@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "scenario": "cancel",
+  "expected_result": "cancelled",
+  "actual_result": "cancelled",
+  "events": [],
+  "output": "F:\\airace\\lite2_sim\\runs\\navigation_scenario_cancel_20261112_144845_25c4be"
+}

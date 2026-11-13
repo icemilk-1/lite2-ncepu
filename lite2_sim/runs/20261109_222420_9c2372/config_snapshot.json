@@ -1,0 +1,169 @@
+{
+  "scene_id": "ruins_reference",
+  "description": "Editable provisional 12 x 10 m rescue-course reference scene",
+  "geometry_status": "provisional_from_user_reference_image_and_competition_rules",
+  "field_size_m": [12.0, 10.0],
+  "outer_wall_height_m": 0.8,
+  "outer_wall_thickness_m": 0.12,
+  "robot_position_m": [-5.45, -3.65, 0.33],
+  "joint_positions_rad": {
+    "FL_HipX": 0.0,
+    "FL_HipY": -0.7,
+    "FL_Knee": 1.4,
+    "FR_HipX": 0.0,
+    "FR_HipY": -0.7,
+    "FR_Knee": 1.4,
+    "HL_HipX": 0.0,
+    "HL_HipY": -0.7,
+    "HL_Knee": 1.4,
+    "HR_HipX": 0.0,
+    "HR_HipY": -0.7,
+    "HR_Knee": 1.4
+  },
+  "camera": {
+    "width": 424,
+    "height": 240,
+    "focal_length_px": 302.6,
+    "mount_position_m": [0.22, 0.0, 0.05],
+    "mount_status": "assumed_pending_physical_calibration",
+    "min_depth_m": 0.15,
+    "max_depth_m": 6.0
+  },
+  "lidar": {
+    "model_status": "ideal_simulated_planar_lidar_placeholder_model_not_selected",
+    "mount_xyz_m": [0.0, 0.0, 0.10],
+    "mount_xy_m": [0.0, 0.0],
+    "horizontal_resolution": 360,
+    "field_of_view_rad": 6.28318530718,
+    "vertical_field_of_view_rad": 0.6,
+    "projection": "cylindrical",
+    "number_of_layers": 16,
+    "self_filter_body_box_m": [[-0.33, -0.22, -0.36], [0.33, 0.22, 0.10]],
+    "self_filter_status": "provisional_fixed_joint_pose_envelope_pending_physical_measurement",
+    "obstacle_height_min_m": 0.04,
+    "obstacle_height_max_m": 0.45,
+    "type": "fixed",
+    "min_range_m": 0.08,
+    "max_range_m": 8.0,
+    "noise_m": 0.0,
+    "frequency_hz": 10.0
+  },
+  "navigation": {
+    "goal_xy_m": [5.2, 4.15],
+    "grid_resolution_m": 0.10,
+    "robot_radius_m": 0.28,
+    "planning_clearance_m": 0.15,
+    "occupied_log_odds_threshold": 0.70,
+    "unknown_cell_cost": 2.8,
+    "scan_stride": 1,
+    "scan_mapping_period_s": 0.12,
+    "initial_mapping_duration_s": 2.0,
+    "replan_period_s": 0.5,
+    "scan_match_search_xy_m": 0.12,
+    "scan_match_search_yaw_rad": 0.06,
+    "max_linear_speed_m_s": 0.22,
+    "max_yaw_speed_rad_s": 0.65,
+    "lookahead_m": 0.40,
+    "front_stop_angle_rad": 0.42,
+    "front_stop_distance_m": 0.45,
+    "goal_tolerance_m": 0.25,
+    "navigation_timeout_s": 160.0,
+    "stuck_timeout_s": 10.0,
+    "odom_linear_noise_fraction": 0.02,
+    "odom_yaw_noise_rad_s": 0.008,
+    "random_seed": 42
+  },
+  "ramps": [
+    {
+      "name": "up_ramp",
+      "position_m": [-4.2, -3.65, 0.10],
+      "length_m": 1.3,
+      "width_m": 1.1,
+      "rise_m": 0.32,
+      "rotation_y_rad": -0.2413,
+      "thickness_m": 0.12,
+      "rail_height_m": 0.18,
+      "rail_thickness_m": 0.08
+    },
+    {
+      "name": "down_ramp",
+      "position_m": [-2.9, -3.65, 0.10],
+      "length_m": 1.3,
+      "width_m": 1.1,
+      "rise_m": -0.32,
+      "rotation_y_rad": 0.2413,
+      "thickness_m": 0.12,
+      "rail_height_m": 0.18,
+      "rail_thickness_m": 0.08
+    }
+  ],
+  "s_bend": {
+    "center_x_m": -1.8,
+    "start_y_m": -3.2,
+    "end_y_m": 1.55,
+    "amplitude_m": 0.62,
+    "lobes": 1.0,
+    "segments": 36,
+    "clear_width_m": 0.95,
+    "wall_height_m": 0.7,
+    "wall_thickness_m": 0.12
+  },
+  "dead_end": {
+    "x_min_m": -0.05,
+    "x_max_m": 1.15,
+    "y_entry_m": 0.8,
+    "y_end_m": 2.25,
+    "wall_height_m": 0.7,
+    "wall_thickness_m": 0.12
+  },
+  "rubble_piles": [
+    {"center_m": [-4.65, 0.05], "footprint_m": [0.9, 0.72], "stone_count": 11},
+    {"center_m": [-0.2, 3.55], "footprint_m": [1.0, 0.8], "stone_count": 13},
+    {"center_m": [2.15, 0.0], "footprint_m": [1.0, 0.9], "stone_count": 14},
+    {"center_m": [2.6, -2.4], "footprint_m": [0.9, 0.8], "stone_count": 12},
+    {"center_m": [4.85, -2.8], "footprint_m": [0.9, 0.75], "stone_count": 12}
+  ],
+  "tunnels": {
+    "narrow_gate": {
+      "center_m": [1.55, 2.65],
+      "opening_width_m": 0.42,
+      "height_m": 0.72,
+      "length_m": 1.0,
+      "wall_thickness_m": 0.12,
+      "role": "too_narrow_detect_and_abandon_placeholder"
+    },
+    "circular_pipe": {
+      "center_m": [3.2, 2.65],
+      "inner_radius_m": 0.54,
+      "outer_radius_m": 0.68,
+      "length_m": 1.15,
+      "segments": 20,
+      "role": "circular_tunnel"
+    },
+    "rectangular_culvert": {
+      "center_m": [5.0, 2.65],
+      "inner_width_m": 0.82,
+      "inner_height_m": 0.76,
+      "length_m": 1.1,
+      "wall_thickness_m": 0.12,
+      "role": "rectangular_culvert"
+    }
+  },
+  "markers": [
+    {"name": "start_marker_placeholder", "kind": "start", "position_m": [-5.0, -4.35]},
+    {"name": "finish_marker_placeholder", "kind": "finish", "position_m": [5.2, 4.15]}
+  ],
+  "target_placeholders": [
+    {"name": "life_target_placeholder_1", "position_m": [0.0, 3.0, 0.19]},
+    {"name": "life_target_placeholder_2", "position_m": [4.0, 3.45, 0.19]}
+  ],
+  "dynamic_obstacle": {
+    "status": "reserved_for_later_motion_model",
+    "enabled": false
+  },
+  "viewpoint": {
+    "position_m": [-10.5, -13.4, 17.0],
+    "orientation": [-0.301, 0.617, 0.733, 1.174],
+    "field_of_view_rad": 1.05
+  }
+}

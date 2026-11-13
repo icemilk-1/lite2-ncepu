@@ -1,0 +1,525 @@
+#VRML_SIM R2025a utf8
+# Model source: user-supplied DEEP Robotics Lite2 archive.
+# This is a proto file for Webots for the Lite2Body
+# Extracted from: F:\airace\lite2_sim\assets\JueyingMiniLiteV2\urdf\MiniLiteV2_webots.urdf
+
+PROTO Lite2Body [
+  field SFNode basePhysics Physics {
+      density -1
+      mass 5.298000
+      centerOfMass [ 0.046396 -0.001759 0.028665 ]
+      inertiaMatrix [
+        9.556900e-03 1.435700e-02 1.949000e-02
+        5.967200e-05 9.319300e-05 1.906300e-05
+      ]
+    }
+  field  SFVec3f     translation     0 0 0
+  field  SFRotation  rotation        0 0 1 0
+  field  SFString    name            "Lite2Body"  # Is `Robot.name`.
+  field  SFString    controller      "void"       # Is `Robot.controller`.
+  field  MFString    controllerArgs  []           # Is `Robot.controllerArgs`.
+  field  SFString    customData      ""           # Is `Robot.customData`.
+  field  SFBool      supervisor      FALSE        # Is `Robot.supervisor`.
+  field  SFBool      synchronization TRUE         # Is `Robot.synchronization`.
+  field  SFBool      selfCollision   FALSE        # Is `Robot.selfCollision`.
+  field  MFNode      toolSlot        []           # Extend the robot with new nodes at the end of the arm.
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    controllerArgs IS controllerArgs
+    customData IS customData
+    supervisor IS supervisor
+    synchronization IS synchronization
+    selfCollision IS selfCollision
+    children [
+      DEF TORSO_visual CadShape {
+        url "../assets/JueyingMiniLiteV2/meshes/TORSO.dae"
+      }
+      DEF FL_HipX HingeJoint {
+        jointParameters HingeJointParameters {
+          anchor 0.175000 0.055000 0.000000
+        }
+        device [
+          RotationalMotor {
+            name "FL_HipX"
+            maxVelocity 20.0
+            minPosition -0.523
+            maxPosition 0.523
+            maxTorque 13.2
+          }
+          PositionSensor {
+            name "FL_HipX_sensor"
+          }
+        ]
+        endPoint DEF FL_HIP Solid {
+          translation 0.175000 0.055000 0.000000
+          children [
+            DEF FL_HIP_visual CadShape {
+              url "../assets/JueyingMiniLiteV2/meshes/FL_HIP.dae"
+            }
+            DEF FL_HipY HingeJoint {
+              jointParameters HingeJointParameters {
+                position -0.700000
+                axis 0.000000 -1.000000 0.000000
+                anchor 0.000000 0.081000 0.000000
+              }
+              device [
+                RotationalMotor {
+                  name "FL_HipY"
+                  maxVelocity 20.0
+                  minPosition -3.49
+                  maxPosition 0.349
+                  maxTorque 13.2
+                }
+                PositionSensor {
+                  name "FL_HipY_sensor"
+                }
+              ]
+              endPoint DEF FL_THIGH Solid {
+                translation 0.000000 0.081000 0.000000
+                rotation 0.000000 1.000000 0.000000 0.700000
+                children [
+                  DEF L_THIGH_visual CadShape {
+                    url "../assets/JueyingMiniLiteV2/meshes/L_THIGH.dae"
+                  }
+                  DEF FL_Knee HingeJoint {
+                    jointParameters HingeJointParameters {
+                      position 1.400000
+                      axis 0.000000 -1.000000 0.000000
+                      anchor 0.000000 0.000000 -0.180000
+                    }
+                    device [
+                      RotationalMotor {
+                        name "FL_Knee"
+                        maxVelocity 20.0
+                        minPosition 0.419
+                        maxPosition 2.53
+                        maxTorque 28.0
+                      }
+                      PositionSensor {
+                        name "FL_Knee_sensor"
+                      }
+                    ]
+                    endPoint DEF FL_SHANK Solid {
+                      translation 0.000000 0.000000 -0.180000
+                      rotation 0.000000 -1.000000 0.000000 1.400000
+                      children [
+                        DEF SHANK_visual CadShape {
+                          url "../assets/JueyingMiniLiteV2/meshes/SHANK.dae"
+                        }
+                      ]
+                      name "FL_SHANK"
+                      boundingObject DEF SHANK Mesh {
+                        url "../assets/JueyingMiniLiteV2/meshes/SHANK.obj"
+                      }
+                      physics Physics {
+                        density -1
+                        mass 0.145000
+                        centerOfMass [ 0.005850 -0.000001 -0.120000 ]
+                        inertiaMatrix [
+                          6.680000e-04 6.860000e-04 3.155000e-05
+                          -1.240000e-08 6.910000e-06 5.650000e-09
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "FL_THIGH"
+                boundingObject Pose {
+                  translation 0.000000 0.000000 -0.060000
+                  children [
+                    Box {
+                       size 0.040000 0.030000 0.120000
+                    }
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.610000
+                  centerOfMass [ -0.005230 -0.021600 -0.027300 ]
+                  inertiaMatrix [
+                    1.000000e-03 1.160000e-03 2.680000e-04
+                    -2.500000e-06 -1.120000e-04 3.750000e-07
+                  ]
+                }
+              }
+            }
+          ]
+          name "FL_HIP"
+          physics Physics {
+            density -1
+            mass 0.428000
+            centerOfMass [ -0.004700 -0.009100 -0.001800 ]
+            inertiaMatrix [
+              1.453800e-04 2.402400e-04 1.303800e-04
+              8.157900e-07 -1.264000e-05 1.344300e-06
+            ]
+          }
+        }
+      }
+      DEF FR_HipX HingeJoint {
+        jointParameters HingeJointParameters {
+          axis -1.000000 0.000000 0.000000
+          anchor 0.175000 -0.055000 0.000000
+        }
+        device [
+          RotationalMotor {
+            name "FR_HipX"
+            maxVelocity 20.0
+            minPosition -0.523
+            maxPosition 0.523
+            maxTorque 13.2
+          }
+          PositionSensor {
+            name "FR_HipX_sensor"
+          }
+        ]
+        endPoint DEF FR_HIP Solid {
+          translation 0.175000 -0.055000 0.000000
+          children [
+            DEF FR_HIP_visual CadShape {
+              url "../assets/JueyingMiniLiteV2/meshes/FR_HIP.dae"
+            }
+            DEF FR_HipY HingeJoint {
+              jointParameters HingeJointParameters {
+                position -0.700000
+                axis 0.000000 -1.000000 0.000000
+                anchor 0.000000 -0.080000 0.000000
+              }
+              device [
+                RotationalMotor {
+                  name "FR_HipY"
+                  maxVelocity 20.0
+                  minPosition -3.49
+                  maxPosition 0.349
+                  maxTorque 13.2
+                }
+                PositionSensor {
+                  name "FR_HipY_sensor"
+                }
+              ]
+              endPoint DEF FR_THIGH Solid {
+                translation 0.000000 -0.080000 0.000000
+                rotation 0.000000 1.000000 0.000000 0.700000
+                children [
+                  DEF R_THIGH_visual CadShape {
+                    url "../assets/JueyingMiniLiteV2/meshes/R_THIGH.dae"
+                  }
+                  DEF FR_Knee HingeJoint {
+                    jointParameters HingeJointParameters {
+                      position 1.400000
+                      axis 0.000000 -1.000000 0.000000
+                      anchor 0.000000 0.000000 -0.180000
+                    }
+                    device [
+                      RotationalMotor {
+                        name "FR_Knee"
+                        maxVelocity 20.0
+                        minPosition 0.419
+                        maxPosition 2.53
+                        maxTorque 28.0
+                      }
+                      PositionSensor {
+                        name "FR_Knee_sensor"
+                      }
+                    ]
+                    endPoint DEF FR_SHANK Solid {
+                      translation 0.000000 0.000000 -0.180000
+                      rotation 0.000000 -1.000000 0.000000 1.400000
+                      children [
+                        USE SHANK_visual
+                      ]
+                      name "FR_SHANK"
+                      boundingObject USE SHANK
+                      physics Physics {
+                        density -1
+                        mass 0.145000
+                        centerOfMass [ 0.005850 -0.000001 -0.120000 ]
+                        inertiaMatrix [
+                          6.680000e-04 6.860000e-04 3.155000e-05
+                          -1.240000e-08 6.910000e-06 5.650000e-09
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "FR_THIGH"
+                boundingObject Pose {
+                  translation 0.000000 0.000000 -0.060000
+                  children [
+                    Box {
+                       size 0.040000 0.030000 0.120000
+                    }
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.610000
+                  centerOfMass [ -0.005230 0.021600 -0.027300 ]
+                  inertiaMatrix [
+                    1.000000e-03 1.160000e-03 2.680000e-04
+                    2.500000e-06 -1.120000e-04 -3.750000e-07
+                  ]
+                }
+              }
+            }
+          ]
+          name "FR_HIP"
+          physics Physics {
+            density -1
+            mass 0.428000
+            centerOfMass [ -0.004700 0.009100 -0.001800 ]
+            inertiaMatrix [
+              1.453800e-04 2.402400e-04 1.303800e-04
+              -8.155100e-07 -1.263900e-05 -1.344100e-06
+            ]
+          }
+        }
+      }
+      DEF HL_HipX HingeJoint {
+        jointParameters HingeJointParameters {
+          anchor -0.175000 0.055000 0.000000
+        }
+        device [
+          RotationalMotor {
+            name "HL_HipX"
+            maxVelocity 20.0
+            minPosition -0.523
+            maxPosition 0.523
+            maxTorque 13.2
+          }
+          PositionSensor {
+            name "HL_HipX_sensor"
+          }
+        ]
+        endPoint DEF HL_HIP Solid {
+          translation -0.175000 0.055000 0.000000
+          children [
+            DEF HL_HIP_visual CadShape {
+              url "../assets/JueyingMiniLiteV2/meshes/HL_HIP.dae"
+            }
+            DEF HL_HipY HingeJoint {
+              jointParameters HingeJointParameters {
+                position -0.700000
+                axis 0.000000 -1.000000 0.000000
+                anchor 0.000000 0.081000 0.000000
+              }
+              device [
+                RotationalMotor {
+                  name "HL_HipY"
+                  maxVelocity 20.0
+                  minPosition -3.49
+                  maxPosition 0.349
+                  maxTorque 13.2
+                }
+                PositionSensor {
+                  name "HL_HipY_sensor"
+                }
+              ]
+              endPoint DEF HL_THIGH Solid {
+                translation 0.000000 0.081000 0.000000
+                rotation 0.000000 1.000000 0.000000 0.700000
+                children [
+                  USE L_THIGH_visual
+                  DEF HL_Knee HingeJoint {
+                    jointParameters HingeJointParameters {
+                      position 1.400000
+                      axis 0.000000 -1.000000 0.000000
+                      anchor 0.000000 0.000000 -0.180000
+                    }
+                    device [
+                      RotationalMotor {
+                        name "HL_Knee"
+                        maxVelocity 20.0
+                        minPosition 0.419
+                        maxPosition 2.53
+                        maxTorque 28.0
+                      }
+                      PositionSensor {
+                        name "HL_Knee_sensor"
+                      }
+                    ]
+                    endPoint DEF HL_SHANK Solid {
+                      translation 0.000000 0.000000 -0.180000
+                      rotation 0.000000 -1.000000 0.000000 1.400000
+                      children [
+                        USE SHANK_visual
+                      ]
+                      name "HL_SHANK"
+                      boundingObject USE SHANK
+                      physics Physics {
+                        density -1
+                        mass 0.145000
+                        centerOfMass [ 0.005850 -0.000001 -0.120000 ]
+                        inertiaMatrix [
+                          6.680000e-04 6.860000e-04 3.155000e-05
+                          -1.240000e-08 6.910000e-06 5.650000e-09
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "HL_THIGH"
+                boundingObject Pose {
+                  translation 0.000000 0.000000 -0.060000
+                  children [
+                    Box {
+                       size 0.040000 0.030000 0.120000
+                    }
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.610000
+                  centerOfMass [ -0.005230 -0.021600 -0.027300 ]
+                  inertiaMatrix [
+                    1.000000e-03 1.160000e-03 2.680000e-04
+                    -2.500000e-06 -1.120000e-04 3.750000e-07
+                  ]
+                }
+              }
+            }
+          ]
+          name "HL_HIP"
+          physics Physics {
+            density -1
+            mass 0.428000
+            centerOfMass [ 0.004700 -0.009100 -0.001800 ]
+            inertiaMatrix [
+              1.453800e-04 2.402400e-04 1.303800e-04
+              -8.158500e-07 1.263900e-05 1.344400e-06
+            ]
+          }
+        }
+      }
+      DEF HR_HipX HingeJoint {
+        jointParameters HingeJointParameters {
+          axis -1.000000 0.000000 0.000000
+          anchor -0.175000 -0.055000 0.000000
+        }
+        device [
+          RotationalMotor {
+            name "HR_HipX"
+            maxVelocity 20.0
+            minPosition -0.523
+            maxPosition 0.523
+            maxTorque 13.2
+          }
+          PositionSensor {
+            name "HR_HipX_sensor"
+          }
+        ]
+        endPoint DEF HR_HIP Solid {
+          translation -0.175000 -0.055000 0.000000
+          children [
+            DEF HR_HIP_visual CadShape {
+              url "../assets/JueyingMiniLiteV2/meshes/HR_HIP.dae"
+            }
+            DEF HR_HipY HingeJoint {
+              jointParameters HingeJointParameters {
+                position -0.700000
+                axis 0.000000 -1.000000 0.000000
+                anchor 0.000000 -0.081000 0.000000
+              }
+              device [
+                RotationalMotor {
+                  name "HR_HipY"
+                  maxVelocity 20.0
+                  minPosition -3.49
+                  maxPosition 0.349
+                  maxTorque 13.2
+                }
+                PositionSensor {
+                  name "HR_HipY_sensor"
+                }
+              ]
+              endPoint DEF HR_THIGH Solid {
+                translation 0.000000 -0.081000 0.000000
+                rotation 0.000000 1.000000 0.000000 0.700000
+                children [
+                  USE R_THIGH_visual
+                  DEF HR_Knee HingeJoint {
+                    jointParameters HingeJointParameters {
+                      position 1.400000
+                      axis 0.000000 -1.000000 0.000000
+                      anchor 0.000000 0.000000 -0.180000
+                    }
+                    device [
+                      RotationalMotor {
+                        name "HR_Knee"
+                        maxVelocity 20.0
+                        minPosition 0.419
+                        maxPosition 2.53
+                        maxTorque 28.0
+                      }
+                      PositionSensor {
+                        name "HR_Knee_sensor"
+                      }
+                    ]
+                    endPoint DEF HR_SHANK Solid {
+                      translation 0.000000 0.000000 -0.180000
+                      rotation 0.000000 -1.000000 0.000000 1.400000
+                      children [
+                        USE SHANK_visual
+                      ]
+                      name "HR_SHANK"
+                      boundingObject USE SHANK
+                      physics Physics {
+                        density -1
+                        mass 0.145000
+                        centerOfMass [ 0.005850 -0.000001 -0.120000 ]
+                        inertiaMatrix [
+                          6.680000e-04 6.860000e-04 3.155000e-05
+                          -1.240000e-08 6.910000e-06 5.650000e-09
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "HR_THIGH"
+                boundingObject Pose {
+                  translation 0.000000 0.000000 -0.060000
+                  children [
+                    Box {
+                       size 0.040000 0.030000 0.120000
+                    }
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.610000
+                  centerOfMass [ -0.005230 0.021600 -0.027300 ]
+                  inertiaMatrix [
+                    1.000000e-03 1.160000e-03 2.680000e-04
+                    2.500000e-06 -1.120000e-04 -3.750000e-07
+                  ]
+                }
+              }
+            }
+          ]
+          name "HR_HIP"
+          physics Physics {
+            density -1
+            mass 0.428000
+            centerOfMass [ 0.004700 0.009100 -0.001800 ]
+            inertiaMatrix [
+              1.453800e-04 2.402400e-04 1.303800e-04
+              8.154500e-07 1.263900e-05 -1.344000e-06
+            ]
+          }
+        }
+      }
+      Group {
+        children IS toolSlot
+      }
+    ]
+    name IS name
+    boundingObject Box {
+       size 0.234000 0.184000 0.080000
+    }
+    physics IS basePhysics
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "sim_time_s": 101.9,
+  "status": "goal_blocked",
+  "reason": "goal_occupied_or_clearance_blocked",
+  "from_xy_m": [
+    -3.388943298092136,
+    -3.1091268407591515
+  ],
+  "planning_radius_m": 0.28,
+  "goal_xy_m": [
+    2.0,
+    -3.0
+  ],
+  "target_xy_m": null,
+  "poses_xy_m": []
+}

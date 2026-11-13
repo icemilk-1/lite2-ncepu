@@ -1,0 +1,16 @@
+{
+  "sim_time_s": 2.0,
+  "status": "insufficient_observations",
+  "reason": "start_pose_not_observed_free",
+  "from_xy_m": [
+    -5.074029260034309,
+    -4.192833012230917
+  ],
+  "planning_radius_m": 0.28,
+  "goal_xy_m": [
+    -4.0,
+    4.1
+  ],
+  "target_xy_m": null,
+  "poses_xy_m": []
+}

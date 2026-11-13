@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "source": "webots",
+  "simulation_time_s": 2.0,
+  "robot_mode": "kinematic_navigation_ruins_reference",
+  "scene_id": "ruins_reference",
+  "camera": {
+    "frame_id": "front_camera_optical",
+    "sensor_model": "ideal_geometry_pending_real_sensor_characterization",
+    "optical_axes": "x_right_y_down_z_forward",
+    "width": 424,
+    "height": 240,
+    "K": [
+      302.6000000000001,
+      0,
+      212.0,
+      0,
+      302.6000000000001,
+      120.0,
+      0,
+      0,
+      1
+    ],
+    "rgb_file": "rgb.png",
+    "depth_file": "depth_m.npy",
+    "depth_unit": "m",
+    "depth_invalid": "nonfinite",
+    "mount_position_body_m": [
+      0.22,
+      0.0,
+      0.05
+    ],
+    "R_body_optical": [
+      0,
+      0,
+      1,
+      -1,
+      0,
+      0,
+      0,
+      -1,
+      0
+    ],
+    "mount_status": "assumed_pending_physical_calibration"
+  },
+  "imu": {
+    "frame_id": "base_link",
+    "orientation_source": "simulated_inertial_unit_ground_truth",
+    "rpy_rad": [
+      6.722053930777696e-08,
+      1.360233239318588e-06,
+      -3.9240633702517936e-08
+    ],
+    "angular_velocity_rad_s": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "accelerometer_m_s2": [
+      -1.3343888077711234e-05,
+      6.594334906086816e-07,
+      9.809999999990904
+    ]
+  },
+  "joint_positions_rad": {
+    "FL_HipX": -4.3245446335049564e-07,
+    "FL_HipY": -0.6999998222028043,
+    "FL_Knee": 1.3999998836737988,
+    "FR_HipX": -4.25051664071941e-07,
+    "FR_HipY": -0.6999998222027455,
+    "FR_Knee": 1.3999998836739687,
+    "HL_HipX": -4.3245536929248374e-07,
+    "HL_HipY": -0.6999998222032652,
+    "HL_Knee": 1.3999998836738023,
+    "HR_HipX": -4.324574813807658e-07,
+    "HR_HipY": -0.6999998222022571,
+    "HR_Knee": 1.3999998836739733
+  },
+  "depth_valid_fraction": 0.4560141509433962,
+  "center_depth_m": null,
+  "evaluation_ground_truth": {
+    "usage": "evaluation_only",
+    "body_position_world_m": [
+      4.9332316748386775,
+      4.250976708839549,
+      0.3048040275679827
+    ]
+  },
+  "navigation": {
+    "result": "goal_reached",
+    "scene_id": "ruins_reference",
+    "mapping": "2-D occupancy grid with odometry-propagated local scan-to-map pose correction",
+    "loop_closure": false,
+    "sensor": {
+      "model": "ideal_simulated_multilayer_lidar_placeholder_model_not_selected",
+      "horizontal_resolution": 360,
+      "vertical_layers": 16,
+      "field_of_view_rad": 6.28318530718,
+      "max_range_m": 8.0,
+      "self_filter_status": "provisional_fixed_joint_pose_envelope_pending_physical_measurement",
+      "last_observation_valid": true,
+      "last_observation_age_s": 0.0799999999999983
+    },
+    "task": {
+      "original_goal_xy_m": [
+        5.2,
+        4.15
+      ],
+      "terminal_reason": "goal_reached"
+    },
+    "planning": {
+      "planner": "8-connected A* on observed free cells with reachable-frontier exploration",
+      "status": "path_found",
+      "reason": "path_found",
+      "robot_radius_m": 0.28,
+      "planning_clearance_m": 0.1,
+      "goal_xy_m": [
+        5.2,
+        4.15
+      ],
+      "selected_target_xy_m": [
+        5.2,
+        4.15
+      ],
+      "initial_path_points": 13,
+      "initial_planned_path_length_m": 7.519588342947612,
+      "final_remaining_path_length_m": 0.29999999999999893,
+      "replans": 133
+    },
+    "simulation_model": "kinematic planar base; manufacturer joint pose held fixed; no gait or terrain contact simulation",
+    "evaluation_only": {
+      "final_truth_xy_m": [
+        4.943241994471669,
+        4.238205036339272
+      ],
+      "goal_error_m": 0.2714862829656385,
+      "distance_travelled_m": 14.838569212067993,
+      "scan_match_corrections": 545,
+      "collision_stop_events": 0
+    },
+    "map": {
+      "frame_id": "map",
+      "resolution_m": 0.1,
+      "width_cells": 120,
+      "height_cells": 100,
+      "origin_xy_m": [
+        -6.0,
+        -5.0
+      ],
+      "integrated_scans": 546,
+      "occupied_cells": 777,
+      "free_cells": 9719,
+      "unknown_cells": 1504
+    }
+  }
+}

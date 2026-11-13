@@ -1,0 +1,35 @@
+{
+  "time_s": 45.0,
+  "status": "collision",
+  "estimated_pose": [
+    2.898961837453478,
+    1.0001471898652845,
+    0.18464867988105071
+  ],
+  "truth_eval": [
+    2.898848624233788,
+    1.0043342314733377,
+    0.18464867988105071
+  ],
+  "corrections": 4,
+  "ground_eval": 0.11084244357165796,
+  "odometry_height": 0.001339077111244736,
+  "command": [
+    0.0,
+    0.0
+  ],
+  "target": null,
+  "local_rollout": {
+    "candidate_count": 6,
+    "valid_count": 1,
+    "rejected": {
+      "terrain": 0,
+      "support": 0,
+      "map_edge": 0,
+      "occupied": 3,
+      "unknown": 0,
+      "turn_unknown": 0
+    }
+  },
+  "ground_returns": null
+}

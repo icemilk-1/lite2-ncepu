@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "F:\airace\lite2_sim\run_mujoco.py", line 94, in main
+    result = verify(model, data, config, args.scene, output, manifest)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\airace\lite2_sim\mujoco_capture.py", line 214, in verify
+    expected_wall = config["robot_position_m"][0] + settings["mount_xyz_m"][0] + config["field_size_m"][0] / 2 - config["outer_wall_thickness_m"] / 2
+                                                                                                                 ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'outer_wall_thickness_m'

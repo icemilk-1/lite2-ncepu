@@ -1,0 +1,11 @@
+{"timestamp_s": 0.0, "stage_id": "ramp", "checkpoint_index": 0, "event": "checkpoint_started", "estimated_pose_m_rad": [-5.02, -4.25, 0.0], "goal_xy_m": [-4.0, 4.1], "state": "approaching"}
+{"timestamp_s": 65.05, "stage_id": "ramp", "checkpoint_index": 0, "event": "checkpoint_reached", "estimated_pose_m_rad": [-4.086851901235404, 4.054992686601689, 0.17735632166681903]}
+{"timestamp_s": 65.05, "stage_id": "ramp", "checkpoint_index": 1, "event": "stage_completed", "estimated_pose_m_rad": [-4.086851901235404, 4.054992686601689, 0.17735632166681903]}
+{"timestamp_s": 65.05, "stage_id": "s_bend", "checkpoint_index": 0, "event": "checkpoint_started", "estimated_pose_m_rad": [-4.086851901235404, 4.054992686601689, 0.17735632166681903], "goal_xy_m": [-1.25, 3.8], "state": "approaching"}
+{"timestamp_s": 86.85, "stage_id": "s_bend", "checkpoint_index": 0, "event": "checkpoint_reached", "estimated_pose_m_rad": [-1.3220875090419326, 3.86135980776955, -0.321094370002454]}
+{"timestamp_s": 86.85, "stage_id": "s_bend", "checkpoint_index": 1, "event": "checkpoint_started", "estimated_pose_m_rad": [-1.3220875090419326, 3.86135980776955, -0.321094370002454], "goal_xy_m": [-1.15, 1.35], "state": "approaching"}
+{"timestamp_s": 108.65, "stage_id": "s_bend", "checkpoint_index": 1, "event": "checkpoint_reached", "estimated_pose_m_rad": [-1.2314219663798909, 1.4051929080786698, -0.9968248370867974]}
+{"timestamp_s": 108.65, "stage_id": "s_bend", "checkpoint_index": 2, "event": "checkpoint_started", "estimated_pose_m_rad": [-1.2314219663798909, 1.4051929080786698, -0.9968248370867974], "goal_xy_m": [-0.2, 0.55], "state": "approaching"}
+{"timestamp_s": 120.8, "stage_id": "s_bend", "checkpoint_index": 2, "event": "checkpoint_reached", "estimated_pose_m_rad": [-0.28956448105146704, 0.5825533825724879, -0.6875004235909121]}
+{"timestamp_s": 120.8, "stage_id": "s_bend", "checkpoint_index": 3, "event": "stage_completed", "estimated_pose_m_rad": [-0.28956448105146704, 0.5825533825724879, -0.6875004235909121]}
+{"timestamp_s": 120.8, "stage_id": "dead_end_exit", "checkpoint_index": 0, "event": "checkpoint_started", "estimated_pose_m_rad": [-0.28956448105146704, 0.5825533825724879, -0.6875004235909121], "goal_xy_m": [-1.96, -1.28], "state": "approaching"}

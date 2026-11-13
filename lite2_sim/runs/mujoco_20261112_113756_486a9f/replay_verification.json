@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "frames": 190,
+  "mismatched_frames": 0,
+  "result": "goal_reached",
+  "control_output": "recorded_values_only"
+}

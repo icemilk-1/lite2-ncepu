@@ -1,0 +1,32 @@
+Run output: F:\airace\lite2_sim\runs\mujoco_20261113_104254_f76f4c
+{
+  "result": "passed",
+  "scope": "fixed_base_model_sensors_and_course_scene_load",
+  "scene_id": "ruins_reference",
+  "joint_count": 12,
+  "max_joint_error_rad": 0.010694951822417776,
+  "center_depth_m": 1.2854357957839966,
+  "expected_depth_m": null,
+  "depth_valid_fraction": 0.5884532232704403,
+  "backend": "mujoco",
+  "mujoco_version": "3.17.0",
+  "floating_root": true,
+  "actuator_count": 12,
+  "source_model_mass_kg": 10.03,
+  "fixture_drift_m": 1.9294714334538998e-05,
+  "fixture_drift_tolerance_m": 0.005,
+  "pose_dependent_checks": true,
+  "gyro_norm_rad_s": 1.1615985097433175e-10,
+  "imu_gravity_error_m_s2": 3.849027480652143e-09,
+  "max_inertia_relative_error": 3.0824836748832284e-06,
+  "geometry_count": 1939,
+  "lidar_wall_error_m": 2.8904548800334773e-05
+}
+NAV_PROGRESS t=5.0 status=exploring pose=(-4.69,-4.03) scans=50
+NAV_PROGRESS t=15.0 status=exploring pose=(-4.93,-2.69) scans=150
+NAV_PROGRESS t=25.0 status=exploring pose=(-4.95,-2.39) scans=250
+NAV_PROGRESS t=35.0 status=exploring pose=(-5.06,-0.95) scans=350
+NAV_PROGRESS t=45.0 status=exploring pose=(-5.24,0.54) scans=450
+NAV_PROGRESS t=55.0 status=exploring pose=(-5.30,2.02) scans=550
+NAV_PROGRESS t=65.0 status=exploring pose=(-4.93,2.70) scans=650
+NAVIGATION_FINISHED {"passed": false, "result": "collision", "goal_error_m": 1.6436417570782735, "collisions": 1, "output": "F:\\airace\\lite2_sim\\runs\\mujoco_20261113_104254_f76f4c"}

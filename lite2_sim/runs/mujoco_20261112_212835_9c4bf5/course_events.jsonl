@@ -1,0 +1,5 @@
+{"timestamp_s": 0.0, "stage_id": "round_pipe", "checkpoint_index": 0, "event": "checkpoint_started", "estimated_pose_m_rad": [2.0, 0.98, 0.0], "goal_xy_m": [4.62, 0.98], "state": "approaching"}
+{"timestamp_s": 64.7, "stage_id": "round_pipe", "checkpoint_index": 0, "event": "recovery_started", "estimated_pose_m_rad": [4.618017064801652, -0.3052270543793438, -2.753577741421363], "recovery_status": "goal_blocked", "recovery_attempt": 1}
+{"timestamp_s": 67.2, "stage_id": "round_pipe", "checkpoint_index": 0, "event": "recovery_retry", "estimated_pose_m_rad": [4.671389155846918, -0.2637138140174543, -2.465577741421363], "recovery_status": "goal_blocked", "recovery_attempt": 2}
+{"timestamp_s": 69.7, "stage_id": "round_pipe", "checkpoint_index": 0, "event": "recovery_retry", "estimated_pose_m_rad": [4.708678231621882, -0.21139198927885866, -2.1895777414213633], "recovery_status": "goal_blocked", "recovery_attempt": 3}
+{"timestamp_s": 72.2, "stage_id": "round_pipe", "checkpoint_index": 0, "event": "recovery_exhausted", "estimated_pose_m_rad": [4.730297854093456, -0.15088876258545048, -1.9135777414213635], "recovery_status": "goal_blocked", "recovery_attempt": 3}

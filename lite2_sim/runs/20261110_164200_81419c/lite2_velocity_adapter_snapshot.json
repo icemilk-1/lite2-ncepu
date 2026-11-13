@@ -1,0 +1,14 @@
+{
+  "backend": "ros1_geometry_msgs_twist",
+  "input_frame_id": "map",
+  "base_frame_id": "base_link",
+  "output_topic": "/cmd_vel",
+  "max_linear_x_m_s": 0.15,
+  "max_angular_z_rad_s": 0.4,
+  "command_timeout_s": 0.30,
+  "publish_rate_hz": 20,
+  "single_writer_verified": false,
+  "vendor_mode_confirmation_required": true,
+  "linear_y_m_s": 0.0,
+  "notes": "The adapter publishes standard SI Twist values through the Lite2 vendor ROS bridge. Confirm the active motion mode, topic ownership, and physical stop watchdog before enabling robot motion."
+}

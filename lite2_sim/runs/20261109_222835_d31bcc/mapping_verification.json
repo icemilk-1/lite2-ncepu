@@ -1,0 +1,20 @@
+{
+  "result": "passed",
+  "scope": "simulated_multilayer_mapping_and_export",
+  "navigation_result": "goal_reached",
+  "strict_json": "passed",
+  "map_yaml_preserves_unknown": "passed",
+  "source_snapshots_match": "passed",
+  "sensor_projection_regressions": "passed",
+  "corner_and_soft_clearance_regressions": "passed",
+  "integrated_scans": 548,
+  "observed_grid_fraction": 0.8616666666666667,
+  "estimated_goal_error_m": 0.24305607194219284,
+  "evaluation_truth_goal_error_m": 0.26091839899626645,
+  "collision_guard_events": 1,
+  "assumptions": [
+    "ideal_simulated_lidar",
+    "fixed_joint_pose_self_filter_envelope",
+    "planar_kinematic_execution"
+  ]
+}

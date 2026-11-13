@@ -1,0 +1,50 @@
+[
+  {
+    "timestamp_s": 166.75,
+    "proposed_pose": [
+      -1.3945843567180358,
+      3.873762139190882,
+      -2.2115787453135045
+    ],
+    "retained_pose": [
+      -1.3940216130997058,
+      3.874514372145089,
+      -2.2145787453135046
+    ],
+    "ground_height_m": 0.12457803560433858,
+    "reason": "body_geometry_clearance",
+    "geometry": "ramp_inner_edge_collision_2"
+  },
+  {
+    "timestamp_s": 166.8,
+    "proposed_pose": [
+      -1.3945843567180358,
+      3.873762139190882,
+      -2.2115787453135045
+    ],
+    "retained_pose": [
+      -1.3940216130997058,
+      3.874514372145089,
+      -2.2145787453135046
+    ],
+    "ground_height_m": 0.12457803560433858,
+    "reason": "body_geometry_clearance",
+    "geometry": "ramp_inner_edge_collision_2"
+  },
+  {
+    "timestamp_s": 166.85,
+    "proposed_pose": [
+      -1.3945843567180358,
+      3.873762139190882,
+      -2.2115787453135045
+    ],
+    "retained_pose": [
+      -1.3940216130997058,
+      3.874514372145089,
+      -2.2145787453135046
+    ],
+    "ground_height_m": 0.12457803560433858,
+    "reason": "body_geometry_clearance",
+    "geometry": "ramp_inner_edge_collision_2"
+  }
+]

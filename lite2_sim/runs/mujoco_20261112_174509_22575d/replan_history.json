@@ -1,0 +1,2074 @@
+[
+  {
+    "sim_time_s": 2.0,
+    "status": "exploring",
+    "reason": "goal_not_observed_reachable_frontier_selected",
+    "from_xy_m": [
+      -4.0649316243379765,
+      -2.923900423738119
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -2.5749999999999997,
+      -2.975
+    ],
+    "poses_xy_m": [
+      [
+        -4.075,
+        -2.925
+      ],
+      [
+        -2.5749999999999997,
+        -2.975
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 2.5,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -4.036009653784977,
+      -2.924577089317829
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -2.5749999999999997,
+      -2.975
+    ],
+    "poses_xy_m": [
+      [
+        -4.025,
+        -2.925
+      ],
+      [
+        -2.5749999999999997,
+        -2.975
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 3.0,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -3.9554415870123716,
+      -2.926642212973483
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -2.5749999999999997,
+      -2.975
+    ],
+    "poses_xy_m": [
+      [
+        -3.975,
+        -2.925
+      ],
+      [
+        -2.5749999999999997,
+        -2.975
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 3.5,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -3.8777883733479963,
+      -2.9297248604491277
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -2.5749999999999997,
+      -2.975
+    ],
+    "poses_xy_m": [
+      [
+        -3.875,
+        -2.925
+      ],
+      [
+        -2.5749999999999997,
+        -2.975
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 4.0,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -3.7898908556076982,
+      -2.932562090568982
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -2.5749999999999997,
+      -2.975
+    ],
+    "poses_xy_m": [
+      [
+        -3.775,
+        -2.925
+      ],
+      [
+        -2.5749999999999997,
+        -2.975
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 4.5,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -3.719443491501986,
+      -2.9354006981568
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -2.5749999999999997,
+      -2.975
+    ],
+    "poses_xy_m": [
+      [
+        -3.725,
+        -2.925
+      ],
+      [
+        -2.5749999999999997,
+        -2.975
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 5.0,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -3.6398206746870554,
+      -2.938195675919271
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -2.5749999999999997,
+      -2.975
+    ],
+    "poses_xy_m": [
+      [
+        -3.625,
+        -2.925
+      ],
+      [
+        -2.5749999999999997,
+        -2.975
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 5.5,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -3.559949465945405,
+      -2.941077354318828
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -2.5749999999999997,
+      -2.975
+    ],
+    "poses_xy_m": [
+      [
+        -3.5749999999999997,
+        -2.925
+      ],
+      [
+        -2.5749999999999997,
+        -2.975
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 6.0,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -3.4709733653905115,
+      -2.9436881356677773
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -2.5749999999999997,
+      -2.975
+    ],
+    "poses_xy_m": [
+      [
+        -3.4749999999999996,
+        -2.925
+      ],
+      [
+        -2.5749999999999997,
+        -2.975
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 6.5,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -3.4042004612619374,
+      -2.9463698820095474
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -2.5749999999999997,
+      -2.975
+    ],
+    "poses_xy_m": [
+      [
+        -3.425,
+        -2.925
+      ],
+      [
+        -2.5749999999999997,
+        -2.975
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 7.0,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -3.3138425535906264,
+      -2.959122400415629
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -2.5749999999999997,
+      -2.975
+    ],
+    "poses_xy_m": [
+      [
+        -3.3249999999999997,
+        -2.975
+      ],
+      [
+        -2.5749999999999997,
+        -2.975
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 7.5,
+    "status": "exploring",
+    "reason": "goal_not_observed_reachable_frontier_selected",
+    "from_xy_m": [
+      -3.23274434987773,
+      -2.951620593573512
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -3.2249999999999996,
+        -2.975
+      ],
+      [
+        -2.0749999999999997,
+        -3.775
+      ],
+      [
+        -2.025,
+        -3.825
+      ],
+      [
+        -1.9749999999999996,
+        -3.875
+      ],
+      [
+        -1.9249999999999998,
+        -3.925
+      ],
+      [
+        -1.875,
+        -3.925
+      ],
+      [
+        -1.8250000000000002,
+        -3.9749999999999996
+      ],
+      [
+        -0.9249999999999998,
+        -3.925
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 8.0,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -3.1548310216037714,
+      -2.9553768136382064
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -3.175,
+        -2.975
+      ],
+      [
+        -2.0749999999999997,
+        -3.775
+      ],
+      [
+        -2.025,
+        -3.825
+      ],
+      [
+        -1.9749999999999996,
+        -3.875
+      ],
+      [
+        -1.9249999999999998,
+        -3.925
+      ],
+      [
+        -1.875,
+        -3.925
+      ],
+      [
+        -1.8250000000000002,
+        -3.9749999999999996
+      ],
+      [
+        -1.0249999999999995,
+        -3.925
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 8.5,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -3.0767410626287166,
+      -2.9808104221745246
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -3.0749999999999997,
+        -2.975
+      ],
+      [
+        -2.0749999999999997,
+        -3.775
+      ],
+      [
+        -2.025,
+        -3.825
+      ],
+      [
+        -1.9749999999999996,
+        -3.875
+      ],
+      [
+        -1.9249999999999998,
+        -3.925
+      ],
+      [
+        -1.875,
+        -3.925
+      ],
+      [
+        -1.8250000000000002,
+        -3.9749999999999996
+      ],
+      [
+        -1.0249999999999995,
+        -3.925
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 9.0,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -3.0036894937906853,
+      -3.011088899049846
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -3.025,
+        -3.025
+      ],
+      [
+        -2.0749999999999997,
+        -3.775
+      ],
+      [
+        -2.025,
+        -3.825
+      ],
+      [
+        -1.9749999999999996,
+        -3.875
+      ],
+      [
+        -1.9249999999999998,
+        -3.925
+      ],
+      [
+        -1.875,
+        -3.925
+      ],
+      [
+        -1.8250000000000002,
+        -3.9749999999999996
+      ],
+      [
+        -1.0249999999999995,
+        -3.925
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 9.5,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -2.938317883757872,
+      -3.054601738444869
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -2.925,
+        -3.075
+      ],
+      [
+        -2.0749999999999997,
+        -3.775
+      ],
+      [
+        -2.025,
+        -3.825
+      ],
+      [
+        -1.9749999999999996,
+        -3.875
+      ],
+      [
+        -1.9249999999999998,
+        -3.925
+      ],
+      [
+        -1.875,
+        -3.925
+      ],
+      [
+        -1.8250000000000002,
+        -3.9749999999999996
+      ],
+      [
+        -1.0249999999999995,
+        -3.925
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 10.0,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -2.866212583840377,
+      -3.1152508470010383
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -2.875,
+        -3.125
+      ],
+      [
+        -2.0749999999999997,
+        -3.775
+      ],
+      [
+        -2.025,
+        -3.825
+      ],
+      [
+        -1.9749999999999996,
+        -3.875
+      ],
+      [
+        -1.9249999999999998,
+        -3.925
+      ],
+      [
+        -1.875,
+        -3.925
+      ],
+      [
+        -1.8250000000000002,
+        -3.9749999999999996
+      ],
+      [
+        -1.0249999999999995,
+        -3.925
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 10.5,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -2.804460227901964,
+      -3.176918081342892
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -2.8249999999999997,
+        -3.175
+      ],
+      [
+        -2.0749999999999997,
+        -3.7249999999999996
+      ],
+      [
+        -2.025,
+        -3.775
+      ],
+      [
+        -1.9749999999999996,
+        -3.825
+      ],
+      [
+        -1.9249999999999998,
+        -3.875
+      ],
+      [
+        -1.875,
+        -3.925
+      ],
+      [
+        -1.8250000000000002,
+        -3.925
+      ],
+      [
+        -1.7749999999999995,
+        -3.9749999999999996
+      ],
+      [
+        -1.0249999999999995,
+        -3.925
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 11.0,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -2.742191435569102,
+      -3.227575933202497
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -2.7249999999999996,
+        -3.2249999999999996
+      ],
+      [
+        -2.0749999999999997,
+        -3.775
+      ],
+      [
+        -2.025,
+        -3.825
+      ],
+      [
+        -1.9749999999999996,
+        -3.875
+      ],
+      [
+        -1.9249999999999998,
+        -3.925
+      ],
+      [
+        -1.875,
+        -3.925
+      ],
+      [
+        -1.8250000000000002,
+        -3.9749999999999996
+      ],
+      [
+        -1.0249999999999995,
+        -3.925
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 11.5,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -2.668891622646119,
+      -3.2767315528339336
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -2.675,
+        -3.275
+      ],
+      [
+        -2.0749999999999997,
+        -3.775
+      ],
+      [
+        -2.025,
+        -3.825
+      ],
+      [
+        -1.9749999999999996,
+        -3.875
+      ],
+      [
+        -1.9249999999999998,
+        -3.925
+      ],
+      [
+        -1.875,
+        -3.925
+      ],
+      [
+        -1.8250000000000002,
+        -3.9749999999999996
+      ],
+      [
+        -1.0249999999999995,
+        -3.925
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 12.0,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -2.6165938036375462,
+      -3.3272488132765683
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -2.625,
+        -3.325
+      ],
+      [
+        -2.2249999999999996,
+        -3.575
+      ],
+      [
+        -2.0749999999999997,
+        -3.775
+      ],
+      [
+        -2.025,
+        -3.825
+      ],
+      [
+        -1.9749999999999996,
+        -3.875
+      ],
+      [
+        -1.9249999999999998,
+        -3.925
+      ],
+      [
+        -1.875,
+        -3.925
+      ],
+      [
+        -1.8250000000000002,
+        -3.9749999999999996
+      ],
+      [
+        -1.0249999999999995,
+        -3.925
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 12.5,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -2.55400931236974,
+      -3.377550994257475
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -2.5749999999999997,
+        -3.375
+      ],
+      [
+        -2.0749999999999997,
+        -3.775
+      ],
+      [
+        -2.025,
+        -3.825
+      ],
+      [
+        -1.9749999999999996,
+        -3.875
+      ],
+      [
+        -1.9249999999999998,
+        -3.925
+      ],
+      [
+        -1.875,
+        -3.925
+      ],
+      [
+        -1.8250000000000002,
+        -3.9749999999999996
+      ],
+      [
+        -1.0249999999999995,
+        -3.925
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 13.0,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -2.488738877889478,
+      -3.42298321922407
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -2.4749999999999996,
+        -3.425
+      ],
+      [
+        -2.0749999999999997,
+        -3.775
+      ],
+      [
+        -2.025,
+        -3.825
+      ],
+      [
+        -1.9749999999999996,
+        -3.875
+      ],
+      [
+        -1.9249999999999998,
+        -3.925
+      ],
+      [
+        -1.875,
+        -3.925
+      ],
+      [
+        -1.8250000000000002,
+        -3.9749999999999996
+      ],
+      [
+        -1.0249999999999995,
+        -3.925
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 13.5,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -2.4260456107572246,
+      -3.480319652248144
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -2.425,
+        -3.4749999999999996
+      ],
+      [
+        -2.0749999999999997,
+        -3.775
+      ],
+      [
+        -2.025,
+        -3.825
+      ],
+      [
+        -1.9749999999999996,
+        -3.875
+      ],
+      [
+        -1.9249999999999998,
+        -3.925
+      ],
+      [
+        -1.875,
+        -3.925
+      ],
+      [
+        -1.8250000000000002,
+        -3.9749999999999996
+      ],
+      [
+        -0.9749999999999996,
+        -3.925
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 14.0,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -2.364365728619862,
+      -3.520484106961193
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -2.375,
+        -3.525
+      ],
+      [
+        -2.0749999999999997,
+        -3.775
+      ],
+      [
+        -2.025,
+        -3.825
+      ],
+      [
+        -1.9749999999999996,
+        -3.875
+      ],
+      [
+        -1.9249999999999998,
+        -3.925
+      ],
+      [
+        -1.875,
+        -3.9749999999999996
+      ],
+      [
+        -1.8250000000000002,
+        -3.9749999999999996
+      ],
+      [
+        -1.7749999999999995,
+        -4.025
+      ],
+      [
+        -1.0249999999999995,
+        -3.9749999999999996
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 14.5,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -2.29334316423949,
+      -3.579230468522873
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -2.275,
+        -3.575
+      ],
+      [
+        -2.0749999999999997,
+        -3.825
+      ],
+      [
+        -2.025,
+        -3.875
+      ],
+      [
+        -1.9749999999999996,
+        -3.925
+      ],
+      [
+        -1.9249999999999998,
+        -3.9749999999999996
+      ],
+      [
+        -1.875,
+        -3.9749999999999996
+      ],
+      [
+        -1.8250000000000002,
+        -4.025
+      ],
+      [
+        -1.2249999999999996,
+        -4.025
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 15.0,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -2.2400149522970745,
+      -3.621480962656009
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -2.2249999999999996,
+        -3.625
+      ],
+      [
+        -2.0749999999999997,
+        -3.825
+      ],
+      [
+        -2.025,
+        -3.875
+      ],
+      [
+        -1.9749999999999996,
+        -3.925
+      ],
+      [
+        -1.9249999999999998,
+        -3.9749999999999996
+      ],
+      [
+        -1.875,
+        -3.9749999999999996
+      ],
+      [
+        -1.8250000000000002,
+        -4.025
+      ],
+      [
+        -1.2249999999999996,
+        -4.025
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 15.5,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -2.1798892402711405,
+      -3.673156917792519
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -2.175,
+        -3.675
+      ],
+      [
+        -2.0749999999999997,
+        -3.825
+      ],
+      [
+        -2.025,
+        -3.875
+      ],
+      [
+        -1.9749999999999996,
+        -3.925
+      ],
+      [
+        -1.9249999999999998,
+        -3.9749999999999996
+      ],
+      [
+        -1.875,
+        -3.9749999999999996
+      ],
+      [
+        -1.8250000000000002,
+        -4.025
+      ],
+      [
+        -1.2249999999999996,
+        -4.025
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 16.0,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -2.1266098247689524,
+      -3.7282460819644117
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -2.125,
+        -3.7249999999999996
+      ],
+      [
+        -2.0749999999999997,
+        -3.825
+      ],
+      [
+        -2.025,
+        -3.875
+      ],
+      [
+        -1.9749999999999996,
+        -3.925
+      ],
+      [
+        -1.9249999999999998,
+        -3.9749999999999996
+      ],
+      [
+        -1.875,
+        -3.9749999999999996
+      ],
+      [
+        -1.8250000000000002,
+        -4.025
+      ],
+      [
+        -1.2249999999999996,
+        -4.025
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 16.5,
+    "status": "exploring",
+    "reason": "continuing_reachable_frontier",
+    "from_xy_m": [
+      -2.0636514864297277,
+      -3.7879353290138793
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": [
+      -0.8249999999999993,
+      -3.825
+    ],
+    "poses_xy_m": [
+      [
+        -2.0749999999999997,
+        -3.775
+      ],
+      [
+        -2.0749999999999997,
+        -3.825
+      ],
+      [
+        -2.025,
+        -3.875
+      ],
+      [
+        -1.9749999999999996,
+        -3.925
+      ],
+      [
+        -1.9249999999999998,
+        -3.9749999999999996
+      ],
+      [
+        -1.875,
+        -3.9749999999999996
+      ],
+      [
+        -1.8250000000000002,
+        -4.025
+      ],
+      [
+        -1.2249999999999996,
+        -4.025
+      ],
+      [
+        -0.8249999999999993,
+        -3.825
+      ]
+    ]
+  },
+  {
+    "sim_time_s": 17.0,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0141095874709767,
+      -3.847288607173482
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 17.05,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0092370441825746,
+      -3.8530967739111306
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 17.55,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -1.9951223005691296,
+      -3.879571222990392
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 18.05,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -1.9851223005691296,
+      -3.879571222990392
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 18.55,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -1.994032031035453,
+      -3.8836778364955764
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 19.05,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0195202542857125,
+      -3.8604195133472734
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 19.1,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0230338513173924,
+      -3.8581953166056255
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 19.15,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0249278700935385,
+      -3.8569925739277493
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 19.2,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0253771419706217,
+      -3.8567069808247614
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 19.25,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0253771419706217,
+      -3.8567069808247614
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 19.3,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0253771419706217,
+      -3.8567069808247614
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 19.35,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0253771419706217,
+      -3.8567069808247614
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 19.4,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0253771419706217,
+      -3.8567069808247614
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 19.45,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0253771419706217,
+      -3.8567069808247614
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 19.5,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0253771419706217,
+      -3.8567069808247614
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 19.55,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0253771419706217,
+      -3.8567069808247614
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 20.05,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0253771419706217,
+      -3.8567069808247614
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 20.55,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0353771419706215,
+      -3.8567069808247614
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 21.05,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0355940832230583,
+      -3.8533545084972647
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 21.55,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.075648762938523,
+      -3.840309264792323
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 21.6,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0797846451319,
+      -3.8389498905663473
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 21.65,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.0820795846234903,
+      -3.8381942443203805
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 21.7,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.082611693299252,
+      -3.8380190220672623
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 21.75,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.082611693299252,
+      -3.8380190220672623
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 21.8,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.082611693299252,
+      -3.8380190220672623
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 21.85,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.082611693299252,
+      -3.8380190220672623
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 21.9,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.082611693299252,
+      -3.8380190220672623
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 21.95,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.082611693299252,
+      -3.8380190220672623
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 22.0,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.082611693299252,
+      -3.8380190220672623
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 22.05,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.082611693299252,
+      -3.8380190220672623
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 22.55,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.082611693299252,
+      -3.8380190220672623
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 23.05,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.082611693299252,
+      -3.8380190220672623
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 23.55,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.093392672611847,
+      -3.8374559609392307
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 24.05,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.1349845526008875,
+      -3.835328246716332
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 24.1,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.1390711591710323,
+      -3.8351194379455227
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 24.15,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.141442796274647,
+      -3.8349997505247235
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 24.2,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.141966515966239,
+      -3.834973201134876
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 24.25,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.141966515966239,
+      -3.834973201134876
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 24.3,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.141966515966239,
+      -3.834973201134876
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 24.35,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.141966515966239,
+      -3.834973201134876
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 24.4,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.141966515966239,
+      -3.834973201134876
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 24.45,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.141966515966239,
+      -3.834973201134876
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 24.5,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      -2.141966515966239,
+      -3.834973201134876
+    ],
+    "planning_radius_m": 0.28,
+    "goal_xy_m": [
+      2.0,
+      -3.0
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  }
+]

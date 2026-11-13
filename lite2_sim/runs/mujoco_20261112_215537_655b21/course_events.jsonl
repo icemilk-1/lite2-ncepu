@@ -1,0 +1,3 @@
+{"timestamp_s": 0.0, "stage_id": "round_pipe", "checkpoint_index": 0, "event": "checkpoint_started", "estimated_pose_m_rad": [2.0, 0.98, 0.0], "goal_xy_m": [3.57, 0.98], "state": "approaching"}
+{"timestamp_s": 27.5, "stage_id": "round_pipe", "checkpoint_index": 0, "event": "checkpoint_reached", "estimated_pose_m_rad": [3.4516828577387013, 0.9779509279172758, -0.018351320118949577]}
+{"timestamp_s": 27.5, "stage_id": "round_pipe", "checkpoint_index": 1, "event": "checkpoint_started", "estimated_pose_m_rad": [3.4516828577387013, 0.9779509279172758, -0.018351320118949577], "goal_xy_m": [4.8, 0.98], "state": "approaching"}

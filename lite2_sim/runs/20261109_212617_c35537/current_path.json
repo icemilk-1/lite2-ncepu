@@ -1,0 +1,33 @@
+{
+  "frame_id": "map",
+  "planner": "8-connected A*",
+  "current_replan": {
+    "sim_time_s": 4.0,
+    "from_xy_m": [
+      -5.57,
+      -3.7199999999999998
+    ],
+    "poses_xy_m": [],
+    "path_length_m": 0
+  },
+  "history": [
+    {
+      "sim_time_s": 4.0,
+      "from_xy_m": [
+        -5.57,
+        -3.7199999999999998
+      ],
+      "poses_xy_m": [],
+      "path_length_m": 0
+    },
+    {
+      "sim_time_s": 4.0,
+      "from_xy_m": [
+        -5.57,
+        -3.7199999999999998
+      ],
+      "poses_xy_m": [],
+      "path_length_m": 0
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "result": "runtime_error",
+  "error": "Known west wall LiDAR distance is incorrect.",
+  "error_log": "error.log"
+}

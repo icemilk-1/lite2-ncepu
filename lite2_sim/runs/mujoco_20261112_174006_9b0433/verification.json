@@ -1,0 +1,7 @@
+{
+  "result": "failed",
+  "backend": "mujoco",
+  "scene_id": "ruins_reference",
+  "error": "Fixture drift exceeds 0.005 m: 0.009319157294952201",
+  "error_log": "error.log"
+}

@@ -1,0 +1,72 @@
+{
+  "result": "start_blocked",
+  "scene_id": "ruins_reference",
+  "mapping": "2-D occupancy grid with odometry-propagated local scan-to-map pose correction",
+  "loop_closure": false,
+  "sensor": {
+    "model": "ideal_simulated_multilayer_lidar_placeholder_model_not_selected",
+    "horizontal_resolution": 360,
+    "vertical_layers": 16,
+    "field_of_view_rad": 6.28318530718,
+    "max_range_m": 8.0,
+    "self_filter_status": "provisional_fixed_joint_pose_envelope_pending_physical_measurement",
+    "last_observation_valid": true,
+    "last_observation_age_s": 0.06400000000000006
+  },
+  "task": {
+    "original_goal_xy_m": [
+      5.2,
+      4.15
+    ],
+    "decision_pose_xy_m": [
+      -5.449999999999995,
+      -3.6500000000000004
+    ],
+    "decision_pose_source": "scan_matched_odometry_estimate",
+    "estimated_stop_tolerance_m": 0.08,
+    "terminal_reason": "start_not_known_traversable"
+  },
+  "planning": {
+    "planner": "8-connected A* on observed free cells with reachable-frontier exploration",
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "robot_radius_m": 0.28,
+    "planning_clearance_m": 0.1,
+    "goal_xy_m": [
+      5.2,
+      4.15
+    ],
+    "selected_target_xy_m": null,
+    "initial_path_points": 0,
+    "initial_planned_path_length_m": 0,
+    "final_remaining_path_length_m": 0,
+    "replans": 2
+  },
+  "simulation_model": "kinematic planar base; manufacturer joint pose held fixed; no gait or terrain contact simulation",
+  "evaluation_only": {
+    "final_truth_xy_m": [
+      -5.45,
+      -3.65
+    ],
+    "goal_error_m": 13.20085224521508,
+    "goal_tolerance_m": 0.25,
+    "truth_goal_tolerance_met": false,
+    "distance_travelled_m": 0.0,
+    "scan_match_corrections": 15,
+    "collision_stop_events": 0
+  },
+  "map": {
+    "frame_id": "map",
+    "resolution_m": 0.1,
+    "width_cells": 120,
+    "height_cells": 100,
+    "origin_xy_m": [
+      -6.0,
+      -5.0
+    ],
+    "integrated_scans": 16,
+    "occupied_cells": 151,
+    "free_cells": 2134,
+    "unknown_cells": 9715
+  }
+}

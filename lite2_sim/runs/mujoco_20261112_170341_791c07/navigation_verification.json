@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "result": "runtime_error",
+  "error": "Unknown randomization profile 'does_not_exist' under F:\\airace\\lite2_sim\\config\\randomization (available: ideal, sim2real_aggressive, sim2real_v1).",
+  "error_log": "error.log",
+  "backend": "mujoco"
+}

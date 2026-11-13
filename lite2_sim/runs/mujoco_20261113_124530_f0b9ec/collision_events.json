@@ -1,0 +1,18 @@
+[
+  {
+    "timestamp_s": 239.05,
+    "proposed_pose": [
+      2.2571404064121943,
+      3.838003570313092,
+      0.5625323965740456
+    ],
+    "retained_pose": [
+      2.253751454804371,
+      3.8358787157298715,
+      0.5575323965740457
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "partition_culvert_cover"
+  }
+]

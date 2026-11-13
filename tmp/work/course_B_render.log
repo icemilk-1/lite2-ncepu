@@ -1,0 +1,114 @@
+{
+ "output": "F:\\airace\\plan\\videos\\nav_full_course_headfirst_20261113.mp4",
+ "frames": 1334,
+ "fps": 12.0,
+ "sim_duration_s": 333.45,
+ "video_duration_s": 111.17,
+ "stages": [
+  {
+   "t": 0.0,
+   "event": "checkpoint_started",
+   "stage": "ramp"
+  },
+  {
+   "t": 66.6,
+   "event": "stage_completed",
+   "stage": "ramp"
+  },
+  {
+   "t": 66.6,
+   "event": "checkpoint_started",
+   "stage": "s_bend"
+  },
+  {
+   "t": 89.0,
+   "event": "checkpoint_started",
+   "stage": "s_bend"
+  },
+  {
+   "t": 110.9,
+   "event": "checkpoint_started",
+   "stage": "s_bend"
+  },
+  {
+   "t": 125.2,
+   "event": "stage_completed",
+   "stage": "s_bend"
+  },
+  {
+   "t": 125.2,
+   "event": "checkpoint_started",
+   "stage": "dead_end_exit"
+  },
+  {
+   "t": 152.9,
+   "event": "branch_closed",
+   "stage": "dead_end_exit"
+  },
+  {
+   "t": 152.9,
+   "event": "checkpoint_started",
+   "stage": "dead_end_exit"
+  },
+  {
+   "t": 172.2,
+   "event": "stage_completed",
+   "stage": "dead_end_exit"
+  },
+  {
+   "t": 172.2,
+   "event": "checkpoint_started",
+   "stage": "obstacle_bypass"
+  },
+  {
+   "t": 197.8,
+   "event": "stage_completed",
+   "stage": "obstacle_bypass"
+  },
+  {
+   "t": 197.8,
+   "event": "checkpoint_started",
+   "stage": "narrow_passage_rejection"
+  },
+  {
+   "t": 222.2,
+   "event": "passage_rejected",
+   "stage": "narrow_passage_rejection"
+  },
+  {
+   "t": 222.2,
+   "event": "checkpoint_started",
+   "stage": "narrow_passage_rejection"
+  },
+  {
+   "t": 292.6,
+   "event": "stage_completed",
+   "stage": "narrow_passage_rejection"
+  },
+  {
+   "t": 292.6,
+   "event": "checkpoint_started",
+   "stage": "square_culvert"
+  },
+  {
+   "t": 306.3,
+   "event": "checkpoint_started",
+   "stage": "square_culvert"
+  },
+  {
+   "t": 320.7,
+   "event": "stage_completed",
+   "stage": "square_culvert"
+  },
+  {
+   "t": 320.7,
+   "event": "checkpoint_started",
+   "stage": "finish"
+  },
+  {
+   "t": 332.4,
+   "event": "stage_completed",
+   "stage": "finish"
+  }
+ ]
+}

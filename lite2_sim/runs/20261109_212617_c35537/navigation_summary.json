@@ -1,0 +1,48 @@
+{
+  "result": "no_path",
+  "scene_id": "ruins_reference",
+  "mapping": "2-D occupancy grid with odometry-prior local scan-to-map pose correction",
+  "loop_closure": false,
+  "sensor": {
+    "model": "ideal_simulated_planar_lidar_placeholder_model_not_selected",
+    "horizontal_resolution": 360,
+    "field_of_view_rad": 6.28318530718,
+    "max_range_m": 8.0
+  },
+  "planning": {
+    "planner": "8-connected A* with obstacle inflation and line-of-sight smoothing",
+    "robot_radius_m": 0.28,
+    "goal_xy_m": [
+      5.2,
+      4.15
+    ],
+    "initial_path_points": 0,
+    "initial_planned_path_length_m": 0,
+    "final_remaining_path_length_m": 0,
+    "replans": 1
+  },
+  "simulation_model": "kinematic planar base; manufacturer joint pose held fixed; no gait or terrain contact simulation",
+  "evaluation_only": {
+    "final_truth_xy_m": [
+      -5.45,
+      -3.65
+    ],
+    "goal_error_m": 13.20085224521508,
+    "distance_travelled_m": 0.0,
+    "scan_match_corrections": 15
+  },
+  "map": {
+    "frame_id": "map",
+    "resolution_m": 0.1,
+    "width_cells": 120,
+    "height_cells": 100,
+    "origin_xy_m": [
+      -6.0,
+      -5.0
+    ],
+    "integrated_scans": 16,
+    "occupied_cells": 65,
+    "free_cells": 6079,
+    "unknown_cells": 5856
+  }
+}

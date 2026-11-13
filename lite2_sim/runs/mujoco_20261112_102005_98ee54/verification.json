@@ -1,0 +1,7 @@
+{
+  "result": "failed",
+  "backend": "mujoco",
+  "scene_id": "sensor_lab",
+  "error": "Model mass changed during scene assembly.",
+  "error_log": "error.log"
+}

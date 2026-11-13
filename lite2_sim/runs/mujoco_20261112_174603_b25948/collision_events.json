@@ -1,0 +1,338 @@
+[
+  {
+    "timestamp_s": 0.0,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.05,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.1,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.15,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.2,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.25,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.3,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.35,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.4,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.45,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.5,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.55,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.6,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.65,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.7,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.75,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.8,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.85,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.9,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 0.95,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  },
+  {
+    "timestamp_s": 1.0,
+    "proposed_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "retained_pose": [
+      2.35,
+      0.98,
+      0.0
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "concrete_pipe_64"
+  }
+]

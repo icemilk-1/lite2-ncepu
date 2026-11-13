@@ -1,0 +1,24 @@
+{
+  "created_at_utc": "2026-11-13T04:49:29.224774+00:00",
+  "python_syntax_minimum": "3.6",
+  "runtime_dependency": "numpy>=1.19.5",
+  "files_sha256": {
+    "controllers/sensor_capture/navigation_core/__init__.py": "563ed6c53b4e4e06872ad18f2763bcacfe2d398cf33b0f5b45d152958855076a",
+    "controllers/sensor_capture/navigation_core/contracts.py": "74ef54502b36f424f080ec7602df5d5e3164e47b588fb2493d4e4c3013a2e1ab",
+    "controllers/sensor_capture/navigation_core/control.py": "b53f3522c03b88711d8f716fe2af19c48f431d6bfc4afeeb749254ab5ded308f",
+    "controllers/sensor_capture/navigation_core/grid.py": "c952c55f6756f5bd6c71747c0dee247e20c71c5b874cf2c68223346d749131ef",
+    "controllers/sensor_capture/navigation_core/planner.py": "829299f6570130ec5a3e82d0fc55020786704ad4fe81363c2db501ed5996ed19",
+    "controllers/sensor_capture/navigation_core/session.py": "42a05bfb6259571dd17ada8ff1cb0539895ea7c34b7e4d8d236eb8dd1f494732",
+    "controllers/sensor_capture/navigation_core/terrain.py": "f6803d67b47180ffd9399bc180d587dff54732c145c222339da865412021a6da",
+    "controllers/sensor_capture/navigation_core/course.py": "3d384557b74316e88431e7928fd560949b1f138ebc35446716a429831b390f43",
+    "controllers/sensor_capture/navigation_core/evaluation.py": "78e888a7686b7eadd1b6954d837f4c493265cbe37ec01c9b73977fdac240dfa7",
+    "controllers/sensor_capture/navigation_core/execution_adapters/__init__.py": "71113cdefa8a1698b54aa239f7c2405b532f835bd454c25a81a2ca1d2d7082a4",
+    "controllers/sensor_capture/navigation_core/execution_adapters/ros1_twist.py": "a5427bb8480d11a8d4c2a1fe0c587c6a972fa8156da367ad11ff6fd38c8da78d",
+    "tools/replay_navigation.py": "4bb4de2bf663de585f7cd475f21efb21572524032107f6e378667e13ed82d8c4",
+    "tools/collect_lite2_environment.py": "496ae723300b5a0c6c43bc97d8940648cd1c4abdc8c275a0e4b2d2d56fbfc12f",
+    "tests/test_navigation_core.py": "5a909b49640acf26975d14e2f9ee0707c7134886d4001c52a5b0ba677176e27a",
+    "hardware/README.md": "9b456f9037d58a517458561f4e37d6a52f99d62181a7f9f540f75537661a5879",
+    "hardware/profile.example.json": "0bb5eecef34bdb0444b13165235dbbc4efbe698b5a2c8f834158ea44925fa93b"
+  },
+  "hardware_interface_status": "awaiting_actual_sensor_and_control_configuration"
+}

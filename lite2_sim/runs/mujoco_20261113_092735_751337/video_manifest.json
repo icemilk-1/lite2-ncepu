@@ -1,0 +1,17 @@
+{
+  "video": "navigation_replay.mp4",
+  "source_run": "F:\\airace\\lite2_sim\\runs\\mujoco_20261113_092735_751337",
+  "source_result": "stalled",
+  "source_trajectory_sha256": "051a74475062cb0ee923572e2e437696cc677fc4bbf312e290ec1daa6c010ac8",
+  "replay_type": "recorded_body_trajectory_with_configured_joint_pose",
+  "speed_multiplier": 8.0,
+  "fps": 16,
+  "resolution": [
+    1280,
+    960
+  ],
+  "simulation_duration_s": 194.45,
+  "video_duration_s": 26.375,
+  "mujoco_version": "3.17.0",
+  "imageio_ffmpeg_version": "0.6.0"
+}

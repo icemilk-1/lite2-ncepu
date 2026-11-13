@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "frames": 5435,
+  "mismatched_frames": 20,
+  "course_events_match": false,
+  "result": "navigating",
+  "control_output": "recorded_values_only"
+}

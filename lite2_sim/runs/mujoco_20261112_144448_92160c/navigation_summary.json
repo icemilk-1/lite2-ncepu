@@ -1,0 +1,117 @@
+{
+  "passed": true,
+  "result": "goal_reached",
+  "checks": {
+    "goal_reached": true,
+    "position_tolerance": true,
+    "collision_free": true,
+    "stopped_for_one_second": true,
+    "finite_state": true
+  },
+  "backend": "mujoco",
+  "simulation_model": "mocap_velocity_response_with_observed_navigation",
+  "physical_gait_validated": false,
+  "loop_closure": false,
+  "scene_id": "ruins_reference",
+  "geometry_status": "image_estimated_layout_revision_pending_user_confirmation",
+  "layout_review_status": "awaiting_user_confirmation",
+  "random_seed": 43,
+  "elapsed_simulation_s": 184.15,
+  "evaluation_only": {
+    "final_truth_xy_m": [
+      4.970706790397807,
+      3.7711535536752594
+    ],
+    "goal_error_m": 0.051657958637177426,
+    "goal_tolerance_m": 0.25,
+    "truth_goal_tolerance_met": true,
+    "distance_travelled_m": 26.418693377523173,
+    "scan_match_corrections": 66,
+    "collision_stop_events": 0
+  },
+  "map": {
+    "frame_id": "map",
+    "resolution_m": 0.05,
+    "width_cells": 240,
+    "height_cells": 200,
+    "origin_xy_m": [
+      -6.0,
+      -5.0
+    ],
+    "integrated_scans": 1842,
+    "occupied_cells": 974,
+    "free_cells": 41989,
+    "unknown_cells": 5037
+  },
+  "estimated_pose_m_rad": [
+    4.968023387605103,
+    3.7220200420617173,
+    1.970569587544559
+  ],
+  "goal_xy_m": [
+    4.9339,
+    3.8074
+  ],
+  "last_motion_observation": {
+    "timestamp_s": 184.15,
+    "linear_x_m_s": 0.0,
+    "angular_z_rad_s": 0.0,
+    "roll_rad": 0.0,
+    "pitch_rad": 0.0,
+    "ground_height_m": 0.021562396287679402,
+    "source": "simulated_velocity_odometry_and_imu",
+    "valid": true
+  },
+  "mission_clock_simulation_offset_s": 5.000000000175049,
+  "goal_coordinate_frame": "scene_map_with_known_start_prior",
+  "planning_replans": 365,
+  "settings": {
+    "goal_xy_m": [
+      4.9339,
+      3.8074
+    ],
+    "grid_resolution_m": 0.05,
+    "robot_radius_m": 0.28,
+    "planning_clearance_m": 0.16,
+    "minimum_planning_radius_m": 0.24,
+    "occupied_log_odds_threshold": 0.7,
+    "unknown_cell_cost": 2.8,
+    "initial_mapping_duration_s": 2.0,
+    "replan_period_s": 0.5,
+    "observation_timeout_s": 0.36,
+    "command_timeout_s": 0.3,
+    "frontier_tolerance_m": 0.2,
+    "progress_distance_m": 0.06,
+    "scan_match_search_xy_m": 0.025,
+    "scan_match_search_yaw_rad": 0.02,
+    "scan_match_prior_weight": 0.25,
+    "scan_match_yaw_prior_weight": 0.15,
+    "scan_match_xy_step_m": 0.01,
+    "scan_match_yaw_step_rad": 0.005,
+    "scan_match_observability_prior": true,
+    "max_linear_speed_m_s": 0.15,
+    "max_yaw_speed_rad_s": 0.4,
+    "lookahead_m": 0.25,
+    "front_stop_angle_rad": 0.35,
+    "front_stop_distance_m": 0.38,
+    "goal_tolerance_m": 0.25,
+    "estimated_stop_tolerance_m": 0.12,
+    "navigation_timeout_s": 1200.0,
+    "stuck_timeout_s": 30.0,
+    "odom_linear_noise_fraction": 0.02,
+    "odom_yaw_noise_rad_s": 0.008,
+    "random_seed": 43,
+    "acceleration_m_s2": 0.35,
+    "deceleration_m_s2": 0.6,
+    "angular_acceleration_rad_s2": 1.2,
+    "stop_delay_s": 0.05,
+    "max_slope_deg": 15.0,
+    "max_step_m": 0.08,
+    "body_clearance_height_m": 0.6,
+    "obstacle_memory_s": 5.0,
+    "control_period_s": 0.05,
+    "settling_stop_s": 1.0,
+    "oriented_footprint": true
+  },
+  "sensor_source": "ideal_lidar_with_synthetic_velocity_odometry_and_imu"
+}

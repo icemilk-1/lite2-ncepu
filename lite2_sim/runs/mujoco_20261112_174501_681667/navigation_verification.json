@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "result": "runtime_error",
+  "error": "Fixture drift exceeds 0.005 m: 0.00931915464027896",
+  "error_log": "error.log",
+  "backend": "mujoco"
+}

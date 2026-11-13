@@ -1,0 +1,28 @@
+{
+  "sim_time_s": 2.0,
+  "status": "exploring",
+  "reason": "goal_not_observed_reachable_frontier_selected",
+  "from_xy_m": [
+    -3.9860571123859105,
+    -3.04404716316742
+  ],
+  "planning_radius_m": 0.28,
+  "goal_xy_m": [
+    2.0,
+    -3.0
+  ],
+  "target_xy_m": [
+    -2.4749999999999996,
+    -3.025
+  ],
+  "poses_xy_m": [
+    [
+      -3.975,
+      -3.025
+    ],
+    [
+      -2.4749999999999996,
+      -3.025
+    ]
+  ]
+}

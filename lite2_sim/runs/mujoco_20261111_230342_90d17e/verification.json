@@ -1,0 +1,7 @@
+{
+  "result": "failed",
+  "backend": "mujoco",
+  "scene_id": "ruins_reference",
+  "error": "XML Error: Schema violation: unrecognized attribute: 'orthographic'\nElement 'camera', line 89\n",
+  "error_log": "error.log"
+}

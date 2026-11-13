@@ -1,0 +1,26 @@
+{
+  "time_s": 85.0,
+  "status": "frontier_reached",
+  "estimated_pose": [
+    -4.742082772639295,
+    -4.253182048973608,
+    1.5747513546953504
+  ],
+  "truth_eval": [
+    -4.902916668172826,
+    -4.29685791911102,
+    1.490073464101835
+  ],
+  "corrections": 292,
+  "ground_eval": 0.0,
+  "odometry_height": 0.0,
+  "command": [
+    0.0,
+    0.4
+  ],
+  "target": [
+    -4.725,
+    -4.275
+  ],
+  "ground_returns": null
+}

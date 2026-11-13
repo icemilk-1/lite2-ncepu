@@ -1,0 +1,78 @@
+{
+  "time_s": 115.0,
+  "status": "exploring",
+  "estimated_pose": [
+    -5.0880092805065935,
+    1.1950906277642253,
+    1.6784136136196501
+  ],
+  "truth_eval": [
+    -5.067192379538408,
+    1.2498899773735828,
+    1.6700672883310101
+  ],
+  "corrections": 12,
+  "ground_eval": 0.03940756875791154,
+  "odometry_height": 0.03943329460059408,
+  "command": [
+    0.0,
+    0.0
+  ],
+  "target": [
+    -5.025,
+    3.325000000000001
+  ],
+  "local_rollout": {
+    "candidate_count": 42,
+    "valid_count": 0,
+    "rejected": {
+      "terrain": 37,
+      "support": 0,
+      "map_edge": 0,
+      "occupied": 0,
+      "unknown": 0,
+      "turn_unknown": 0,
+      "rotation_clearance": 5
+    },
+    "target_xy_m": [
+      -5.075,
+      1.6423838701431737
+    ],
+    "preferred": [
+      0.14807989534812852,
+      -0.3203510690473177
+    ],
+    "reverse_only": false,
+    "forward_only": false,
+    "velocities": [
+      -0.08,
+      -0.03,
+      0.0,
+      0.03,
+      0.08,
+      0.14807989534812852,
+      0.15
+    ],
+    "turns": [
+      -0.4,
+      -0.3203510690473177,
+      -0.2,
+      0.0,
+      0.2,
+      0.4
+    ],
+    "desired_heading_rad": -0.13669354581422422,
+    "standstill_escape": 0,
+    "best": null,
+    "top_scores": [],
+    "scores": [],
+    "progress": {
+      "net_displacement_m": 0.007704317478932615,
+      "path_progress_m": 0.0,
+      "no_progress_s": 10.150000000000006,
+      "reset_reason": "measured_progress",
+      "timeout_reason": null
+    }
+  },
+  "ground_returns": null
+}

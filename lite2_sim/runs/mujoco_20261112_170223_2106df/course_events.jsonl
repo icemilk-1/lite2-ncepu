@@ -1,0 +1,1 @@
+{"timestamp_s": 0.0, "stage_id": "ramp", "checkpoint_index": 0, "event": "checkpoint_started", "estimated_pose_m_rad": [-5.062106630734022, -4.2264922650799654, -0.026098435735266712], "goal_xy_m": [-4.0, 4.1], "state": "approaching"}

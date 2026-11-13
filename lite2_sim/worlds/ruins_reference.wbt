@@ -1,0 +1,2191 @@
+#VRML_SIM R2025a utf8
+EXTERNPROTO "../protos/Lite2Body.proto"
+WorldInfo { title "Lite2 Ruins Reference Course" basicTimeStep 16 coordinateSystem "ENU" }
+Viewpoint { fieldOfView 1.05 orientation -0.301 0.617 0.733 1.174 position -10.5 -13.4 17.0 }
+Background { skyColor [ 0.76 0.83 0.9 ] }
+DirectionalLight { direction 0.2 0.3 -1 intensity 1.5 ambientIntensity 0.5 }
+Solid {
+  translation 0 0 -0.05
+  name "floor"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.58 0.6 0.62 roughness 0.85 metalness 0 }
+      geometry Box { size 12.0 10.0 0.1 }
+    }
+  ]
+  boundingObject Box { size 12.0 10.0 0.1 }
+}
+Solid {
+  translation -6.0 0 0.4
+  name "west_wall"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.12 10.0 0.8 }
+    }
+  ]
+  boundingObject Box { size 0.12 10.0 0.8 }
+}
+Solid {
+  translation 6.0 0 0.4
+  name "east_wall"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.12 10.0 0.8 }
+    }
+  ]
+  boundingObject Box { size 0.12 10.0 0.8 }
+}
+Solid {
+  translation 0 -5.0 0.4
+  name "south_wall"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 12.0 0.12 0.8 }
+    }
+  ]
+  boundingObject Box { size 12.0 0.12 0.8 }
+}
+Solid {
+  translation 0 5.0 0.4
+  name "north_wall"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 12.0 0.12 0.8 }
+    }
+  ]
+  boundingObject Box { size 12.0 0.12 0.8 }
+}
+Solid {
+  translation -4.2 -3.65 0.1
+  rotation 0 1 0 -0.24135549057540379
+  name "up_ramp"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.62 0.57 0.47 roughness 0.85 metalness 0 }
+      geometry Box { size 1.3 1.1 0.12 }
+    }
+  ]
+  boundingObject Box { size 1.3 1.1 0.12 }
+}
+Solid {
+  translation -4.2 -4.2 0.19
+  rotation 0 1 0 -0.24135549057540379
+  name "up_ramp_rail_right"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.38 0.39 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 1.338805437694365 0.08 0.18 }
+    }
+  ]
+  boundingObject Box { size 1.338805437694365 0.08 0.18 }
+}
+Solid {
+  translation -4.2 -3.0999999999999996 0.19
+  rotation 0 1 0 -0.24135549057540379
+  name "up_ramp_rail_left"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.38 0.39 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 1.338805437694365 0.08 0.18 }
+    }
+  ]
+  boundingObject Box { size 1.338805437694365 0.08 0.18 }
+}
+Solid {
+  translation -2.9 -3.65 0.1
+  rotation 0 1 0 0.24135549057540379
+  name "down_ramp"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.62 0.57 0.47 roughness 0.85 metalness 0 }
+      geometry Box { size 1.3 1.1 0.12 }
+    }
+  ]
+  boundingObject Box { size 1.3 1.1 0.12 }
+}
+Solid {
+  translation -2.9 -4.2 0.19
+  rotation 0 1 0 0.24135549057540379
+  name "down_ramp_rail_right"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.38 0.39 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 1.338805437694365 0.08 0.18 }
+    }
+  ]
+  boundingObject Box { size 1.338805437694365 0.08 0.18 }
+}
+Solid {
+  translation -2.9 -3.0999999999999996 0.19
+  rotation 0 1 0 0.24135549057540379
+  name "down_ramp_rail_left"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.38 0.39 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 1.338805437694365 0.08 0.18 }
+    }
+  ]
+  boundingObject Box { size 1.338805437694365 0.08 0.18 }
+}
+Solid {
+  translation -2.161946832812095 -2.7973531029801872 0.35
+  rotation 0 0 1 0.8863067952030199
+  name "s_bend_left_00"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.16628957418919144 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.16628957418919144 0.12 0.7 }
+}
+Solid {
+  translation -2.060942523428064 -2.6717569816349096 0.35
+  rotation 0 0 1 0.9011647975667568
+  name "s_bend_left_01"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.15606233569657593 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.15606233569657593 0.12 0.7 }
+}
+Solid {
+  translation -1.9697147560588741 -2.552997667095066 0.35
+  rotation 0 0 1 0.9316460664825313
+  name "s_bend_left_02"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.14348052300464095 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.14348052300464095 0.12 0.7 }
+}
+Solid {
+  translation -1.8910291751262593 -2.4420352487717922 0.35
+  rotation 0 0 1 0.9788803035501843
+  name "s_bend_left_03"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.12865453972831803 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.12865453972831803 0.12 0.7 }
+}
+Solid {
+  translation -1.826988556956263 -2.340216183395234 0.35
+  rotation 0 0 1 1.044341037112414
+  name "s_bend_left_04"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.11204244442859607 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.11204244442859607 0.12 0.7 }
+}
+Solid {
+  translation -1.778631826831142 -2.249008039060226 0.35
+  rotation 0 0 1 1.1294353067612157
+  name "s_bend_left_05"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.09461163412694137 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.09461163412694137 0.12 0.7 }
+}
+Solid {
+  translation -1.7455619718591506 -2.1694069727511165 0.35
+  rotation 0 0 1 1.2347934601520674
+  name "s_bend_left_06"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.07801988862472353 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.07801988862472353 0.12 0.7 }
+}
+Solid {
+  translation -1.7259140501430017 -2.1009840488315366 0.35
+  rotation 0 0 1 1.3592344925459314
+  name "s_bend_left_07"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.06462979857934675 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.06462979857934675 0.12 0.7 }
+}
+Solid {
+  translation -1.7170641679921572 -2.0409448189709885 0.35
+  rotation 0 0 1 1.4983558562530745
+  name "s_bend_left_08"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.05703923266637282 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.05703923266637282 0.12 0.7 }
+}
+Solid {
+  translation -1.7170641679921572 -1.984055181029012 0.35
+  rotation 0 0 1 1.643236797336719
+  name "s_bend_left_09"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.0570392326663726 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.0570392326663726 0.12 0.7 }
+}
+Solid {
+  translation -1.7259140501430017 -1.9240159511684634 0.35
+  rotation 0 0 1 1.7823581610438617
+  name "s_bend_left_10"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.06462979857934788 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.06462979857934788 0.12 0.7 }
+}
+Solid {
+  translation -1.7455619718591506 -1.8555930272488839 0.35
+  rotation 0 0 1 1.906799193437725
+  name "s_bend_left_11"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.07801988862472234 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.07801988862472234 0.12 0.7 }
+}
+Solid {
+  translation -1.7786318268311418 -1.775991960939774 0.35
+  rotation 0 0 1 2.0121573468285776
+  name "s_bend_left_12"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.09461163412694187 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.09461163412694187 0.12 0.7 }
+}
+Solid {
+  translation -1.826988556956263 -1.6847838166047664 0.35
+  rotation 0 0 1 2.0972516164773793
+  name "s_bend_left_13"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.11204244442859607 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.11204244442859607 0.12 0.7 }
+}
+Solid {
+  translation -1.8910291751262593 -1.582964751228208 0.35
+  rotation 0 0 1 2.1627123500396093
+  name "s_bend_left_14"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.12865453972831753 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.12865453972831753 0.12 0.7 }
+}
+Solid {
+  translation -1.9697147560588744 -1.4720023329049345 0.35
+  rotation 0 0 1 2.2099465871072645
+  name "s_bend_left_15"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.1434805230046415 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.1434805230046415 0.12 0.7 }
+}
+Solid {
+  translation -2.0609425234280643 -1.3532430183650908 0.35
+  rotation 0 0 1 2.2404278560230333
+  name "s_bend_left_16"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.15606233569657582 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.15606233569657582 0.12 0.7 }
+}
+Solid {
+  translation -2.1619468328120948 -1.2276468970198136 0.35
+  rotation 0 0 1 2.255285858386774
+  name "s_bend_left_17"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.16628957418919063 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.16628957418919063 0.12 0.7 }
+}
+Solid {
+  translation -2.2696087029655914 -1.095702452575369 0.35
+  rotation 0 0 1 2.2551096584748036
+  name "s_bend_left_18"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17430058967152162 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.17430058967152162 0.12 0.7 }
+}
+Solid {
+  translation -2.3806568824434753 -0.9574096850317576 0.35
+  rotation 0 0 1 2.239873306147738
+  name "s_bend_left_19"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.18042980304623724 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.18042980304623724 0.12 0.7 }
+}
+Solid {
+  translation -2.491767244920789 -0.8122801106827123 0.35
+  rotation 0 0 1 2.2089345175881814
+  name "s_bend_left_20"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.18517162234865223 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.18517162234865223 0.12 0.7 }
+}
+Solid {
+  translation -2.599557493131914 -0.6593536401170963 0.35
+  rotation 0 0 1 2.161111266498829
+  name "s_bend_left_21"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.18912912947099564 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.18912912947099564 0.12 0.7 }
+}
+Solid {
+  translation -2.7004644296956837 -0.49728381660476645 0.35
+  rotation 0 0 1 2.094900545220346
+  name "s_bend_left_22"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.1929117556100889 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.1929117556100889 0.12 0.7 }
+}
+Solid {
+  translation -2.79051513191126 -0.32460307205088523 0.35
+  rotation 0 0 1 2.0089602461070104
+  name "s_bend_left_23"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.1969491343645445 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.1969491343645445 0.12 0.7 }
+}
+Solid {
+  translation -2.8651071470927656 -0.14031524947110635 0.35
+  rotation 0 0 1 1.90297671810056
+  name "s_bend_left_24"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.20123252991938959 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.20123252991938959 0.12 0.7 }
+}
+Solid {
+  translation -2.919104281897834 0.05515071549820276 0.35
+  rotation 0 0 1 1.7788587669788951
+  name "s_bend_left_25"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.20512397963684734 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.20512397963684734 0.12 0.7 }
+}
+Solid {
+  translation -2.947644974859726 0.2590003745265436 0.35
+  rotation 0 0 1 1.6417403668775872
+  name "s_bend_left_26"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.20752126510755245 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.20752126510755245 0.12 0.7 }
+}
+Solid {
+  translation -2.947644974859726 0.465999625473456 0.35
+  rotation 0 0 1 1.499852286712206
+  name "s_bend_left_27"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.20752126510755242 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.20752126510755242 0.12 0.7 }
+}
+Solid {
+  translation -2.919104281897834 0.6698492845017969 0.35
+  rotation 0 0 1 1.3627338866108982
+  name "s_bend_left_28"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.20512397963684736 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.20512397963684736 0.12 0.7 }
+}
+Solid {
+  translation -2.8651071470927656 0.8653152494711062 0.35
+  rotation 0 0 1 1.2386159354892339
+  name "s_bend_left_29"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.2012325299193899 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.2012325299193899 0.12 0.7 }
+}
+Solid {
+  translation -2.7905151319112607 1.0496030720508842 0.35
+  rotation 0 0 1 1.132632407482781
+  name "s_bend_left_30"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.19694913436454273 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.19694913436454273 0.12 0.7 }
+}
+Solid {
+  translation -2.700464429695684 1.2222838166047656 0.35
+  rotation 0 0 1 1.0466921083694518
+  name "s_bend_left_31"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.19291175561009052 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.19291175561009052 0.12 0.7 }
+}
+Solid {
+  translation -2.599557493131914 1.3843536401170962 0.35
+  rotation 0 0 1 0.98048138709096
+  name "s_bend_left_32"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.18912912947099594 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.18912912947099594 0.12 0.7 }
+}
+Solid {
+  translation -2.491767244920789 1.5372801106827116 0.35
+  rotation 0 0 1 0.9326581360016121
+  name "s_bend_left_33"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.1851716223486508 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.1851716223486508 0.12 0.7 }
+}
+Solid {
+  translation -2.3806568824434757 1.682409685031757 0.35
+  rotation 0 0 1 0.9017193474420581
+  name "s_bend_left_34"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.18042980304623793 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.18042980304623793 0.12 0.7 }
+}
+Solid {
+  translation -2.2696087029655923 1.8207024525753681 0.35
+  rotation 0 0 1 0.8864829951149891
+  name "s_bend_left_35"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17430058967152082 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.17430058967152082 0.12 0.7 }
+}
+Solid {
+  translation -1.3303912970344083 -3.4707024525753685 0.35
+  rotation 0 0 1 0.8864829951149891
+  name "s_bend_right_00"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17430058967152082 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.17430058967152082 0.12 0.7 }
+}
+Solid {
+  translation -1.2193431175565248 -3.3324096850317577 0.35
+  rotation 0 0 1 0.9017193474420564
+  name "s_bend_right_01"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.18042980304623787 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.18042980304623787 0.12 0.7 }
+}
+Solid {
+  translation -1.1082327550792113 -3.187280110682712 0.35
+  rotation 0 0 1 0.9326581360016125
+  name "s_bend_right_02"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.1851716223486513 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.1851716223486513 0.12 0.7 }
+}
+Solid {
+  translation -1.0004425068680867 -3.0343536401170965 0.35
+  rotation 0 0 1 0.9804813870909623
+  name "s_bend_right_03"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.1891291294709954 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.1891291294709954 0.12 0.7 }
+}
+Solid {
+  translation -0.8995355703043165 -2.8722838166047664 0.35
+  rotation 0 0 1 1.0466921083694485
+  name "s_bend_right_04"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.19291175561008986 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.19291175561008986 0.12 0.7 }
+}
+Solid {
+  translation -0.8094848680887398 -2.699603072050885 0.35
+  rotation 0 0 1 1.1326324074827803
+  name "s_bend_right_05"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.196949134364544 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.196949134364544 0.12 0.7 }
+}
+Solid {
+  translation -0.7348928529072345 -2.515315249471106 0.35
+  rotation 0 0 1 1.2386159354892343
+  name "s_bend_right_06"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.2012325299193901 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.2012325299193901 0.12 0.7 }
+}
+Solid {
+  translation -0.6808957181021662 -2.319849284501797 0.35
+  rotation 0 0 1 1.362733886610898
+  name "s_bend_right_07"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.20512397963684725 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.20512397963684725 0.12 0.7 }
+}
+Solid {
+  translation -0.6523550251402739 -2.1159996254734565 0.35
+  rotation 0 0 1 1.4998522867122082
+  name "s_bend_right_08"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.20752126510755228 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.20752126510755228 0.12 0.7 }
+}
+Solid {
+  translation -0.6523550251402739 -1.9090003745265443 0.35
+  rotation 0 0 1 1.6417403668775852
+  name "s_bend_right_09"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.20752126510755206 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.20752126510755206 0.12 0.7 }
+}
+Solid {
+  translation -0.6808957181021661 -1.7051507154982035 0.35
+  rotation 0 0 1 1.7788587669788944
+  name "s_bend_right_10"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.205123979636847 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.205123979636847 0.12 0.7 }
+}
+Solid {
+  translation -0.7348928529072343 -1.5096847505288942 0.35
+  rotation 0 0 1 1.9029767181005592
+  name "s_bend_right_11"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.20123252991939036 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.20123252991939036 0.12 0.7 }
+}
+Solid {
+  translation -0.8094848680887397 -1.3253969279491153 0.35
+  rotation 0 0 1 2.0089602461070135
+  name "s_bend_right_12"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.19694913436454406 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.19694913436454406 0.12 0.7 }
+}
+Solid {
+  translation -0.8995355703043163 -1.152716183395234 0.35
+  rotation 0 0 1 2.0949005452203426
+  name "s_bend_right_13"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.19291175561008964 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.19291175561008964 0.12 0.7 }
+}
+Solid {
+  translation -1.0004425068680864 -0.9906463598829034 0.35
+  rotation 0 0 1 2.1611112664988315
+  name "s_bend_right_14"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.1891291294709965 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.1891291294709965 0.12 0.7 }
+}
+Solid {
+  translation -1.1082327550792115 -0.8377198893172879 0.35
+  rotation 0 0 1 2.2089345175881823
+  name "s_bend_right_15"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.18517162234865053 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.18517162234865053 0.12 0.7 }
+}
+Solid {
+  translation -1.2193431175565246 -0.6925903149682431 0.35
+  rotation 0 0 1 2.2398733061477363
+  name "s_bend_right_16"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.18042980304623765 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.18042980304623765 0.12 0.7 }
+}
+Solid {
+  translation -1.3303912970344083 -0.5542975474246316 0.35
+  rotation 0 0 1 2.2551096584748036
+  name "s_bend_right_17"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17430058967152165 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.17430058967152165 0.12 0.7 }
+}
+Solid {
+  translation -1.4380531671879053 -0.42235310298018686 0.35
+  rotation 0 0 1 2.2552858583867748
+  name "s_bend_right_18"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.16628957418919077 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.16628957418919077 0.12 0.7 }
+}
+Solid {
+  translation -1.5390574765719363 -0.29675698163490927 0.35
+  rotation 0 0 1 2.2404278560230355
+  name "s_bend_right_19"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.1560623356965765 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.1560623356965765 0.12 0.7 }
+}
+Solid {
+  translation -1.6302852439411262 -0.1779976670950657 0.35
+  rotation 0 0 1 2.2099465871072654
+  name "s_bend_right_20"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.14348052300464062 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.14348052300464062 0.12 0.7 }
+}
+Solid {
+  translation -1.7089708248737407 -0.06703524877179246 0.35
+  rotation 0 0 1 2.162712350039603
+  name "s_bend_right_21"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.12865453972831792 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.12865453972831792 0.12 0.7 }
+}
+Solid {
+  translation -1.7730114430437371 0.034783816604766066 0.35
+  rotation 0 0 1 2.0972516164773842
+  name "s_bend_right_22"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.11204244442859555 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.11204244442859555 0.12 0.7 }
+}
+Solid {
+  translation -1.821368173168858 0.12599196093977327 0.35
+  rotation 0 0 1 2.0121573468285745
+  name "s_bend_right_23"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.09461163412694149 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.09461163412694149 0.12 0.7 }
+}
+Solid {
+  translation -1.8544380281408495 0.20559302724888368 0.35
+  rotation 0 0 1 1.9067991934377289
+  name "s_bend_right_24"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.07801988862472421 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.07801988862472421 0.12 0.7 }
+}
+Solid {
+  translation -1.8740859498569984 0.2740159511684634 0.35
+  rotation 0 0 1 1.7823581610438588
+  name "s_bend_right_25"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.06462979857934659 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.06462979857934659 0.12 0.7 }
+}
+Solid {
+  translation -1.8829358320078429 0.3340551810290114 0.35
+  rotation 0 0 1 1.6432367973367188
+  name "s_bend_right_26"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.05703923266637271 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.05703923266637271 0.12 0.7 }
+}
+Solid {
+  translation -1.8829358320078429 0.39094481897098826 0.35
+  rotation 0 0 1 1.4983558562530745
+  name "s_bend_right_27"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.05703923266637271 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.05703923266637271 0.12 0.7 }
+}
+Solid {
+  translation -1.8740859498569984 0.45098404883153625 0.35
+  rotation 0 0 1 1.3592344925459343
+  name "s_bend_right_28"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.06462979857934659 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.06462979857934659 0.12 0.7 }
+}
+Solid {
+  translation -1.8544380281408495 0.5194069727511158 0.35
+  rotation 0 0 1 1.234793460152063
+  name "s_bend_right_29"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.0780198886247239 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.0780198886247239 0.12 0.7 }
+}
+Solid {
+  translation -1.8213681731688578 0.5990080390602265 0.35
+  rotation 0 0 1 1.1294353067612186
+  name "s_bend_right_30"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.09461163412694247 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.09461163412694247 0.12 0.7 }
+}
+Solid {
+  translation -1.7730114430437371 0.690216183395234 0.35
+  rotation 0 0 1 1.0443410371124153
+  name "s_bend_right_31"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.11204244442859496 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.11204244442859496 0.12 0.7 }
+}
+Solid {
+  translation -1.7089708248737412 0.7920352487717918 0.35
+  rotation 0 0 1 0.9788803035501839
+  name "s_bend_right_32"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.12865453972831672 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.12865453972831672 0.12 0.7 }
+}
+Solid {
+  translation -1.6302852439411266 0.9029976670950648 0.35
+  rotation 0 0 1 0.9316460664825302
+  name "s_bend_right_33"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.14348052300464148 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.14348052300464148 0.12 0.7 }
+}
+Solid {
+  translation -1.5390574765719363 1.0217569816349088 0.35
+  rotation 0 0 1 0.9011647975667566
+  name "s_bend_right_34"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.15606233569657696 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.15606233569657696 0.12 0.7 }
+}
+Solid {
+  translation -1.4380531671879049 1.147353102980187 0.35
+  rotation 0 0 1 0.886306795203021
+  name "s_bend_right_35"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 0.1662895741891913 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 0.1662895741891913 0.12 0.7 }
+}
+Solid {
+  translation -0.05 1.525 0.35
+  rotation 0 0 1 1.5707963267948966
+  name "dead_end_left"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 1.45 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 1.45 0.12 0.7 }
+}
+Solid {
+  translation 1.15 1.525 0.35
+  rotation 0 0 1 1.5707963267948966
+  name "dead_end_right"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 1.45 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 1.45 0.12 0.7 }
+}
+Solid {
+  translation 0.5499999999999999 2.25 0.35
+  rotation 0 0 1 0.0
+  name "dead_end_cap"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 1.2 0.12 0.7 }
+    }
+  ]
+  boundingObject Box { size 1.2 0.12 0.7 }
+}
+Solid {
+  translation -4.554059677639976 0.05 0.08
+  rotation 0 0 1 0.0
+  name "rubble_1_stone_01"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.14 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.14 0.16 }
+}
+Solid {
+  translation -4.772531176715965 0.1397988760597367 0.1
+  rotation 0 0 1 0.8399871304050285
+  name "rubble_1_stone_02"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.17500000000000002 0.2 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.17500000000000002 0.2 }
+}
+Solid {
+  translation -4.631244639482556 -0.12096612759180196 0.06
+  rotation 0 0 1 1.679974260810057
+  name "rubble_1_stone_03"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.21000000000000002 0.12 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.21000000000000002 0.12 }
+}
+Solid {
+  translation -4.495557387989603 0.21115443083397806 0.08
+  rotation 0 0 1 2.5199613912150856
+  name "rubble_1_stone_04"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.24500000000000002 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.24500000000000002 0.16 }
+}
+Solid {
+  translation -4.933421187640278 0.009893426075146441 0.1
+  rotation 0 0 1 3.359948521620114
+  name "rubble_1_stone_05"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.14 0.2 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.14 0.2 }
+}
+Solid {
+  translation -4.381518709219245 -0.08662865643944424 0.181
+  rotation 0 0 1 4.199935652025143
+  name "rubble_1_stone_06"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.17500000000000002 0.102 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.17500000000000002 0.102 }
+}
+Solid {
+  translation -4.739801737471122 0.31724638981285697 0.08
+  rotation 0 0 1 5.039922782430171
+  name "rubble_1_stone_07"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.21000000000000002 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.21000000000000002 0.16 }
+}
+Solid {
+  translation -4.821261652489297 -0.21380311228467913 0.1
+  rotation 0 0 1 5.8799099128352
+  name "rubble_1_stone_08"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.24500000000000002 0.2 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.24500000000000002 0.2 }
+}
+Solid {
+  translation -4.278430718351286 0.158557204569259 0.06
+  rotation 0 0 1 6.719897043240228
+  name "rubble_1_stone_09"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.14 0.12 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.14 0.12 }
+}
+Solid {
+  translation -5.036555922437092 0.17765173237254045 0.08
+  rotation 0 0 1 7.559884173645256
+  name "rubble_1_stone_10"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.17500000000000002 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.17500000000000002 0.16 }
+}
+Solid {
+  translation -4.463654502149545 -0.2685676041044431 0.21500000000000002
+  rotation 0 0 1 8.399871304050286
+  name "rubble_1_stone_11"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.21000000000000002 0.17 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.21000000000000002 0.17 }
+}
+Solid {
+  translation -0.10194193243090799 3.55 0.08
+  rotation 0 0 1 0.0
+  name "rubble_2_stone_01"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.14 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.14 0.16 }
+}
+Solid {
+  translation -0.3252358769511572 3.6417810576375875 0.1
+  rotation 0 0 1 0.8399871304050285
+  name "rubble_2_stone_02"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.17500000000000002 0.2 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.17500000000000002 0.2 }
+}
+Solid {
+  translation -0.1808306417608154 3.3752600400016144 0.06
+  rotation 0 0 1 1.679974260810057
+  name "rubble_2_stone_03"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.21000000000000002 0.12 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.21000000000000002 0.12 }
+}
+Solid {
+  translation -0.042148288524275795 3.7147116840870775 0.08
+  rotation 0 0 1 2.5199613912150856
+  name "rubble_2_stone_04"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.24500000000000002 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.24500000000000002 0.16 }
+}
+Solid {
+  translation -0.48967730443776925 3.509008130896934 0.1
+  rotation 0 0 1 3.359948521620114
+  name "rubble_2_stone_05"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.14 0.2 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.14 0.2 }
+}
+Solid {
+  translation 0.07440763075219636 3.4103554616510685 0.181
+  rotation 0 0 1 4.199935652025143
+  name "rubble_2_stone_06"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.17500000000000002 0.102 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.17500000000000002 0.102 }
+}
+Solid {
+  translation -0.29178398221053137 3.8231454711140733 0.08
+  rotation 0 0 1 5.039922782430171
+  name "rubble_2_stone_07"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.21000000000000002 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.21000000000000002 0.16 }
+}
+Solid {
+  translation -0.37504200818473754 3.2803738118340298 0.1
+  rotation 0 0 1 5.8799099128352
+  name "rubble_2_stone_08"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.24500000000000002 0.2 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.24500000000000002 0.2 }
+}
+Solid {
+  translation 0.17977114137454758 3.660953449383025 0.06
+  rotation 0 0 1 6.719897043240228
+  name "rubble_2_stone_09"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.14 0.12 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.14 0.12 }
+}
+Solid {
+  translation -0.5950885907942581 3.6804694615401226 0.08
+  rotation 0 0 1 7.559884173645256
+  name "rubble_2_stone_10"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.17500000000000002 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.17500000000000002 0.16 }
+}
+Solid {
+  translation -0.0095411921710441 3.224400472291792 0.21500000000000002
+  rotation 0 0 1 8.399871304050286
+  name "rubble_2_stone_11"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.21000000000000002 0.17 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.21000000000000002 0.17 }
+}
+Solid {
+  translation -0.059255785578250814 3.9089717869788885 0.06
+  rotation 0 0 1 9.239858434455314
+  name "rubble_2_stone_12"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.24500000000000002 0.12 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.24500000000000002 0.12 }
+}
+Solid {
+  translation -0.6242046963375905 3.353331766079423 0.08
+  rotation 0 0 1 10.079845564860342
+  name "rubble_2_stone_13"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.14 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.14 0.16 }
+}
+Solid {
+  translation 2.2444911182523066 0.0 0.08
+  rotation 0 0 1 0.0
+  name "rubble_3_stone_01"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.14 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.14 0.16 }
+}
+Solid {
+  translation 2.0293196893250514 0.0994977451498316 0.1
+  rotation 0 0 1 0.8399871304050285
+  name "rubble_3_stone_02"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.17500000000000002 0.2 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.17500000000000002 0.2 }
+}
+Solid {
+  translation 2.168472055804316 -0.18943159356545494 0.06
+  rotation 0 0 1 1.679974260810057
+  name "rubble_3_stone_03"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.21000000000000002 0.12 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.21000000000000002 0.12 }
+}
+Solid {
+  translation 2.3021097152447156 0.1785601690406316 0.08
+  rotation 0 0 1 2.5199613912150856
+  name "rubble_3_stone_04"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.24500000000000002 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.24500000000000002 0.16 }
+}
+Solid {
+  translation 1.8708599648432558 -0.044438347630914234 0.1
+  rotation 0 0 1 3.359948521620114
+  name "rubble_3_stone_05"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.14 0.2 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.14 0.2 }
+}
+Solid {
+  translation 2.4144258094161546 -0.15138544974140272 0.181
+  rotation 0 0 1 4.199935652025143
+  name "rubble_3_stone_06"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.17500000000000002 0.102 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.17500000000000002 0.102 }
+}
+Solid {
+  translation 2.0615547416778117 0.2961107572006081 0.08
+  rotation 0 0 1 5.039922782430171
+  name "rubble_3_stone_07"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.21000000000000002 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.21000000000000002 0.16 }
+}
+Solid {
+  translation 1.9813253003598992 -0.29229558305799547 0.1
+  rotation 0 0 1 5.8799099128352
+  name "rubble_3_stone_08"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.24500000000000002 0.2 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.24500000000000002 0.2 }
+}
+Solid {
+  translation 2.5159566287409367 0.12028209648442603 0.06
+  rotation 0 0 1 6.719897043240228
+  name "rubble_3_stone_09"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.14 0.12 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.14 0.12 }
+}
+Solid {
+  translation 1.7692831076691062 0.14143895884719582 0.08
+  rotation 0 0 1 7.559884173645256
+  name "rubble_3_stone_10"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.17500000000000002 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.17500000000000002 0.16 }
+}
+Solid {
+  translation 2.333530699501892 -0.352975000100121 0.21500000000000002
+  rotation 0 0 1 8.399871304050286
+  name "rubble_3_stone_11"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.21000000000000002 0.17 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.21000000000000002 0.17 }
+}
+Solid {
+  translation 2.2856245185933624 0.38915310300562145 0.06
+  rotation 0 0 1 9.239858434455314
+  name "rubble_3_stone_12"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.24500000000000002 0.12 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.24500000000000002 0.12 }
+}
+Solid {
+  translation 1.7412261263299305 -0.21320353372876352 0.08
+  rotation 0 0 1 10.079845564860342
+  name "rubble_3_stone_13"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.14 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.14 0.16 }
+}
+Solid {
+  translation 2.629538285222929 -0.09488263211607181 0.1
+  rotation 0 0 1 10.91983269526537
+  name "rubble_3_stone_14"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.17500000000000002 0.2 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.17500000000000002 0.2 }
+}
+Solid {
+  translation 2.6918558653543694 -2.4 0.08
+  rotation 0 0 1 0.0
+  name "rubble_4_stone_01"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.14 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.14 0.16 }
+}
+Solid {
+  translation 2.4826853298668534 -2.304471246460396 0.1
+  rotation 0 0 1 0.8399871304050285
+  name "rubble_4_stone_02"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.17500000000000002 0.2 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.17500000000000002 0.2 }
+}
+Solid {
+  translation 2.6179568905751434 -2.5818751167383556 0.06
+  rotation 0 0 1 1.679974260810057
+  name "rubble_4_stone_03"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.21000000000000002 0.12 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.21000000000000002 0.12 }
+}
+Solid {
+  translation 2.747867543331449 -2.2285626437605615 0.08
+  rotation 0 0 1 2.5199613912150856
+  name "rubble_4_stone_04"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.24500000000000002 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.24500000000000002 0.16 }
+}
+Solid {
+  translation 2.3286448720407034 -2.442665690083209 0.1
+  rotation 0 0 1 3.359948521620114
+  name "rubble_4_stone_05"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.14 0.2 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.14 0.2 }
+}
+Solid {
+  translation 2.857051265718907 -2.5453466437460572 0.181
+  rotation 0 0 1 4.199935652025143
+  name "rubble_4_stone_06"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.17500000000000002 0.102 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.17500000000000002 0.102 }
+}
+Solid {
+  translation 2.5140213822215296 -2.115701179936837 0.08
+  rotation 0 0 1 5.039922782430171
+  name "rubble_4_stone_07"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.21000000000000002 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.21000000000000002 0.16 }
+}
+Solid {
+  translation 2.436029451387602 -2.6806358342353787 0.1
+  rotation 0 0 1 5.8799099128352
+  name "rubble_4_stone_08"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.24500000000000002 0.2 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.24500000000000002 0.2 }
+}
+Solid {
+  translation 2.955750502660029 -2.2845159884479345 0.06
+  rotation 0 0 1 6.719897043240228
+  name "rubble_4_stone_09"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.14 0.12 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.14 0.12 }
+}
+Solid {
+  translation 2.2299008811949723 -2.264203078971636 0.08
+  rotation 0 0 1 7.559884173645256
+  name "rubble_4_stone_10"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.17500000000000002 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.17500000000000002 0.16 }
+}
+Solid {
+  translation 2.7784122310503765 -2.7388947331362035 0.21500000000000002
+  rotation 0 0 1 8.399871304050286
+  name "rubble_4_stone_11"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.21000000000000002 0.17 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.21000000000000002 0.17 }
+}
+Solid {
+  translation 2.731842100602497 -2.026370318139224 0.06
+  rotation 0 0 1 9.239858434455314
+  name "rubble_4_stone_12"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.24500000000000002 0.12 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.24500000000000002 0.12 }
+}
+Solid {
+  translation 4.941855865354369 -2.8 0.08
+  rotation 0 0 1 0.0
+  name "rubble_5_stone_01"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.14 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.14 0.16 }
+}
+Solid {
+  translation 4.732685329866853 -2.710441793556621 0.1
+  rotation 0 0 1 0.8399871304050285
+  name "rubble_5_stone_02"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.17500000000000002 0.2 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.17500000000000002 0.2 }
+}
+Solid {
+  translation 4.867956890575143 -2.9705079219422084 0.06
+  rotation 0 0 1 1.679974260810057
+  name "rubble_5_stone_03"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.21000000000000002 0.12 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.21000000000000002 0.12 }
+}
+Solid {
+  translation 4.997867543331449 -2.6392774785255266 0.08
+  rotation 0 0 1 2.5199613912150856
+  name "rubble_5_stone_04"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.24500000000000002 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.24500000000000002 0.16 }
+}
+Solid {
+  translation 4.5786448720407025 -2.8399990844530083 0.1
+  rotation 0 0 1 3.359948521620114
+  name "rubble_5_stone_05"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.14 0.2 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.14 0.2 }
+}
+Solid {
+  translation 5.107051265718907 -2.9362624785119285 0.181
+  rotation 0 0 1 4.199935652025143
+  name "rubble_5_stone_06"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.17500000000000002 0.102 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.17500000000000002 0.102 }
+}
+Solid {
+  translation 4.76402138222153 -2.5334698561907847 0.08
+  rotation 0 0 1 5.039922782430171
+  name "rubble_5_stone_07"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.21000000000000002 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.21000000000000002 0.16 }
+}
+Solid {
+  translation 4.6860294513876015 -3.0630960945956676 0.1
+  rotation 0 0 1 5.8799099128352
+  name "rubble_5_stone_08"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.24500000000000002 0.2 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.24500000000000002 0.2 }
+}
+Solid {
+  translation 5.205750502660028 -2.6917337391699387 0.06
+  rotation 0 0 1 6.719897043240228
+  name "rubble_5_stone_09"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.14 0.12 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.14 0.12 }
+}
+Solid {
+  translation 4.479900881194972 -2.672690386535909 0.08
+  rotation 0 0 1 7.559884173645256
+  name "rubble_5_stone_10"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.17 0.17500000000000002 0.16 }
+    }
+  ]
+  boundingObject Box { size 0.17 0.17500000000000002 0.16 }
+}
+Solid {
+  translation 5.028412231050376 -3.1177138123151904 0.21500000000000002
+  rotation 0 0 1 8.399871304050286
+  name "rubble_5_stone_11"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.21000000000000002 0.21000000000000002 0.17 }
+    }
+  ]
+  boundingObject Box { size 0.21000000000000002 0.21000000000000002 0.17 }
+}
+Solid {
+  translation 4.981842100602496 -2.4497221732555223 0.06
+  rotation 0 0 1 9.239858434455314
+  name "rubble_5_stone_12"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.48 0.45 0.4 roughness 0.85 metalness 0 }
+      geometry Box { size 0.25 0.24500000000000002 0.12 }
+    }
+  ]
+  boundingObject Box { size 0.25 0.24500000000000002 0.12 }
+}
+Solid {
+  translation 1.55 2.38 0.36
+  name "narrow_tunnel_left"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 1.0 0.12 0.72 }
+    }
+  ]
+  boundingObject Box { size 1.0 0.12 0.72 }
+}
+Solid {
+  translation 1.55 2.92 0.36
+  name "narrow_tunnel_right"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 1.0 0.12 0.72 }
+    }
+  ]
+  boundingObject Box { size 1.0 0.12 0.72 }
+}
+Solid {
+  translation 1.55 2.65 0.78
+  name "narrow_tunnel_header"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 1.0 0.6599999999999999 0.12 }
+    }
+  ]
+  boundingObject Box { size 1.0 0.6599999999999999 0.12 }
+}
+Solid {
+  translation 3.2 2.65 1.1500000000000001
+  rotation 1 0 0 -0.0
+  name "circular_pipe_segment_00"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 2.838500366568718 1.1201444749400438
+  rotation 1 0 0 -0.3141592653589793
+  name "circular_pipe_segment_01"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 3.0085490038984086 1.0335003665687181
+  rotation 1 0 0 -0.6283185307179586
+  name "circular_pipe_segment_02"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 3.143500366568718 0.8985490038984087
+  rotation 1 0 0 -0.9424777960769379
+  name "circular_pipe_segment_03"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 3.230144474940044 0.728500366568718
+  rotation 1 0 0 -1.2566370614359172
+  name "circular_pipe_segment_04"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 3.26 0.54
+  rotation 1 0 0 -1.5707963267948966
+  name "circular_pipe_segment_05"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 3.230144474940044 0.3514996334312821
+  rotation 1 0 0 -1.8849555921538759
+  name "circular_pipe_segment_06"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 3.143500366568718 0.18145099610159143
+  rotation 1 0 0 -2.199114857512855
+  name "circular_pipe_segment_07"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 3.0085490038984086 0.046499633431282106
+  rotation 1 0 0 -2.5132741228718345
+  name "circular_pipe_segment_08"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 2.838500366568718 -0.040144474940043695
+  rotation 1 0 0 -2.827433388230814
+  name "circular_pipe_segment_09"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 2.65 -0.07000000000000006
+  rotation 1 0 0 -3.141592653589793
+  name "circular_pipe_segment_10"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 2.4614996334312824 -0.040144474940043806
+  rotation 1 0 0 -3.455751918948772
+  name "circular_pipe_segment_11"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 2.291450996101591 0.046499633431281995
+  rotation 1 0 0 -3.7699111843077517
+  name "circular_pipe_segment_12"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 2.156499633431282 0.18145099610159132
+  rotation 1 0 0 -4.084070449666731
+  name "circular_pipe_segment_13"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 2.069855525059956 0.351499633431282
+  rotation 1 0 0 -4.39822971502571
+  name "circular_pipe_segment_14"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 2.04 0.5399999999999999
+  rotation 1 0 0 -4.71238898038469
+  name "circular_pipe_segment_15"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 2.069855525059956 0.7285003665687179
+  rotation 1 0 0 -5.026548245743669
+  name "circular_pipe_segment_16"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 2.156499633431282 0.8985490038984085
+  rotation 1 0 0 -5.340707511102648
+  name "circular_pipe_segment_17"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 2.291450996101591 1.033500366568718
+  rotation 1 0 0 -5.654866776461628
+  name "circular_pipe_segment_18"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 3.2 2.461499633431282 1.1201444749400438
+  rotation 1 0 0 -5.969026041820607
+  name "circular_pipe_segment_19"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.42 0.44 0.46 roughness 0.85 metalness 0 }
+      geometry Box { size 1.15 0.20611805113700826 0.14 }
+    }
+  ]
+  boundingObject Box { size 1.15 0.20611805113700826 0.14 }
+}
+Solid {
+  translation 5.0 2.1799999999999997 0.38
+  name "culvert_left"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 1.1 0.12 0.76 }
+    }
+  ]
+  boundingObject Box { size 1.1 0.12 0.76 }
+}
+Solid {
+  translation 5.0 3.12 0.38
+  name "culvert_right"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 1.1 0.12 0.76 }
+    }
+  ]
+  boundingObject Box { size 1.1 0.12 0.76 }
+}
+Solid {
+  translation 5.0 2.65 0.8200000000000001
+  name "culvert_roof"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.32 0.35 0.38 roughness 0.85 metalness 0 }
+      geometry Box { size 1.1 1.06 0.12 }
+    }
+  ]
+  boundingObject Box { size 1.1 1.06 0.12 }
+}
+Solid {
+  translation -5.1 -4.35 0.003
+  name "start_marker_placeholder_0"
+  children [ Shape { appearance PBRAppearance { baseColor 0.12 0.65 0.2 roughness 0.9 } geometry Box { size 0.055 0.36 0.006 } } ]
+}
+Solid {
+  translation -4.9 -4.35 0.003
+  name "start_marker_placeholder_1"
+  children [ Shape { appearance PBRAppearance { baseColor 0.12 0.65 0.2 roughness 0.9 } geometry Box { size 0.055 0.36 0.006 } } ]
+}
+Solid {
+  translation -5.0 -4.35 0.003
+  name "start_marker_placeholder_2"
+  children [ Shape { appearance PBRAppearance { baseColor 0.12 0.65 0.2 roughness 0.9 } geometry Box { size 0.24 0.055 0.006 } } ]
+}
+Solid {
+  translation 5.1000000000000005 4.15 0.003
+  name "finish_marker_placeholder_0"
+  children [ Shape { appearance PBRAppearance { baseColor 0.2 0.3 0.85 roughness 0.9 } geometry Box { size 0.055 0.36 0.006 } } ]
+}
+Solid {
+  translation 5.3 4.15 0.003
+  name "finish_marker_placeholder_1"
+  children [ Shape { appearance PBRAppearance { baseColor 0.2 0.3 0.85 roughness 0.9 } geometry Box { size 0.055 0.36 0.006 } } ]
+}
+Solid {
+  translation 5.2 4.15 0.003
+  name "finish_marker_placeholder_2"
+  children [ Shape { appearance PBRAppearance { baseColor 0.2 0.3 0.85 roughness 0.9 } geometry Box { size 0.24 0.055 0.006 } } ]
+}
+Solid {
+  translation 0.0 3.0 0.19
+  rotation 1 0 0 1.57079632679
+  name "life_target_placeholder_1"
+  children [ Shape { appearance PBRAppearance { baseColor 0.9 0.58 0.1 roughness 0.7 } geometry Cylinder { radius 0.12 height 0.38 } } ]
+  boundingObject Cylinder { radius 0.12 height 0.38 }
+}
+Solid {
+  translation 4.0 3.45 0.19
+  rotation 1 0 0 1.57079632679
+  name "life_target_placeholder_2"
+  children [ Shape { appearance PBRAppearance { baseColor 0.9 0.58 0.1 roughness 0.7 } geometry Cylinder { radius 0.12 height 0.38 } } ]
+  boundingObject Cylinder { radius 0.12 height 0.38 }
+}
+
+DEF ROBOT_FIXTURE Solid {
+  translation -5.45 -3.65 0.33
+  name "lite2_ruins_reference_fixture"
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        minStop -0.000001
+        maxStop 0.000001
+      }
+      endPoint DEF LITE2 Lite2Body {
+        name "lite2_ruins_reference"
+        controller "sensor_capture"
+        supervisor TRUE
+        customData "F:/airace/lite2_sim/config/ruins_reference.json"
+        toolSlot [
+          Pose {
+            translation 0.22 0.0 0.05
+            children [
+              Camera {
+                name "front_rgb"
+                width 424
+                height 240
+                fieldOfView 1.2222501549001135
+                near 0.02
+                far 6.0
+              }
+              RangeFinder {
+                name "front_depth"
+                width 424
+                height 240
+                fieldOfView 1.2222501549001135
+                near 0.02
+                minRange 0.15
+                maxRange 6.0
+              }
+            ]
+          }
+
+          Lidar {
+            name "front_lidar"
+            translation 0.0 0.0 0.1
+            horizontalResolution 360
+            fieldOfView 6.28318530718
+            verticalFieldOfView 0.6
+            numberOfLayers 16
+            near 0.01
+            minRange 0.08
+            maxRange 8.0
+            type "fixed"
+            projection "cylindrical"
+            noise 0.0
+            defaultFrequency 10.0
+          }
+          InertialUnit { name "body_orientation" }
+          Accelerometer { name "body_accelerometer" }
+          Gyro { name "body_gyro" }
+        ]
+      }
+    }
+  ]
+}
+

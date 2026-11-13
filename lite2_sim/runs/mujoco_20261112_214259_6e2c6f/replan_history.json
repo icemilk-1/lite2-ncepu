@@ -1,0 +1,690 @@
+[
+  {
+    "sim_time_s": 2.0,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      2.0,
+      0.98
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 2.05,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      2.0,
+      0.98
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 2.55,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      2.0,
+      0.98
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 3.05,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      2.0,
+      0.99
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 3.55,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.9800681722830178,
+      0.9842310577930783
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.05,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.94165929036852,
+      0.9730615551148861
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.1,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.9392587352488637,
+      0.9723634611974991
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.15,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.9382985132010013,
+      0.9720842236305443
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.2,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.9382985132010013,
+      0.9720842236305443
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.25,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.9382985132010013,
+      0.9720842236305443
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.3,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.9382985132010013,
+      0.9720842236305443
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.35,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.9382985132010013,
+      0.9720842236305443
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.4,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.9382985132010013,
+      0.9720842236305443
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.45,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.9382985132010013,
+      0.9720842236305443
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.5,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.9382985132010013,
+      0.9720842236305443
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.55,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.9382985132010013,
+      0.9720842236305443
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 5.05,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.9382985132010013,
+      0.9720842236305443
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 5.55,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.9382985132010013,
+      0.9720842236305443
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.05,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.9206931319656164,
+      0.9611020106530511
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.55,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8867816970258058,
+      0.9398884635587313
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.6,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8846622323420676,
+      0.9385626168653364
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.65,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8838144464685724,
+      0.9380322781879784
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.7,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8838144464685724,
+      0.9380322781879784
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.75,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8838144464685724,
+      0.9380322781879784
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.8,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8838144464685724,
+      0.9380322781879784
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.85,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8838144464685724,
+      0.9380322781879784
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.9,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8838144464685724,
+      0.9380322781879784
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.95,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8838144464685724,
+      0.9380322781879784
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 7.0,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8838144464685724,
+      0.9380322781879784
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 7.05,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8838144464685724,
+      0.9380322781879784
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 7.55,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8838144464685724,
+      0.9380322781879784
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 8.05,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8838144464685724,
+      0.9380322781879784
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 8.55,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8727024336243079,
+      0.9254990210548658
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.05,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8472064240930954,
+      0.896651083555205
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.1,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8465441900792978,
+      0.8959017864772917
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.15,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8465441900792978,
+      0.8959017864772917
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.2,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8465441900792978,
+      0.8959017864772917
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.25,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8465441900792978,
+      0.8959017864772917
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.3,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8465441900792978,
+      0.8959017864772917
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.35,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8465441900792978,
+      0.8959017864772917
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.4,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8465441900792978,
+      0.8959017864772917
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.45,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8465441900792978,
+      0.8959017864772917
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.5,
+    "status": "goal_blocked",
+    "reason": "goal_occupied_or_clearance_blocked",
+    "from_xy_m": [
+      1.8465441900792978,
+      0.8959017864772917
+    ],
+    "planning_radius_m": 0.24,
+    "goal_xy_m": [
+      3.57,
+      0.98
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  }
+]

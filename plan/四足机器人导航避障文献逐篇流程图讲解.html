@@ -1,0 +1,2446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>四足机器狗导航避障 · 逐篇论文流程图讲解</title>
+<style>
+  :root {
+    --bg:#f6f8fa; --fg:#1b2027; --muted:#5b6470; --line:#dde2e8;
+    --card:#ffffff; --accent:#1f6feb;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.78 -apple-system,"Segoe UI","Microsoft YaHei","PingFang SC",sans-serif; }
+  #wrap { display:flex; align-items:flex-start; max-width:1560px; margin:0 auto; }
+  nav { position:sticky; top:0; flex:0 0 330px; max-height:100vh; overflow-y:auto;
+    padding:18px 14px 60px; background:var(--card); border-right:1px solid var(--line);
+    font-size:13px; line-height:1.55; }
+  nav .toc-title { font-size:13px; letter-spacing:.08em; color:var(--muted); margin:0 0 10px; }
+  nav ul { list-style:none; margin:0; padding-left:12px; }
+  nav > ul { padding-left:0; }
+  nav li { margin:2px 0; }
+  nav a { color:#39424c; text-decoration:none; display:block; padding:2px 6px; border-radius:4px; }
+  nav a:hover { background:#eef2f7; color:var(--accent); }
+  main { flex:1 1 auto; min-width:0; padding:34px 48px 140px; background:var(--card); }
+  h1 { font-size:27px; line-height:1.35; margin:0 0 4px; }
+  h2 { font-size:21px; margin:46px 0 14px; padding-bottom:8px; border-bottom:2px solid var(--line); }
+  h3 { font-size:17px; margin:30px 0 10px; color:#12202e; }
+  p { margin:10px 0; }
+  hr { border:none; border-top:1px solid var(--line); margin:32px 0; }
+  blockquote { margin:14px 0; padding:12px 16px; background:#f2f6fc;
+    border-left:4px solid var(--accent); border-radius:0 6px 6px 0; color:#2a3441; }
+  blockquote p { margin:4px 0; }
+  code { background:#eef1f5; padding:.12em .38em; border-radius:4px;
+    font:13.5px/1.5 "Cascadia Code",Consolas,monospace; }
+  pre.src { background:#1d2430; color:#e6edf3; padding:12px 14px; border-radius:8px;
+    overflow-x:auto; margin:8px 0 0; }
+  pre.src code { background:none; color:inherit; padding:0; font-size:13px; }
+  table { border-collapse:collapse; width:100%; margin:16px 0; font-size:14.5px;
+    display:block; overflow-x:auto; }
+  th,td { border:1px solid var(--line); padding:8px 11px; text-align:left; vertical-align:top; }
+  th { background:#f1f4f8; font-weight:600; }
+  tbody tr:nth-child(even) { background:#fafbfd; }
+  figure.diagram { margin:18px 0 22px; padding:14px 12px 10px; background:#fcfdff;
+    border:1px solid var(--line); border-radius:12px; }
+  figure.diagram .render { overflow-x:auto; text-align:center; min-height:40px; }
+  figure.diagram .render svg { max-width:100%; height:auto; }
+  figure.diagram .render.err { text-align:left; color:#b42318; font-size:14px; }
+  details.srcbox { margin-top:8px; font-size:13px; color:var(--muted); }
+  details.srcbox summary { cursor:pointer; user-select:none; padding:2px 0; }
+  #banner { display:none; margin:0 0 18px; padding:10px 14px; border-radius:8px;
+    background:#fff8e1; color:#8a6100; font-size:14px; }
+  .meta { color:var(--muted); font-size:14px; margin:0 0 16px; }
+  @media print { nav,nav+main { display:block; } nav { display:none; }
+    main { padding:0; } body { background:#fff; } figure.diagram { break-inside:avoid; } }
+  @media (max-width:980px) { nav { display:none; } main { padding:20px 16px; } }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <nav><p class="toc-title">目录</p><div class="toc">
+<ul>
+<li><a href="#0.-这份文档是什么怎么读">0. 这份文档是什么，怎么读</a><ul>
+<li><a href="#0.1-定位">0.1 定位</a></li>
+<li><a href="#0.2-三条读法按你的目的选一条不要从头读到尾">0.2 三条读法（按你的目的选一条，不要从头读到尾）</a></li>
+<li><a href="#0.3-图例约定">0.3 图例约定</a></li>
+<li><a href="#0.4-两种打开方式">0.4 两种打开方式</a></li>
+<li><a href="#0.5-编号体系">0.5 编号体系</a></li>
+</ul>
+</li>
+<li><a href="#1.-先看全局这-54-篇落在同一条链路的哪里">1. 先看全局：这 54 篇落在同一条链路的哪里</a><ul>
+<li><a href="#1.1-五层论文地图">1.1 五层论文地图</a></li>
+<li><a href="#1.2-这张图暴露的三件事">1.2 这张图暴露的三件事</a></li>
+<li><a href="#1.3-章节索引">1.3 章节索引</a></li>
+</ul>
+</li>
+<li><a href="#2.-必读-6-篇">2. 必读 6 篇</a><ul>
+<li><a href="#2.1-Learning-robust-perceptive-locomotion-for-quadrupedal-robots-in-the-wild">2.1 Learning robust perceptive locomotion for quadrupedal robots in the wild</a></li>
+<li><a href="#2.2-ANYmal-Parkour-Learning-Agile-Navigation-for-Quadrupedal-Robots">2.2 ANYmal Parkour: Learning Agile Navigation for Quadrupedal Robots</a></li>
+<li><a href="#2.3-Learning-to-walk-in-confined-spaces-using-3D-representation">2.3 Learning to walk in confined spaces using 3D representation</a></li>
+<li><a href="#2.4-Robot-Parkour-Learning">2.4 Robot Parkour Learning</a></li>
+<li><a href="#2.5-Perceptive-whole-body-planning-for-multilegged-robots-in-confined-spaces">2.5 Perceptive whole-body planning for multilegged robots in confined spaces</a></li>
+<li><a href="#2.6-Resilient-Timed-Elastic-Band-Planner-RTEB">2.6 Resilient Timed Elastic Band Planner (RTEB)</a></li>
+<li><a href="#2.7-六篇的关系一张图收口">2.7 六篇的关系（一张图收口）</a></li>
+</ul>
+</li>
+<li><a href="#3.-经典与基座从-A-到-RL-训练框架">3. 经典与基座：从 A* 到 RL 训练框架</a><ul>
+<li><a href="#3.1-AA-Formal-Basis-for-the-Heuristic-Determination-of-Minimum-Cost-Paths">3.1 A*：A Formal Basis for the Heuristic Determination of Minimum Cost Paths</a></li>
+<li><a href="#3.2-DijkstraA-note-on-two-problems-in-connexion-with-graphs">3.2 Dijkstra：A note on two problems in connexion with graphs</a></li>
+<li><a href="#3.3-RRTSampling-based-Algorithms-for-Optimal-Motion-Planning">3.3 RRT*：Sampling-based Algorithms for Optimal Motion Planning</a></li>
+<li><a href="#3.4-Frontier-探索A-frontier-based-approach-for-autonomous-exploration">3.4 Frontier 探索：A frontier-based approach for autonomous exploration</a></li>
+<li><a href="#3.5-DWAThe-Dynamic-Window-Approach-to-Collision-Avoidance">3.5 DWA：The Dynamic Window Approach to Collision Avoidance</a></li>
+<li><a href="#3.6-Learning-to-Walk-in-Minuteslegged_gym--rsl_rl-训练基座">3.6 Learning to Walk in Minutes（legged_gym / rsl_rl 训练基座）</a></li>
+<li><a href="#3.7-Learning-Quadrupedal-Locomotion-over-Challenging-Terrain">3.7 Learning Quadrupedal Locomotion over Challenging Terrain</a></li>
+<li><a href="#3.8-RMA-Rapid-Motor-Adaptation">3.8 RMA: Rapid Motor Adaptation</a></li>
+<li><a href="#3.9-Legged-Locomotion-in-Challenging-Terrains-using-Egocentric-Vision">3.9 Legged Locomotion in Challenging Terrains using Egocentric Vision</a></li>
+</ul>
+</li>
+<li><a href="#4.-感知地形与落脚点机器狗怎么知道这一步能不能踩">4. 感知、地形与落脚点：机器狗怎么知道「这一步能不能踩」</a><ul>
+<li><a href="#4.1-Online-Foothold-OptimizationPerceptive-Locomotion-in-Rough-Terrain">4.1 Online Foothold Optimization：Perceptive Locomotion in Rough Terrain</a></li>
+<li><a href="#4.2-ViTAL先选落点还是先摆机身顺序反过来会怎样">4.2 ViTAL：先选落点还是先摆机身，顺序反过来会怎样</a></li>
+<li><a href="#4.3-Probabilistic-Terrain-Mapping位姿不确定度怎么写进高程图">4.3 Probabilistic Terrain Mapping：位姿不确定度怎么写进高程图</a></li>
+<li><a href="#4.4-Learning-Agile-Locomotion-on-Risky-Terrains把速度跟踪改写成导航任务">4.4 Learning Agile Locomotion on Risky Terrains：把速度跟踪改写成导航任务</a></li>
+<li><a href="#4.5-Load-bearing-Assessment踩下去会不会塌">4.5 Load-bearing Assessment：踩下去会不会塌</a></li>
+<li><a href="#4.6-Walking-Posture-Adaptation机身姿态本身当成规划变量">4.6 Walking Posture Adaptation：机身姿态本身当成规划变量</a></li>
+<li><a href="#4.7-Attention-Based-Map-Encoding让网络自己决定看地图的哪一块">4.7 Attention-Based Map Encoding：让网络自己决定看地图的哪一块</a></li>
+<li><a href="#4.8-PPL训练时用点云监督部署时只带本体感知">4.8 PPL：训练时用点云监督，部署时只带本体感知</a></li>
+</ul>
+</li>
+<li><a href="#5.-定位与-SLAM机器狗在废墟里我在哪怎么失效怎么补救">5. 定位与 SLAM：机器狗在废墟里「我在哪」怎么失效、怎么补救</a><ul>
+<li><a href="#5.1-Super-OdometryIMU-centric-LiDAR-Visual-Inertial-Estimator-for-Challenging-Environments">5.1 Super Odometry：IMU-centric LiDAR-Visual-Inertial Estimator for Challenging Environments</a></li>
+<li><a href="#5.2-CompSLAMComplementary-Hierarchical-Multi-Modal-Localization-and-Mapping">5.2 CompSLAM：Complementary Hierarchical Multi-Modal Localization and Mapping</a></li>
+<li><a href="#5.3-FAST-LIOA-Fast-Robust-LiDAR-inertial-Odometry-Package-by-Tightly-Coupled-Iterated-Kalman-Filter">5.3 FAST-LIO：A Fast, Robust LiDAR-inertial Odometry Package by Tightly-Coupled Iterated Kalman Filter</a></li>
+<li><a href="#5.4-LIO-SAMTightly-coupled-Lidar-Inertial-Odometry-via-Smoothing-and-Mapping">5.4 LIO-SAM：Tightly-coupled Lidar Inertial Odometry via Smoothing and Mapping</a></li>
+<li><a href="#5.5-LOAMLidar-Odometry-and-Mapping-in-Real-time">5.5 LOAM：Lidar Odometry and Mapping in Real-time</a></li>
+<li><a href="#5.6-ORB-SLAM3An-Accurate-Open-Source-Library-for-Visual-Visual-Inertial-and-Multi-Map-SLAM">5.6 ORB-SLAM3：An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM</a></li>
+<li><a href="#5.7-RTAB-MapRTAB-Map-as-an-Open-Source-Lidar-and-Visual-SLAM-Library">5.7 RTAB-Map：RTAB-Map as an Open-Source Lidar and Visual SLAM Library</a></li>
+</ul>
+</li>
+<li><a href="#6.-局部规划与-TEB-谱系从重初始化到换赛道">6. 局部规划与 TEB 谱系：从「重初始化」到「换赛道」</a><ul>
+<li><a href="#6.1-TEB-原型Trajectory-modification-considering-dynamic-constraints-of-autonomous-robots">6.1 TEB 原型：Trajectory modification considering dynamic constraints of autonomous robots</a></li>
+<li><a href="#6.2-TEB-工程化Efficient-trajectory-optimization-using-a-sparse-model">6.2 TEB 工程化：Efficient trajectory optimization using a sparse model</a></li>
+<li><a href="#6.3-TEB-多拓扑Integrated-online-trajectory-planning-and-optimization-in-distinctive-topologies">6.3 TEB 多拓扑：Integrated online trajectory planning and optimization in distinctive topologies</a></li>
+<li><a href="#6.4-MPPIInformation-Theoretic-MPCInformation-Theoretic-Model-Predictive-Control-Theory-and-Applications-to-Autonomous-Driving">6.4 MPPI（Information-Theoretic MPC）：Information Theoretic Model Predictive Control: Theory and Applications to Autonomous Driving</a></li>
+<li><a href="#6.5-CBF-QPControl-Barrier-Function-Based-Quadratic-Programs-for-Safety-Critical-Systems">6.5 CBF-QP：Control Barrier Function Based Quadratic Programs for Safety Critical Systems</a></li>
+<li><a href="#6.6-综述ROS-Based-Navigation-and-Obstacle-Avoidance-A-Study-of-Architectures-Methods-and-Trends">6.6 综述：ROS-Based Navigation and Obstacle Avoidance: A Study of Architectures, Methods, and Trends</a></li>
+<li><a href="#6.7-iPlannerImperative-Path-Planning">6.7 iPlanner：Imperative Path Planning</a></li>
+<li><a href="#6.8-ViPlannerVisual-Semantic-Imperative-Learning-for-Local-Navigation">6.8 ViPlanner：Visual Semantic Imperative Learning for Local Navigation</a></li>
+<li><a href="#6.9-点云-CBFSailing-Through-Point-Clouds-Safe-Navigation-Using-Point-Cloud-Based-Control-Barrier-Functions">6.9 点云 CBF：Sailing Through Point Clouds: Safe Navigation Using Point Cloud Based Control Barrier Functions</a></li>
+</ul>
+</li>
+<li><a href="#7.-系统级灾害响应把前面所有模块拼成一台能在废墟里跑完-40-分钟的机器">7. 系统级灾害响应：把前面所有模块拼成一台能在废墟里跑完 40 分钟的机器</a><ul>
+<li><a href="#7.1-CERBERUS-in-the-DARPA-Subterranean-Challenge">7.1 CERBERUS in the DARPA Subterranean Challenge</a></li>
+<li><a href="#7.2-CERBERUS-Autonomous-Legged-and-Aerial-Robotic-Exploration-in-the-Tunnel-and-Urban-Circuits">7.2 CERBERUS: Autonomous Legged and Aerial Robotic Exploration in the Tunnel and Urban Circuits</a></li>
+<li><a href="#7.3-Team-CERBERUS-Wins-the-DARPA-SubT-Technical-Overview-and-Lessons-Learned">7.3 Team CERBERUS Wins the DARPA SubT: Technical Overview and Lessons Learned</a></li>
+<li><a href="#7.4-GBPlanner-Graph-based-Path-Planning-for-Autonomous-Robotic-Exploration-in-Subterranean-Environments">7.4 GBPlanner: Graph-based Path Planning for Autonomous Robotic Exploration in Subterranean Environments</a></li>
+<li><a href="#7.5-Heterogeneous-Robot-Teams-with-Unified-Perception-and-Autonomy-Team-CSIRO-Data61">7.5 Heterogeneous Robot Teams with Unified Perception and Autonomy (Team CSIRO Data61)</a></li>
+<li><a href="#7.6-Robotic-Urban-Search-and-Rescue-A-Survey-from-the-Control-Perspective">7.6 Robotic Urban Search and Rescue: A Survey from the Control Perspective</a></li>
+</ul>
+</li>
+<li><a href="#8.-20242026-前沿与国内可直连资料哪些是趋势哪些现在能用">8. 2024–2026 前沿与国内可直连资料：哪些是趋势，哪些现在能用</a><ul>
+<li><a href="#8.1-NaVILA-Legged-Robot-Vision-Language-Action-Model-for-Navigation">8.1 NaVILA: Legged Robot Vision-Language-Action Model for Navigation</a></li>
+<li><a href="#8.2-MuJoCo-Playground">8.2 MuJoCo Playground</a></li>
+<li><a href="#8.3-NavDP-Learning-Sim-to-Real-Navigation-Diffusion-Policy">8.3 NavDP: Learning Sim-to-Real Navigation Diffusion Policy</a></li>
+<li><a href="#8.4-NavFoM-Embodied-Navigation-Foundation-Model">8.4 NavFoM: Embodied Navigation Foundation Model</a></li>
+<li><a href="#8.5-Robot-Squid-GameSQUID">8.5 Robot Squid Game（SQUID）</a></li>
+<li><a href="#8.6-Parkour-in-the-Wild">8.6 Parkour in the Wild</a></li>
+<li><a href="#8.7-面向不同粗糙程度地面的四足机器人自适应控制方法">8.7 《面向不同粗糙程度地面的四足机器人自适应控制方法》</a></li>
+<li><a href="#8.8-基于多模态信息融合的四足机器人避障方法">8.8 《基于多模态信息融合的四足机器人避障方法》</a></li>
+<li><a href="#8.9-基于深度强化学习的四足机器人决策算法研究">8.9 《基于深度强化学习的四足机器人决策算法研究》</a></li>
+</ul>
+</li>
+<li><a href="#9.-横切对比把前八节压成三张决策图">9. 横切对比：把前八节压成三张决策图</a><ul>
+<li><a href="#9.1-决策图一地形怎么表征2.5D-高程图--3D-体素--直接深度端到端">9.1 决策图一：地形怎么表征（2.5D 高程图 / 3D 体素 / 直接深度端到端）</a></li>
+<li><a href="#9.2-决策图二局部规划器用谁">9.2 决策图二：局部规划器用谁</a></li>
+<li><a href="#9.3-决策图三start_blocked-恢复流程文献版">9.3 决策图三：start_blocked 恢复流程（文献版）</a></li>
+<li><a href="#9.4-三张图之外文献给不了我们的三件事">9.4 三张图之外：文献给不了我们的三件事</a></li>
+</ul>
+</li>
+<li><a href="#10.-引用边界这份文档能拿去写报告书吗">10. 引用边界：这份文档能拿去写报告书吗</a><ul>
+<li><a href="#10.1-可以但必须守住三条">10.1 可以，但必须守住三条</a></li>
+<li><a href="#10.2-与其他文档的分工不要混写">10.2 与其他文档的分工（不要混写）</a></li>
+<li><a href="#10.3-明确不要做的事">10.3 明确不要做的事</a></li>
+</ul>
+</li>
+<li><a href="#11.-核对记录本次逐篇复核中发现的字段修正">11. 核对记录：本次逐篇复核中发现的字段修正</a><ul>
+<li><a href="#11.1-需要回改综述的-3-处">11.1 需要回改综述的 3 处</a></li>
+<li><a href="#11.2-需要守住的-4-处核对后确认确实不能写实">11.2 需要守住的 4 处（核对后确认「确实不能写实」）</a></li>
+<li><a href="#11.3-工程字段核对与本仓库代码对齐">11.3 工程字段核对（与本仓库代码对齐）</a></li>
+<li><a href="#11.4-只改了渲染没改语义的-1-处">11.4 只改了渲染、没改语义的 1 处</a></li>
+</ul>
+</li>
+<li><a href="#附录-A篇目总表54-篇">附录 A：篇目总表（54 篇）</a></li>
+<li><a href="#附录-B这份文档是怎么做出来的可复核">附录 B：这份文档是怎么做出来的（可复核）</a></li>
+</ul>
+</div>
+</nav>
+  <main>
+    <div id="banner"></div>
+    <p class="meta">共 59 张流程图 · 54 篇文献 · 2026-11-12</p>
+    <h1 id="四足机器狗导航避障逐篇论文流程图讲解">四足机器狗导航避障：逐篇论文流程图讲解</h1>
+<p>版本 v1.0｜2026-11-12｜配套文档：<code>plan/四足机器人导航避障文献综述与选型建议.md</code>（下称「综述」）</p>
+<hr />
+<h2 id="0.-这份文档是什么怎么读">0. 这份文档是什么，怎么读</h2>
+<h3 id="0.1-定位">0.1 定位</h3>
+<p>综述回答「<strong>该引谁、为什么</strong>」；这份文档回答「<strong>那篇论文内部到底怎么转起来的</strong>」。</p>
+<ul>
+<li>每一篇给<strong>一张流程图</strong>，画的是「输入 → 每个模块吃掉什么、吐出什么 → 输出」，不是论文标题的方框搬运。</li>
+<li>每张图后面固定四段：<code>图里读什么</code>（节点为什么存在）、<code>赛场映射</code>（落到我们 12×10 m 废墟赛道的哪一处）、<code>边界</code>（什么条件下它不成立）。</li>
+<li><strong>字段纪律沿用综述</strong>：作者/年份/venue/arXiv/DOI 全部照抄综述的已核实字段；综述写「未核实」的，这里也写「未核实」，不补全、不推测。本文件不新增任何未标源的字段。</li>
+</ul>
+<h3 id="0.2-三条读法按你的目的选一条不要从头读到尾">0.2 三条读法（按你的目的选一条，不要从头读到尾）</h3>
+<table>
+<thead>
+<tr>
+<th>目的</th>
+<th>读哪些</th>
+<th>大约耗时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>15 天工程落地</strong>（当前 <code>start_blocked</code> 卡点）</td>
+<td>§2.6 RTEB → §7.4 GBPlanner → §6.3 TEB 多拓扑 → §9.3 恢复流程</td>
+<td>40 分钟</td>
+</tr>
+<tr>
+<td><strong>写研制报告书的理论依据</strong></td>
+<td>§1 论文地图 → §2 六篇必读 → §4、§6 两组的「边界」段</td>
+<td>2 小时</td>
+</tr>
+<tr>
+<td><strong>补算法底子</strong></td>
+<td>§3（经典与基线）→ §5（定位）→ §6（规划）顺序读</td>
+<td>半天</td>
+</tr>
+</tbody>
+</table>
+<h3 id="0.3-图例约定">0.3 图例约定</h3>
+<table>
+<thead>
+<tr>
+<th>形状</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>(["圆角"])</code></td>
+<td>外部输入 / 最终输出（传感器、指令、动作）</td>
+</tr>
+<tr>
+<td><code>["方框"]</code></td>
+<td>一个处理模块（网络、优化器、状态机节点）</td>
+</tr>
+<tr>
+<td><code>{"菱形"}</code></td>
+<td>判断 / 分支条件</td>
+</tr>
+<tr>
+<td><code>[("圆柱")]</code></td>
+<td>持久化数据（地图、栅格、日志、事件表）</td>
+</tr>
+</tbody>
+</table>
+<p>全文的<strong>失败分支统一画在下侧或右侧</strong>，用「失败 / 退化 / 放弃 / 回退」字样标注——这是本队最需要的一类边，不要跳过。</p>
+<h3 id="0.4-两种打开方式">0.4 两种打开方式</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>适合</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>四足机器人导航避障文献逐篇流程图讲解.md</code>（本文件）</td>
+<td>编辑、检索、写报告时复制引用</td>
+<td>流程图是 Mermaid 源码块，需要 Typora / VS Code（Markdown Preview Mermaid 插件）/ Obsidian / GitHub 才能渲染成图</td>
+</tr>
+<tr>
+<td><code>四足机器人导航避障文献逐篇流程图讲解.html</code></td>
+<td>只想看图和翻目录</td>
+<td>双击用浏览器打开即可，左侧带目录、每图下方可展开源码；Mermaid 从 CDN 加载，<strong>离线时图不渲染但源码仍可看</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="0.5-编号体系">0.5 编号体系</h3>
+<ul>
+<li>§2 必读 6 篇（Lead 亲写，最重要）</li>
+<li>§3 经典与基座 9 篇｜§4 感知/地形/落脚点 8 篇｜§5 定位与 SLAM 7 篇</li>
+<li>§6 局部规划与 TEB 谱系 9 篇｜§7 系统级灾害响应 6 篇｜§8 前沿与国内资料 9 篇</li>
+<li>§9 横切对比（把前八节压成 3 张决策图）｜§10 引用边界</li>
+</ul>
+<p>合计 <strong>54 篇</strong>（含 §3.2 与 §2.1 的重复项已去重）。</p>
+<hr />
+<h2 id="1.-先看全局这-54-篇落在同一条链路的哪里">1. 先看全局：这 54 篇落在同一条链路的哪里</h2>
+<h3 id="1.1-五层论文地图">1.1 五层论文地图</h3>
+<figure class="diagram" id="d1"><div class="render" data-for="d1"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    T([&quot;赛题：12×10 m 废墟 · 40 min · 圆管内径 1.0 m&lt;br/&gt;方涵 1.2×0.6 m 限高 0.6 m · 弱光扬尘 · S 弯 · 死胡同&quot;])
+
+    subgraph S1[&quot;① 感知与地形表征（§4）&quot;]
+        A1[&quot;深度 / RGB 相机&quot;] --&gt; A2[&quot;高程图 elevation map&quot;]
+        A1 --&gt; A3[&quot;3D 体素 / 点云重建&quot;]
+        A2 --&gt; A4[&quot;可通行性代价 + 不确定度&quot;]
+        A3 --&gt; A4
+    end
+
+    subgraph S2[&quot;② 状态估计（§5）&quot;]
+        B1[&quot;LiDAR / IMU / 视觉 / 腿部运动学&quot;] --&gt; B2[&quot;LIO · VIO · 因子图&quot;]
+        B2 --&gt; B3[&quot;位姿 + 协方差&quot;]
+    end
+
+    subgraph S3[&quot;③ 地图与探索（§3.1 §7.4）&quot;]
+        C1[(&quot;占据栅格 costmap&quot;)]
+        C2[&quot;frontier 探索 / 图探索&quot;]
+    end
+
+    subgraph S4[&quot;④ 规划（§3 §6）&quot;]
+        D1[&quot;全局：A* · RRT* · hybrid A*&quot;] --&gt; D2[&quot;局部：TEB · DWA · MPPI&quot;]
+        D2 --&gt; D3[&quot;安全层：CBF-QP&quot;]
+        D2 --&gt;|&quot;解不可行&quot;| D4[&quot;重初始化 / 换拓扑 / 放弃&quot;]
+    end
+
+    subgraph S5[&quot;⑤ 运动控制与系统仲裁（§2 §7）&quot;]
+        E1[&quot;RL locomotion 策略&lt;br/&gt;速度 / 6D 姿态指令&quot;] --&gt; E2[&quot;关节目标 → 电机&quot;]
+        E3[&quot;任务状态机：恢复 · 返航 · 降级&quot;]
+    end
+
+    T --&gt; S1
+    T --&gt; S2
+    S1 --&gt; S3
+    S2 --&gt; S3
+    S3 --&gt; S4
+    S4 --&gt; S5
+    E3 --&gt;|&quot;接管&quot;| S4
+    D3 --&gt; E1
+    E2 --&gt;|&quot;新位姿反馈&quot;| S2</code></pre></details></figure>
+<h3 id="1.2-这张图暴露的三件事">1.2 这张图暴露的三件事</h3>
+<ol>
+<li><strong>文献量分布极不均匀</strong>：④规划层和 ①感知层各十几篇，②状态估计 7 篇，但<strong>⑤里的「系统仲裁 / 恢复语义」只有 §7 那 6 篇</strong>——而这正是我们 <code>start_blocked</code> 卡住的地方。文献不缺，是我们没把 §7 的语义接进代码。</li>
+<li><strong>两条完全不同的技术路线在图里是并联的</strong>：上支（高程图 → costmap → TEB，经典机器人栈，我们现在的 <code>navigation_core</code> 走这条）和下支（原始深度 → RL 策略直出关节，§2.1/§2.4/§8.1 走这条）。两者不是替代关系，是「同一台狗上的两层」，混着用要先定接口。</li>
+<li><strong>限高这一维只有三篇真正覆盖</strong>：§2.3（3D 体素 + 6D 指令）、§2.4（crawl / squeeze）、§4.6（可变形包围盒）。2.5D 高程图对悬垂障碍是<strong>结构性盲区</strong>，不是精度问题。</li>
+</ol>
+<h3 id="1.3-章节索引">1.3 章节索引</h3>
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th>内容</th>
+<th>篇数</th>
+<th>对应我们方案的哪块</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>§2</td>
+<td>必读 6 篇</td>
+<td>6</td>
+<td>理论主干</td>
+</tr>
+<tr>
+<td>§3</td>
+<td>经典与基座：A* → RL 训练框架</td>
+<td>9</td>
+<td><code>plan_grid</code> / TEB 初值 / 前沿探索 / 训练基座</td>
+</tr>
+<tr>
+<td>§4</td>
+<td>感知、地形与落脚点</td>
+<td>8</td>
+<td>高程图 / 限高 / 承载 / 落足</td>
+</tr>
+<tr>
+<td>§5</td>
+<td>定位与 SLAM</td>
+<td>7</td>
+<td>退化感知 / 重定位（真机无 LiDAR，只取语义）</td>
+</tr>
+<tr>
+<td>§6</td>
+<td>局部规划与 TEB 谱系</td>
+<td>9</td>
+<td><code>start_blocked</code> 恢复 / S 弯换侧</td>
+</tr>
+<tr>
+<td>§7</td>
+<td>系统级灾害响应</td>
+<td>6</td>
+<td>任务状态机 / 放弃判据 / 返航</td>
+</tr>
+<tr>
+<td>§8</td>
+<td>前沿与国内资料</td>
+<td>9</td>
+<td>趋势判断 + 国内可直连引用</td>
+</tr>
+<tr>
+<td>§9</td>
+<td>横切对比</td>
+<td>—</td>
+<td>三张决策图</td>
+</tr>
+<tr>
+<td>§10</td>
+<td>引用边界</td>
+<td>—</td>
+<td>写报告书时的红线</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2.-必读-6-篇">2. 必读 6 篇</h2>
+<blockquote>
+<p>一句话导读：这 6 篇是「机器狗在废墟里能不能靠得住」的六块拼图——<strong>感知退化怎么办（2.1）、技能库怎么组织（2.2）、限高怎么看见（2.3）、单个策略怎么自学技能（2.4）、机身姿态怎么当规划变量（2.5）、规划器不可行怎么救（2.6）</strong>。2.6 直接对应我们当前卡点，可以最后读但必须读。</p>
+</blockquote>
+<h3 id="2.1-Learning-robust-perceptive-locomotion-for-quadrupedal-robots-in-the-wild">2.1 Learning robust perceptive locomotion for quadrupedal robots in the wild</h3>
+<p><strong>一句话</strong>：用 attention 把「本体感知历史」和「高程图」融成一个 belief 隐变量，让策略在外感知失效时<strong>自己学会忽略它</strong>，平滑退化为盲走，而不是崩掉。</p>
+<p><strong>出处</strong>：[已核实] Takahiro Miki, Joonho Lee, Jemin Hwangbo, Lorenz Wellhausen, Vladlen Koltun, Marco Hutter｜2022｜<em>Science Robotics</em> 7(62): eabk2822｜<code>arXiv:2201.08117</code>｜DOI <code>10.1126/scirobotics.abk2822</code>｜官方代码仓库未核实</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d2"><div class="render" data-for="d2"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;速度指令 v_cmd&quot;]) --&gt; P
+    B([&quot;本体感知历史&lt;br/&gt;关节角/角速度/IMU/上一步动作&quot;]) --&gt; E1
+    C([&quot;机器人中心高程图&lt;br/&gt;2.5D + 局部位姿&quot;]) --&gt; E1
+
+    subgraph TR[&quot;训练期：teacher-student 两段&quot;]
+        T1[&quot;teacher：特权信息 + 完整高程图&lt;br/&gt;RL 学出参考策略&quot;] --&gt; T2[&quot;student：只用可部署观测&lt;br/&gt;监督蒸馏对齐 teacher 动作&quot;]
+    end
+    E1[&quot;attention 循环编码器&lt;br/&gt;用本体状态作 query 去查高程图特征&quot;] --&gt; E2[&quot;belief 隐变量 z_t&quot;]
+    E2 --&gt; P[&quot;策略 MLP → 12 维关节位置目标&quot;]
+    T2 -.-&gt;|&quot;训练信号&quot;| E1
+    P --&gt; O([&quot;关节目标 → PD 控制&quot;])
+
+    E1 --&gt;|&quot;高程图无效：弱光/扬尘/反光/遮挡/里程计漂移&quot;| D1{&quot;attention 权重自然转向本体&quot;}
+    D1 --&gt;|&quot;外感知置信低&quot;| D2[&quot;退化为纯本体盲走：降速、增大落脚裕度&quot;]
+    D1 --&gt;|&quot;外感知可用&quot;| D3[&quot;正常感知步态：抬腿更高、速度维持&quot;]
+    D2 --&gt; O
+    D3 --&gt; O</code></pre></details></figure>
+<p><strong>图里读什么</strong></p>
+<ol>
+<li><strong>不是「融合」而是「门控」</strong>：attention 的作用是让网络自己决定这一帧高程图信几分。硬编码的加权融合在传感器坏掉时会持续灌噪声，门控式融合会做减法。</li>
+<li><strong>训练和部署的观测不一样</strong>：teacher 看特权信息，student 只看能上机的量，两点之间靠蒸馏对齐。这是 ETH 系（2.2/2.3/2.4 同源）的标准套路。</li>
+<li><strong>两个出口都在图里</strong>：同一个网络同一套权重，输出的是「感知步态」还是「盲走步态」，取决于隐变量 z_t 落哪边，没有显式的模式切换开关——所以退化是<strong>平滑</strong>的，这才是野外能用的原因。</li>
+<li>阿尔卑斯 1 小时徒步（按人类徒步推荐时间走完）是这套设计最强的验收：全程光照/地形都在变。</li>
+</ol>
+<p><strong>赛场映射</strong>：弱光 L3 挑战、废墟扬尘、坡道乱石处深度相机短暂失效——这三点在我们的赛道上不是「可能发生」，是「必然发生」。工程上直接对应 <code>navigation_core</code> 里「感知帧不可信时降速 + 继续走」而不是「停车等感知」，也就是把「传感器异常」从<strong>终止条件</strong>降级为<strong>降级条件</strong>。</p>
+<p><strong>边界</strong>：①它是端到端策略，不可解释、不能直接改「哪一步不信高程图」；②训练需要 Isaac Gym 级算力，我们 15 天做不出来；③论文的「graceful degradation」是<strong>训练出来的统计行为</strong>，不保证覆盖我们这种「相机被灰浆糊住」的极端样本。<strong>用法建议：取它的设计语义（门控 + 降级 + 降速），不取它的模型。</strong></p>
+<h3 id="2.2-ANYmal-Parkour-Learning-Agile-Navigation-for-Quadrupedal-Robots">2.2 ANYmal Parkour: Learning Agile Navigation for Quadrupedal Robots</h3>
+<p><strong>一句话</strong>：全学习式三层——感知模块从严重遮挡的噪声点云重建障碍、运动模块提供走/跳/爬/蹲伏技能库、高层策略按场景<strong>选技能并规划</strong>，实机连续障碍 2 m/s。</p>
+<p><strong>出处</strong>：[已核实] David Hoeller, Nikita Rudin, Dhionis Sako, Marco Hutter｜arXiv 2023-06 / 期刊 2024-03｜<em>Science Robotics</em> 9(88): eadi7566｜<code>arXiv:2306.14874</code>｜DOI <code>10.1126/scirobotics.adi7566</code>｜项目页 <code>https://sites.google.com/leggedrobotics.com/agile-navigation</code>｜官方代码仓库未核实</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d3"><div class="render" data-for="d3"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;机载深度 / 点云：高遮挡 + 高噪声&quot;]) --&gt; B[&quot;感知模块：重建障碍几何&lt;br/&gt;监督学习，输出场景表征&quot;]
+    B --&gt; C[&quot;高层导航策略&lt;br/&gt;知道每个技能的能力边界&quot;]
+
+    subgraph SK[&quot;技能库（各自独立 RL 训练）&quot;]
+        S1[&quot;walk 走&quot;]
+        S2[&quot;jump 跳&quot;]
+        S3[&quot;climb 爬&quot;]
+        S4[&quot;crouch 蹲伏&quot;]
+    end
+
+    C --&gt;|&quot;选技能 + 给技能参数&quot;| S1
+    C --&gt;|&quot;选技能&quot;| S2
+    C --&gt;|&quot;选技能&quot;| S3
+    C --&gt;|&quot;限高 &lt; 站高&quot;| S4
+
+    S1 --&gt; J[&quot;低层技能策略输出关节动作&quot;]
+    S2 --&gt; J
+    S3 --&gt; J
+    S4 --&gt; J
+    J --&gt; O([&quot;实机运动，连续障碍最高 2 m/s&quot;])
+
+    C --&gt;|&quot;前方障碍超出全部技能能力&quot;| D[&quot;放弃 / 绕行&quot;]
+    B --&gt;|&quot;点云缺失区域&quot;| B2[&quot;按保守假设补齐，不冒险&quot;]
+    B2 --&gt; C</code></pre></details></figure>
+<p><strong>图里读什么</strong></p>
+<ol>
+<li><strong>高层知道低层的能力</strong>：高层策略的观测里包含各技能的可执行性，所以它不是「盲目选」，而是「按能力分配」。这是分层相对端到端的核心优势，也是我们能借鉴的组织方式。</li>
+<li><strong>crouch 是独立技能，不是参数的连续变化</strong>：蹲伏被当成一个离散技能训练，说明「限高通行」在技能空间里就该占一格，而不是让速度策略去硬凑。</li>
+<li><strong>感知模块是单独监督训练的</strong>，不靠 RL 端到端学重建——所以它能处理「高度遮挡」：先补全几何，再决策。</li>
+<li><strong>不需要专家示范、不需要离线计算、不需要先验环境</strong>，这是它对 field robotics 最实际的贡献。</li>
+</ol>
+<p><strong>赛场映射</strong>：与 12×10 m 废墟救援在<strong>系统级</strong>最贴合的一篇：crouch ↔ 方涵 0.6 m 限高；高层技能选择 ↔ S 弯/死胡同的方向决策；感知重建 ↔ 乱石堆与遮挡；2 m/s ↔ 40 分钟时限内的通行效率。写研制报告书时，「分层 + 技能库」这一段可以直接引它。</p>
+<p><strong>边界</strong>：①纯仿真训练，sim-to-real 靠域随机化，实机换平台（我们 Lite2 与 ANYmal 差一个量级）需要重训；②技能库是<strong>离线确定</strong>的，赛场上遇到库里没有的地形就是没有；③整套要 GPU 训练，15 天不可复制。<strong>取结构，不取权重。</strong></p>
+<h3 id="2.3-Learning-to-walk-in-confined-spaces-using-3D-representation">2.3 Learning to walk in confined spaces using 3D representation</h3>
+<p><strong>一句话</strong>：明确指出 <strong>2.5D 高程图对顶部悬垂障碍是盲的</strong>，改用 3D 体素；低层稳健跟随 6D 指令（含机身高度、roll/pitch），高层基于 3D 空间感知规划姿态，从悬垂障碍下钻过去。</p>
+<p><strong>出处</strong>：[已核实] Takahiro Miki, Joonho Lee, Lorenz Wellhausen, Marco Hutter｜2024｜<em>ICRA 2024</em>（arXiv Comments: Accepted to ICRA 2024）｜<code>arXiv:2403.00187</code></p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d4"><div class="render" data-for="d4"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;L1 任务层：目标点 / 方向&quot;]) --&gt; H[&quot;高层策略：3D 空间感知&quot;]
+    V[(&quot;3D 体素表征&lt;br/&gt;机器人周围体素占用&quot;)] --&gt; H
+    H --&gt;|&quot;输出 6D 指令&quot;| L[&quot;低层策略：稳健跟随 6D 指令&quot;]
+    P([&quot;本体感知历史&quot;]) --&gt; L
+    L --&gt; O([&quot;关节动作&quot;])
+
+    subgraph C6[&quot;6D 指令的六维&quot;]
+        C1[&quot;前进速度&quot;]
+        C2[&quot;横移速度&quot;]
+        C3[&quot;偏航角速度&quot;]
+        C4[&quot;机身高度&quot;]
+        C5[&quot;roll&quot;]
+        C6[&quot;pitch&quot;]
+    end
+    H -.-&gt; C6
+    C6 -.-&gt; L
+
+    G[&quot;程序化地形生成器&lt;br/&gt;碎石 / 不稳定台阶 / 倾斜顶部结构&quot;] --&gt;|&quot;训练环境&quot;| H
+    G --&gt;|&quot;训练环境&quot;| L
+
+    H --&gt;|&quot;前方体素净空 &lt; 当前机身高度&quot;| D1[&quot;输出低机身高度 + 侧倾的 6D 指令&quot;]
+    D1 --&gt; L
+    H --&gt;|&quot;净空连蹲伏都不够&quot;| D2[&quot;放弃该通道，回上层改目标&quot;]
+    V --&gt;|&quot;体素稀疏 / 观测缺失&quot;| D3[&quot;保守假设：视为有障碍&quot;]
+    D3 --&gt; H</code></pre></details></figure>
+<p><strong>图里读什么</strong></p>
+<ol>
+<li><strong>「高度」进了指令空间</strong>：6D 指令里的机身高度、roll、pitch 是策略要跟踪的量——这意味着「蹲下来」不再是失败，而是一个正常的控制目标。这是与 2.5D 方案最本质的区别。</li>
+<li><strong>3D 体素是必需的，不是升级选项</strong>：2.5D 高程图对每个 XY 只存一个高度值，悬垂障碍在它上面<strong>根本不产生数据点</strong>。圆管顶壁、方涵顶板、塌落楼板全都落在盲区里。</li>
+<li><strong>低层只负责「跟随」，高层负责「想」</strong>：分工让低层可以在多种地形上保持稳健（同一个低层策略重复用），高层换任务不用重训低层。</li>
+<li><strong>程序化地形生成器是隐藏的关键</strong>：训练分布决定了策略会不会在「半坍塌楼板」上崩，这直接影响我们做 MuJoCo 场景随机化时的设计。</li>
+</ol>
+<p><strong>赛场映射</strong>：<strong>圆管（内径 1.0 m）+ 方涵（1.2×0.6 m，限高 0.6 m）+ 隧道限高最对口的一篇</strong>。落到工程上是三件事：①<code>terrain_map.npz</code> 若只有单层高度，就必然判不出限高，需要补一层「顶部净空」；②规划器输出要能带「机身高度指令」；③姿态不能再当常数。</p>
+<p><strong>边界</strong>：①3D 体素的内存与算力开销比 2.5D 高一个档，我们机上（Lite2 级别）不一定扛得住；②它验证在 ANYmal-C/D（站高约 80 cm、体宽约 60 cm），我们的狗更小，「蹲伏」的绝对余量不同；③第三方提到在模拟 <code>collapsed building</code> 上部署，这属于<strong>第三方解读</strong>，不是摘要原文，报告里引用要标明。</p>
+<h3 id="2.4-Robot-Parkour-Learning">2.4 Robot Parkour Learning</h3>
+<p><strong>一句话</strong>：用受 direct collocation 启发的 RL 生成五类跑酷技能（含 <strong>crawling beneath low barriers</strong> 与 <strong>squeezing through thin slits</strong>），蒸馏成一个<strong>只用前向深度相机</strong>的端到端视觉策略，两台低成本四足实机自主选技能。</p>
+<p><strong>出处</strong>：[已核实] Ziwen Zhuang, Zipeng Fu, Jianren Wang, Christopher Atkeson, Soeren Schwertfeger, Chelsea Finn, Hang Zhao｜2023｜<em>CoRL 2023 (Oral)</em>（arXiv Comments 明确）｜<code>arXiv:2309.05665</code>｜项目页 <code>https://robot-parkour.github.io</code>｜仓库 <code>https://github.com/ZiwenZhuang/parkour</code> 由第三方资料指向，仓库本身未抓取核实</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d5"><div class="render" data-for="d5"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    R[&quot;直接配点法启发的 RL&lt;br/&gt;把长动作序列拆成可学的短阶段&quot;] --&gt; SK
+
+    subgraph SK[&quot;五类技能（各自训练）&quot;]
+        S1[&quot;翻越高障碍&quot;]
+        S2[&quot;跨越宽沟&quot;]
+        S3[&quot;低矮障碍下匍匐 crawl&quot;]
+        S4[&quot;挤过窄缝 squeeze&quot;]
+        S5[&quot;奔跑&quot;]
+    end
+
+    SK --&gt; DS[&quot;蒸馏：多技能 → 单一视觉策略&quot;]
+    DS --&gt; V[&quot;学生策略：输入仅前向深度图 + 本体状态&quot;]
+    V --&gt; O([&quot;关节动作 · 自主选择用哪个技能&quot;])
+
+    D([&quot;机载前向深度相机&quot;]) --&gt; V
+    P([&quot;本体状态&quot;]) --&gt; V
+
+    V --&gt;|&quot;深度图看到低矮横梁&quot;| A1[&quot;自动切到匍匐步态&quot;]
+    V --&gt;|&quot;深度图看到窄缝&quot;| A2[&quot;自动切到挤缝姿态&quot;]
+    V --&gt;|&quot;深度图退化 / 前方无纹理&quot;| A3[&quot;退化为盲走 + 减速&quot;]
+    A1 --&gt; O
+    A2 --&gt; O
+    A3 --&gt; O</code></pre></details></figure>
+<p><strong>图里读什么</strong></p>
+<ol>
+<li><strong>crawl 与 squeeze 是论文级原文术语</strong>（摘要明写 <code>crawling beneath low barriers</code>、<code>squeezing through thin slits</code>），不是我们的引申——这是写报告时最硬的一句话。</li>
+<li><strong>只用前向深度相机，不用高程图、不用 VIO、不用动物动作参考数据</strong>：对算力受限平台意义极大，我们 Lite2 的感知配置比 ANYmal 简单一个档次，这一篇是「低配也能干」的证据。</li>
+<li><strong>技能不是被调度器选的，是被策略自己学的</strong>：蒸馏后没有显式状态机，「看到横梁就趴下」是端到端学出来的反应。好处是反应快，坏处是<strong>不可解释、无法插规则</strong>。</li>
+<li>两台<strong>不同</strong>低成本实机都能跑通，说明策略不是对某一台机器的过拟合。</li>
+</ol>
+<p><strong>赛场映射</strong>：crawl + squeeze 是圆管/方涵隧道<strong>最直接的论文级对应</strong>；单一策略自主选技能可用于 S 弯 + 死胡同的连续决策；免高程图适合我们这种算力受限的小平台。如果只能引一篇来支撑「机器狗可以趴着过方涵」，引它。</p>
+<p><strong>边界</strong>：①它解决的是「单个障碍的通过」，不是「在未知废墟里找路」——没有全局导航、没有探索、没有回环，和我们的任务层级不同；②匍匐是固定高度假设，方涵 0.6 m 是否够它爬，要看具体机型，论文没给我们的平台结论；③仓库未核实，复现风险高；④我们 15 天内不可能重训这套。</p>
+<h3 id="2.5-Perceptive-whole-body-planning-for-multilegged-robots-in-confined-spaces">2.5 Perceptive whole-body planning for multilegged robots in confined spaces</h3>
+<p><strong>一句话</strong>：把<strong>机身位姿当规划变量</strong>——机载深度建 3D 地形图，随机采样机身位姿并平滑，同时生成机身位姿、落脚点与摆腿轨迹，满足运动学与碰撞约束，在线 500 ms 重规划 3 m 轨迹。</p>
+<p><strong>出处</strong>：[已核实] R. Buchanan et al.（L. Wellhausen, M. Bjelonic, T. Bandyopadhyay, N. Kottege, M. Hutter）｜2021｜<em>Journal of Field Robotics</em> 38(1): 68–84｜DOI <code>10.1002/rob.21974</code>（ETH Research Collection、OpenAIRE、CSIRO、Google Scholar 四处一致）｜无 arXiv｜官方代码仓库未核实</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d6"><div class="render" data-for="d6"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;机载深度相机&quot;]) --&gt; B[&quot;建 3D 地形图（机器人周围）&quot;]
+    B --&gt; C{&quot;碰撞检测：当前机身位姿可行？&quot;}
+    C --&gt;|&quot;否&quot;| D[&quot;随机采样候选机身位姿&quot;]
+    D --&gt; E[&quot;对采样位姿做平滑，去掉抖动&quot;]
+    E --&gt; F{&quot;运动学可达 + 无碰撞？&quot;}
+    F --&gt;|&quot;否&quot;| D
+    F --&gt;|&quot;是&quot;| G[&quot;由机身位姿反推落脚点 + 摆腿轨迹&quot;]
+    G --&gt; H[&quot;全身轨迹：机身 + 足端&quot;]
+    H --&gt; O([&quot;下发执行&quot;])
+    O --&gt;|&quot;500 ms 周期&quot;| C
+
+    C --&gt;|&quot;周围连采样都无解&quot;| X[&quot;判定不可通过：放弃该通道&quot;]
+    S([&quot;ANYmal 站高 80 cm · 宽 59 cm&quot;]) -.-&gt;|&quot;用于限高判断的量化范式&quot;| C</code></pre></details></figure>
+<p><strong>图里读什么</strong></p>
+<ol>
+<li><strong>机身位姿是决策变量</strong>：不是「先选落脚点再摆机身」，而是「先定机身能待在哪，再验腿能不能落地」。方向反了，窄空间就过不去。</li>
+<li><strong>随机采样 + 平滑</strong>：采样保证覆盖多模态解（左倾/右倾都能过），平滑保证轨迹能用——这是它相对纯采样的工程优势。</li>
+<li><strong>有明确的「放弃」出口</strong>：连采样都无解就判不可通过。我们「隧道1 过窄 0.2 m 应识别并放弃」的判据，就是这一条的工程翻译。</li>
+<li><strong>50 cm 一支的余量关系是量化范式</strong>：站高 80 cm、宽 59 cm 的机器过 60 cm 开口——余量只有 1 cm 级。我们算「圆管 1.0 m 能不能过」时应该照这个格式写：<code>机体外廓（含腿摆幅）vs 通道最窄净空</code>，而不是拍脑袋。</li>
+</ol>
+<p><strong>赛场映射</strong>：直接对应「隧道1 过窄 0.2 m 应识别并放弃」「圆管 1.0 m」「方涵 1.2×0.6 m」的<strong>通行/放弃判据</strong>。这是六篇里唯一一篇把「过不去怎么办」写成算法的。</p>
+<p><strong>边界</strong>：①计算量大（随机采样 + 平滑 + 全身轨迹），机载算力要求高，500 ms/3 m 已经是优化后的结果；②需要高质量 3D 地形图，弱光扬尘下建图退化会直接传导成规划失败；③它假设地形是<strong>静态</strong>的，坍塌中的废墟不满足。</p>
+<h3 id="2.6-Resilient-Timed-Elastic-Band-Planner-RTEB">2.6 Resilient Timed Elastic Band Planner (RTEB)</h3>
+<p><strong>一句话</strong>：正面回答「<strong>初始规划器的解变得不可行怎么办</strong>」——每个周期检查轨迹可行性，不可行就用 hybrid A<em> 生成可行轨迹 + 软约束平滑，</em><em>重新初始化 TEB</em><em>；窄通道用动态 Voronoi 改善，中间位姿带独立朝向支持</em><em>前进/倒退双向</em>*。</p>
+<p><strong>出处</strong>：[已核实] G. Kulathunga, A. Yilmaz, Z. Huang, I. Hroob, …, M. Hanheide｜2025｜<em>Journal of Field Robotics</em> 42(7): 3902–3917｜DOI <code>10.1002/rob.22602</code>｜<code>arXiv:2412.03174</code>｜代码未核实（论文声明基于 ROS2 navigation stack 验证）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d7"><div class="render" data-for="d7"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;全局路径 + 当前位姿&quot;]) --&gt; B[&quot;TEB 优化：位姿序列 + 时间间隔&quot;]
+    B --&gt; C{&quot;本周期的轨迹&lt;br/&gt;运动学可行？&quot;}
+    C --&gt;|&quot;可行&quot;| G[&quot;输出控制量 → 底盘执行&quot;]
+    G --&gt;|&quot;下一周期&quot;| B
+    C --&gt;|&quot;不可行（初值坏 / 起点在膨胀区 / 障碍突变）&quot;| H[&quot;hybrid A* 重初始化&quot;]
+    H --&gt; H1[&quot;生成满足运动学的可行轨迹&lt;br/&gt;中间位姿带独立朝向 → 支持倒退&quot;]
+    H1 --&gt; H2[&quot;软约束平滑：连续性 + 避障 + 运动学&quot;]
+    H2 --&gt; B
+
+    OB[(&quot;动态 Voronoi 图&lt;br/&gt;障碍约束建模&quot;)] -.-&gt;|&quot;改善窄通道通过&quot;| B
+
+    C --&gt;|&quot;重试超上限&quot;| X[&quot;上报失败：交由上层决定换目标或停车&quot;]
+    H --&gt;|&quot;hybrid A* 也搜不到&quot;| X</code></pre></details></figure>
+<p><strong>图里读什么</strong></p>
+<ol>
+<li><strong>「不可行」被当成一个可处理的中间状态，不是终态</strong>：这是整篇论文对我们最值钱的一句话。我们现在的 <code>start_blocked</code> 恰恰是把「不可行」写成了终态。</li>
+<li><strong>重初始化用的是另一种算法</strong>：TEB 是局部优化（依赖初值），hybrid A* 是带运动学约束的搜索（不依赖初值）。用搜索救优化，是这条链的设计核心。</li>
+<li><strong>双向朝向</strong>：中间位姿各自带朝向，允许倒退。死胡同里「倒着出来」在数学上是合法的轨迹，不需要特殊状态。</li>
+<li><strong>动态 Voronoi 是窄通道的关键</strong>：Voronoi 图让轨迹倾向走通道中线，天然避免贴墙擦碰——我们「S 弯净宽 1.2 m」的通行质量直接受益。</li>
+<li>论文表格明确列出 TEB 的三个缺陷：挑战环境成功率低、朝向受限、窄缝处理差。这给了我们「为什么改」的引用依据。</li>
+</ol>
+<p><strong>赛场映射</strong>：死胡同倒退 + S 弯净宽 1.2 m + 隧道口识别放弃 + TEB 两大劣势，<strong>一篇全中</strong>。它就是我们 <code>start_blocked</code> 阻塞的答案本体：把「起点落在 0.28 m 膨胀区」→ 短距脱困 → 重生成初值 → 再规划，这条流程有文献级先例。</p>
+<p><strong>边界</strong>：①需要 ROS2 navigation stack 环境，我们 Windows + MuJoCo 栈要<strong>翻译语义</strong>而不是移植代码；②hybrid A* 重初始化本身有计算峰值，实时性靠工程调；③它不解决「通道根本不可通过」——那种情况仍要上层放弃；④代码未核实，无法直接借用。</p>
+<h3 id="2.7-六篇的关系一张图收口">2.7 六篇的关系（一张图收口）</h3>
+<figure class="diagram" id="d8"><div class="render" data-for="d8"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart LR
+    A[&quot;2.1 感知退化怎么办&lt;br/&gt;attention 门控 + 盲走降级&quot;] --&gt; D[&quot;一台能在废墟里跑完的机器狗&quot;]
+    B[&quot;2.2 技能怎么组织&lt;br/&gt;技能库 + 高层按能力选&quot;] --&gt; D
+    C[&quot;2.3 限高怎么看见&lt;br/&gt;3D 体素 + 6D 姿态指令&quot;] --&gt; D
+    E[&quot;2.4 单策略怎么自学技能&lt;br/&gt;crawl / squeeze 蒸馏&quot;] --&gt; D
+    F[&quot;2.5 机身姿态怎么当变量&lt;br/&gt;全身规划 + 放弃判据&quot;] --&gt; D
+    G[&quot;2.6 规划不可行怎么救&lt;br/&gt;hybrid A* 重初始化&quot;] --&gt; D
+    D -.-&gt;|&quot;我们的 15 天窗口&quot;| H[&quot;只取语义：&lt;br/&gt;降级不终止 · 限高进地图 · 不可行可恢复&quot;]</code></pre></details></figure>
+<hr />
+<h2 id="3.-经典与基座从-A-到-RL-训练框架">3. 经典与基座：从 A* 到 RL 训练框架</h2>
+<blockquote>
+<p>一句话导读：这一组不是「论文精选」，而是我们方案里 plan_grid、TEB 初值、前沿探索、训练基座四类组件的<strong>出处</strong>。读法：先看图，再看「赛场映射」，最后看「边界」。</p>
+</blockquote>
+<h3 id="3.1-AA-Formal-Basis-for-the-Heuristic-Determination-of-Minimum-Cost-Paths">3.1 A*：A Formal Basis for the Heuristic Determination of Minimum Cost Paths</h3>
+<p><strong>一句话</strong>：把「最短路搜索」写成可采纳启发式下的一次图搜索，并给出 A<em> 的形式定义与最优性条件 —— 我们 <code>plan_grid</code> 在 costmap 上生成 TEB 初始全局路径的算法出处。
+</em><em>出处</em><em>：[已核实] Hart, Nilsson, Raphael｜1968｜</em>IEEE TSSC* 4(2):100–107｜DOI <code>10.1109/TSSC.1968.300136</code>｜无 arXiv｜无官方仓库（工程实现走 ROS <code>global_planner</code>）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d9"><div class="render" data-for="d9"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;输入：膨胀后的 costmap + 起点 s + 目标 t&quot;]) --&gt; B[&quot;初始化 open 表，只压入 s，g(s) = 0，f(s) = g(s) + h(s)&quot;]
+    B --&gt; C{&quot;open 表为空？&quot;}
+    C --&gt;|&quot;是&quot;| X([&quot;无解：目标不可达，plan_grid 返回失败&quot;])
+    C --&gt;|&quot;否&quot;| D[&quot;弹出 f 最小的节点 n，移入 closed 表&quot;]
+    D --&gt; E{&quot;n 就是目标？&quot;}
+    E --&gt;|&quot;是&quot;| Y([&quot;回溯父指针链，输出栅格路径点序列&quot;])
+    E --&gt;|&quot;否&quot;| F[&quot;展开 n 的 8 邻居，逐个取 m：g(m) = g(n) + 步长 × 栅格代价&quot;]
+    F --&gt; G[&quot;查表得 m 的启发值 h(m)，累加出 f(m)&quot;]
+    G --&gt; H{&quot;g(m) 比历史 g(m) 更小？&quot;}
+    H --&gt;|&quot;否&quot;| C
+    H --&gt;|&quot;是&quot;| I[&quot;改写 m 的父指针为 n，更新 g 与 f，压堆或减小堆键值&quot;]
+    I --&gt; J{&quot;m 原本在 closed 表？&quot;}
+    J --&gt;|&quot;是&quot;| K[&quot;重开 m：从 closed 移回 open，允许回头改路&quot;]
+    J --&gt;|&quot;否&quot;| C
+    K --&gt; C</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 真正的状态只有两样：open 表（候选 + f 值）和 closed 表（已定型）。图上所有箭头都是在做「插入 / 降键 / 重开」这三件事，没有别处藏状态。
+2. <code>步长 × 栅格代价</code> 这一项就是代价流进路径的唯一入口 —— 膨胀层、粗糙度、坡度全写在这里；把它换成 0/1，A<em> 立刻退化成分层 BFS。
+3. h 决定速度也决定最优性：可采纳时 f 是真实代价下界，保证第一次弹出目标即最优；图上「f(m) 更小就改父指针」说明这是带降键的实现，不是一次性访存的贪心。
+4. 重开分支是最容易在工程里被删掉、也最该保留的一支：h 不满足一致性时，已进 closed 的节点仍可能被更短路径找到，删了它就直接返回次优路径。
+5. 终止只有两个出口。<code>open 为空</code> 是「不可达」的</em><em>证明</em>*，不是超时也不是失败——它和我们 <code>start_blocked</code> 那种「一个终态吃掉整段任务」的语义正好相反。</p>
+<p><strong>赛场映射</strong>：<code>plan_grid</code> 全局段（costmap 上的 A<em> 起终点）；膨胀半径 0.28 m 直接作用在 <code>栅格代价</code> 那一项上，也是「估计位姿贴墙 → 起点落入膨胀区」的物理开关。TEB 再换，这一层作为初值来源也要留。
+</em><em>边界</em>*：8 邻域栅格中心连出的路径是 45° 折线，曲率不连续，必须后处理平滑才喂得动 TEB；不处理动态障碍、不做 3D、不感知限高；栅格一大，重规划频率就撑不住。</p>
+<h3 id="3.2-DijkstraA-note-on-two-problems-in-connexion-with-graphs">3.2 Dijkstra：A note on two problems in connexion with graphs</h3>
+<p><strong>一句话</strong>：一篇短文同时给出「两点间最短路」与「连通全图的最小生成树」两个问题的算法，前者即无边无启发式的距离传播 —— 我们算「到障碍 / 到目标距离场」和「连通性判定」的出处。
+<strong>出处</strong>：[已核实] Dijkstra｜1959｜<em>Numerische Mathematik</em> 1(1):269–271｜DOI <code>10.1007/BF01386390</code>｜无 arXiv｜无官方仓库</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d10"><div class="render" data-for="d10"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;输入：带权图或栅格 + 源点 s&quot;]) --&gt; B[&quot;dist(s) = 0，其余置无穷，最小堆只压 s&quot;]
+    B --&gt; C{&quot;堆非空？&quot;}
+    C --&gt;|&quot;否&quot;| X([&quot;循环收尾：所有可达点的距离都已定型&quot;])
+    C --&gt;|&quot;是&quot;| D[&quot;弹出 dist 最小的 u，标记定型&quot;]
+    D --&gt; E{&quot;u 就是我们唯一关心的目标点？&quot;}
+    E --&gt;|&quot;是&quot;| Y([&quot;输出 dist，并沿父指针链还原路径&quot;])
+    E --&gt;|&quot;否&quot;| F[&quot;遍历 u 的邻居 v，边权 w 取栅格代价&quot;]
+    F --&gt; G{&quot;dist(u) + w 小于现有 dist(v)？&quot;}
+    G --&gt;|&quot;是&quot;| H[&quot;松弛：更新 dist(v) 与父指针，v 入堆&quot;]
+    G --&gt;|&quot;否&quot;| I[&quot;丢弃这条边，保留旧值&quot;]
+    H --&gt; C
+    I --&gt; C
+    X --&gt; Z{&quot;关心点的 dist 仍为无穷？&quot;}
+    Z --&gt;|&quot;是&quot;| W([&quot;不可达：该点与 s 之间不存在连通路径&quot;])
+    Z --&gt;|&quot;否&quot;| V([&quot;距离场可用，输出全图 dist&quot;])</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 图上没有启发式，也没有「估计」：唯一的排序键就是 dist。某个点被弹出的那一刻，它的距离即成终值——这是整篇正确性的全部内容。
+2. 与 A* 的唯一差别是 f = g 而非 g + h。同一张图上把 h 置零就退回 Dijkstra，反过来看 A* 省掉的正是「全图铺开」这部分工作量。
+3. 边权 w 的定义就是它的用途：w = 1 得跳数，w = 栅格 cost 得代价场，w = 到源点的欧氏长度得距离场。我们要的距离场属于第三种。
+4. 出口有三种、性质不同：命中关心点可提前收（对应原文的「两点间最短路」问题），堆空则全图定型（对应「距离场」用法），而「dist 仍为无穷」是纯拓扑结论——等于证明不连通，不含时间预算也不含传感器质量。
+5. 它和 A* 摆在一起时该怎么选：Dijkstra 一次算完能回答「任何点」，A* 一次只回答「到这一个目标」；我们要复用距离场时选前者，要单目标快出路径时选后者。</p>
+<p><strong>赛场映射</strong>：膨胀层外侧距离场（前沿评分、受阻后的撤退方向选择）；「隧道1 过窄应识别并放弃」里通路是否连通的判定；以及没有可用启发式时的全局段兜底。
+<strong>边界</strong>：全图扩散、无目标导向，栅格一大就比 A* 慢一个量级；同样不解动态障碍与 3D 限高；内存与时间都随栅格数线性以上增长，12×10 m 够用，再大要分块。</p>
+<h3 id="3.3-RRTSampling-based-Algorithms-for-Optimal-Motion-Planning">3.3 RRT*：Sampling-based Algorithms for Optimal Motion Planning</h3>
+<p><strong>一句话</strong>：先证明 PRM / RRT 只是概率完备而非渐近最优，再提出 PRM* 与 RRT*：加入邻域重连后代价几乎必然收敛到最优，计算复杂度只多一个常数因子 —— 我们用它在圆管 / 方涵内做「是否存在可行通路」的存在性判定。
+<strong>出处</strong>：[已核实] Karaman, Frazzoli｜2011｜<em>IJRR</em> 30(7):846–894｜DOI <code>10.1177/0278364911406761</code>｜<code>arXiv:1105.1186</code>（arXiv Comments 明确 to appear in IJRR，v1 2011-05-05，76 页）｜无官方仓库</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d11"><div class="render" data-for="d11"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;输入：位姿空间 + 碰撞检测器 + 起点 + 目标&quot;]) --&gt; B[&quot;树初始化，只含起点一个节点&quot;]
+    B --&gt; C[&quot;采样：随机位姿 q_rand，按概率偏向目标&quot;]
+    C --&gt; D[&quot;在树中找离 q_rand 最近的节点 q_near&quot;]
+    D --&gt; E[&quot;从 q_near 朝 q_rand 步进一段，得 q_new&quot;]
+    E --&gt; F{&quot;q_new 与 q_near 之间的边碰撞？&quot;}
+    F --&gt;|&quot;是&quot;| G[&quot;丢弃本次采样，树不变&quot;]
+    G --&gt; H{&quot;迭代次数或时间到预算？&quot;}
+    F --&gt;|&quot;否&quot;| I[&quot;在 q_new 的半径 r 邻域内找候选父节点&quot;]
+    I --&gt; J[&quot;选使起点到 q_new 累计代价最小的父节点并连边&quot;]
+    J --&gt; K[&quot;重连：邻域内若有节点经 q_new 更近，则改其父指针&quot;]
+    K --&gt; L{&quot;q_new 落入目标区域？&quot;}
+    L --&gt;|&quot;是&quot;| Y([&quot;记下一条可行路径，继续采样以继续压代价&quot;])
+    L --&gt;|&quot;否&quot;| H
+    Y --&gt; H
+    H --&gt;|&quot;否&quot;| C
+    H --&gt;|&quot;是&quot;| X([&quot;失败：预算耗尽仍无可达路径，判定无可行通路&quot;])</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 结构上是双重循环：外层采样、内层「选父 + 重连」。RRT 只有选父，RRT* 多出来的重连才是渐近最优的全部来源。
+2. 半径 r 是理论落点：r 要随样本数按对数比衰减才保证最优性；工程上固定一个小 r 只是好用，不保证收敛——读这张图时要能分出「可用的实现」与「有保证的算法」。
+3. 每一条进入树的边都通过了碰撞检测，所以树本身是一份<strong>可行性证据</strong>，而不只是一条路径候选。这正是它比栅格规划更适合回答「能不能过」的原因。
+4. 失败分支是预算耗尽，不是不可达：采不到路径只能说「在给定预算内没找到」，说不了「不存在通路」。这个差别必须写进放弃判据的措辞里。
+5. 命中目标后不停止（还会继续降代价）。要停就是「首次可行即停」，那是牺牲最优性换响应时间，是另一种算法。</p>
+<p><strong>赛场映射</strong>：圆管内径 1.0 m、方涵 1.2×0.6 m 的通行性判定，输出「可通行 / 建议放弃」而不是路径；S 弯处不同绕行拓扑的可行侧判断；<code>start_blocked</code> 之后判断「换一条路是否还存在」。
+<strong>边界</strong>：采样算法没有下界保证；窄通道内采样效率骤降（瓶颈就是 r 与步长）；高维需大量样本；不适合当实时控制器，只宜做低频或离线的可行性判定。</p>
+<h3 id="3.4-Frontier-探索A-frontier-based-approach-for-autonomous-exploration">3.4 Frontier 探索：A frontier-based approach for autonomous exploration</h3>
+<p><strong>一句话</strong>：首次把「前沿 frontier = 已知自由空间与未知空间的边界」定义为探索目标，用「走到最近前沿」驱动地图自主扩张 —— 我们 <code>--explore</code> 契约里选点、标记、终止三件事的出处。
+<strong>出处</strong>：[已核实] Yamauchi｜1997｜<em>CIRA'97</em> pp.146–151｜DOI <code>10.1109/CIRA.1997.613851</code>｜无 arXiv｜原始论文无代码，ROS <code>frontier_exploration</code> 的实现对应关系未核实</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d12"><div class="render" data-for="d12"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;输入：占据栅格地图 + 机器人当前位姿&quot;]) --&gt; B[&quot;逐格扫描，标出已知自由格与未知格&quot;]
+    B --&gt; C[&quot;取出同时邻接自由格与未知格的自由格，作为 frontier 单元&quot;]
+    C --&gt; D[&quot;按连通性把 frontier 单元聚成若干候选前沿&quot;]
+    D --&gt; E{&quot;还有候选前沿？&quot;}
+    E --&gt;|&quot;否&quot;| X([&quot;探索结束：已知空间内不再有未知边界&quot;])
+    E --&gt;|&quot;是&quot;| F[&quot;对每个候选前沿取一个代表点&quot;]
+    F --&gt; G[&quot;用全局规划器算到各代表点的路径与代价&quot;]
+    G --&gt; H{&quot;该前沿可达且有完整路径？&quot;}
+    H --&gt;|&quot;否&quot;| I[&quot;标记为不可达并在本轮剔除&quot;]
+    I --&gt; E
+    H --&gt;|&quot;是&quot;| J[&quot;按路径代价排序，选最优前沿作临时目标&quot;]
+    J --&gt; K[&quot;下发局部目标，边走边更新地图&quot;]
+    K --&gt; L{&quot;到达后地图里出现新前沿？&quot;}
+    L --&gt;|&quot;是&quot;| B
+    L --&gt;|&quot;否&quot;| M[&quot;把该前沿标记为已访问，交回候选集&quot;]
+    M --&gt; E</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 输入只有一张占据栅格和当前位姿，输出只有「下一个去哪」，不产生任何速度指令——它天生是决策层。
+2. 排序发生在规划之后：所谓「最近的 frontier」是<strong>路径代价</strong>最小，不是几何最近。少算这一步规划，就会去选直线上近、实际被墙挡住的那个。
+3. 两个出口性质完全不同：<code>没有候选前沿</code> 是探索的自然结束（真结论）；<code>前沿不可达</code> 是本轮剔除后继续（可恢复事件）。第二条正是我们缺的语义——单点失败不该终止整段任务。
+4. 前沿代表点的取法（质心 / 最近格）决定目标会不会顶到墙上；源文件特别强调该方法能处理狭窄杂乱空间与任意朝向的墙壁，靠的正是每轮重算而不是一次规划到底。
+5. 图上没有「已访问但实际没走到」的回退路径：这是原方法的空白，工程实现必须自己补上重试上限与状态回滚。</p>
+<p><strong>赛场映射</strong>：<code>--explore</code> 契约（前沿选点、已访问标记、探索终止判据）；12×10 m 废墟内的分区覆盖；S 弯之后新开区域的接入；左廊道选点选到身后这一具体故障的定位基准。
+<strong>边界</strong>：不知道前沿后面是否真能走；无朝向 / 视野收益，容易在两条前沿之间来回 thrashing；无成本代价概念，需自加膨胀与重试；1997 年的实现假设是声呐栅格，换到深度相机建图要重做栅格更新。</p>
+<h3 id="3.5-DWAThe-Dynamic-Window-Approach-to-Collision-Avoidance">3.5 DWA：The Dynamic Window Approach to Collision Avoidance</h3>
+<p><strong>一句话</strong>：把避障写成「在速度空间 (v, ω) 里采样 + 前向仿真 + 加权打分」，只保留一个周期内加减速可达的动态窗口 —— TEB 计算量过大时的降级替代基线。
+<strong>出处</strong>：[已核实] Fox, Burgard, Thrun｜1997｜<em>IEEE RAM</em> 4(1):23–33｜DOI <code>10.1109/100.580977</code>｜无 arXiv｜工程实现 ROS <code>dwa_local_planner</code></p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d13"><div class="render" data-for="d13"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;输入：当前位姿 + 上周期速度 (v, ω) + 局部栅格&quot;]) --&gt; B[&quot;由电机加减速极限推出动态窗口：一周期内可达的 (v, ω) 集合&quot;]
+    B --&gt; C[&quot;在窗口内按步长离散采样若干 (v, ω)，逐个取用&quot;]
+    C --&gt; D[&quot;按机体运动模型前向仿真一段预测轨迹&quot;]
+    D --&gt; E[&quot;在局部栅格上对这条轨迹做碰撞检测&quot;]
+    E --&gt; F{&quot;这条轨迹撞障碍或越出地图？&quot;}
+    F --&gt;|&quot;是&quot;| G[&quot;丢弃该 (v, ω)，不进入评分&quot;]
+    F --&gt;|&quot;否&quot;| H[&quot;加权打分：朝向对齐 + 障碍间隙 + 速度项&quot;]
+    G --&gt; P{&quot;还有未处理的采样？&quot;}
+    H --&gt; P
+    P --&gt;|&quot;是&quot;| C
+    P --&gt;|&quot;否&quot;| I{&quot;可行采样数为零？&quot;}
+    I --&gt;|&quot;是&quot;| X([&quot;退化：窗口为空，停车并上报受阻事件&quot;])
+    I --&gt;|&quot;否&quot;| J[&quot;取总分最高的 (v, ω) 作为本周期指令&quot;]
+    J --&gt; K[&quot;下发速度指令，机器人状态推进一个周期&quot;]
+    K --&gt; L{&quot;到达目标或超时？&quot;}
+    L --&gt;|&quot;否&quot;| A
+    L --&gt;|&quot;是&quot;| Y([&quot;结束：输出速度序列与到达状态&quot;])</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 唯一真正在流动的量是 (v, ω)：输入是它，窗口是它的可达集，采样是它的离散化，输出还是它。位姿只当仿真起点用，不回写。
+2. 动态窗口约束的是执行器不是障碍：上周期速度 + 当前加减速极限 = 本周期候选集。所以它天然不会给出「突然横移」这种物理上做不到的指令。
+3. 三个打分项的权重就是全部可调参数：朝向项管走直、间隙项管贴障、速度项管快慢。调参本质是在这三者之间换配额，算法本身没有别的自由度。
+4. 最关键的分支是 <code>可行采样数为零</code>：窗口为空意味着被围住或缝比机身窄，此时它只会停车，没有倒退、没有换侧、没有重规划——这是它作为降级方案的硬上限。
+5. 预测时域只有一段：长于时域的死胡同它看不见。这也是它与 TEB、MPPI 的分水岭，不是调参能补的。</p>
+<p><strong>赛场映射</strong>：分级降级链「TEB → DWA → 停车观察」的中间一级；动态障碍突然切入时的最低成本避让；方涵 / 圆管口前低速试探；<code>start_blocked</code> 事件发生时若 TEB 已不可用，DWA 至少能给出一组「不撞」的速度。
+<strong>边界</strong>：纯局部，会卡在 U 形陷阱；窗口为空无恢复行为；单拓扑，不做左右换侧；预测轨迹不含四足摆动腿的体积变化。具体权重、预测时域与窗口大小的取值本次未核实（源文件未给出）。</p>
+<h3 id="3.6-Learning-to-Walk-in-Minuteslegged_gym--rsl_rl-训练基座">3.6 Learning to Walk in Minutes（legged_gym / rsl_rl 训练基座）</h3>
+<p><strong>一句话</strong>：在单卡上并行仿真数千个机器人，把 ANYmal 的平地训练压到 4 分钟内、复杂地形 20 分钟，并给出游戏启发的课程学习 —— 我们 <code>randomization.py</code> 的参数与整个训练基座的出处。
+<strong>出处</strong>：[已核实] Rudin, Hoeller, Reist, Hutter｜CoRL 2021 / PMLR v164:91–100｜<code>arXiv:2109.11978</code>（Comments 明确 CoRL 2021 并声明开源训练代码）｜代码 <code>https://github.com/leggedrobotics/legged_gym</code> + <code>https://github.com/leggedrobotics/rsl_rl</code>（BSD-3，arXiv 声明与官方 README 双重核实）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d14"><div class="render" data-for="d14"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    subgraph S1[&quot;训练阶段：单卡并行仿真&quot;]
+        A([&quot;配置：地形课程等级 + 域随机化范围&quot;]) --&gt; B[&quot;按当前等级程序化生成地形块，采样质量、摩擦、电机强度、外力&quot;]
+        B --&gt; C[&quot;N 个环境并行推进物理步，写出观测：速度指令 + 本体历史 + 地形量测&quot;]
+        C --&gt; D[&quot;actor 输出关节目标，critic 估计价值，PD 跟踪得力矩并结算奖励&quot;]
+        D --&gt; F[&quot;PPO 用回报与价值估计更新 actor、critic&quot;]
+    end
+    F --&gt; G{&quot;当前等级成功率过阈值？&quot;}
+    G --&gt;|&quot;是&quot;| H[&quot;课程升一级，地形难度与随机化范围同时上移&quot;]
+    H --&gt; B
+    G --&gt;|&quot;否&quot;| I{&quot;训练步数到预算？&quot;}
+    I --&gt;|&quot;否&quot;| C
+    I --&gt;|&quot;是&quot;| J{&quot;最近若干轮回报还在涨？&quot;}
+    J --&gt;|&quot;否&quot;| X([&quot;训练退化：课程或奖励写错，停在低难度&quot;])
+    J --&gt;|&quot;是&quot;| K([&quot;导出策略权重&quot;])
+    K --&gt; L[&quot;实机只喂观测：速度指令 + 本体历史&quot;]
+    L --&gt; M[&quot;机载前向推理 → 关节目标 → PD → 电机&quot;]
+    M --&gt; N{&quot;跟踪误差或姿态角超限？&quot;}
+    N --&gt;|&quot;是&quot;| O([&quot;部署退化：退站立或停机，记录异常帧&quot;])
+    N --&gt;|&quot;否&quot;| P([&quot;按指令继续行走&quot;])</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 参数流动的主线只有一条：课程等级 + 随机化范围 → 环境 → 观测 → 动作 → 奖励 → PPO 更新。「几千个并行」只是把这条线在一个 GPU 步里复制 N 份，线本身没变。
+2. 域随机化写在地形生成与物理参数里（质量、摩擦、电机强度、外力），<strong>不写进观测</strong>。策略看到的是指令与本体历史，学到的是鲁棒而不是「识别当前地面是哪种」。
+3. 奖励项与地形课程是同一个旋钮的两端：课程给「多难」，奖励给「怎么过去」的偏好。PPO 只看到标量回报，所以改奖励就是改整条学习曲线的形状。
+4. 升不升级是闭环判据：成功率够了才升，不够就在同一等级继续刷样本。这也是「几百次随机化采样」成本的真正来源——成本不在网络，在课程判定回环。
+5. 两个退化出口要分开归因：训练侧曲线不涨，是课程或奖励写错；部署侧跟踪误差 / 姿态超限，是 sim-to-real 差距在实机厚度上暴露，此时改策略无用，只能改随机化范围。</p>
+<p><strong>赛场映射</strong>：<code>randomization_sampled.provenance</code> 的 <code>vendor_reference</code> 落到本文档条目；地形课程对应 5 处 4–12 cm 乱石与 0.45 m 坡道；作为 teacher-student / DAgger 蒸馏（3.7–3.9 全部）的公共底座；<code>rsl_rl</code> 的观测分组直接对应我们的 ONNX 输入契约。
+<strong>边界</strong>：<code>legged_gym</code> 需 Isaac Gym Preview + Python 3.6–3.8 + CUDA，本机 Windows / Py3.12 <strong>不支持</strong>，可读代码不能跑；<code>rsl_rl</code> 纯 PyTorch、本机最可能跑通（Python 3.9+），Windows + Py3.12 实测未核实；任务只有速度跟踪，不含导航、避障与限高，机身高度指令无原生支持。</p>
+<h3 id="3.7-Learning-Quadrupedal-Locomotion-over-Challenging-Terrain">3.7 Learning Quadrupedal Locomotion over Challenging Terrain</h3>
+<p><strong>一句话</strong>：只用本体感知历史流训练一个网络，实现零样本 sim-to-real，并在训练中从未见过的泥雪、碎石动态落脚点、厚植被与流水中保持鲁棒 —— 「本体感知也能过乱石」的实证基座。
+<strong>出处</strong>：[已核实] Lee, Hwangbo, Wellhausen, Koltun, Hutter｜2020｜<em>Science Robotics</em> 5(47):eabc5986｜<code>arXiv:2010.11251</code>｜DOI <code>10.1126/scirobotics.abc5986</code>｜官方仓库未核实</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d15"><div class="render" data-for="d15"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    subgraph S1[&quot;训练阶段：纯本体感知闭环&quot;]
+        A([&quot;输入：关节位置与速度、机身 IMU、上一动作&quot;]) --&gt; B[&quot;拼成固定长度的本体感知历史窗口作观测&quot;]
+        B --&gt; C[&quot;策略网络输出 12 维关节目标位置&quot;]
+        C --&gt; D[&quot;PD 跟踪 → 关节力矩 → 机器人状态推进&quot;]
+        D --&gt; E[&quot;奖励：线速度与角速度跟踪 + 姿态 + 动作平滑 + 足部腾空&quot;]
+        E --&gt; F[&quot;PPO 更新网络参数&quot;]
+    end
+    D --&gt; G[&quot;地形随机化：台阶、斜坡、碎石、可变形地面&quot;]
+    G --&gt; D
+    F --&gt; H{&quot;训练收敛？&quot;}
+    H --&gt;|&quot;否&quot;| B
+    H --&gt;|&quot;是&quot;| I[&quot;零样本导出，不做任何实机微调&quot;]
+    I --&gt; J[&quot;实机只喂同一套本体感知历史&quot;]
+    J --&gt; K{&quot;足端打滑或踩空？&quot;}
+    K --&gt;|&quot;否&quot;| L([&quot;正常行走，跟踪速度指令&quot;])
+    K --&gt;|&quot;是&quot;| M[&quot;历史窗口内出现异常力矩与加速度偏差，网络隐式改步态&quot;]
+    M --&gt; L</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 观测里没有任何外感知：只有关节、IMU、上一动作。它能在碎石上走，靠的是「踩下去之后从关节力矩和机身加速度读到地面软硬」，不是提前看见。
+2. 历史窗口是唯一的记忆：把过去若干步拼成一个向量，等于给策略一个隐式状态估计器，替代了高程图。去掉窗口长度，这套方法立刻失效。
+3. 地形随机化不进观测，只在仿真里换地面——策略学到的是「遇到不确定落脚点怎么试」，不是「这是哪种地面」。
+4. 奖励里足部腾空与动作平滑两项决定了它不会被训成「拖脚蹭过去」；这也是后面所有 ETH 系工作的奖励基线，改它的收益比改网络结构大。
+5. 退化分支落在同一处：打滑 / 踩空没有独立检测模块，全靠历史窗口里的异常力矩被网络内化。所以策略没有「报警」这个动作，只有步态变化——外部要从速度跟踪误差反推它已经退化。</p>
+<p><strong>赛场映射</strong>：弱光 / 扬尘导致外感知失效时的兜底层（配合 §2.1 的 graceful degradation 才完整）；5 处 4–12 cm 乱石与碎石动态落脚点；0.45 m 坡道；训练基座与奖励项直接可借 <code>legged_gym</code>。
+<strong>边界</strong>：无外感知 → 不能提前避开悬垂障碍、不能识别隧道限高（那属于 3D 表示那一支）；不输出机身高度 / roll-pitch 指令；对状态估计质量高度敏感（本体感知仍需可靠 IMU 与编码器）；官方仓库未核实，复现只能借 3.6 的基座。</p>
+<h3 id="3.8-RMA-Rapid-Motor-Adaptation">3.8 RMA: Rapid Motor Adaptation</h3>
+<p><strong>一句话</strong>：把「适应」拆成 base policy 与 adaptation module：后者从一段本体历史在线估计环境隐变量 z 并回灌前者，使机器人在亚秒级内适应新地形与载荷（arXiv 摘要原文 fractions of a second；源文件记 0.5 s 历史窗口 / &lt;1 s 适应）—— 我们「在线估计」而非「离线标定」的范式出处。
+<strong>出处</strong>：[已核实] Kumar, Fu, Pathak, Malik｜RSS 2021（arXiv Comments 明确）｜<code>arXiv:2107.04034</code>｜项目页 <code>https://ashish-kmr.github.io/rma-legged-robots/</code>（arXiv 明确）｜训练代码未核实</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d16"><div class="render" data-for="d16"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    subgraph S1[&quot;训练阶段：特权信息只在仿真里存在&quot;]
+        A([&quot;仿真环境：地形摩擦、载荷、电机强度、地面刚度&quot;]) --&gt; B[&quot;特权编码器读取这些环境隐变量，压成低维 extrinsics 向量 z&quot;]
+        B --&gt; C[&quot;base policy 以本体观测 + z 为输入，输出关节动作&quot;]
+        C --&gt; D[&quot;PPO 用回报同时更新 base policy 与特权编码器&quot;]
+    end
+    B --&gt; E[&quot;以 z 作监督标签，用同一段本体历史训练 adaptation module 回归 z&quot;]
+    D --&gt; E
+    E --&gt; F{&quot;回归误差低于阈值？&quot;}
+    F --&gt;|&quot;否&quot;| G[&quot;继续训练 adaptation module，或加长历史窗口&quot;]
+    G --&gt; E
+    F --&gt;|&quot;是&quot;| H[&quot;冻结两个模块，导出部署&quot;]
+    H --&gt; I([&quot;部署：只保留 本体历史 → adaptation module → z 估计&quot;])
+    I --&gt; J[&quot;z 与当前本体观测拼接，送入 base policy&quot;]
+    J --&gt; K{&quot;z 在连续几步内跳变过大？&quot;}
+    K --&gt;|&quot;是&quot;| L[&quot;退化处理：平滑 z 或回退到标称值，同时降速&quot;]
+    K --&gt;|&quot;否&quot;| M([&quot;按 z 修正步态，继续行走&quot;])
+    L --&gt; M</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 两个网络输入不同但对齐在同一个 z 上：特权编码器看的是仿真内部量（摩擦、载荷、电机强度），adaptation module 只能看本体历史，却要回归出同一个 z。这个约束就是全文的核心。
+2. z 是低维隐变量，不是地形标签：它不告诉你「这是沙地」，只编码「当前动力学比标称偏软 / 偏重」。所以对没见过的地形也能给出合理外推，但也无法解释成可读参数。
+3. 参数流动是单向的：仿真 → 特权编码器 → z → 监督 adaptation module。部署时特权编码器被整只丢掉，图上 <code>H → I</code> 就是这条断点，也是 sim-to-real 的全部风险所在。
+4. 失败与退化的落点都在 z 上：估计跳变、更新延迟、或输入接近训练分布边缘时，策略动作会抖。工程第一件事是限制 z 的变化率，而不是改策略网络。
+5. 没有外感知的入口：它解决的是「地形物理属性未知」，不是「障碍物未知」。后者必须靠视觉 / 高程图，这两件事在图上根本没有交集。</p>
+<p><strong>赛场映射</strong>：Lite2 实机穿越废墟碎石、湿滑地面、草地与载荷变化时的在线适应；不需要事先标定摩擦系数，正好给 <code>randomization_sampled</code> 里 <code>measured_pending</code> 项一个补法；亚秒级适应对应「进入新地形段不减速」。
+<strong>边界</strong>：z 只覆盖训练时随机化的那几类隐变量，悬垂、限高、深坑这类<strong>几何</strong>未知它不知道；无外感知；无姿态 / 高度指令通道；起步瞬间历史窗口为空，是最容易出错的时段；训练代码未核实，只有项目页与视频。</p>
+<h3 id="3.9-Legged-Locomotion-in-Challenging-Terrains-using-Egocentric-Vision">3.9 Legged Locomotion in Challenging Terrains using Egocentric Vision</h3>
+<p><strong>一句话</strong>：第一个只用单个前向深度相机、不建高程图也不用 VIO 的端到端视觉 locomotion 系统，两阶段训练（scandots 上 RL → 蒸馏成深度策略）通过楼梯、路缘、踏石与沟隙 —— 「视觉可以直接进策略」的证据。
+<strong>出处</strong>：[已核实] Agarwal, Kumar, Malik, Pathak｜CoRL 2022 (Oral)，PMLR v205:403–415（arXiv Comments 明确 Oral）｜<code>arXiv:2211.07638</code>｜项目页 <code>https://vision-locomotion.github.io/</code>（arXiv 明确）｜官方仓库未核实</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d17"><div class="render" data-for="d17"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    subgraph S1[&quot;阶段一：scandots 上做强化学习&quot;]
+        A([&quot;仿真地形：楼梯、路缘、踏石、沟隙&quot;]) --&gt; B[&quot;用机身周围若干采样点的高度向量 scandots 代替深度图&quot;]
+        B --&gt; C[&quot;scandots 编码器 + 本体历史 → 动作&quot;]
+        C --&gt; D[&quot;PPO 用速度跟踪与姿态奖励更新&quot;]
+        D --&gt; B
+    end
+    subgraph S2[&quot;阶段二：蒸馏到真实深度输入&quot;]
+        E([&quot;同一场景渲染前向深度图&quot;]) --&gt; F[&quot;教师策略给出动作标签&quot;]
+        F --&gt; G[&quot;学生策略：深度编码器 + 本体历史 → 动作&quot;]
+        G --&gt; H[&quot;监督学习对齐教师动作，必要时再叠少量 RL 微调&quot;]
+    end
+    D --&gt; E
+    H --&gt; I{&quot;学生与教师动作偏差低于阈值？&quot;}
+    I --&gt;|&quot;否&quot;| G
+    I --&gt;|&quot;是&quot;| J([&quot;导出，部署到单目深度相机实机&quot;])
+    J --&gt; K[&quot;机载推理：深度图 + 本体历史 → 关节目标&quot;]
+    K --&gt; L{&quot;深度图缺失、过曝或严重噪声？&quot;}
+    L --&gt;|&quot;是&quot;| M[&quot;退化：靠历史推断身下地形，降速通过&quot;]
+    L --&gt;|&quot;否&quot;| N([&quot;正常通过楼梯与踏石&quot;])
+    M --&gt; N</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 阶段一的输入不是真实传感器，而是 scandots（机身周围若干采样点的高度）：这是「为了让训练便宜」的替身，不是最终形态。图上 <code>A → B</code> 那一步就把视觉换成了几何采样。
+2. 阶段二才把替身换成真传感器：同一场景渲染深度图，学生模仿教师。这是 DAgger 式蒸馏，不是重新跑 RL——RL 的高成本只花一次。
+3. 记忆在两阶段里都必须存在：单前向相机看不见身后的后脚，策略只能靠历史推断身下地形。所以「本体历史」不是可选项，是结构性需求。
+4. 退化分支只有一个方向：深度缺失 / 过曝 / 噪声时没有「关闭视觉」的显式开关，策略只能靠记忆降速通过。这正是它与 attention 门控融合（见 §2.1）的本质差别。
+5. 两阶段的收益直接写在图的结构上：RL 只在低维 scandots 上跑（快、可大规模并行），深度只在监督阶段出现（不必在 RL 里等渲染）。工程上要复现，先复现这条两段式，而不是直接端到端。</p>
+<p><strong>赛场映射</strong>：弱光 / 扬尘导致深度相机质量下降时的降级预期；Lite2 这类小平台上「不建高程图」的算力可行性；5 处乱石 / 踏石与 0.45 m 坡道；若有楼梯与路缘段则直接对应。
+<strong>边界</strong>：单前向相机看不到悬垂障碍与限高（属于 3D 表示那一支）；不建图、不做全局规划，只解决「脚怎么迈」；scandots 与真实深度之间的 domain gap 是主要风险；官方 GitHub 未核实，复现需自建仿真渲染管线。</p>
+<hr />
+<h2 id="4.-感知地形与落脚点机器狗怎么知道这一步能不能踩">4. 感知、地形与落脚点：机器狗怎么知道「这一步能不能踩」</h2>
+<blockquote>
+<p>一句话导读：这一组解决的是同一条链路上的四个不同环节——地形怎么表示（2.5D vs 3D）、表示里怎么带不确定度、落脚点怎么选、踩下去会不会塌。流程图按「建图 → 表征 → 选点 → 承载校验」的顺序看。</p>
+</blockquote>
+<h3 id="4.1-Online-Foothold-OptimizationPerceptive-Locomotion-in-Rough-Terrain">4.1 Online Foothold Optimization：Perceptive Locomotion in Rough Terrain</h3>
+<p><strong>一句话</strong>：把落脚点当成在线优化问题——在实时高程图上为每条腿求局部最优落足位置，再用 terrain-aware contact schedule 把「落哪里」翻译成「什么时候抬、什么时候落」，从而在不越执行器速度上限的前提下踩上约腿长 33% 的台阶与障碍。
+<strong>出处</strong>：[已核实] F. Jenelten, T. Miki, A. E. Vijayan, M. Bjelonic, M. Hutter｜2020｜<em>IEEE RA-L</em> 5(4):5370–5376｜DOI <code>10.1109/LRA.2020.3007427</code>｜代码未核实</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d18"><div class="render" data-for="d18"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;机载深度相机&quot;]) --&gt; B[&quot;实时 elevation map 更新&lt;br/&gt;坡度 / 粗糙度 / 高度跳变&quot;]
+    B --&gt; C[&quot;机身姿态 / 高度层&lt;br/&gt;贴地参考高度 + 里程计位姿&quot;]
+    B --&gt; D[&quot;粗路径规划&lt;br/&gt;在高程图上铺地形代价&quot;]
+    C --&gt; E[&quot;候选落脚点采样&lt;br/&gt;沿路径的局部窗口&quot;]
+    D --&gt; E
+    E --&gt; F{&quot;落足代价可接受？&lt;br/&gt;坡度 + 边缘距离 + 运动学可达&quot;}
+    F --&gt;|&quot;是&quot;| G[&quot;局部最优落脚点序列&quot;]
+    F --&gt;|&quot;否&quot;| M[&quot;放弃该段落脚序列&lt;br/&gt;重新采样或换路径一侧&quot;]
+    M --&gt; E
+    G --&gt; H[&quot;terrain-aware contact schedule&lt;br/&gt;按执行器速度上限排抬落时序&quot;]
+    H --&gt; I{&quot;速度上限满足？&quot;}
+    I --&gt;|&quot;是&quot;| J[&quot;摆动腿轨迹 + 全身控制器跟踪&quot;]
+    I --&gt;|&quot;否&quot;| L[&quot;退化：拉长支撑相 / 缩短步长&quot;]
+    L --&gt; J
+    J --&gt; K[&quot;台阶与乱石通行&lt;br/&gt;障碍高度达腿长的三分之一&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 两个输入是分开的：地形 B 只提供代价，位姿 C 只提供可达性，落脚点优化在两者交集中求局部最优。任何一边错了，落足就错。
+2. <strong>机身高度在这一篇是「跟随量」而不是「决策变量」</strong>——C 由地形给出贴地参考高度后单向传给 E，只参与可达性检查，不被优化。这一点与 4.2、4.6 正相反，是三者最本质的分界。
+3. 输出其实有两级：G 是「落哪里」，H 是「什么时候落」。摘要专门点出 contact schedule 是为了对付执行器速度上限——落点选得再好，腿抬不到那么快也是空的。
+4. 两条失败分支位置不同：F→M 是几何不可行（踩不了），会重新采样；I→L 是时序不可行（来不及），只放慢不换点，属于「能踩但踩不快」。
+5. 性能判据是相对量 33% 腿长，不是绝对高度——这正是它比「能上 22 cm 台阶」更可迁移的地方。</p>
+<p><strong>赛场映射</strong>：5 处 4–12 cm 乱石与 0.45 m 坡道的核心痛点是「踩上去滑不滑、会不会被边缘绊」，对应 F 的坡度与边缘距离项；0.6 m 限高的方涵对应 C 的贴地高度参考——本篇能给「贴着地形走」的高度，但<strong>不会主动压低机身</strong>，压机身要找 4.6。
+<strong>边界</strong>：判据是相对腿长，迁移到 Lite2 必须先用自己腿长换算，不能照搬绝对数字；机身姿态不参与优化，圆管内径 1.0 m 这类需要主动下蹲或侧倾的场景它给不出解；无官方代码，复现只能按论文结构自建。</p>
+<h3 id="4.2-ViTAL先选落点还是先摆机身顺序反过来会怎样">4.2 ViTAL：先选落点还是先摆机身，顺序反过来会怎样</h3>
+<p><strong>一句话</strong>：指出「按给定落点去优化机身姿态」的既有范式有结构性缺陷——落点够不到时机体已无安全选择；ViTAL 反过来，优化那个「让各腿最有机会够到安全落点」的机身姿态，并用 skills 同时产出落足与姿态。
+<strong>出处</strong>：[已核实] Shamel Fahmi, Victor Barasuol, Domingo Esteban, Octavio Villarreal, Claudio Semini｜2023｜<em>IEEE T-RO</em> 39(2):885–904｜DOI <code>10.1109/TRO.2022.3222958</code>｜arXiv:2212.01246</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d19"><div class="render" data-for="d19"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;机载深度相机 / 点云&quot;]) --&gt; B[&quot;局部地形表征&lt;br/&gt;高程 + 平面与接触面估计&quot;]
+    B --&gt; C[&quot;候选落足点评估&lt;br/&gt;接触质量 + 腿碰撞 + 运动学极限&quot;]
+    C --&gt; D[&quot;安全落脚点集合&quot;]
+    B --&gt; E[&quot;skills 库&lt;br/&gt;表征机器人能力与地形感知&quot;]
+    D --&gt; F[&quot;姿态适配&lt;br/&gt;最大化各腿够到安全落点的概率&quot;]
+    E --&gt; F
+    F --&gt; G{&quot;该姿态可行？&lt;br/&gt;运动学 + 自碰撞 + 稳定性&quot;}
+    G --&gt;|&quot;可行&quot;| H[&quot;6D 机身位姿指令&lt;br/&gt;高度 + roll / pitch&quot;]
+    H --&gt; I[&quot;步态与落足序列&quot;]
+    G --&gt;|&quot;不可行&quot;| L[&quot;退回基线：按给定落点选姿态&lt;br/&gt;此刻可能已无可达安全落点&quot;]
+    L --&gt; I
+    B --&gt;|&quot;地形置信度低&quot;| M[&quot;收敛到保守步态&lt;br/&gt;小步幅 + 保持标称姿态&quot;]
+    M --&gt; I
+    I --&gt; J[&quot;摆动腿轨迹 + 全身控制&quot;]
+    J --&gt; K[&quot;楼梯 / 沟隙 / 乱石通行&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 图的形状本身就是论点：D（落点）与 E（skills）一起进 F（姿态），而 F 的输出 H <strong>再回头决定 I（落足序列）</strong>。这条回边就是 ViTAL 与基线方法的唯一区别，也是「落点与姿态互相耦合」的图形化表达。
+2. <strong>机身位姿是显式规划变量</strong>（H），指令里同时含高度与 roll / pitch，不是跟随量。
+3. L 是摘要原文承认的失败模式：姿态一旦不可行就退回基线，而基线在此刻可能已经「没有可达的安全落点」——这是不可恢复的退化，换条路也救不回来。
+4. M 是另一类退化：地形本身不可信时，宁可退回标称姿态小步走，也不在噪声上做姿态优化。
+5. 90 kg HyQ 与 140 kg HyQReal 两套不同尺度的实机都验证过，说明方法对机体尺寸不敏感。</p>
+<p><strong>赛场映射</strong>：坡道姿态调整与方涵 0.6 m 限高判断直接对应 H——<strong>先问「哪个机身高度能让脚够到地面」，而不是先钉死落点再摆机身</strong>；隧道 1 若出现 0.2 m 级余量不足，G→L 恰好说明「姿态不可行时不该硬挤」。
+<strong>边界</strong>：skills 的具体定义与参数只在论文正文，摘要只给到「表征机器人能力与地形感知」这一层，细节未核实；验证平台是 90 / 140 kg 液压四足，Lite2 的刚度与腿长完全不同，落足容差要重标定；代码未核实。</p>
+<h3 id="4.3-Probabilistic-Terrain-Mapping位姿不确定度怎么写进高程图">4.3 Probabilistic Terrain Mapping：位姿不确定度怎么写进高程图</h3>
+<p><strong>一句话</strong>：不依赖外部几何或视觉特征做绝对定位，只用运动学 + 惯性做本体定位，并把定位漂移的协方差与距离传感器噪声一起传播进高程图，使每个栅格输出「高度 + 上下置信界」而不是单一高度值。
+<strong>出处</strong>：[已核实] P. Fankhauser, M. Bloesch, M. Hutter｜2018｜<em>IEEE RA-L</em> 3(4):3019–3026｜DOI <code>10.1109/LRA.2018.2849506</code>｜代码 <code>https://github.com/anybotics/elevation_mapping</code>（BSD-3）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d20"><div class="render" data-for="d20"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;深度 / 距离传感器&quot;]) --&gt; B[&quot;单帧量测 + 传感器噪声模型&quot;]
+    C([&quot;关节编码器 + IMU&quot;]) --&gt; D[&quot;本体定位估计&lt;br/&gt;运动学 + 惯性&quot;]
+    D --&gt; E[&quot;位姿漂移与协方差&lt;br/&gt;随行程增长&quot;]
+    B --&gt; G[&quot;量测变换到地图坐标系&lt;br/&gt;协方差一并传播&quot;]
+    E --&gt; G
+    G --&gt; H[&quot;逐格 Kalman 更新&lt;br/&gt;高度均值 + 方差&quot;]
+    H --&gt; I[&quot;多层栅格输出&lt;br/&gt;高度 / 方差 / 上下置信界&quot;]
+    I --&gt; J{&quot;该格方差超阈值？&quot;}
+    J --&gt;|&quot;否&quot;| K[&quot;可通行性与落脚点评估&lt;br/&gt;正常使用该格&quot;]
+    J --&gt;|&quot;是&quot;| L[&quot;标记不可信&lt;br/&gt;降权而非直接判障碍&quot;]
+    L --&gt; M[&quot;减速 / 重定位 / 补观测&quot;]
+    M --&gt; H</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 关键边是 E→G：定位协方差没有被丢掉，而是<strong>跟着量测一起进地图</strong>。同一个高度读数，位姿越不确定，落进格子后的方差就越大。
+2. H 是逐格 Kalman 更新，所以每格存的是分布，I 才可能同时给出均值与上下置信界——不确定性可视化是机制自带，不是后处理加的。
+3. L 是全图最重要的一行：方差大的格子<strong>降权</strong>，而不是判成障碍。区分「这里确实有墙」和「这里我不确定」是两件事。
+4. M→H 是闭环：不确定就再观测一次，更新会把方差压下去，这是唯一能真正消解不确定的路径。
+5. 摘要明确只基于运动学 + 惯性的本体定位，不跟踪外部特征——这既是鲁棒性来源，也意味着长距离仍会漂。</p>
+<p><strong>赛场映射</strong>：这就是「贴墙时膨胀区误判」的文献根——<code>plan_grid</code> 用固定 0.28 m 膨胀，等价于假设位姿精确；正确做法是让膨胀半径随该帧位姿协方差变化，贴墙时降低该区域置信度，而不是直接判不可行。弱光 L3 与乱石建图同属这一类。
+<strong>边界</strong>：定位来源是本体运动学 + 惯性，真机若接入外部里程计，不确定度模型需重推；网格分辨率与更新频率的实测值未核实；仓库是 ROS C++ 实现，Windows 不可直接跑，可迁移的是「方差层 + 置信界」这套数据结构与判据，不是代码。</p>
+<h3 id="4.4-Learning-Agile-Locomotion-on-Risky-Terrains把速度跟踪改写成导航任务">4.4 Learning Agile Locomotion on Risky Terrains：把速度跟踪改写成导航任务</h3>
+<p><strong>一句话</strong>：先在杂乱稀疏踏石上训一个通才策略，再把它微调成各险地的专家策略；并把任务从 velocity tracking 改写成 navigation，用探索策略破解稀疏奖励，最终在 ANYmal-D 上以峰值 ≥ 2.5 m/s 通过稀疏踏石与窄平衡木。
+<strong>出处</strong>：[已核实] Chong Zhang, Nikita Rudin, David Hoeller, Marco Hutter｜IROS 2024（arXiv Comments 明确）｜arXiv:2311.10484</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d21"><div class="render" data-for="d21"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;程序化生成稀疏踏石 / 平衡木地形&quot;]) --&gt; B[&quot;通才策略训练&lt;br/&gt;乱序稀疏踏石 + navigation 任务形式&quot;]
+    B --&gt; C[&quot;探索策略&lt;br/&gt;破解踏石之间的稀疏奖励&quot;]
+    C --&gt; D{&quot;训练是否收敛？&quot;}
+    D --&gt;|&quot;收敛&quot;| E[&quot;专门化策略微调&lt;br/&gt;迁移到更难地形&quot;]
+    D --&gt;|&quot;不收敛&quot;| J[&quot;降级：只求慢速稳定通过&lt;br/&gt;放弃速度指标&quot;]
+    E --&gt; F[&quot;ANYmal-D 实机部署&lt;br/&gt;峰值速度 ≥ 2.5 m/s&quot;]
+    F --&gt; G[&quot;高速通过稀疏踏石 / 窄平衡木&quot;]
+    F --&gt; H[&quot;失足摔倒 → 回合终止&quot;]
+    E --&gt;|&quot;迁移退化&quot;| I[&quot;退回通才策略&lt;br/&gt;保住基本可通行性&quot;]
+    I --&gt; F
+    G --&gt;|&quot;风险升高&quot;| J</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 训练是两段式：B 通才 → E 专家。I 是「微调失败退回通才」的保底，工程上等于先保住能走、再谈走快。
+2. 把任务改写成 navigation 不是文字游戏：velocity tracking 会约束机器人可采取的行为，navigation 才允许它为落点而改速度——这一改动直接决定 G 能不能成立。
+3. C 针对稀疏奖励：踏石之间没有中间奖励，不主动探索就学不到跨步，这条边是整篇能训出来的前提。
+4. J 是风险回退：速度是结果不是目标，风险升高就降速——与 4.5 的速度 trade-off 是同一类分支，但触发源不同（这里是摔倒风险，那里是承载探测）。
+5. 摘要没有给网络结构与输入细节，别按记忆补；只有「通才 + 微调 + 探索策略」这三件是原文级事实。</p>
+<p><strong>赛场映射</strong>：5 处乱石本质就是离散稀疏落脚点，本篇判据最贴近；≥ 2.5 m/s 说明「稀疏落点 + 高速」可以同时成立，但 12×10 m 场地内速度受弱光与定位限制，不构成直接可比。
+<strong>边界</strong>：摘要只写 ANYmal-D 与 ≥ 2.5 m/s，感知输入与策略结构未核实；训练依赖大规模并行仿真，Lite2 侧无法复现训练过程、只能用推理；不要在这篇上外推更快的数字。</p>
+<h3 id="4.5-Load-bearing-Assessment踩下去会不会塌">4.5 Load-bearing Assessment：踩下去会不会塌</h3>
+<p><strong>一句话</strong>：只用关节测量评估地形能不能承重——MPC 在稳定性与 probing 约束之间做折中，状态机协调试探性踩踏，检测到可塌陷区就动态换落足点；代价是探测本身拖慢速度（第三方解读，非摘要原文）。
+<strong>出处</strong>：[已核实] Vivian S. Medeiros, Giovanni B. Dessy, Thiago Boaventura, Marcelo Becker, Claudio Semini, Victor Barasuol｜2025｜<em>IEEE RA-L</em>｜arXiv:2510.21369｜DOI <code>10.1109/LRA.2025.362624</code>（与 arXiv Related DOI 字段一致）｜代码未核实</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d22"><div class="render" data-for="d22"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;规划器给出的目标落脚点&quot;]) --&gt; D[&quot;MPC&lt;br/&gt;稳定性 + probing 约束联合优化&quot;]
+    B([&quot;支撑腿关节力矩 / 位置测量&quot;]) --&gt; C[&quot;承载评估&lt;br/&gt;由关节量测反推地形刚度与下陷&quot;]
+    C --&gt; D
+    D --&gt; E{&quot;该落足点承载存疑？&quot;}
+    E --&gt;|&quot;是&quot;| F[&quot;试探性踩踏 probe&lt;br/&gt;轻放 + 逐步加载&quot;]
+    E --&gt;|&quot;否&quot;| H[&quot;确认承重 → 正常步态继续&quot;]
+    F --&gt; G{&quot;加载过程是否异常下陷？&quot;}
+    G --&gt;|&quot;否&quot;| H
+    G --&gt;|&quot;是&quot;| I[&quot;判定可塌陷 → 重选落足点&quot;]
+    I --&gt; L[&quot;连续探测无可行点&lt;br/&gt;停止并请求绕行&quot;]
+    C --&gt; J[&quot;安全优先策略&lt;br/&gt;降速 / 缩步幅 / 增大支撑面&quot;]
+    J --&gt; K[&quot;通行效率下降&lt;br/&gt;probing 显著降低速度（第三方解读）&quot;]
+    F --&gt; K</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 感知入口是 B——关节力矩与位置，不是相机。这是全文最反直觉的一点：塌陷与否由「腿感受到什么」判断，不需要额外硬件。
+2. E 是状态机的分叉：不是每一步都 probe，只有承载存疑时才 probe，否则直接走 H。这条分叉决定了效率下限。
+3. F→G 是「轻放 + 逐步加载」，判据是加载过程中是否出现异常下陷；G 的否分支同时给出两条出路——I 重选落足点，L 停止绕行。
+4. <strong>速度 trade-off 在图上是两条独立边汇到 K</strong>：J→K 是策略性降速，可调；F→K 是每步探测本身的耗时，是方法固有成本。两者性质不同，别混成一句「probe 慢」。
+5. 摘要原文只写「维持稳定性并优先安全」，没有速度损失数字。</p>
+<p><strong>赛场映射</strong>：废墟碎石与楼板不稳的物理承载校验；方涵内若底板松脱，本篇给的是「踩之前先轻试」的状态机语义。工程上可落成：可疑格先低速小幅下压，读关节力矩异常再决定是否承重。
+<strong>边界</strong>：实验平台是自制可塌陷平台与岩石地形，不是真实楼板；速度代价的具体数值未核实；probing 需要力矩可控的关节，Lite2 的力控接口能否支撑需实测；代码未核实。</p>
+<h3 id="4.6-Walking-Posture-Adaptation机身姿态本身当成规划变量">4.6 Walking Posture Adaptation：机身姿态本身当成规划变量</h3>
+<p><strong>一句话</strong>：把机器人抽象成「可变形包围盒」，用机器人中心的多层高程图同时表达地面与头顶悬垂，再由 CHOMP 在包围盒构型空间里规划平滑轨迹——机身高度与腿展是搜索出来的，不是给定的。
+<strong>出处</strong>：[已核实] Russell Buchanan, Tirthankar Bandyopadhyay, Marko Bjelonic, Lorenz Wellhausen, Marco Hutter, Navinda Kottege｜2019｜<em>IEEE RA-L</em> 4(2):2148–2155 / ICRA 2019｜arXiv:1901.10863｜DOI <code>10.1109/LRA.2019.2899664</code>｜代码未核实</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d23"><div class="render" data-for="d23"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    subgraph S1[&quot;地图层&quot;]
+        A([&quot;机载距离传感器&quot;])
+        B[&quot;机器人中心多层高程图&lt;br/&gt;地面 + 悬垂 + 侧壁&quot;]
+    end
+    subgraph S2[&quot;机身模型层&quot;]
+        C[&quot;可变形包围盒&lt;br/&gt;标称高 33 cm 宽 82 cm 外扩&quot;]
+        D[&quot;构型搜索&lt;br/&gt;机身高度 + 侧倾 + 腿展&quot;]
+    end
+    subgraph S3[&quot;规划层&quot;]
+        E{&quot;包围盒与多层地图碰撞？&quot;}
+        F[&quot;CHOMP 平滑轨迹优化&quot;]
+        G[&quot;机身姿态 / 高度 + 落足序列&quot;]
+    end
+    A --&gt; B
+    B --&gt; E
+    C --&gt; D
+    D --&gt; E
+    E --&gt;|&quot;无碰撞&quot;| F
+    F --&gt; G
+    G --&gt; H[&quot;通过 25 cm 悬垂 / 70 cm 窄缝 / 22 cm 障碍&quot;]
+    E --&gt;|&quot;碰撞&quot;| I[&quot;换构型：压低机身 / 收窄腿展&quot;]
+    I --&gt; D
+    D --&gt;|&quot;无可行构型&quot;| J[&quot;判定通道不可通过&lt;br/&gt;上报高层规划&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. C 是方法的名字来源：包围盒尺寸本身随姿态变化（下蹲变矮、收腿变窄），于是「机器人能不能过」被改写成「哪个构形的包围盒能过」——<strong>这就是「机身姿态/高度作为规划变量」的具体形态</strong>。
+2. B 是<strong>多层</strong>高程图而非单层 2.5D：它能表达头顶的悬垂面，这是 25 cm 悬垂可被规划的前提，也是单层 2.5D 图的结构性盲区。
+3. E 是判定核心，D→E 的循环就是构型搜索；I 给出「变形」而不是「放弃」，只有连构型都找不到才进 J。
+4. 实机是六足 Weaver，标称 33 cm 高 82 cm 宽；25 cm 悬垂意味着必须把机身压到标称高度的约 76% 以下才能进——这个<strong>比例</strong>才是可迁移判据，不是 25 cm 这个数。
+5. 六足而非四足这一点要说清：方法本身与腿数无关，但包围盒与步态生成要按自己平台重做。</p>
+<p><strong>赛场映射</strong>：圆管内径 1.0 m、方涵限高 0.6 m 的通行判据可直接借这个范式——<strong>先算「标称站高 vs 净空」的比例，再决定要不要压机身、压多少</strong>；隧道 1 余量 0.2 m 时，若标称站高超过净空，构型搜索会自然返回不可行，比事后判定更早。
+<strong>边界</strong>：验证平台是六足（33 cm / 82 cm），不是四足，包围盒尺寸模型与步态都要重做；CHOMP 在嵌入式平台上的计算量实测值未核实；代码未核实。</p>
+<h3 id="4.7-Attention-Based-Map-Encoding让网络自己决定看地图的哪一块">4.7 Attention-Based Map Encoding：让网络自己决定看地图的哪一块</h3>
+<p><strong>一句话</strong>：不再把整张高程图塞进策略网络，而是用 CNN 逐点提局部特征、再以本体状态为 query 做多头注意力，学出「该看哪块未来可落脚区域」，注意力图还能反过来解释网络的地形感知。
+<strong>出处</strong>：[已核实作者与编号，venue 未核实] Junzhe He, Chong Zhang, Fabian Jenelten, Ruben Grandia, Moritz Bächer, Marco Hutter｜2025｜venue <strong>未核实</strong>（arXiv Comments 原文为 Original draft prior to peer review）｜arXiv:2506.09588｜代码与项目页未核实</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d24"><div class="render" data-for="d24"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;机器人中心 2.5D 高程图&quot;]) --&gt; B[&quot;逐点 CNN 局部特征提取&quot;]
+    C([&quot;本体感知&lt;br/&gt;关节 / IMU 历史&quot;]) --&gt; D[&quot;以本体状态为 query 的&lt;br/&gt;多头注意力&quot;]
+    B --&gt; D
+    D --&gt; E[&quot;注意力权重&lt;br/&gt;指向未来可落脚区域&quot;]
+    D --&gt; F[&quot;地图特征 + 本体特征融合&quot;]
+    F --&gt; G[&quot;RL 策略网络&lt;br/&gt;输出关节目标&quot;]
+    G --&gt; H[&quot;稀疏地形上的精确落足与敏捷通行&quot;]
+    E --&gt; I[&quot;注意力图可视化&lt;br/&gt;可解释网络在看哪&quot;]
+    A --&gt;|&quot;缺帧 / 遮挡&quot;| J{&quot;地形输入是否可信？&quot;}
+    J --&gt;|&quot;否&quot;| K[&quot;退化为本体感知主导&lt;br/&gt;保守步态&quot;]
+    K --&gt; G
+    E --&gt; L[&quot;注意力聚焦错误区域&lt;br/&gt;落足失准或失足&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. D 的「本体状态作 query」是关键设计：地图特征不是全量池化，而是被当前身体状态「问」出来的——同一地形、不同姿态，关注点不同。
+2. E 与 I 是同一件事的两面：注意力权重既是控制输入，也是可解释性输出，不需要额外蒸馏一个解释模型。
+3. K 是退化路径：地形输入缺失或不可信时，本体 query 仍在，网络自然退回本体主导——这是结构自带的降级，不是外挂开关。
+4. L 是风险面：注意力学歪会聚焦到不该踩的区域，且这类错误在注意力图上看得见，可作为调试入口。
+5. 摘要给了 12-DoF 四足与 23-DoF 人形两套控制器，说明这套表征与本体自由度解耦。</p>
+<p><strong>赛场映射</strong>：隧道与方涵里高程图被悬垂和侧壁切得支离破碎，全图卷积容易被无关区域稀释；「按本体状态 query 局部」在窄通道里等价于「只关心下一步要踩的那几格」，与 <code>plan_grid</code> 的局部窗口思路同源。
+<strong>边界</strong>：<strong>venue 未核实</strong>，arXiv 明说这是评审前草稿、后续会有重大修改，引用时必须注明；代码与项目页未核实；摘要未给网络层数与训练规模；「可解释」是作者主张，不能当成已验证的调试工具。</p>
+<h3 id="4.8-PPL训练时用点云监督部署时只带本体感知">4.8 PPL：训练时用点云监督，部署时只带本体感知</h3>
+<p><strong>一句话</strong>：爬行空间里本体感知只能推出地面特征、推不出空间特征（头顶多低、侧向多窄），PPL 用训练期的点云特征监督一个状态估计网络，让它额外估计碰撞状态与空间特征，部署阶段不再需要外感知传感器。
+<strong>出处</strong>：[已核实，编号需复核] Bida Ma, Nuo Xu, Chenkun Qi, Xin Liu, Yule Mo, Jinkai Wang, Chunpeng Lu｜2025｜Accepted by RA-L（arXiv Comments）｜arXiv:2508.09950（v2 于 2025-12-04 修订；镜像站曾出现 2508.09960，引用前需复核）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d25"><div class="render" data-for="d25"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;本体感知历史&lt;br/&gt;关节 / IMU / 上一动作&quot;]) --&gt; B[&quot;状态估计网络&lt;br/&gt;碰撞状态 + 地面特征 + 空间特征&quot;]
+    C([&quot;训练期点云&lt;br/&gt;极坐标表示 + MLP 提特征&quot;]) --&gt; D[&quot;点云特征监督信号&quot;]
+    D --&gt;|&quot;监督&quot;| B
+    C --&gt;|&quot;离线批量提特征&quot;| I[&quot;训练迭代更快&lt;br/&gt;省去在线编码开销&quot;]
+    B --&gt; E{&quot;估计误差是否收敛？&quot;}
+    E --&gt;|&quot;收敛&quot;| F[&quot;RL 策略&lt;br/&gt;输出关节目标&quot;]
+    E --&gt;|&quot;不收敛&quot;| D
+    F --&gt; G[&quot;爬行空间通行&lt;br/&gt;低净空 + 侧向受限&quot;]
+    F --&gt; H[&quot;碰撞 / 卡死 → 回合终止&quot;]
+    F --&gt; J[&quot;部署形态：无需外感知传感器&quot;]
+    B --&gt;|&quot;空间特征失准&quot;| K[&quot;退化为保守爬行或停止&lt;br/&gt;此时不知道头顶还有多少余量&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 核心是「监督信号来自点云、运行时不带点云」：C→D→B 只存在于训练，J 才是部署形态。这条不对称是全文的工程价值所在。
+2. B 的输出有三类：碰撞状态、地面特征、空间特征。少了空间特征就退化成普通本体感知策略——摘要正是把既有方法在 crawl space 的失效归因于此。
+3. C 用极坐标表示 + MLP 提特征，图里引出的 I 是「训练更快」，属于工程效率设计而非精度设计，别把它读成主要贡献。
+4. E 的否分支回到 D，说明监督是持续校准而不是一次性蒸馏。
+5. K 是退化：空间特征失准后只能保守爬行或停——因为此刻机器人不知道自己头顶还剩多少余量，这正是方涵场景最危险的状态。</p>
+<p><strong>赛场映射</strong>：方涵限高 0.6 m 与圆管内径 1.0 m 是典型 crawl space，且弱光与扬尘下外感知不可靠；「训练用点云、部署只用本体」这条路线对 Lite2 很有吸引力，因为它把感知风险整体前移到训练阶段。
+<strong>边界</strong>：arXiv 编号存在镜像不一致，引用前必须复核；摘要未写具体机型与可通过的净空数值，实验规模未核实；监督依赖训练期点云的覆盖度，真实废墟上的泛化未核实。</p>
+<hr />
+<h2 id="5.-定位与-SLAM机器狗在废墟里我在哪怎么失效怎么补救">5. 定位与 SLAM：机器狗在废墟里「我在哪」怎么失效、怎么补救</h2>
+<blockquote>
+<p>一句话导读：这一组按「几何退化怎么被检测 → 怎么用别的模态补 → 丢了以后怎么找回来」排序。我们真机没有激光雷达，读这组的目的是拿<strong>退化感知与重定位的语义</strong>，不是拿整套栈。</p>
+</blockquote>
+<h3 id="5.1-Super-OdometryIMU-centric-LiDAR-Visual-Inertial-Estimator-for-Challenging-Environments">5.1 Super Odometry：IMU-centric LiDAR-Visual-Inertial Estimator for Challenging Environments</h3>
+<p><strong>一句话</strong>：把 IMU 当主干、视觉与激光当随时可插拔的校正源，用粗到细的递推在扬尘与长走廊里保住位姿不崩。
+<strong>出处</strong>：[已核实] Zhao, Zhang, Wang, Nogueira, Scherer｜IROS 2021 pp.8729–8736｜<code>arXiv:2104.14938</code>｜正式 DOI 未核实</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d26"><div class="render" data-for="d26"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;IMU 预积分：高频运动先验&quot;]) --&gt; B[&quot;点云去畸变：用先验位姿逐点补偿&quot;]
+    B --&gt; C[&quot;PCA：邻域协方差 → 特征值 λ1 λ2 λ3&quot;]
+    C --&gt; D{&quot;几何特征质量够吗？&quot;}
+    D --&gt;|&quot;是&quot;| E[&quot;保留边缘与平面特征 进入配准&quot;]
+    D --&gt;|&quot;否&quot;| F[&quot;判为扬尘稀疏噪点 → 整簇丢弃&quot;]
+    E --&gt; G[&quot;点面残差 → 迭代求解位姿&quot;]
+    F --&gt;|&quot;其余点继续进入配准&quot;| G
+    G --&gt; H[&quot;退化检测：最小特征值方向不可观&quot;]
+    H --&gt; I{&quot;几何退化？&quot;}
+    I --&gt;|&quot;否&quot;| N[&quot;输出位姿 → 地图与导航&quot;]
+    I --&gt;|&quot;是&quot;| J[&quot;降权激光观测 放大 IMU 与视觉先验&quot;]
+    J --&gt; K{&quot;视觉观测可用？&quot;}
+    K --&gt;|&quot;是&quot;| L[&quot;视觉惯性里程计补位姿先验&quot;]
+    K --&gt;|&quot;否&quot;| M[&quot;仅 IMU 递推 + 走廊轴向一维约束&quot;]
+    L --&gt; N
+    M --&gt; N</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 主干是 IMU：三个子模块（IMU 里程计、视觉惯性、激光惯性）都围绕 IMU 状态转，视觉与激光只给位姿先验并约束 IMU bias，不直接接管输出。
+2. PCA 分支是抗扬尘的关键：邻域协方差特征值退化成一片散点时不是硬配准，而是整簇丢掉——等价于「先不信任这几百个点」，比事后滤波更早。
+3. 退化检测落在特征值上：走廊里最小特征值对应方向不可观，于是降权激光、放大先验。注意这是<strong>权重层面</strong>的处理，不是直接停工。
+4. 动态八叉树的开销约为静态 KD-tree 的 10%（摘要原文对比），这是它能实时的原因之一。</p>
+<p><strong>赛场映射</strong>：弱光 + 扬尘 + 圆管/方涵内几何退化三项全命中；更实用的是它给出「退化时该降权谁、不该直接停」的判据——正是我们 <code>start_blocked</code> 里「估计位姿贴墙就判死」的反例。长走廊测试中 LIO-SAM 漂移 0.85 m、LOAM 4.15 m，本方法 0.055 m。
+<strong>我们真机能不能用</strong>：不能。C++/ROS 栈、以激光雷达为主传感器，我们无 LiDAR、Windows + Python 栈无对应实现。只取语义：PCA 特征质量门控、退化时降权而非停机。
+<strong>边界</strong>：核心是三模态紧耦合，缺任一模态（尤其激光）就不是同一套系统；扬尘过滤的具体阈值在正文，摘要未给，本节只写到「整簇丢弃」这层。项目页 <code>https://superodometry.com/</code> 存在，代码未核实。</p>
+<h3 id="5.2-CompSLAMComplementary-Hierarchical-Multi-Modal-Localization-and-Mapping">5.2 CompSLAM：Complementary Hierarchical Multi-Modal Localization and Mapping</h3>
+<p><strong>一句话</strong>：不追求单模态更强，而是让视觉、热成像、深度、惯性、运动学各算一份位姿，靠「谁残差小就信谁」的层次化仲裁在黑暗与粉尘里活下来。
+<strong>出处</strong>：[已核实] S. Khattak et al.｜2025｜<code>arXiv:2505.06483</code>（期刊/会议版本未核实）｜代码 <code>https://github.com/leggedrobotics/compslam_subt</code></p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d27"><div class="render" data-for="d27"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;输入：视觉 热成像 深度 激光 IMU 腿式运动学&quot;]) --&gt; B[&quot;各模态独立里程计 → 位姿 + 协方差&quot;]
+    B --&gt; C{&quot;模态间残差与协方差一致？&quot;}
+    C --&gt;|&quot;一致&quot;| D[&quot;层次化融合：底层观测 → 中层局部地图 → 顶层全局位姿&quot;]
+    C --&gt;|&quot;冲突&quot;| E[&quot;仲裁：按环境条件重估各模态权重&quot;]
+    E --&gt; F[&quot;降级：剔除失效模态 只留可用子集&quot;]
+    F --&gt; G{&quot;是否还剩至少一个观测源？&quot;}
+    G --&gt;|&quot;是&quot;| D
+    G --&gt;|&quot;否&quot;| H[&quot;声明跟踪丢失 → 冻结地图 → 触发重定位&quot;]
+    C --&gt;|&quot;几何自相似&quot;| I[&quot;长走廊自相似：热成像与深度补语义 视觉纹理降权&quot;]
+    I --&gt; D
+    D --&gt; J[&quot;多模态子图 + 位姿图节点&quot;]
+    J --&gt; K{&quot;检测到回环候选？&quot;}
+    K --&gt;|&quot;是&quot;| L[&quot;回环验证 → 加入位姿图优化&quot;]
+    K --&gt;|&quot;否&quot;| M[&quot;输出位姿与地图给规划&quot;]
+    L --&gt; M</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 冗余是横向的：每个模态都独立出位姿与协方差，融合前先比对，不是把原始数据塞进一个大优化。
+2. 仲裁靠环境条件改权重（黑暗中视觉降权、粉尘中激光降权）——这就是「互补」二字的落点。
+3. 几何自相似长走廊是单独的失败分支：视觉纹理与几何都区分不了两段相似通道，只能靠热成像/深度这类提供差异的模态，再加回环。
+4. 最关键一条：<strong>全部模态失效才允许宣布丢失</strong>，任一个还活着就继续融合。</p>
+<p><strong>赛场映射</strong>：CERBERUS 决赛全部机型（空中/腿式/轮式）都部署了它，并发布 740 m SubT 决赛数据集验证扰动下的鲁棒性；对应我们弱光 + 扬尘 + 圆管/方涵里「某一路外感知突然不可信」的情形。
+<strong>我们真机能不能用</strong>：不能直接跑（ROS/C++，且依赖激光与热成像等我们没装的载荷）。只取语义——「多源各出协方差 → 一致性仲裁 → 逐模态降级 → 全失效才停机」，可照搬到我们高程图与里程计的置信度管理。
+<strong>边界</strong>：层次化「层」的具体划分与权重更新规则在正文，摘要只给「靠冗余达到鲁棒」的结论；期刊/会议版本未核实，引用按预印本处理。热成像在低照度确实有效，但 Lite2 无热成像载荷，这条只能当方法论。</p>
+<h3 id="5.3-FAST-LIOA-Fast-Robust-LiDAR-inertial-Odometry-Package-by-Tightly-Coupled-Iterated-Kalman-Filter">5.3 FAST-LIO：A Fast, Robust LiDAR-inertial Odometry Package by Tightly-Coupled Iterated Kalman Filter</h3>
+<p><strong>一句话</strong>：用迭代 EKF 把激光特征点与 IMU 紧耦合，并替换 Kalman 增益的算法形式，让计算量只跟状态维数有关——点再多也不炸。
+<strong>出处</strong>：[已核实] W. Xu, F. Zhang｜2021｜IEEE RA-L 6:3317｜<code>arXiv:2010.08196</code>｜正式 DOI 未核实｜仓库 <code>https://github.com/hku-mars/FAST_LIO</code>（许可条款未核实，存在 GPL 风险）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d28"><div class="render" data-for="d28"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;IMU 高频采样&quot;]) --&gt; B[&quot;状态传播：名义状态 + 协方差&quot;]
+    B --&gt; C[&quot;点云去畸变：用传播位姿逐点补偿&quot;]
+    C --&gt; D[&quot;特征提取：按曲率取面点与角点&quot;]
+    D --&gt; E[&quot;残差构建：点到面 / 点到线&quot;]
+    E --&gt; F[&quot;迭代 EKF：每次迭代在当前估计处重新线性化&quot;]
+    F --&gt; G{&quot;迭代收敛？&quot;}
+    G --&gt;|&quot;否&quot;| F
+    G --&gt;|&quot;是&quot;| H[&quot;应用新 Kalman 增益公式&quot;]
+    H --&gt; I[&quot;更新状态与协方差&quot;]
+    I --&gt; J[&quot;输出高频里程计 + 注册点云&quot;]
+    J --&gt; K{&quot;有效特征点过少或几何退化？&quot;}
+    K --&gt;|&quot;是&quot;| L[&quot;仅靠 IMU 传播 放大输出协方差&quot;]
+    K --&gt;|&quot;否&quot;| M[&quot;增量更新局部地图&quot;]
+    L --&gt; M</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 紧耦合的意思是残差直接在状态上线性化，不是先算激光里程计再与 IMU 结果做松耦合平均。
+2. 迭代 EKF 的「迭代」是关键：在传播出的位姿附近反复重新线性化，快速运动带来的强非线性被摊平。
+3. 新增益公式把复杂度从「量测维数」换成「状态维数」——摘要给的数字是每帧融合 1200+ 有效特征点、单次 iEKF 全部迭代在 25 ms 内（机载计算机）。
+4. 失败分支是「点太少/退化」：不退化成乱跳，而是靠 IMU 传播顶住并放大协方差——与 5.1 同一种「降级而非停机」思想。</p>
+<p><strong>赛场映射</strong>：它是后续 FAST-LIO2 等一批 LIO 的前身，几何退化与快速运动下的写法可直接借用；但整套以激光为唯一主动外感知，与我们「没有 LiDAR」的实机冲突。
+<strong>我们真机能不能用</strong>：不能。C++/ROS + PCL/Eigen，Windows 不适用；许可条款未核实、存在 GPL 风险，即便将来上 LiDAR 也要先查 LICENSE。
+<strong>边界</strong>：25 ms 与 1200 点是摘要所述机载平台上的数字，不能外推到我们平台；它只给里程计，不闭环、不做全局一致性，要建图还得配回环。</p>
+<h3 id="5.4-LIO-SAMTightly-coupled-Lidar-Inertial-Odometry-via-Smoothing-and-Mapping">5.4 LIO-SAM：Tightly-coupled Lidar Inertial Odometry via Smoothing and Mapping</h3>
+<p><strong>一句话</strong>：把激光惯性里程计写成因子图，让 IMU 预积分、激光里程计、GPS、回环四类测量以「因子」身份同时进优化，再用滑动窗口的子关键帧压到实时。
+<strong>出处</strong>：[已核实] Shan, Englot, Meyers, Wang, Ratti, Rus｜IROS 2020 pp.5135–5142｜DOI 10.1109/IROS45743.2020.9341176｜<code>arXiv:2007.00258</code>｜仓库 BSD-3-Clause</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d29"><div class="render" data-for="d29"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;IMU 原始测量&quot;]) --&gt; B[&quot;IMU 预积分因子：含 bias 随机游走&quot;]
+    A --&gt; C[&quot;点云按预积分位姿去畸变 → 优化初值&quot;]
+    C --&gt; D[&quot;激光里程计因子：与局部子关键帧配准&quot;]
+    D --&gt; E{&quot;配准收敛且非退化？&quot;}
+    E --&gt;|&quot;否&quot;| F[&quot;该帧降权或剔除 交回预积分维持&quot;]
+    E --&gt;|&quot;是&quot;| G[&quot;关键帧入选：位移与旋转超阈值才建节点&quot;]
+    B --&gt; H[&quot;因子图：增量优化&quot;]
+    F --&gt; H
+    G --&gt; H
+    I[&quot;GPS 因子：可选绝对约束&quot;] --&gt; H
+    J[&quot;回环因子：候选关键帧 → ICP 验证&quot;] --&gt; K{&quot;验证通过？&quot;}
+    K --&gt;|&quot;否&quot;| L[&quot;误匹配 → 丢弃 不进因子图&quot;]
+    K --&gt;|&quot;是&quot;| H
+    H --&gt; M[&quot;滑动窗口：新关键帧只配准固定数量子关键帧 旧帧边缘化&quot;]
+    M --&gt; N[&quot;输出位姿 + 去畸变点云拼图&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 四类因子：IMU 预积分（运动先验与去畸变）、激光里程计（局部相对约束）、GPS（绝对约束，室内基本失效）、回环（长距离一致性）。前两类每帧都有，后两类稀疏。
+2. 耦合是双向的：预积分给激光配准初值，激光里程计的解反过来估 IMU bias（摘要原话）。
+3. 实时靠「局部化」：不与全局地图配准，只与固定数量子关键帧配准并边缘化旧帧——这就是滑动窗口的工程含义。
+4. <strong>死胡同倒退为什么能一致</strong>：倒退时前方无新观测，激光里程计因子只提供短时相对约束，误差仍在线性累积；回到走过的区域时，回环因子把当前关键帧钉到历史关键帧上，图优化一次性把整段返程漂移摊回去。没有回环因子，这一段只能靠预积分与局部配准硬扛，越走越偏。
+5. 失败分支两处：配准不收敛（该帧降权）与回环误匹配（候选被 ICP 验证否掉，不进图）。</p>
+<p><strong>赛场映射</strong>：12×10 m 全场回环 + 死胡同倒退后的轨迹一致性，正是赛题里「走进去再退出来」的最小闭环；「因子」这个表达更值得借——我们的高频里程计与稀疏纠正（视觉/回环）可用同一心智组织。
+<strong>我们真机能不能用</strong>：不能。ROS C++ 实现，无 LiDAR 跑不起来；仓库 BSD-3-Clause 许可友好，但平台不匹配。只取语义：四类因子的分工 + 回环负责长距离一致性。
+<strong>边界</strong>：官方实现依赖 9 轴 IMU 且对 IMU 噪声参数敏感（属实现层面约束，本次未在摘要逐项核对）；GPS 因子在废墟室内无效，真正起作用的是回环，没有回环的区域漂移照样累积。</p>
+<h3 id="5.5-LOAMLidar-Odometry-and-Mapping-in-Real-time">5.5 LOAM：Lidar Odometry and Mapping in Real-time</h3>
+<p><strong>一句话</strong>：把「里程计」与「建图」拆成两个频率不同的线程——快的只管帧间粗对齐，慢的才做全局精配准，用频率换精度。
+<strong>出处</strong>：[已核实] J. Zhang, S. Singh｜RSS 2014｜DOI 10.15607/RSS.2014.X.007｜原始实现未核实（A-LOAM 为社区实现）｜无 arXiv 编号</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d30"><div class="render" data-for="d30"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;单线或多线激光扫描&quot;]) --&gt; B[&quot;按曲率提取边缘点与平面点&quot;]
+    B --&gt; C[&quot;里程计线程：高频帧间配准 → 粗位姿&quot;]
+    C --&gt; D{&quot;帧间运动是否过大？&quot;}
+    D --&gt;|&quot;是&quot;| E[&quot;特征不足或运动过大 → 用预测位姿兜底&quot;]
+    D --&gt;|&quot;否&quot;| F[&quot;把去畸变特征交给建图线程&quot;]
+    E --&gt; F
+    F --&gt; G[&quot;建图线程：低频 把特征注册到全局地图&quot;]
+    G --&gt; H[&quot;精化位姿回吐给里程计线程 作为下一帧初值&quot;]
+    H --&gt; C
+    G --&gt; I[&quot;输出全局地图 + 精化位姿&quot;]
+    G --&gt; J{&quot;长走廊 沿轴向几何不可观？&quot;}
+    J --&gt;|&quot;是&quot;| K[&quot;轴向漂移无人纠正 误差累积&quot;]
+    J --&gt;|&quot;否&quot;| I
+    K --&gt; I</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 两线程的耦合以单向为主、双向修正为辅：里程计线程给建图线程初值与去畸变点云，建图线程回吐精化位姿。
+2. 频率分工的代价很明确：里程计线程精度低，只负责「别跟丢」；精度由低频建图线程在大地图上配准拿到。
+3. 失败分支：帧间运动过大或特征太少时帧间配准会崩，退回用预测位姿兜底——这是后续所有 LIO 都继承的退化处理雏形。
+4. 长走廊是它的著名弱点：沿通道轴向没有可约束几何，两线程都纠不了轴向漂移，源文件 §3.4 引的 4.15 m 就是这个失效模式。</p>
+<p><strong>赛场映射</strong>：它是全部 LIO 的共同基线，读它的价值是「高频/低频分离」这个结构——我们 <code>navigation_core</code> 里局部规划高频、全局规划低频，本质是同一种频率分层。
+<strong>我们真机能不能用</strong>：不能（C++、需 LiDAR，原始实现未核实）。只取语义：双线程频率分离 + 退化兜底。
+<strong>边界</strong>：2014 年工作，无 IMU 紧耦合、无回环，长期漂移必然；边缘/平面提取参数对场景敏感，扬尘下需额外质量门控（回看 5.1）。引用 A-LOAM 时必须说明是社区实现，不是原始实现。</p>
+<h3 id="5.6-ORB-SLAM3An-Accurate-Open-Source-Library-for-Visual-Visual-Inertial-and-Multi-Map-SLAM">5.6 ORB-SLAM3：An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM</h3>
+<p><strong>一句话</strong>：ORB 特征 + MAP 估计做视觉惯性 SLAM，并加一套多地图机制——跟丢了不终止，新开一张图，重访旧区域时自动合并。
+<strong>出处</strong>：[已核实] C. Campos et al.｜2021｜IEEE T-RO 37(6):1874–1890｜DOI 10.1109/TRO.2021.3075644｜<code>arXiv:2007.11898</code>｜GPLv3</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d31"><div class="render" data-for="d31"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;单目 / 双目 / RGB-D 图像&quot;]) --&gt; B[&quot;ORB 特征提取与描述子匹配&quot;]
+    B --&gt; C{&quot;当前帧特征与匹配是否足够？&quot;}
+    C --&gt;|&quot;否&quot;| D[&quot;跟踪失败：进入重定位&quot;]
+    C --&gt;|&quot;是&quot;| E[&quot;跟踪线程：恒速模型或参考关键帧估计位姿&quot;]
+    D --&gt; F{&quot;地点识别成功？&quot;}
+    F --&gt;|&quot;是&quot;| E
+    F --&gt;|&quot;否&quot;| G[&quot;新建地图（多地图之一）继续跟踪&quot;]
+    E --&gt; H[&quot;局部建图：三角化新点 + 局部 BA&quot;]
+    I[&quot;IMU 初始化：MAP 估计初速 重力 bias&quot;] --&gt; H
+    G --&gt; H
+    H --&gt; J{&quot;检测到回环或跨地图共视？&quot;}
+    J --&gt;|&quot;是&quot;| K[&quot;Sim3 校正 + 位姿图 + 地图合并&quot;]
+    J --&gt;|&quot;否&quot;| L[&quot;输出位姿与稀疏地图点&quot;]
+    K --&gt; M[&quot;全局 BA：复用全部历史共视关键帧&quot;]
+    M --&gt; L</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. IMU 初始化本身就是 MAP 估计（摘要明确 even during the IMU initialization phase），不是先粗估再用——这决定了冷启动就有较可靠的尺度与重力。
+2. 三线程分工：跟踪（高频出位姿）、局部建图（局部 BA）、回环与全局 BA（低频纠正）。
+3. 多地图是它的独有能力：丢失→新建图，重访→合并；摘要给的量化是双目惯导在 EuRoC 平均 3.6 cm、TUM-VI 手持快速运动 9 mm。
+4. 失败分支最关键：视觉信息贫乏的长时间段不终止系统，而靠地点识别把地图接回来——这正是「丢了以后怎么找回来」的答案。
+5. 输出是稀疏地图点 + 关键帧，不是占据栅格，直接给导航用还需再转。</p>
+<p><strong>赛场映射</strong>：弱光或短时遮挡导致视觉跟踪丢失后的重定位，是我们最可能真实遇到的失效；「丢了不终止、重访能接回」这套语义比它的精度数字更有用。
+<strong>我们真机能不能用</strong>：不能（C++ + ROS/OpenCV/Pangolin，Windows 不适用；且纯视觉在废墟弱光下不可靠）。GPLv3 对参赛集成有传染风险，注意。
+<strong>边界</strong>：纯视觉在弱光、无纹理（白墙、烟尘）下特征数会掉到无法初始化；输出稀疏特征地图而非可通行栅格；3.6 cm / 9 mm 是 EuRoC 与 TUM-VI 上的数字，不是废墟场景。</p>
+<h3 id="5.7-RTAB-MapRTAB-Map-as-an-Open-Source-Lidar-and-Visual-SLAM-Library">5.7 RTAB-Map：RTAB-Map as an Open-Source Lidar and Visual SLAM Library</h3>
+<p><strong>一句话</strong>：以外观回环 + 记忆管理为核心，把视觉/LiDAR 统一成图优化问题，最后直接吐出导航能吃的 2D/3D 占据栅格。
+<strong>出处</strong>：[已核实] M. Labbé, F. Michaud｜2019｜JFR 36(2):416–446｜DOI 10.1002/rob.21831｜仓库 <code>https://github.com/introlab/rtabmap</code>（BSD）｜无 arXiv 正式版（源文件注明 <code>arXiv:2403.06341</code> 为 2024 后上传，未作依据）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d32"><div class="render" data-for="d32"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;RGB-D / 双目 / 激光 输入&quot;]) --&gt; B[&quot;前端里程计 → 相邻帧变换&quot;]
+    B --&gt; C[&quot;建图：节点为关键帧 边为变换 + 外观签名&quot;]
+    C --&gt; D[&quot;回环检测：词典签名相似度排序&quot;]
+    D --&gt; E{&quot;相似度超过阈值？&quot;}
+    E --&gt;|&quot;否&quot;| I[&quot;位姿图优化：仅里程计边&quot;]
+    E --&gt;|&quot;是&quot;| F[&quot;几何验证：邻域特征匹配 + RANSAC&quot;]
+    F --&gt; G{&quot;验证通过？&quot;}
+    G --&gt;|&quot;否&quot;| H[&quot;误匹配 → 丢弃该候选&quot;]
+    G --&gt;|&quot;是&quot;| I
+    I --&gt; J[&quot;记忆管理：工作记忆 WM 满则转入长时记忆 LTM&quot;]
+    J --&gt; K[&quot;重访时从 LTM 检索并重新激活节点 → 再走回环&quot;]
+    K --&gt; D
+    I --&gt; L[&quot;输出 2D/3D 占据栅格 + 点云地图&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 回环是两级：先靠外观签名（词典）粗筛，再用几何匹配与内点验证细筛，任何一级都不许跳过。
+2. 记忆管理解决的是长时间运行内存爆炸：WM 只留近期节点，老的转 LTM，重访时把 LTM 节点重新激活才可能检出回环——「少内存还能长距离回环」的机制就在这。
+3. 输出层对我们最实用：直接给 2D/3D 占据栅格，导航端不必自己从点云转。
+4. 失败分支两处：回环候选被几何验证否掉（误匹配不进图）；以及跟踪本身丢失——它靠重定位恢复，不靠新开地图，这点与 5.6 不同。</p>
+<p><strong>赛场映射</strong>：源文件把它列为我们方案里「首个建图候选」，正因为占据栅格是导航直接能消费的东西；外观回环 + 记忆管理对应 12×10 m 场地里多次经过同一路口。
+<strong>我们真机能不能用</strong>：不能直接跑（ROS + C++/Qt/PCL/g2o，Windows 不适用；真机 <code>rtabmap_ros</code> 尚缺，见总体技术方案第 24 行）。BSD 许可友好是加分项。只取语义：两级回环验证 + WM/LTM 记忆管理 + 直接输出占据栅格。
+<strong>边界</strong>：正式版覆盖视觉/LiDAR 统一，但强项仍是 RGB-D 室内；我们无 LiDAR，弱光下 RGB-D 深度同样退化。回环依赖外观，废墟重复纹理少时会漏检。</p>
+<hr />
+<h2 id="6.-局部规划与-TEB-谱系从重初始化到换赛道">6. 局部规划与 TEB 谱系：从「重初始化」到「换赛道」</h2>
+<blockquote>
+<p>一句话导读：我们的 <code>start_blocked</code> 卡点，本质是「TEB 拿不到可行初值就进终态」。这一组按「同一赛道的工程修补（TEB 三代）→ 不同赛道的替代（MPPI / 学习式）→ 独立安全层（CBF）」三层排。6.1–6.3 必读，6.4–6.9 选读。</p>
+</blockquote>
+<hr />
+<h3 id="6.1-TEB-原型Trajectory-modification-considering-dynamic-constraints-of-autonomous-robots">6.1 TEB 原型：Trajectory modification considering dynamic constraints of autonomous robots</h3>
+<p><strong>一句话</strong>：把一条弹性带（位姿序列）加上显式时间维度，用稀疏多目标优化同时求出「走哪、怎么走、何时到」，局部规划从此从「采样选速度」变成「解优化问题」。</p>
+<p><strong>出处</strong>：C. Rösmann, W. Feiten, T. Wösch, F. Hoffmann, T. Bertram｜2012｜ROBOTIK 2012, Munich, pp.74–79｜DOI / arXiv 未核实</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d33"><div class="render" data-for="d33"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;全局路径 Γ + 当前位姿&quot;]) --&gt; B[&quot;初始化：离散为 SE(2) 位姿序列 + 时间间隔 ΔT&quot;]
+    B --&gt; C[&quot;建超图：顶点为位姿与时间差&quot;]
+    C --&gt; D[&quot;目标项：贴合全局路径 + 时间最优&quot;]
+    C --&gt; E[&quot;约束项：障碍距离 速度 加速度 非完整运动学&quot;]
+    D --&gt; F[&quot;加权多目标合成 稀疏最小二乘&quot;]
+    E --&gt; F
+    F --&gt; G[&quot;迭代求解超图 得到位姿与 ΔT&quot;]
+    G --&gt; H{&quot;解收敛且约束全满足？&quot;}
+    H --&gt;|&quot;是&quot;| I[&quot;按 ΔT 提取本周期可执行速度指令&quot;]
+    H --&gt;|&quot;否&quot;| J[&quot;回退：保留上一周期可行轨迹&quot;]
+    I --&gt; K[&quot;下一周期热启动：截断已执行段 + 重接全局路径&quot;]
+    J --&gt; K
+    J --&gt; L[&quot;连续失败：丢弃轨迹 上报不可行&quot;]
+    I --&gt; M([&quot;下发给底盘执行&quot;])</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 初值只有一条来源：全局路径 + 当前位姿的离散化。<strong>没有第二条候选</strong>，所以初值一旦落进膨胀区，整条链就没有「换个方向再试」的余地。
+2. 目标项与约束项是<strong>并列加到同一张超图</strong>上的，靠权重平衡；调参的本质是在「贴路径」与「离障碍远」之间换权。
+3. 非完整约束把相邻位姿的朝向差与位移绑死，所以 TEB 天然不能横移，只能「前进 + 转向」——这就是死胡同必须靠<strong>倒退</strong>脱身的原因。
+4. 唯一的回退分支是「保留上一周期轨迹」。它假设上一周期是好的；一旦上一周期也贴墙，就退化成连续失败，然后进终态。
+5. 超图的边是二元的（位姿–位姿 或 位姿–障碍），这是 6.2 能稀疏化的前提；6.1 自己没做稀疏，所以原型版的重规划频率上不去。</p>
+<p><strong>赛场映射</strong>：方涵 1.2×0.6 m、限高 0.6 m 的通道里，只要能给出合法 SE(2) 初值，TEB 能把轨迹压到膨胀区边界上通过。但我们 <code>plan_grid</code> 的起点本身落在 0.28 m 膨胀区时，图里第一步就失败，且没有换侧分支——这就是 <code>start_blocked</code> 的祖先形态。</p>
+<p><strong>边界</strong>：不含多拓扑并行、不含不可行恢复；本篇为会议版，DOI 与 arXiv 编号均未核实，引用时只写会议名与页码，不要补 DOI。</p>
+<hr />
+<h3 id="6.2-TEB-工程化Efficient-trajectory-optimization-using-a-sparse-model">6.2 TEB 工程化：Efficient trajectory optimization using a sparse model</h3>
+<p><strong>一句话</strong>：把 TEB 的超图重写成稀疏标量多目标最小二乘并落到 g2o 上，使计算量随位姿数近似线性增长——TEB 能做成实时 ROS 插件的关键工程论文。</p>
+<p><strong>出处</strong>：C. Rösmann et al.｜ECMR 2013, Barcelona, pp.138–143｜DOI 10.1109/ECMR.2013.6698833</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d34"><div class="render" data-for="d34"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;上一周期轨迹 + 新全局路径&quot;]) --&gt; B[&quot;热启动：保留与新路径时间重叠的位姿&quot;]
+    B --&gt; C[&quot;每个目标与约束各写成一个标量误差项 e_k&quot;]
+    C --&gt; D[&quot;加权求和为单一最小二乘目标 F&quot;]
+    D --&gt; E[&quot;求导后 Hessian 只连相邻位姿与障碍近邻&quot;]
+    E --&gt; F[&quot;稀疏块三对角结构 可用 g2o 直接解&quot;]
+    F --&gt; G[&quot;Levenberg-Marquardt 迭代下降&quot;]
+    G --&gt; H{&quot;是否收敛？&quot;}
+    H --&gt;|&quot;是&quot;| I[&quot;单次优化耗时随位姿数近线性&quot;]
+    H --&gt;|&quot;否&quot;| J[&quot;增大阻尼或缩短优化时域再迭代&quot;]
+    J --&gt; G
+    I --&gt; K[&quot;支撑高频重规划 每周期都刷新整条带&quot;]
+    K --&gt; L([&quot;下发速度指令&quot;])
+    G --&gt; M[&quot;兜底：仍不收敛则沿用上一周期可行解&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 「稀疏」不是数学洁癖，是<strong>能不能实时</strong>的分水岭：误差项只依赖相邻位姿，Hessian 才稀疏，g2o 才能在毫秒级解掉。
+2. 它继承了 6.1 的全部结构缺陷，只改了求解效率——<strong>它修的是算得慢，不是算不出</strong>。这一区分对我们很关键：<code>start_blocked</code> 不是性能问题，换更快的求解器没有用。
+3. 失败分支仍然只有「沿用上一周期」，加了一个「加阻尼再试」，属于数值层面的补救，不是语义层面的恢复。
+4. 热启动是默认行为：每周期都拿上一周期的解当初值，这也是为什么障碍突变时它容易陷在旧拓扑里出不来。
+5. 若以后要在 <code>navigation_core</code> 里自己写轨迹优化，可照这个套路：先列误差项，再看 Hessian 是否稀疏，最后才决定要不要引 g2o；我们规模小，稠密解也够。</p>
+<p><strong>赛场映射</strong>：12×10 m 废墟里障碍密集、且我们只有 500 ms 级重规划预算时，靠的就是这层稀疏化；但它救不了「起点在膨胀区」——这是 6.3 与 RTEB 的活。</p>
+<p><strong>边界</strong>：只讨论求解器与稀疏模型，不讨论恢复语义；DOI 已核实，作者列表源综述与任务只写「et al.」，报告里如需列全作者需另行核实。</p>
+<hr />
+<h3 id="6.3-TEB-多拓扑Integrated-online-trajectory-planning-and-optimization-in-distinctive-topologies">6.3 TEB 多拓扑：Integrated online trajectory planning and optimization in distinctive topologies</h3>
+<p><strong>一句话</strong>：障碍让代价函数非凸、存在多个局部最优，作者<strong>并行维护多条不同拓扑（homotopy 类）的候选轨迹一起优化，再按代价切换全局最优</strong>——这是 S 弯换侧、死胡同换侧的直接依据。</p>
+<p><strong>出处</strong>：C. Rösmann, F. Hoffmann, T. Bertram｜2017｜Robotics and Autonomous Systems 88:142–153｜DOI 10.1016/j.robot.2016.11.007</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d35"><div class="render" data-for="d35"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;全局路径 + 当前位姿 + 局部 costmap&quot;]) --&gt; B[&quot;初值生成：按不同绕行方式采样多条候选 homotopy 类&quot;]
+    B --&gt; C1[&quot;候选 1：从障碍左侧绕&quot;]
+    B --&gt; C2[&quot;候选 2：从障碍右侧绕&quot;]
+    B --&gt; C3[&quot;候选 3：更外侧或上方绕行&quot;]
+    C1 --&gt; D[&quot;各自独立建 TEB 超图 并行优化&quot;]
+    C2 --&gt; D
+    C3 --&gt; D
+    D --&gt; E{&quot;每条候选是否收敛且可行？&quot;}
+    E --&gt;|&quot;至少一条可行&quot;| F[&quot;按代价横向比较 切换全局最优候选&quot;]
+    E --&gt;|&quot;全部不可行&quot;| G[&quot;回退：缩短时域或退化为单拓扑重初始化&quot;]
+    F --&gt; H[&quot;以最优候选作为本周期 TEB 解&quot;]
+    G --&gt; I[&quot;上报受阻 交上层换目标或倒退&quot;]
+    H --&gt; J[&quot;下周期保留全部候选 继续并行跟踪&quot;]
+    J --&gt; K[&quot;拓扑消失或障碍移动：剪枝并补采样新候选&quot;]
+    K --&gt; D</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. <strong>这是整组最重要的一张图</strong>：候选不是串行试错，而是<strong>同一周期内并行优化、再比较</strong>。所以「换侧」的代价是一次并行优化，不是一次重规划失败后的重试。
+2. 初值不再是唯一一条：每条候选自带一个拓扑标签（左绕 / 右绕 / 外绕），这就是「初值怎么来」的第二个答案——<strong>从拓扑假设反推初值</strong>。
+3. 失败分支有两级：单条候选死掉只剪枝，不影响别的候选；全部死掉才退化为单拓扑重初始化并上报受阻。<strong>这就是把「不可行」从终态改写成事件的结构原型</strong>。
+4. 代价比较是逐周期的，所以机器人走到 S 弯中段时可以平滑地从「左绕最优」切到「右绕最优」，不要求一开始就选对。
+5. 候选之间不共享优化变量，所以并行是干净的；代价接近时会来回切换（震荡），工程上通常加一个切换迟滞。</p>
+<p><strong>赛场映射</strong>：S 弯净宽 1.2 m，机器人一旦进了错的一侧，单拓扑 TEB 会一路顶到墙再失败；多拓扑让两条绕行同时保活，走不通就换侧。死胡同里同理：一条候选直行、一条候选倒退退出，比较代价后选后者，而不是原地报 <code>start_blocked</code>。</p>
+<p><strong>边界</strong>：拓扑候选的生成依赖初始位姿与障碍几何，窄到只剩一条通路时（如方涵 0.6 m 限高段）多拓扑退化为单拓扑，此时要靠 RTEB 式重初始化；本文是期刊版、DOI 已核实，但<strong>没有给出可直接照搬的工程参数</strong>。</p>
+<hr />
+<h3 id="6.4-MPPIInformation-Theoretic-MPCInformation-Theoretic-Model-Predictive-Control-Theory-and-Applications-to-Autonomous-Driving">6.4 MPPI（Information-Theoretic MPC）：Information Theoretic Model Predictive Control: Theory and Applications to Autonomous Driving</h3>
+<p><strong>一句话</strong>：用 information-theoretic 的 path-integral 推导出「采样 N 条 → 按代价指数加权 → 加权平均更新控制序列」的采样型 MPC，可处理不可微代价、可 GPU 并行，<strong>且不要求好的初值</strong>。</p>
+<p><strong>出处</strong>：Grady Williams, Paul Drews, Brian Goldfain, James M. Rehg, Evangelos A. Theodorou｜2018｜IEEE T-RO 34(6):1603–1622｜DOI 10.1109/TRO.2018.2865891｜arXiv:1707.02342（摘要已抓取核对；arXiv 页面 Comments 仅写 submitted to T-RO，卷期页码照抄源综述）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d36"><div class="render" data-for="d36"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;当前状态 + 任意初值序列（可全零或沿用上一周期）&quot;]) --&gt; B[&quot;以该序列为均值 采样 N 条控制扰动&quot;]
+    B --&gt; C[&quot;GPU 并行 rollout 每条候选的前向动力学&quot;]
+    C --&gt; D[&quot;逐条算代价：到目标 障碍距离 平滑 控制量&quot;]
+    D --&gt; E[&quot;指数加权：w_i 正比于 exp(-S_i / lambda)&quot;]
+    E --&gt; F[&quot;加权平均得到新的控制序列 U_new&quot;]
+    F --&gt; G[&quot;只执行 U_new 的前一小段&quot;]
+    G --&gt; H[&quot;状态推进 进入下一周期&quot;]
+    H --&gt; B
+    F --&gt; I{&quot;是否全部候选代价无穷大？&quot;}
+    I --&gt;|&quot;是&quot;| J[&quot;全撞：减速停车 请求重规划&quot;]
+    I --&gt;|&quot;否&quot;| K[&quot;热启动：U_new 直接作为下周期采样均值&quot;]
+    K --&gt; B</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. <strong>闭环是「采样 → 加权 → 更新序列 → 只执行前一段 → 再采样」</strong>，不是「选一条最好的走完」。真正下发的是加权平均后的序列，天然带平滑。
+2. 「不需要好初值」为什么对我们重要：初值只是<strong>采样分布的均值</strong>，哪怕全零，N 条扰动也会把可行方向采样出来。而 TEB 的初值必须是<strong>逐位姿可行</strong>的轨迹，起点在 0.28 m 膨胀区就直接死。这是两种方法对「初值」的语义差别，正是 <code>start_blocked</code> 的分野。
+3. 代价函数不需要可微，所以「膨胀区代价」「限高惩罚」「倒车惩罚」可以直接写成查表/布尔项，不必像 TEB 那样写成误差项求导。
+4. 失败分支是「全部候选无穷大代价」——它对应的是真的没路，此时减速停车是正确行为，而不是假装规划成功。
+5. lambda（温度）是唯一必须调的关键参数：调大接近贪心取最优一条，调小更平滑但反应慢。它决定了「多模态绕行」能不能被保住。</p>
+<p><strong>赛场映射</strong>：圆管（内径 1.0 m）与方涵 0.6 m 限高段，可用「离管壁距离 + 机身高度超限」两条硬代价直接罚掉，不必改动力学模型；死胡同倒退把「倒车速度」当成决策变量即可，无需为倒退单独写一套运动学。12×10 m 废墟里也更容易处理乱石造成的多模态绕行。</p>
+<p><strong>边界</strong>：采样计算量大，本机 Windows + ORT-CPU 环境下几乎不可能实时；它替代的是<strong>规划器语义</strong>，不是我们 15 天窗口内的可行改动。别把它写进「已选定方案」。</p>
+<hr />
+<h3 id="6.5-CBF-QPControl-Barrier-Function-Based-Quadratic-Programs-for-Safety-Critical-Systems">6.5 CBF-QP：Control Barrier Function Based Quadratic Programs for Safety Critical Systems</h3>
+<p><strong>一句话</strong>：用 CBF 把「安全」写成控制输入上的不等式约束，与表示性能的 CLF 一起塞进一个实时 QP，得到「名义控制 → 最小修正 → 安全控制」的过滤层。</p>
+<p><strong>出处</strong>：Aaron D. Ames, Xiangru Xu, Jessy W. Grizzle, Paulo Tabuada｜2017｜IEEE TAC 62(8):3861–3876｜DOI 10.1109/TAC.2016.2638961（arXiv Related DOI 一致）｜arXiv:1609.06408</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d37"><div class="render" data-for="d37"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;上层规划器输出名义控制 u_nom&quot;]) --&gt; B[&quot;定义安全集：与障碍的距离保持在 d_safe 以上&quot;]
+    B --&gt; C[&quot;构造 CBF：h 的导数 + alpha 乘 h 大于等于 0&quot;]
+    C --&gt; D[&quot;QP 目标：最小化偏离 u_nom 的平方&quot;]
+    D --&gt; E[&quot;约束：CBF 不等式 + 执行器上下限&quot;]
+    E --&gt; F{&quot;QP 是否可行？&quot;}
+    F --&gt;|&quot;可行&quot;| G[&quot;输出安全控制 u_safe&quot;]
+    F --&gt;|&quot;不可行&quot;| H[&quot;放宽：只留硬安全约束 求最小制动量&quot;]
+    H --&gt; I[&quot;仍不可行：紧急停车&quot;]
+    G --&gt; J[&quot;底盘执行 状态反馈进入下一周期&quot;]
+    J --&gt; A
+    G --&gt; K[&quot;解耦价值：规划器可任意替换 安全层不用改&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 形状就是三层：<strong>u_nom 进来，QP 做一个最小二乘修正，u_safe 出去</strong>。规划器说什么不重要，只要不违反 CBF 就在安全层被原样放行。
+2. 「最小修正」是它最有工程价值的一点：不重规划、不换赛道，只在<strong>速度指令层面</strong>把危险的 3 cm 掰回来。计算量是一个小规模 QP，可以每周期都解。
+3. 解耦是硬要求：CBF 约束只依赖<strong>状态与障碍距离</strong>，不依赖 TEB 内部结构，所以能挂在我们现有 <code>navigation_core</code> 的控制器输出后面，而不用动规划器。
+4. 失败分支有两级：QP 不可行先放宽到最小制动，仍不可行就紧急停车。注意它<strong>永远不会输出违反约束的控制</strong>——这是安全层和规划器最本质的区别。
+5. CLF 那一半管性能（往目标走），CBF 那一半管安全；两者冲突时靠松弛变量决定谁让步，工程上一般让性能让步。
+6. 对我们的直接含义：它不是规划器，而是在控制层兜住「规划器说能走、实际会撞」这种不一致。</p>
+<p><strong>赛场映射</strong>：隧道口误判（把 0.2 m 窄缝判成可通行）时，CBF 用实测距离否决规划器的直行指令；圆管/方涵限高段可以用机身高度与顶壁距离构造同形式约束；<code>start_blocked</code> 场景下如果位姿贴墙、规划器仍给了前进指令（例如上一周期残留），安全层可以直接刹住，避免撞墙。</p>
+<p><strong>边界</strong>：CBF 保证的是<strong>前向不变性</strong>，不保证到达目标；它不解死锁——机器人可以在安全集里原地不动。所以它只能当「最后一道安全约束」，不能当恢复语义用。</p>
+<hr />
+<h3 id="6.6-综述ROS-Based-Navigation-and-Obstacle-Avoidance-A-Study-of-Architectures-Methods-and-Trends">6.6 综述：ROS-Based Navigation and Obstacle Avoidance: A Study of Architectures, Methods, and Trends</h3>
+<p><strong>一句话</strong>：一篇 2025 年的 ROS 导航与避障综述，价值不在方法本身，而在它把 TEB 的三条劣势逐条写出，并列出 MPPI 改进谱系与 Nav2 插件组合——是我们「TEB 劣势 → 具体替代论文」的检索地图。</p>
+<p><strong>出处</strong>：Z. Wei, S. Wang, K. Chen, F. Wang｜2025｜Sensors 25(14):4306｜DOI 10.3390/s25144306（本篇摘要未抓到：MDPI 直连返回 403，字段照抄源综述 §3.5）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d38"><div class="render" data-for="d38"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;综述的检索地图：ROS 导航与避障的架构 方法 趋势&quot;]) --&gt; B[&quot;TEB 劣势 1：依赖全局规划器引导质量&quot;]
+    A --&gt; C[&quot;TEB 劣势 2：动态场景响应迟滞&quot;]
+    A --&gt; D[&quot;TEB 劣势 3：依赖倒退机动&quot;]
+    B --&gt; E[&quot;检索分支：改进全局层 代价地图与路径平滑&quot;]
+    C --&gt; F[&quot;检索分支：MPPI 谱系 GP-MPPI DRPA-MPPI Hybrid A-MPPI&quot;]
+    D --&gt; G[&quot;检索分支：双向朝向与 hybrid A 重初始化&quot;]
+    E --&gt; H[&quot;另一条赛道：端到端学习式局部规划 iPlanner ViPlanner&quot;]
+    F --&gt; I[&quot;落地形态：Nav2 插件组合与控制器切换策略&quot;]
+    G --&gt; I
+    H --&gt; I
+    I --&gt; J[&quot;我们的选型顺序：先修受阻恢复语义 再谈换赛道&quot;]
+    J --&gt; K[&quot;不采信：综述层面没有可直接复现的实机数字&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 这张图<strong>不是它的方法图</strong>，而是「问题 → 该去查谁」的索引图。读综述的唯一正确用法是顺着它的劣势条目跳到具体论文，而不是引用它的结论。
+2. 三条劣势里，「依赖倒数第一条全局路径质量」直接命中我们 <code>plan_grid</code> 给不出好初值的情况；「依赖倒退机动」说明 TEB 生态自己也承认倒车是外挂行为，不是内建能力。
+3. MPPI 谱系那一支（GP-MPPI / DRPA-MPPI / Hybrid A-MPPI）是 6.4 的下游产品，说明「换赛道」在社区里已形成谱系，不是孤例。
+4. 失败分支是认知层面的：综述只到「趋势」粒度，<strong>不能当作工程参数来源</strong>，别拿它去定 <code>start_blocked</code> 的重试次数。
+5. 建议的用法顺序：先看它的 TEB 劣势条目 → 顺着 MPPI 谱系查 6.4 及其派生 → 再看 Nav2 的控制器切换机制，这与我们「分级降级链」的想法同源。</p>
+<p><strong>赛场映射</strong>：给研制报告书做「技术路线对比」一节时，这张图可以直接改成一张表：我们的 <code>start_blocked</code> 对应哪条劣势、对应哪篇替代论文、代价是什么。12×10 m 废墟与 S 弯的换侧需求都落在「依赖全局路径质量」这一条上。</p>
+<p><strong>边界</strong>：MDPI 本轮抓取被 403 拒绝，<strong>摘要原文未核对</strong>，只按源综述转述；引用时只能写「据该综述」，不能写具体实验数字。</p>
+<hr />
+<h3 id="6.7-iPlannerImperative-Path-Planning">6.7 iPlanner：Imperative Path Planning</h3>
+<p><strong>一句话</strong>：用可微 costmap 提供隐式监督、以双层优化训练，网络从单帧深度直接吐出平滑无碰撞的关键点路径，不需要示范轨迹或标注路径。</p>
+<p><strong>出处</strong>：F. Yang, C. Wang, C. Cadena, M. Hutter｜2023｜RSS 2023 paper 064｜DOI 10.15607/RSS.2023.XIX.064（arXiv Related DOI 一致）｜arXiv:2302.11434｜项目页 https://sairlab.org/iPlanner/（已抓取，页内给出代码仓库 https://github.com/sair-lab/iPlanner）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d39"><div class="render" data-for="d39"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;单帧深度图 + 目标位置&quot;]) --&gt; B[&quot;感知与规划网络：编码深度与目标&quot;]
+    B --&gt; C[&quot;预测关键点路径 + 每条路径的碰撞概率&quot;]
+    C --&gt; D[&quot;可微 costmap：把预测路径投影成代价&quot;]
+    D --&gt; E[&quot;下层：基于度量的轨迹优化 求平滑避障解&quot;]
+    E --&gt; F[&quot;上层：任务代价与 fear loss 反传 更新网络权重&quot;]
+    F --&gt; B
+    C --&gt; G[&quot;推理：取最优关键点路径 交给跟踪器&quot;]
+    G --&gt; H{&quot;跟踪中碰撞概率超阈值？&quot;}
+    H --&gt;|&quot;是&quot;| I[&quot;减速 重取深度 重新推理&quot;]
+    H --&gt;|&quot;否&quot;| J[&quot;继续跟踪 输出速度指令&quot;]
+    I --&gt; K[&quot;连续无可行输出：停车&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 训练与推理是<strong>两条不同的路</strong>：训练走「网络 → 可微 costmap → 下层轨迹优化 → 上层反传」的双层回路，推理只走「网络 → 关键点路径」，所以推理极快。
+2. 关键在「可微 costmap」这一环：没有它就只能在仿真里标注专家轨迹；有了它，代价函数本身就是监督信号，<strong>这正是它不需要示范数据的原因</strong>。
+3. 输出的是<strong>关键点路径</strong>而不是速度，跟踪与避障的第一道判断在跟踪器里；所以它和 TEB 是同一层的东西，可以互换但不能同时用。
+4. 失败分支在推理侧：碰撞概率超阈值就减速重推理。注意它<strong>不重规划到更远的目标</strong>，只是重看一帧深度——死胡同里这会导致来回犹豫。
+5. 双层优化的下层是「基于度量的轨迹优化」，不是学出来的；所以输出路径的平滑性有几何保证，不是网络凭空猜的。
+6. 对我们最现实的用法不是部署，而是借它的接口形状：一帧深度 + 一个目标方向进、一条路径出，这种契约我们自己的局部规划也该写清楚。</p>
+<p><strong>赛场映射</strong>：废墟里乱石导致的高程图破碎、<code>plan_grid</code> 给不出好的全局初值，正是它「只要一帧深度 + 一个目标方向」就能工作的场景；对定位噪声鲁棒的宣称（摘要）对应我们弱光下里程计漂移。但 12×10 m 全场与 S 弯换侧仍需全局层给方向，它只负责局部。</p>
+<p><strong>边界</strong>：摘要声明约 4× 快于经典管线、SPL 提升 26–87%，是论文自报数字，我们未复现；单目/单帧深度对学生策略的泛化有限，隧道口的「识别并放弃」不属于它的能力范围。</p>
+<hr />
+<h3 id="6.8-ViPlannerVisual-Semantic-Imperative-Learning-for-Local-Navigation">6.8 ViPlanner：Visual Semantic Imperative Learning for Local Navigation</h3>
+<p><strong>一句话</strong>：在 imperative learning 骨架上加一条 30 类语义流，用可微语义 costmap 把「楼梯可走、灌木不可走」这类语义判断塞进局部规划。</p>
+<p><strong>出处</strong>：P. Roth, J. Nubert, F. Yang, M. Mittal, M. Hutter｜2024｜ICRA 2024（arXiv 页面无 venue 字段，venue 照抄源综述）｜arXiv:2310.00982（摘要已抓取核对；DOI 未独立核实，源综述引作者 BibTeX 为 10.1109/ICRA57147.2024.10610025）｜仓库 https://github.com/leggedrobotics/viplanner（版权保留，非宽松许可）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d40"><div class="render" data-for="d40"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;单帧深度图 + RGB 图像&quot;]) --&gt; B[&quot;几何流：深度还原局部地形代价&quot;]
+    A --&gt; C[&quot;语义流：30 类分割 用 RGB 颜色编码可通行性&quot;]
+    B --&gt; D[&quot;可微语义 costmap：几何与语义融合&quot;]
+    C --&gt; D
+    D --&gt; E[&quot;网络输出通往目标的局部关键点路径&quot;]
+    E --&gt; F[&quot;下层轨迹优化：平滑 避障 语义代价最小&quot;]
+    F --&gt; G[&quot;上层任务代价反传 端到端更新权重&quot;]
+    G --&gt; E
+    E --&gt; H[&quot;零样本 sim-to-real：纯仿真训练 真机直接推理&quot;]
+    H --&gt; I{&quot;语义是否误判 例如把楼梯当障碍？&quot;}
+    I --&gt;|&quot;是&quot;| J[&quot;回退：退化为纯几何代价 保守绕行&quot;]
+    I --&gt;|&quot;否&quot;| K[&quot;下发局部路径给跟踪器&quot;]
+    J --&gt; K</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 双流是这一篇的全部新意：几何流回答「这里高不高、能不能踩」，语义流回答「这是什么、该不该走」。<strong>只有几何的方法会把楼梯当墙，只有语义的方法会把阴影当地面</strong>。
+2. 30 类用 RGB 颜色空间编码可通行性的做法，本质是把「语义等级」压成一个连续代价，这样才能塞进可微 costmap 求导。
+3. 训练全在仿真、真机零样本，说明语义代价的标定与真实相机分布对齐得不错；但它对<strong>训练集外的语义类别</strong>没有保证。
+4. 失败分支是「语义误判退回纯几何」——这条对我们最有用：当它把圆管/方涵的内壁认成不该走的类别时，退化到几何仍然能过。
+5. 30 类监督来自仿真渲染的语义标注，不需要人工标注，这正是它敢「纯仿真训练 + 真机零样本」的底气。</p>
+<p><strong>赛场映射</strong>：方涵 0.6 m 限高段的顶壁在几何上就是「障碍」，语义上应该是「可下蹲通过的顶」——这是 ViPlanner 类方法唯一能超过纯几何的地方；「隧道1 过窄 0.2 m 应识别并放弃」也正好是语义/可通行性判断而非纯几何判断；4–12 cm 乱石被误判为障碍的问题同样对症。</p>
+<p><strong>边界</strong>：仓库为<strong>版权保留（all rights reserved）</strong>，不是宽松许可，参赛集成前必须单独核对并说明；摘要自报语义方法比纯几何降低 38.02% 通行代价，未复现；单帧 + 纯仿真训练在弱光/扬尘下的退化行为论文未覆盖。</p>
+<hr />
+<h3 id="6.9-点云-CBFSailing-Through-Point-Clouds-Safe-Navigation-Using-Point-Cloud-Based-Control-Barrier-Functions">6.9 点云 CBF：Sailing Through Point Clouds: Safe Navigation Using Point Cloud Based Control Barrier Functions</h3>
+<p><strong>一句话</strong>：直接用点云构造 CBF（Vessel）做安全过滤，再用预览控制（Mariner）打破局部卡死，得到一个只吃点云、不建图的极轻安全局部规划器——并在 Unitree B1 与 Go2 上验过。</p>
+<p><strong>出处</strong>：B. Dai, R. Khorrambakht, P. Krishnamurthy, F. Khorrami｜2024｜RA-L 9:7731–7738｜DOI 10.1109/LRA.2024.3431870｜arXiv:2403.18206（摘要已抓取核对）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d41"><div class="render" data-for="d41"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;原始点云 + 目标方向&quot;]) --&gt; B[&quot;Vessel：用缩放因子直接从点云构造 CBF&quot;]
+    B --&gt; C[&quot;每个近邻点生成一条安全不等式 免建图免拟合&quot;]
+    C --&gt; D[&quot;名义控制：指向目标的参考速度&quot;]
+    D --&gt; E[&quot;QP 过滤：同时满足全部点云 CBF 约束&quot;]
+    E --&gt; F{&quot;QP 是否可行？&quot;}
+    F --&gt;|&quot;可行&quot;| G[&quot;输出安全控制 u_safe&quot;]
+    F --&gt;|&quot;不可行&quot;| H[&quot;点太密或通道过窄：降低期望速度后重解&quot;]
+    H --&gt; E
+    G --&gt; I[&quot;Mariner：预览若干步 提前看未来约束&quot;]
+    I --&gt; J{&quot;是否陷入伪平衡 局部卡死？&quot;}
+    J --&gt;|&quot;是&quot;| K[&quot;预览项注入 打破对称 主动绕出&quot;]
+    J --&gt;|&quot;否&quot;| L[&quot;作为最终指令下发底盘&quot;]
+    K --&gt; L
+    L --&gt; M([&quot;与全局规划器集成：接口只吃点云与控制&quot;])</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 它把 6.5 的 CBF-QP 从「解析障碍形状」换成「<strong>逐点云点直接写约束</strong>」，省掉建图、拟合、凸分解整条链——这是它能在 Go2 机载算力上跑的原因。
+2. 为什么需要 Mariner：纯 CBF 只保证安全、不保证前进，机器人在对称障碍前会停在<strong>伪平衡</strong>点（两侧约束刚好抵消）。预览控制提前看几步，把对称打破。这一点对我们「死胡同里原地不动」的病最对症。
+3. 失败分支两级：QP 不可行先降速重解（因为点云约束是逐点的，减速往往就能解出来），仍不可行再靠预览绕行。<strong>它不会输出违反约束的控制</strong>。
+4. 接口只有「点云 + 目标方向 + 控制输出」，所以它能挂在任何全局规划器后面——包括我们现在的 A* / 前沿探索输出。
+5. 它把两件我们最怕的事拆开处理：安全由 CBF 无条件保证，脱困由预览项负责，而不是指望一个规划器同时把两件事做对。</p>
+<p><strong>赛场映射</strong>：Go2 实机验证这一条直接对应我们线下 Lite2/Go2 实物线；圆管内壁的点云天然是稠密面，逐点 CBF 正好合适；S 弯净宽 1.2 m 处的左右壁约束同时成立，用人造膨胀区反而容易解不出可行 QP；死胡同倒退可由预览项触发，而不是靠规划器报 <code>start_blocked</code>。</p>
+<p><strong>边界</strong>：仍是局部方法，<strong>不解决「该往哪走」</strong>，全局层仍要我们自己的 A* 与前沿逻辑；论文没有给 <code>start_blocked</code> 这种「起点本身非法」的处理，起点在膨胀区时 QP 无解这一情形需要上层先脱困。</p>
+<hr />
+<blockquote>
+<p>收口：6.1–6.3 是同一赛道的三代修补，修到 6.3 才第一次出现「多条候选并行 + 换全局最优」，也第一次把「不可行」从终态降级为可选分支；6.4–6.8 是换赛道（采样 / 学习式）；6.5 与 6.9 是可叠加的安全层。对应到我们：<strong>先做受阻恢复语义（6.3 的结构 + RTEB 的重初始化），CBF 安全层（6.5 / 6.9）作为第二阶段，MPPI 与学习式规划器不进 15 天窗口</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="7.-系统级灾害响应把前面所有模块拼成一台能在废墟里跑完-40-分钟的机器">7. 系统级灾害响应：把前面所有模块拼成一台能在废墟里跑完 40 分钟的机器</h2>
+<blockquote>
+<p>一句话导读：这一组是「系统」而非「算法」——它们回答的是模块之间怎么仲裁、什么时候放弃、什么时候返航。CERBERUS 三篇是同一个系统的三层视角（系统综述 / 赛道细节 / 事后复盘），建议连续读。</p>
+</blockquote>
+<h3 id="7.1-CERBERUS-in-the-DARPA-Subterranean-Challenge">7.1 CERBERUS in the DARPA Subterranean Challenge</h3>
+<p><strong>一句话</strong>：SubT 冠军系统的纵向三层栈——把「感知重建 → 可通行性 cost map → reachability 导航 → RL locomotion controller」串成一条从传感器到关节力矩的通路，并把「外感知不可信」写成控制器可以自己决定的降级条件。</p>
+<p><strong>出处</strong>：[已核实] M. Tranzatto et al.｜2022｜<em>Science Robotics</em> 7(66): eabp9742｜DOI <code>10.1126/scirobotics.abp9742</code>｜<strong>无 arXiv 编号</strong>（<code>2201.07067</code> 是 7.2 那篇，别混）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d42"><div class="render" data-for="d42"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;起点：未知地下环境&lt;br/&gt;粉尘 烟雾 弱光 断联&quot;]) --&gt; B[&quot;感知重建：相机 LiDAR 惯性&lt;br/&gt;互补多模态位姿估计&quot;]
+    B --&gt; C[&quot;GPU 局部高程图&lt;br/&gt;点云配准与几何退化判别&quot;]
+    C --&gt; D[&quot;可通行性 cost map&lt;br/&gt;坡度 台阶 粗糙度 净空分层&quot;]
+    D --&gt; E{&quot;reachability 梯级存在？&quot;}
+    E --&gt;|&quot;存在&quot;| F[&quot;reachability 导航规划器&lt;br/&gt;生成机身可达航点序列&quot;]
+    E --&gt;|&quot;不存在&quot;| G[&quot;本层判为不可达&lt;br/&gt;退回上层换目标&quot;]
+    F --&gt; H[&quot;RL perceptive locomotion controller&lt;br/&gt;把航点转成速度与姿态指令&quot;]
+    R[&quot;域随机化：外力 质量 摩擦 初速度&quot;] --&gt; S[&quot;显式注入外感知噪声&lt;br/&gt;策略自己决定信不信外感知&quot;]
+    S --&gt; H
+    H --&gt; T{&quot;外感知置信度够不够？&quot;}
+    T --&gt;|&quot;够&quot;| U[&quot;关节力矩跟踪&lt;br/&gt;按标称速度通过&quot;]
+    T --&gt;|&quot;不够&quot;| V[&quot;降低外感知权重&lt;br/&gt;退化为本体感知盲走 降速&quot;]
+    V --&gt; W{&quot;连续 N 次仍失效？&quot;}
+    W --&gt;|&quot;否&quot;| H
+    W --&gt;|&quot;是&quot;| X[&quot;停车 请求操作员 或 返航起点&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 感知重建是全栈起点而不是并行支线：位姿估计和局部高程图都是下游输入，位姿一抖，cost map 与 reachability 全部跟着抖。
+2. 可通行性 cost map 不是二值障碍图，是分层代价（坡度 / 台阶高度 / 粗糙度 / 净空），所以「能过但代价高」与「不能过」是两个结论：前者继续规划，后者上交换目标。
+3. reachability 导航规划器问的是「机身能不能到」，不是「栅格上有没有连通路径」；不可达时它不做兜底，直接把目标退回上层。
+4. RL locomotion controller 只跟踪机身级指令，不选路；但外感知退化时它握着降级的最后决定权。
+5. 域随机化那一支是整张图的关键：训练时显式注入外感知噪声，等于让策略在仿真里反复经历「传感器在骗我」，部署后它才能自己决定信不信外感知，而不是等上层下命令。
+6. 失败分支两级：先降权盲走降速，连续失效才停车请求操作员或返航。</p>
+<p><strong>赛场映射</strong>：弱光 + 扬尘对应第 5 条的外感知噪声注入，正是我们 <code>lidar.range_noise_m 0.03</code> 与 <code>dropout_probability 0.08</code> 的论文级依据；圆管 1.0 m、方涵 1.2×0.6 m、0.6 m 限高对应第 3 条的机身可达判据，不是栅格连通就放行；5 处乱石与 0.45 m 坡道对应第 2 条的分层 cost map，乱石是「高代价可过」而非障碍；40 分钟时限要求第 6 条的降速盲走必须配限额，否则一次退化吃掉整段预算。</p>
+<p><strong>边界</strong>：本篇是系统综述，不给可直接复现的参数或代码（控制器代码未核实），只能借结构；三层栈依赖 GPU 局部高程图与四足专用 reachability 规划器，Windows + MuJoCo 3.17 + ONNX Runtime CPU 上没有对应实现；「策略自己决定信不信外感知」是训练目标的语义，不是能读出来的门控阈值，别把它写成一个可调开关。</p>
+<h3 id="7.2-CERBERUS-Autonomous-Legged-and-Aerial-Robotic-Exploration-in-the-Tunnel-and-Urban-Circuits">7.2 CERBERUS: Autonomous Legged and Aerial Robotic Exploration in the Tunnel and Urban Circuits</h3>
+<p><strong>一句话</strong>：同一套 CERBERUS 系统在隧道与城市两条赛道的工程细节——重点不是「四足多强」，而是「什么时候承认四足过不去、把支路交给无人机补位」。</p>
+<p><strong>出处</strong>：[已核实] M. Tranzatto et al.｜2022｜<em>Field Robotics</em> 2(1):274–324｜DOI <code>10.55417/fr.2022011</code>｜arXiv:2201.07067（已抓 abs 页核对；Comments 原文为 50 pages, 25 figures, Accepted at Field Robotics 2021）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d43"><div class="render" data-for="d43"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;起点：隧道赛道与城市赛道入口&quot;]) --&gt; B[&quot;ANYmal 四足主力平台&lt;br/&gt;续航与越障优先&quot;]
+    B --&gt; C[&quot;统一探索路径规划策略&lt;br/&gt;四足与无人机共用同一套目标选择&quot;]
+    C --&gt; D[&quot;推进到下一个探索前沿&quot;]
+    D --&gt; E{&quot;进入支路前的几何判定&lt;br/&gt;净宽 净高 高差 对机体包围盒&quot;}
+    E --&gt;|&quot;可容纳机身&quot;| F[&quot;四足继续推进并自我定位&quot;]
+    E --&gt;|&quot;过窄或地面系统不可达&quot;| G[&quot;平台级放弃&lt;br/&gt;该支路标记为地面不可达&quot;]
+    G --&gt; H[&quot;交给碰撞容忍无人机补位&quot;]
+    H --&gt; I[&quot;无人机进入并回报目标位置&quot;]
+    F --&gt; J{&quot;通信链是否可用？&quot;}
+    J --&gt;|&quot;光纤通&quot;| K[&quot;地面漫游车高增益天线&lt;br/&gt;光纤回基站&quot;]
+    J --&gt;|&quot;光纤断&quot;| L[&quot;四足沿途投放 breadcrumb 无线节点&lt;br/&gt;建多跳链路&quot;]
+    L --&gt; M{&quot;多跳链路可用？&quot;}
+    M --&gt;|&quot;否&quot;| N[&quot;该机退出探索&lt;br/&gt;保留本地建图与自主返航&quot;]
+    M --&gt;|&quot;是&quot;| K
+    K --&gt; O[&quot;集中式多机地图优化&lt;br/&gt;统一到 DARPA 坐标系&quot;]
+    I --&gt; O
+    N --&gt; O
+    O --&gt; P[&quot;目标位置上报 计分&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 决策顺序是「先判平台、再判路径」：不是撞上障碍才想起无人机，而是在进入支路前就用净宽 / 净高 / 高差对机体包围盒做平台级判定。
+2. 平台级放弃是一个显式状态，不是沉默失败：整条支路被标为地面不可达后不再反复重试，而是切换执行者。
+3. 无人机补位的判据来自摘要原文——<code>spaces too narrow or otherwise unreachable by ground systems</code>，「窄」与「不可达」是两类问题，不是一类。
+4. 通信是独立的一条链：漫游车高增益天线加光纤回基站；光纤断了靠四足投放 breadcrumb 无线节点建多跳。
+5. 通信彻底不可用时退路是「该机退出、保留本地建图与自主返航」，这是系统级放弃，不是任务失败——与我们「异常时停止或恢复」同构。
+6. 集中式多机地图优化把各机位姿统一到 DARPA 坐标系：上报位置的精度是全局优化出来的，不是单机里程计给的。</p>
+<p><strong>赛场映射</strong>：圆管内径 1.0 m 落在第 1 条的净宽判定边界上，四足标称宽 59 cm 时余量很小；方涵 1.2×0.6 m 是「净宽够但净高不够」，属于几何可通过而机身不可达，正好由第 2 条放弃；隧道1 过窄 0.2 m 要求在进入前就判定，而不是试了才知道；S 弯与死胡同对应「换支路而非原地终态」；40 分钟时限下，补位省的是反复试错的时间，前提是判定足够快。</p>
+<p><strong>边界</strong>：补位需要异构平台，我们只有一台 Lite2，这条策略只能翻译成「标记支路不可达并换支路」，不能翻译成「换平台」；光纤与 breadcrumb 是实物通信方案，仿真里没有对应物，不要写成已实现；集中式多机地图优化在单机上无意义，只保留其单机版本（回环与位姿修正）。</p>
+<h3 id="7.3-Team-CERBERUS-Wins-the-DARPA-SubT-Technical-Overview-and-Lessons-Learned">7.3 Team CERBERUS Wins the DARPA SubT: Technical Overview and Lessons Learned</h3>
+<p><strong>一句话</strong>：冠军系统的完整技术复盘，并在系统总览之外单列失败模式清单——这是三篇里唯一能直接当验收用例表用的一篇。</p>
+<p><strong>出处</strong>：[已核实] M. Tranzatto et al.｜2024｜<em>Field Robotics</em> 4(1):249–312｜DOI <code>10.55417/fr.2024009</code>｜<strong>arXiv 编号未核实</strong>（二手镜像给出 <code>2207.04914</code>，未在 arXiv 官方 abs 页核实，引用时不要写编号）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d44"><div class="render" data-for="d44"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;决赛系统上线 三条并行主线&lt;br/&gt;感知 规划 通信&quot;]) --&gt; B{&quot;子系统自检通过？&quot;}
+    B --&gt;|&quot;是&quot;| C[&quot;按标称策略推进任务&quot;]
+    B --&gt;|&quot;否&quot;| D[&quot;记入失败模式清单&quot;]
+    D --&gt; E[&quot;模式一 感知退化&lt;br/&gt;粉尘 烟雾 反光 几何自相似&quot;]
+    D --&gt; F[&quot;模式二 通信中断&lt;br/&gt;长走廊 拐角 信号衰减&quot;]
+    D --&gt; G[&quot;模式三 地形超限&lt;br/&gt;湿滑 松散 台阶 悬垂&quot;]
+    D --&gt; H[&quot;模式四 定位漂移&lt;br/&gt;长走廊累积误差&quot;]
+    E --&gt; I[&quot;仲裁 多模态冗余加置信度门控&quot;]
+    F --&gt; J[&quot;仲裁 光纤与 breadcrumb 双路&lt;br/&gt;再退化为完全自主&quot;]
+    G --&gt; K[&quot;仲裁 降速 换技能 或换平台&quot;]
+    H --&gt; L[&quot;仲裁 多机地图优化回环修正&quot;]
+    I --&gt; M[&quot;统一任务状态机&quot;]
+    J --&gt; M
+    K --&gt; M
+    L --&gt; M
+    M --&gt; N[&quot;四类终态&lt;br/&gt;继续 降级 返航 放弃&quot;]
+    N --&gt; O[&quot;写入赛后复盘 供下次赛事复用&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 复盘在系统总览之外单列失败模式清单，所以它天然对应「验收用例」：每条模式都能写成一个可复现的故障注入场景。
+2. 四类模式（感知退化 / 通信中断 / 地形超限 / 定位漂移）是按源综述的失败清单归纳出的读法，不是原文的编号分类表；四类各配一条仲裁、不共用通用降级，说明降级粒度必须落在子系统上。
+3. 四条仲裁收敛到同一个任务状态机，出口只有「继续 / 降级 / 返航 / 放弃」四种——这正是我们 <code>start_blocked</code> 直接跳终态所缺的那层结构。
+4. 「通信中断 → 退化为完全自主」与「地形超限 → 换技能或换平台」性质不同：前者不改任务、只改信息来源；后者改任务本身。
+5. 定位漂移的仲裁是多机回环修正，单机上退化为回环加位姿协方差自适应膨胀——这条是 0.28 m 固定膨胀区误判的直接解药。
+6. 复盘的价值在于它承认失败；写研制报告书时，这一篇是「异常时停止或恢复」最合法的引用。</p>
+<p><strong>赛场映射</strong>：12×10 m 废墟加弱光扬尘对应失败模式一，直接映射到我们的 <code>lidar.noise_m</code>、<code>dropout_probability</code>、<code>beam_block_probability</code>；圆管 / 方涵 / S 弯对应模式三的地形超限，落在「识别并放弃」；死胡同倒车后位姿贴墙对应模式四，落在膨胀区误判；40 分钟时限要求四种终态都能在有限时间内决断，禁止无限重试。</p>
+<p><strong>边界</strong>：arXiv 编号未核实，参考文献表只能写期刊字段或标「未核实」；复盘内容是 2021 年决赛现场的硬件与传感器配置，与我们完全不同，只借结构不借阈值；四类终态里「返航」依赖有起点坐标，我们的 <code>--course</code> 有固定起点、<code>--explore</code> 没有，不能无差别套用。</p>
+<h3 id="7.4-GBPlanner-Graph-based-Path-Planning-for-Autonomous-Robotic-Exploration-in-Subterranean-Environments">7.4 GBPlanner: Graph-based Path Planning for Autonomous Robotic Exploration in Subterranean Environments</h3>
+<p><strong>一句话</strong>：把「局部探索走到尽头」写成一个可判定的切层事件——死胡同、探索增益耗尽、电量不足三种触发条件都由全局规划器接管，生成返航或重定位路径，这就是我们缺的「受阻恢复语义」的论文原形。</p>
+<p><strong>出处</strong>：[已核实] T. Dang, F. Mascarich, S. Khattak, C. Papachristos, K. Alexis｜2019｜<em>IROS 2019</em> pp.3105–3112｜DOI <code>10.1109/IROS40897.2019.8968151</code></p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d45"><div class="render" data-for="d45"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;起点：矿道入口 无先验地图&quot;]) --&gt; B[&quot;全局规划器&lt;br/&gt;维护探索图与探索空间边缘&quot;]
+    B --&gt; C[&quot;选定下一个探索目标&quot;]
+    C --&gt; D[&quot;局部规划器&lt;br/&gt;局部体积内做 RRG 随机图扩展&quot;]
+    D --&gt; E[&quot;候选路径按探索增益打分&lt;br/&gt;增益看新增可探索体积与代价之比&quot;]
+    E --&gt; F[&quot;执行最优局部路径&lt;br/&gt;边推进边重规划下一段&quot;]
+    F --&gt; G{&quot;触发切层条件？&quot;}
+    G --&gt;|&quot;局部走到 dead-end 矿道尽头&quot;| H[&quot;局部增益耗尽&quot;]
+    G --&gt;|&quot;增益不再增加&quot;| H
+    G --&gt;|&quot;电量低于返航阈值&quot;| I[&quot;电量不足&quot;]
+    G --&gt;|&quot;否&quot;| B
+    H --&gt; J[&quot;切全局规划器&lt;br/&gt;重定位到探索空间边缘&quot;]
+    I --&gt; K[&quot;切全局规划器&lt;br/&gt;生成返航起点路径&quot;]
+    J --&gt; L[&quot;沿全局路径导航&lt;br/&gt;到达后恢复局部规划&quot;]
+    L --&gt; B
+    K --&gt; M{&quot;返航路径可行？&quot;}
+    M --&gt;|&quot;可行&quot;| N[&quot;返航并停机&quot;]
+    M --&gt;|&quot;不可行&quot;| O[&quot;停在已知自由空间&lt;br/&gt;停止探索并上报操作员&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 架构是<strong>分叉式</strong>的：全局层只管「去哪」（探索图 + 探索空间边缘），局部层只管「怎么去」（局部 RRG 扩展）；两层职责不重叠，谁也不替谁兜底。
+2. 局部规划器的打分是<strong>探索增益</strong>而非路径长度，增益按新增可通行体积除以路径代价算——所以「走得通但拿不到新信息」的路会被判为低价值，这正是 S 弯绕错一侧仍能自救的原因。
+3. 触发切层的三个条件全部显式且可计算：<strong>局部走到 dead-end（矿道尽头）、探索增益不再增加、电量低于返航阈值</strong>。这三条就是 <code>start_blocked</code> 该长成的样子。
+4. 切层后的动作不是「再试一次」，而是<strong>生成一条新路径</strong>：增益耗尽 → 重定位到探索空间边缘；电量不足 → 返航起点。方向由触发条件决定，不是一个通用 fallback。
+5. 全局层握有终止权：连返航路径都不可行时，停在已知自由空间并上报操作员，而不是继续消耗。
+6. 恢复是有上限的：全局层接管一次就换掉目标，本地不会对着同一个不可达目标无限重试——与笔记第 120 行「恢复必须有限次并留下事件记录」一致。</p>
+<p><strong>赛场映射</strong>：死胡同（左廊道尽头）对应第 3 条的 dead-end 触发，翻译成「换前沿」而不是进入终态；新前沿选到机器人身后属于「增益耗尽 + 目标不可达」的混合，由全局层重定位到未探索边缘；S 弯绕错一侧靠第 2 条增益打分压低高代价候选、由全局层换支路；40 分钟时限与到点停车正是第 4 条返航分支，也是赛题「到点停车」的文献级对应；圆管与方涵这类长走廊化空间，切层频率会明显高于矿井主巷道。</p>
+<p><strong>边界</strong>：2019 年矿井场景，单机、无动态障碍、通信假设理想，比 12×10 m 废墟更「走廊化」，S 弯密集场景要额外保留拓扑候选；源综述里的「500 ms 重规划 3 m 轨迹」是 Buchanan 2021 的数字，不是本篇，别混引；未核实到官方代码仓库，只能借语义不能借实现。</p>
+<h3 id="7.5-Heterogeneous-Robot-Teams-with-Unified-Perception-and-Autonomy-Team-CSIRO-Data61">7.5 Heterogeneous Robot Teams with Unified Perception and Autonomy (Team CSIRO Data61)</h3>
+<p><strong>一句话</strong>：异构机器人队共享同一套感知与自主接口，靠两个专门的防失败行为——Gaps Planner 过窄缝、Orientation Correction 防倾覆——把「物理上差点过不去」变成可管理的失败而不是翻车。</p>
+<p><strong>出处</strong>：[已核实] N. Kottege et al.｜2024｜<em>Field Robotics</em> 4:313–359｜DOI <code>10.55417/fr.2024010</code>｜arXiv:2302.13230（已抓 abs 页核对；arXiv 页标题全称为 Heterogeneous robot teams with unified perception and autonomy，2023-02 提交）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d46"><div class="render" data-for="d46"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;起点：决赛场地&lt;br/&gt;烟雾 窄门 湿滑 动态障碍&quot;]) --&gt; B[&quot;统一感知与自主栈&lt;br/&gt;异构平台共享同一套接口&quot;]
+    B --&gt; C[&quot;导航层常规局部规划&quot;]
+    C --&gt; D{&quot;前方几何判定&quot;}
+    D --&gt;|&quot;净宽小于阈值&quot;| E[&quot;Gaps Planner&lt;br/&gt;为窄通道与门洞生成穿越路径&quot;]
+    D --&gt;|&quot;地面倾斜或松软&quot;| F[&quot;Orientation Correction&lt;br/&gt;修姿态保住支撑多边形&quot;]
+    D --&gt;|&quot;动态障碍封堵路径&quot;| G[&quot;重规划 换侧 或限时等待&quot;]
+    D --&gt;|&quot;无障碍&quot;| H[&quot;按标称速度推进&quot;]
+    E --&gt; I{&quot;找到可行穿越？&quot;}
+    I --&gt;|&quot;找到&quot;| J[&quot;低速穿过窄缝&quot;]
+    I --&gt;|&quot;没有&quot;| K[&quot;判为不可通行 换支路&quot;]
+    F --&gt; L{&quot;姿态修正量在界内？&quot;}
+    L --&gt;|&quot;在界内&quot;| J
+    L --&gt;|&quot;超界&quot;| M[&quot;停车 后退 重新选路&quot;]
+    J --&gt; N[&quot;返回统一自主栈继续探索&quot;]
+    K --&gt; N
+    M --&gt; N
+    G --&gt; N
+    H --&gt; N
+    N --&gt; O[&quot;检测目标并上报位置计分&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 两个防失败行为挂在导航层同一个分叉上，不是两个独立模块：先判几何（净宽 / 倾斜 / 是否被动态障碍封堵），再决定调谁。
+2. <strong>Gaps Planner</strong> 的语义是「窄缝是一类可解问题」，不是「窄缝等于障碍」：它为窄通道与门洞专门生成穿越路径，但也带自己的失败出口——找不到就判不可通行、换支路。
+3. <strong>Orientation Correction</strong> 的语义是「姿态是可修的」：倾斜或松软地形上先修机身姿态、保住支撑多边形，而不是直接放弃这段；修正量超界才停车后退重选。
+4. 四条分支最后都收敛回统一自主栈——说明防失败行为的返回值是「新状态」，不是「终止」，这一点和我们现有终态设计正相反。
+5. 摘要原文列出的赛题难点包括「会移动封堵路径的动态障碍」，对应处理是重规划 / 换侧 / 限时等待，不是硬闯。
+6. 整篇前提是「统一感知与自主」：异构平台共享接口，所以换平台与换行为是同一层决策。</p>
+<p><strong>赛场映射</strong>：圆管 1.0 m 与方涵 1.2×0.6 m 对应 Gaps Planner，但 0.6 m 限高是净高问题，Gaps Planner 管净宽，限高还得靠蹲伏与低姿态；S 弯加窄门洞对应穿越路径生成；5 处乱石、0.45 m 坡道、湿滑对应 Orientation Correction 的姿态修正；动态障碍封堵对应重规划与限时等待，40 分钟时限下必须给等待设上限；弱光扬尘属于上游感知退化，本篇不作为重点。</p>
+<p><strong>边界</strong>：异构多机加「只允许一名人类监督员」的设定与我们单机、无实时操作员不同，共享控制部分不能照搬；Gaps Planner 与 Orientation Correction 在论文层面没给出可直接复现的判据阈值，我们只能借「存在这两个行为」的结构，阈值须自行标定并记 <code>sim_assumed</code>；我们没有空中平台，「换平台」只能退化为「换支路」。</p>
+<h3 id="7.6-Robotic-Urban-Search-and-Rescue-A-Survey-from-the-Control-Perspective">7.6 Robotic Urban Search and Rescue: A Survey from the Control Perspective</h3>
+<p><strong>一句话</strong>：把 USAR 拆成四层控制问题的综述——低层地形控制、中层 3D 建图、高层半自主任务分配、系统层多机协调；它不给方法选型，但给出「我们的赛题落在哪一格」的坐标系。</p>
+<p><strong>出处</strong>：[已核实] Y. Liu, G. Nejat｜2013｜<em>JIRS</em> 72(2):147–165｜DOI <code>10.1007/s10846-013-9822-x</code></p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d47"><div class="render" data-for="d47"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;USAR 任务&lt;br/&gt;在废墟中搜索并定位受害者&quot;]) --&gt; B[&quot;低层 地形与运动控制&lt;br/&gt;不平地面 楼梯 碎石 窄缝&quot;]
+    A --&gt; C[&quot;中层 USAR 三维建图与定位&lt;br/&gt;SLAM 与多传感器融合&quot;]
+    A --&gt; D[&quot;高层 半自主人机任务分配&lt;br/&gt;共享控制与操作员监督&quot;]
+    A --&gt; E[&quot;系统层 多机器人高层控制&lt;br/&gt;任务分解 通信 协调&quot;]
+    B --&gt; F[&quot;我们的落点 主战场&lt;br/&gt;12×10 m 废墟 乱石 坡道 圆管 方涵&quot;]
+    C --&gt; G[&quot;我们的落点 部分覆盖&lt;br/&gt;在线栅格建图 前沿探索 弱光扬尘&quot;]
+    D --&gt; H[&quot;我们的落点 被压缩&lt;br/&gt;无实时操作员 监督前置到赛前&quot;]
+    E --&gt; I[&quot;我们明确不做&lt;br/&gt;单机运行 这一格空缺&quot;]
+    F --&gt; J[&quot;失效 打滑 卡死 侧翻&quot;]
+    G --&gt; K[&quot;失效 定位漂移 地图失真&quot;]
+    H --&gt; L[&quot;失效 无人在环 异常无人裁决&quot;]
+    J --&gt; M[&quot;必须自带受阻恢复与放弃判据&quot;]
+    K --&gt; M
+    L --&gt; N[&quot;由任务状态机与 40 分钟时限兜底&quot;]
+    I --&gt; O[&quot;标为已知边界 不写进报告书能力项&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. 四层是<strong>问题分解</strong>不是实现分层：同一台机器人在四层上都有职责，任何一层缺失，在赛场上都统一表现为「整机不行」。
+2. 低层问「这一步踩得稳不稳」，中层问「我在哪、哪里还没看过」，高层问「人给什么、机器自主到什么程度」，系统层问「多台怎么分工」——四个问句互不替代。
+3. 我们的落点被压在第一、二层，这是赛题决定的：12×10 m、单机、40 分钟、无实时操作员。
+4. 半自主那一格我们只保留「赛前设定、赛中不干预」，等于把共享控制压缩成任务状态机——这叫覆盖，不叫实现，写报告时要区分。
+5. 多机那一格我们明确不做；标成已知边界比含糊地说「可扩展」更诚实，也更符合诚信材料的要求。
+6. 每层都挂了一个失效模式，最后两格收敛到同一句结论：「必须自带受阻恢复」，正是我们当前 <code>start_blocked</code> 跳终态所缺的东西。</p>
+<p><strong>赛场映射</strong>：12×10 m 废墟、5 处 4–12 cm 乱石、0.45 m 坡道落在第一格主战场；圆管 / 方涵 / S 弯落在第一格与第二格交界，既要过得去也要知道哪里没看过；弱光扬尘是第二格的输入退化；40 分钟与到点停车是第三格被压缩后的产物（状态机 + 时限）；死胡同加位姿贴墙是典型的第一格失效，需要恢复语义而非终态。</p>
+<p><strong>边界</strong>：2013 年综述，早于深度强化学习与 SubT 时代，只给问题框架、不给方法选型依据；四层分解里没有独立的「通信」层（默认多机通信可用），而我们的废墟有断联风险，这一格得靠 7.2 与 7.3 补；综述不提供任何量化阈值，不能当参数来源。</p>
+<hr />
+<h2 id="8.-20242026-前沿与国内可直连资料哪些是趋势哪些现在能用">8. 2024–2026 前沿与国内可直连资料：哪些是趋势，哪些现在能用</h2>
+<blockquote>
+<p>一句话导读：这一组的作用不是「技术选型」，而是①判断趋势（VLA / 导航基础模型 / 仿真基座）②给研制报告书提供<strong>国内可直连</strong>的引用来源。凡是 venue 或编号存疑的，只能当线索，不进正式参考文献。</p>
+</blockquote>
+<h3 id="8.1-NaVILA-Legged-Robot-Vision-Language-Action-Model-for-Navigation">8.1 NaVILA: Legged Robot Vision-Language-Action Model for Navigation</h3>
+<p><strong>一句话</strong>：不把语言指令一步翻译到 12 个关节，而是让 VLA 只输出「前进 75 cm」这类<strong>带空间量的中层语言动作</strong>，再交给视觉 RL locomotion 策略执行——这就是「高层选路 / 低层走路」两层解耦的文献依据。
+<strong>出处</strong>：[已核实] A.-C. Cheng, Y. Ji, Z. Yang, Z. Gongye, X. Zou, J. Kautz, E. Bıyık, H. Yin, S. Liu, X. Wang（UC San Diego / USC / NVIDIA）｜2024-12-05 v1 / 2025-02-17 v2｜项目页标 RSS 2025（arXiv Comments 字段只写项目页，未写会议）｜<code>arXiv:2412.04453</code>｜项目页 <code>https://navila-bot.github.io/</code></p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d48"><div class="render" data-for="d48"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;自然语言指令 + 头部 RGB 相机&quot;]) --&gt; B[&quot;VLM 高层：微调为 VLA，输出中层语言动作&quot;]
+    B --&gt; C[&quot;解析为离散原语：前进 75 cm、左转 30 度&quot;]
+    C --&gt; D[&quot;视觉 locomotion RL 策略：深度障碍感知 + 本体历史&quot;]
+    D --&gt; E[&quot;12 维关节目标 → PD 控制器 → 力矩&quot;]
+    E --&gt; F([&quot;到达 / 任务继续&quot;])
+    F --&gt;|&quot;未到达，取新一帧观测&quot;| B
+    B --&gt; G{&quot;中层动作是否可执行？&quot;}
+    G --&gt;|&quot;否：前方高于台阶极限或被废墟封死&quot;| H[&quot;原语被低层策略静默放大或撞停&quot;]
+    H --&gt; I[&quot;失败：无显式受阻回声，高层不知道低层做不到&quot;]
+    D --&gt; J[&quot;VLN-CE-Isaac 基准：IsaacLab 里接真实低层控制做评测&quot;]
+    J --&gt; K([&quot;Habitat 的 R2R-CE / RxR-CE 上可比&quot;])</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. <code>B</code> 是整篇的核心：VLA 的输出空间是<strong>语言</strong>而非动作，所以能力边界被明确切成两段——VLA 只负责「去哪、走多远」，不负责抬腿。
+2. <code>C → D</code> 是接口契约。项目页把代码拆成两个仓库（VLA 侧与 low-level 侧），说明这层接口在工程上真的是可分离的，不是论文里的写法。
+3. <code>G/H/I</code> 是我们最该抄的一条：中层语言原语<strong>没有回传执行失败的能力</strong>。高层说「前进 75 cm」，低层被限高逼停时，失败信息不会自动回到高层——死胡同与隧道口必须在高层显式判。
+4. <code>J</code> 说明它的评测不是只用竞技场式成功率，而是在 IsaacLab 里接真实低层控制（VLN-CE-Isaac），比纯 Habitat 的「理想控制器」更接近我们要面对的问题。</p>
+<p><strong>赛场映射</strong>：直接支撑我们「高层选路 + 低层走路」的分工写进研制报告书。低层策略在训练期直接用 LiDAR 与环境交互（项目页明确「未使用 teacher-student 蒸馏」），这条可以为我们「不做特权蒸馏、直接以感知做 RL」的取舍提供依据。
+<strong>边界</strong>：实机平台是 Unitree Go2、G1 与 Booster T1，本项目是 Go2，可直接类比；但论文的场景是室内外<strong>开阔</strong> VLN，不是限高 0.6 m 的方涵，也没有「过窄应放弃」的判据。<code>G/H/I</code> 那条缺口是我们要自己补的，不能算它解决了。</p>
+<h3 id="8.2-MuJoCo-Playground">8.2 MuJoCo Playground</h3>
+<p><strong>一句话</strong>：一套「MJX / MuJoCo Warp 并行训练 → 策略导出 → 实机零样本迁移」的全开源基座，是这批前沿里<strong>唯一与我们 MuJoCo 3.17 生态同源</strong>的工程出口。
+<strong>出处</strong>：[已核实] K. Zakka, B. Tabanpour, Q. Liao, M. Haiderbhai, S. Holt, J. Y. Luo, A. Allshire, E. Frey, K. Sreenath, L. A. Kahrs, C. Sferrazza, Y. Tassa, P. Abbeel（13 人）｜2025-02-12 v1（无 v2）｜arXiv Comments 无会议字段，官方 README 印证属 <strong>RSS 2025</strong>（「RSS 2025 benchmark suite」），奖项等级「Outstanding Demo Paper」本轮未找到可核实页面｜<code>arXiv:2502.08844</code>｜<code>https://github.com/google-deepmind/mujoco_playground</code>（<strong>Apache-2.0</strong>，README 已核实）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d49"><div class="render" data-for="d49"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;MJCF 模型 + 任务定义：locomotion / manipulation&quot;]) --&gt; B[&quot;物理后端二选一：MJX（JAX）或 MuJoCo Warp&quot;]
+    B --&gt; C[&quot;GPU 上批量并行环境（数千 env 同时跑）&quot;]
+    C --&gt; D[&quot;PPO 训练：JAX PPO 或 RSL-RL&quot;]
+    D --&gt; E{&quot;奖励收敛且域随机化覆盖足够？&quot;}
+    E --&gt;|&quot;否：调奖励 / 扩地形与随机化&quot;| C
+    E --&gt;|&quot;是&quot;| F[&quot;策略 checkpoint（JAX 或 PyTorch）&quot;]
+    F --&gt; G[&quot;ONNX 导出：源文件称有参考流程，本轮两份 README 均未见明确说明&quot;]
+    G --&gt; H([&quot;ONNX Runtime CPU 推理：与竞赛契约同构&quot;])
+    F --&gt; I[&quot;实机零样本部署：state 与 pixel 输入都声称可迁移&quot;]
+    I --&gt; J{&quot;实机与仿真的接触 / 执行器误差&quot;}
+    J --&gt;|&quot;超预期&quot;| K[&quot;零样本失效，需 sysid 或再微调&quot;]
+    C --&gt; L[&quot;平台限制：论文版 rss2025 要求 CUDA 12 jax，新版 main 的 CPU 路径只列 macOS / Linux&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. <code>B → C</code> 是它区别于 legged_gym 的关键：物理引擎本身并行化（MJX / Warp），不依赖 Isaac Gym 那套 Python 3.6–3.8 + CUDA 的老栈。
+2. <code>F → G → H</code> 是我们唯一关心的链路。<strong>但必须诚实</strong>：论文与仓库 README 都只写到「训练 + 部署」，ONNX 导出在本轮抓到的两份 README 里都没有明确步骤，这条要按「未核实」处理。
+3. <code>L</code> 是现实约束：论文对应的 <code>rss2025/</code> 那版要求 CUDA 12 的 jax，README 明写 <code>pip install "jax[cuda12]"</code>；新版 main 已重写为 PyTorch + reaf-sim，虽给了 CPU 路径（<code>make sync-cpu</code>），但平台只列 macOS / Linux。<strong>Windows + CPU-only + MuJoCo 3.17 的组合，官方未声明支持。</strong>
+4. 四足环境确实有（README 明确 quadruped 与 bipedal locomotion），但 Go1 / Go2 / Spot 的逐个机型清单与 Joystick / 跌倒恢复任务名，本轮未在 README 正文中逐项核实。</p>
+<p><strong>赛场映射</strong>：与我们 MuJoCo 3.17 + ORT CPU 的距离是「同引擎、不同栈」——MJCF 资产与建模习惯可以复用，训练栈（JAX/CUDA）不能直接搬。<strong>结论：读它的环境定义与奖励设计，不指望在本机跑通训练。</strong>
+<strong>边界</strong>：Apache-2.0 友好，但训练侧 GPU 依赖是硬门槛；本机 CPU-only、Windows 支持未核实。仓库已于 2026 重写（main 为 PyTorch/reaf-sim，论文版退到 <code>rss2025/</code>），引用时务必写清版本，否则半年后别人复现不了。</p>
+<h3 id="8.3-NavDP-Learning-Sim-to-Real-Navigation-Diffusion-Policy">8.3 NavDP: Learning Sim-to-Real Navigation Diffusion Policy</h3>
+<p><strong>一句话</strong>：把「生成候选轨迹」与「给候选轨迹打分」塞进<strong>同一个 Transformer</strong>，用仿真里的特权信息监督 critic，纯仿真训练即可零样本迁移到真机。
+<strong>出处</strong>：[已核实] W. Cai, J. Peng, Y. Yang, Y. Zhang, M. Wei, H. Wang, Y. Chen, T. Wang, J. Pang（9 人）｜2025-05-13 v1 / 2025-12-24 v3｜会议信息未在 arXiv Comments 出现｜<code>arXiv:2505.08712</code>｜完整标题为 <em>NavDP: Learning Sim-to-Real Navigation Diffusion Policy with Privileged Information Guidance</em>｜项目页 <code>https://wzcai99.github.io/navigation-diffusion-policy.github.io</code></p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d50"><div class="render" data-for="d50"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;仅局部 RGB-D 观测（无地图、无全局位姿）&quot;]) --&gt; B[&quot;统一 Transformer 主干&quot;]
+    B --&gt; C[&quot;轨迹生成头：一次采样多条候选局部轨迹&quot;]
+    B --&gt; D[&quot;轨迹评价头：给每条候选预测 critic 值&quot;]
+    C --&gt; D
+    D --&gt; E[&quot;对比候选打分 → 取 critic 最高的一条&quot;]
+    E --&gt; F[&quot;输出局部路径点 / 速度指令&quot;]
+    F --&gt; G[&quot;底层控制器执行&quot;]
+    P([&quot;仿真特权信息：真值位姿、障碍距离、碰撞标签&quot;]) --&gt;|&quot;只用于训练期监督&quot;| D
+    T([&quot;仿真数据管线：超 100 万米航程、3000 个场景&quot;]) --&gt;|&quot;训练数据&quot;| B
+    E --&gt; H{&quot;局部极小：长走廊 / 死胡同 / 前方全堵&quot;}
+    H --&gt;|&quot;是&quot;| I[&quot;无全局层可回退，只能原地抖动或贴墙&quot;]
+    I --&gt; J[&quot;失败模式：本文未覆盖受阻恢复语义&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. <code>C → D</code> 是「生成 + 判别」合体，也是它能甩开级联式 modular 框架的原因：不需要人工调 costmap 权重，也不需要大量真机示范。
+2. <code>P</code> 是超关键的一行：<strong>特权信息只用于训练</strong>（给 critic 当标签），部署时只用 RGB-D。这条正是我们「仿真里可以作弊、部署时必须干净」的纪律。
+3. <code>T</code> 是数据规模：摘要写 <strong>over one million meters / 3,000 scenes</strong>。源文件里的「363.2 km / 1244 场景」与摘要不一致，<strong>以摘要为准</strong>，源文件数字按未核实处理。
+4. <code>H/I/J</code> 是它的天花板：输入被限定为局部 RGB-D，天然没有全局拓扑，长走廊与死胡同属于它的盲区——和我们 <code>start_blocked</code> 的痛点撞在一起。</p>
+<p><strong>赛场映射</strong>：可作「如果不做全局规划、只做反应式避障」的性能上界参考；也提醒我们：纯局部策略的死胡同问题不是调参能解决的，必须有全局层或受阻恢复。
+<strong>边界</strong>：只在仿真里训练，摘要声称跨环境与跨本体零样本，但<strong>未逐项列出四足 / 轮式 / 人形的具体机型</strong>（源文件那三位一体的说法属二手概括）。它是趋势标尺，不是我们 15 天内能复现的方案。</p>
+<h3 id="8.4-NavFoM-Embodied-Navigation-Foundation-Model">8.4 NavFoM: Embodied Navigation Foundation Model</h3>
+<p><strong>一句话</strong>：把四足、无人机、轮式、车辆的数据混在一起训一个<strong>跨本体跨任务</strong>的导航基础模型，用 identifier token 抹平相机配置与时间跨度的差异。
+<strong>出处</strong>：[已核实] J. Zhang, A. Li, Y. Qi, M. Li, J. Liu, S. Wang, H. Liu, G. Zhou, Y. Wu, X. Li, Y. Fan, W. Li, Z. Chen, F. Gao, Q. Wu, Z. Zhang, H. Wang（17 人）｜2025-09-15 v1 / 2025-09-16 v2｜arXiv Comments 只有项目页，<strong>会议录用信息未核实</strong>｜<code>arXiv:2509.12129</code>｜项目页 <code>https://pku-epic.github.io/NavFoM-Web/</code></p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d51"><div class="render" data-for="d51"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;异构本体输入：四足 / 无人机 / 轮式 / 车辆&quot;]) --&gt; B[&quot;统一 token 化：多相机图像 patch + 语言指令&quot;]
+    B --&gt; C[&quot;identifier token：编码相机视角与本体的对应关系&quot;]
+    C --&gt; D[&quot;identifier token：编码任务的时间跨度与导航视野&quot;]
+    D --&gt; E[&quot;token 预算受限下的动态采样策略&quot;]
+    E --&gt; F[&quot;统一导航 Transformer&quot;]
+    F --&gt; G[&quot;输出：局部航点 / 动作&quot;]
+    G --&gt; H([&quot;执行并进入下一观测&quot;])
+    T([&quot;800 万条导航样本：VLN、找物、目标跟踪、自动驾驶&quot;]) --&gt;|&quot;混合训练&quot;| F
+    G --&gt; I{&quot;遇训练分布外的几何约束&quot;}
+    I --&gt;|&quot;是：限高 0.6 m 的方涵、圆管内径 1.0 m&quot;| J[&quot;训练集里没有对应本体与场景，泛化未验证&quot;]
+    J --&gt; K[&quot;失败风险：输出航点物理不可达，模型自己不知道&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. <code>C/D</code> 是它唯一真正的技术贡献点：不同机器人的相机数量、安装位置、任务时长都不一样，用 token 把这两类差异显式标出来，模型才可能共用一套权重。
+2. <code>E</code> 是工程约束的诚实呈现：真实部署有 token 上限，所以对观测 token 做动态采样——这说明它已经在为「算力受限」做妥协。
+3. <code>T</code> 是它的体量：800 万样本，覆盖四类任务。<strong>这是趋势判断的证据，不是可复现的配方。</strong>
+4. <code>I/J/K</code> 是我们必须写进报告的边界：跨本体泛化不等于跨<strong>几何约束</strong>泛化，限高与窄通道它没有对应训练分布。</p>
+<p><strong>赛场映射</strong>：写「导航基础模型是 2025 年的明确趋势」时用它；同时用它反证——<strong>趋势不等于可用</strong>，我们不可能在赛前训练或微调这类模型。
+<strong>边界</strong>：会议录用信息未核实，只有 arXiv 预印本。绝对不要把「800 万样本 / 跨本体」当成我们方案的可行性依据。</p>
+<h3 id="8.5-Robot-Squid-GameSQUID">8.5 Robot Squid Game（SQUID）</h3>
+<p><strong>一句话</strong>：程序化生成四类隧道截面（Triangle / Circle / Half-Circle / Gap），每类训一个特权专家，再用 DAgger 把四个专家蒸馏成一个只吃<strong>深度图 + 本体历史</strong>的学生策略——圆管 / 方涵隧道最精准的论文级对应之一。
+<strong>出处</strong>：[已核实] A. H. Raj, D. Das, X. Xiao（George Mason University 计算机系）｜2026-05-13 v1｜<strong>venue 未核实</strong>（arXiv Comments 无会议字段）｜<code>arXiv:2605.13665</code>｜<strong>代码 / 项目页未核实</strong>（抓取到的摘要页与 HTML 全文均未给仓库链接）｜SQUID = Skill-fused Quadrupedal locomotion Using Imitation and Distillation</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d52"><div class="render" data-for="d52"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;地形生成器：程序化生成四类隧道截面&quot;]) --&gt; B[&quot;Triangle 等边三角 / Circle 整圆 / Half-Circle 半圆 / Gap 中央空档加侧台&quot;]
+    B --&gt; C[&quot;难度参数连续缩放：边长、半径、间隙宽度、侧台角、坡度过渡&quot;]
+    C --&gt; D[&quot;四个特权专家策略，各专精一类隧道&quot;]
+    D --&gt; E[&quot;专家观测：本体 + 108 维地形高度网格 + 特权真值&quot;]
+    E --&gt; F[&quot;12 维关节目标 → PD 控制器 → 力矩&quot;]
+    C --&gt; G[&quot;学生策略：深度图 + 本体历史（部署时的真实输入）&quot;]
+    D --&gt;|&quot;隧道类别标签 c_t&quot;| H[&quot;DAgger：学生自行 rollout，按 c_t 查询匹配专家要纠正&quot;]
+    G --&gt; H
+    H --&gt; I[&quot;类别均衡回放缓冲，防止偏向单一截面&quot;]
+    I --&gt;|&quot;迭代采集与更新&quot;| G
+    G --&gt; J([&quot;实机部署：仅深度 + 本体，无特权信息&quot;])
+    B --&gt; K{&quot;四类截面是否覆盖真实废墟&quot;}
+    K --&gt;|&quot;否：倾斜顶板、杂物、不规则坍塌&quot;| L[&quot;sim-to-real 仍有 gap，摘要自承是几何原语&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. <code>A → C</code> 是它的第一贡献：<strong>截面可参数化</strong>。Triangle 靠边长缩短加随机旋转、Circle 靠半径递减、Half-Circle 靠 Z 法向随机翻转、Gap 靠间隙变宽与侧台角增大。这正好覆盖我们圆管（内径 1.0 m）与方涵（1.2×0.6 m）的两个自由度：<strong>净宽</strong>与<strong>限高</strong>。
+2. <code>D → E</code> 是特权专家的作弊点：108 维地形高度网格是仿真真值，真机上根本拿不到。所以才需要 <code>H</code> 的蒸馏。
+3. <code>H → I</code> 是工程上最值得抄的细节：<strong>按隧道类别查询匹配专家</strong> + <strong>类别均衡采样</strong>。如果只用一个专家或不做类别均衡，多个几何的技能会互相覆盖——论文的消融项里就有「单教师 vs 多教师」。
+4. <code>J</code> 是最终形态：深度 + 本体历史，与我们 Go2 的传感配置形态一致。
+5. <code>K/L</code> 是它自己承认的边界：四类截面只是<strong>几何原语</strong>，用来表征尖角、净空变化、基底倾斜、旋转不对称四类因素，不代表真实废墟的全部复杂度。</p>
+<p><strong>赛场映射</strong>：<strong>这是本组最重要的一篇</strong>。它给出了一条我们可以照抄的方法论链：先程序化造隧道 → 每类训专家 → 蒸馏成单策略。即使不复现，也足以支撑报告书里「隧道类地形应做课程化程序生成而非固定地图」的论证。
+<strong>边界（必须写进报告）</strong>：<strong>venue 未核实、代码与项目页未核实</strong>，只能当线索，不进正式参考文献。此外：①实机平台型号在抓取到的章节中未确认；②摘要未逐条给出成功率与碰撞率数字，不要凭印象填；③它解决的是「能过去」，没有解决「该不该过去」——过窄判断仍需我们自己的规则层。</p>
+<h3 id="8.6-Parkour-in-the-Wild">8.6 Parkour in the Wild</h3>
+<p><strong>一句话</strong>：多专家蒸馏出统一 foundation policy，再用 RL 在更广地形集（含真实 3D 扫描）上微调，并允许<strong>反复微调</strong>扩展到新地形，深度图作外感知，ANYmal D 实机验证。
+<strong>出处</strong>：[已核实] N. Rudin, J. He, J. Aurand, M. Hutter｜2025-05-16 v1｜<strong>会议信息未核实</strong>（arXiv Comments 无字段）｜<code>arXiv:2505.11164</code>｜完整标题为 <em>Parkour in the Wild: Learning a General and Extensible Agile Locomotion Policy Using Multi-expert Distillation and RL Fine-tuning</em></p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d53"><div class="render" data-for="d53"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;地形课程：按地形类型分别训练专家&quot;]) --&gt; B[&quot;多个地形专用专家策略&quot;]
+    B --&gt; C[&quot;DAgger 蒸馏：多专家 → 单一 foundation policy&quot;]
+    C --&gt; D[&quot;RL 微调：更广地形集，含真实 3D 扫描数据&quot;]
+    D --&gt; E{&quot;是否还有新地形要覆盖&quot;}
+    E --&gt;|&quot;有：采集该地形 3D 扫描&quot;| F[&quot;重复微调，扩展同一策略&quot;]
+    F --&gt; D
+    E --&gt;|&quot;否&quot;| G[&quot;部署策略：深度图外感知 + 本体&quot;]
+    G --&gt; H([&quot;ANYmal D 实机：敏捷且鲁棒地通过复杂环境&quot;])
+    D --&gt; I[&quot;失效条件：新地形无扫描数据可采&quot;]
+    I --&gt; J[&quot;退回蒸馏前能力，分布外地形性能下降&quot;]
+    A --&gt; K{&quot;专家数量与覆盖&quot;}
+    K --&gt;|&quot;地形类别缺失&quot;| L[&quot;蒸馏后策略在该类地形上无对应技能&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. <code>A → C</code> 与 SQUID 同构（多专家 + DAgger），差别在它蒸馏的是<strong>跨地形技能</strong>而非跨隧道截面，且多了一步 <code>D</code> 的 RL 微调。
+2. <code>E → F</code> 是标题里 "Extensible" 的实义：<strong>框架可扩展</strong>，不是策略天生全能。新地形靠「采扫描 + 再微调」，这条对我们很重要——它说明「一次训练通吃」是伪需求。
+3. <code>I/J</code> 是它的真实成本：微调依赖该地形的 3D 扫描。<strong>没有扫描就没有扩展</strong>，这是野外部署的硬约束。
+4. <code>K/L</code> 提醒专家覆盖度决定蒸馏上限：地形类别缺失时，蒸馏不可能无中生有。</p>
+<p><strong>赛场映射</strong>：摘要开头就点名 search and rescue 与 space exploration，与我们赛题同语境。可用来论证「先分技能再合并」的路线，以及「预留再微调接口」的工程建议。
+<strong>边界</strong>：会议信息未核实；算力与训练时长未在摘要中给出，属于典型 ETH 系重资产工作，<strong>不可复现</strong>。另外它的深度图输入与我们 Go2 的头部相机形态接近，但本体是 ANYmal D（更大更重），动力学差异不能忽略。</p>
+<h3 id="8.7-面向不同粗糙程度地面的四足机器人自适应控制方法">8.7 《面向不同粗糙程度地面的四足机器人自适应控制方法》</h3>
+<p><strong>一句话</strong>：模型与学习融合的分层控制：上层决策、下层执行，LSTM 在线估计地面特性并调质心高度，奖励里加<strong>单次落足点偏差惩罚</strong>，在 Isaac Gym 里把 μ=0.05 的极低摩擦也跑住了。
+<strong>出处</strong>：[已核实] 张楠杰、陈玉全、季茂沁、孙运康、王冰（河海大学人工智能与自动化学院，常州）｜《自动化学报》2025, 51(7): 1585–1598｜DOI <code>10.16383/j.aas.c240738</code>｜<strong>国内直连全文开放</strong>：<code>https://www.aas.net.cn/article/doi/10.16383/j.aas.c240738</code>（收稿 2024-11-14，录用 2025-03-05，网络出版 2025-04-30）</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d54"><div class="render" data-for="d54"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;上层决策层：速度、步态、质心高度、抬腿高度指令&quot;]) --&gt; B[&quot;相位变量映射为期望接触状态&quot;]
+    B --&gt; C[&quot;接触状态用双曲正切连续化，替代二值离散&quot;]
+    C --&gt; D[&quot;执行层：PPO 策略输出 12 维关节目标&quot;]
+    A --&gt; E[&quot;LSTM 地面特性实时估计网络：输入本体历史&quot;]
+    E --&gt; F[&quot;质心位置自适应调整：高度与俯仰&quot;]
+    F --&gt; D
+    D --&gt; G[&quot;PD → 关节力矩&quot;]
+    D --&gt; H[&quot;奖励项之单次落足点偏差惩罚：评估连续滑动&quot;]
+    H --&gt;|&quot;足端滑动被抑制&quot;| D
+    G --&gt; I[&quot;Isaac Gym：μ 从 1.0 到 0.05，速度 1.5 / 2.0 m/s&quot;]
+    I --&gt; J{&quot;足端滑动距离是否仍超阈&quot;}
+    J --&gt;|&quot;是&quot;| E
+    J --&gt;|&quot;否&quot;| K([&quot;稳定高速通行&quot;])
+    I --&gt; L[&quot;局限：仅仿真验证，无实机；真实地面材质与接触模型差异未覆盖&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. <code>C</code> 是一个容易被忽略但很实用的点：把离散的 0/1 接触判断换成双曲正切连续描述，消掉相位切换瞬间的力矩冲击。表格里对比了二值离散与双曲正切在四种步态下的表现。
+2. <code>E → F</code> 是「自适应」的实体：LSTM 从本体历史估地面特性，然后<strong>只调质心位置</strong>（高度/俯仰），不动步态结构。这种「小动作、低风险」的自适应很适合我们。
+3. <code>H</code> 是奖励设计的巧思：不直接罚脚滑速度，而是罚<strong>单次落足点与期望落足点的偏差</strong>，用一次性事件评估连续滑动状态。
+4. <code>I/J</code> 给出可引用的数字：μ=0.05 时质心高度调整 0.0610 m，维持 1.4284 m/s，足端滑动 0.308 ± 0.0050 cm（表 6 中该行滑动写作 0.308 ± 0.015 cm，引用时以摘要为准并注明来源）。
+5. <code>L</code> 是必须写清的边界：<strong>Isaac Gym 仿真，无实机</strong>。</p>
+<p><strong>赛场映射</strong>：三项直接可用：①摩擦/地面特性随机化的参数依据（<code>randomization_sampled.provenance</code> 的 <code>vendor_reference</code> 可以落到这篇）；②「极低摩擦 + 需要保持速度」这一工况的量化参考；③落足点偏差惩罚这一奖励项可以直接翻译成我们 <code>randomization.py</code> / 奖励项里的候选。
+<strong>边界</strong>：只有仿真，没有实机；且是<strong>运动控制</strong>层论文，与导航避障无关。国内直连、全文开放、中文写作，是这一组里最适合作为报告书正式引用的两篇之一。</p>
+<h3 id="8.8-基于多模态信息融合的四足机器人避障方法">8.8 《基于多模态信息融合的四足机器人避障方法》</h3>
+<p><strong>一句话</strong>：把本体感知与外部传感做多模态融合，用 Transformer 层 + 注意力机制过滤传感信息，再做避障决策——这是我们能直接下载、直接引用的国内避障向工作。
+<strong>出处</strong>：吕友豪、贾袁骏、庄圆、董琦｜《工程科学学报》2024, 46(8): 1426–1433｜DOI <code>10.13374/j.issn2095-9389.2023.07.01.002</code>｜<strong>国内直连</strong>：<code>https://cje.ustb.edu.cn/article/doi/10.13374/j.issn2095-9389.2023.07.01.002</code>｜本轮仅核到 DOI 指向该刊同名文章页，<strong>摘要与正文因站内安全验证（反爬）未取到，实验数字与网络细节均未核实</strong></p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d55"><div class="render" data-for="d55"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;本体感知：关节角与角速度、IMU、足端接触&quot;]) --&gt; C[&quot;多模态特征编码&quot;]
+    B([&quot;外部传感：深度 / 视觉 / 测距观测&quot;]) --&gt; C
+    C --&gt; D[&quot;Transformer 层：跨模态自注意力融合&quot;]
+    D --&gt; E[&quot;注意力过滤：抑制噪声通道与冗余时序&quot;]
+    E --&gt; F[&quot;策略头：避障动作 / 速度指令&quot;]
+    F --&gt; G[&quot;四足底层执行&quot;]
+    S([&quot;仿真训练：不平坦地形 + 动态障碍&quot;]) --&gt;|&quot;训练工况&quot;| D
+    G --&gt; H{&quot;传感器退化：弱光、扬尘、反光&quot;}
+    H --&gt;|&quot;是&quot;| I[&quot;注意力权重失真，融合退化为不可信输入&quot;]
+    I --&gt; J[&quot;需降级：降速 / 退回本体盲走&quot;]
+    E --&gt; K{&quot;是否把 4–12 cm 凸起误判为障碍&quot;}
+    K --&gt;|&quot;是&quot;| L[&quot;过度保守，反复绕行或原地停&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. <code>A + B → C → D</code> 的骨架就是「多模态融合」：把本体状态与外部传感放在同一注意力空间里做联合表征，而不是事后加权平均。
+2. <code>E</code> 是它与普通融合的区别：<strong>注意力同时起过滤作用</strong>，能压低噪声传感通道的权重——这与我们弱光、扬尘的工况直接相关。
+3. <code>I/J</code> 是这套机制的反面：注意力靠数据分布学出来，传感器整体退化时权重本身也失真，所以必须配一条降级策略（对标 Miki 2022 的 graceful degradation）。
+4. <code>K/L</code> 是我们要提防的第二个失败模式：把 4–12 cm 的可跨越凸起当成障碍，导致过度保守。这正是 ViPlanner 那类语义可通行性工作要解决的问题。</p>
+<p><strong>赛场映射</strong>：可作为「多模态融合 + 注意力过滤」技术路线的国内引用；也支撑报告书里「传感融合要带降级策略」的论证。相比国外论文，它的优势是<strong>评委可直接访问、中文表述一致</strong>。
+<strong>边界（重要）</strong>：本轮<strong>未取到摘要</strong>，图是据综述源文件的描述重建的，不是据原文逐节核对。引用前必须自行下载原文核对：①是否真的是 Transformer 而非 CNN+注意力；②外部传感具体包含哪几路；③实验数字。在核对完成前，它只能算「国内可直连的线索」，不能当已核实文献写进参考文献表。</p>
+<h3 id="8.9-基于深度强化学习的四足机器人决策算法研究">8.9 《基于深度强化学习的四足机器人决策算法研究》</h3>
+<p><strong>一句话</strong>：面向救灾 / 消防救援导航，在 PyBullet 里搭<strong>无地图</strong>避障仿真，用 MPC 把每步动作简化为「旋转 + 直线」，以此打通 DRL 决策与四足底层控制。
+<strong>出处</strong>：张苏晨（华南理工大学，导师刘富春）｜硕士学位论文 2024｜<strong>正文全文获取途径未核实</strong>（源文件只给高校图书馆检索页，本轮未能定位可访问全文）｜学位论文非同行评议文献</p>
+<p><strong>流程图</strong></p>
+<figure class="diagram" id="d56"><div class="render" data-for="d56"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;任务设定：救灾 / 消防救援场景下的无地图避障导航&quot;]) --&gt; B[&quot;PyBullet 仿真环境：四种场景配置&quot;]
+    B --&gt; C[&quot;DRL 智能体：观测 → 高层离散动作&quot;]
+    C --&gt; D[&quot;动作简化：每步只允许旋转 + 直线&quot;]
+    D --&gt; E[&quot;MPC 跟踪该简化动作，输出底层控制&quot;]
+    E --&gt; F[&quot;四足在仿真中运动，返回新观测&quot;]
+    F --&gt; G[&quot;回报：到达目标 / 碰撞 / 超时&quot;]
+    G --&gt; C
+    C --&gt; H{&quot;训练是否收敛&quot;}
+    H --&gt;|&quot;否：换奖励函数重训&quot;| I[&quot;两种奖励函数对比&quot;]
+    I --&gt; C
+    H --&gt;|&quot;是&quot;| J([&quot;输出避障决策策略&quot;])
+    D --&gt; K[&quot;结构性局限：动作被压成旋转加直线，连续动态避障与限高通过未验证&quot;]</code></pre></details></figure>
+<p><strong>图里读什么</strong>
+1. <code>D</code> 是全文最关键的工程取舍：<strong>把连续控制问题降维成「转向 + 直行」的离散决策</strong>，这样 DRL 的动作空间才小到能训。这是典型的「先跑通再优化」，也正是我们需要警惕的地方。
+2. <code>E</code> 用 MPC 承接简化动作，等于把「决策」与「执行」切开，思路和我们「高层选路 + 低层走路」同源，但粗粒度差很多。
+3. <code>B</code> 的「无地图」是双刃剑：省掉 SLAM 与建图，但也失去全局一致性，无法处理死胡同返航与隧道口放弃判断。
+4. <code>H/I</code> 的两种奖励函数对比说明这类工作主要靠奖励工程推进，鲁棒性论证较弱。
+5. <code>K</code> 是它不能覆盖的部分：圆管内径 1.0 m、方涵限高 0.6 m 这类<strong>需要机身姿态调整</strong>的通过性，被「旋转 + 直线」的动作抽象直接排除了。</p>
+<p><strong>赛场映射</strong>：只能作背景与对标——说明「国内硕士层面已经在做无地图 DRL 避障」，可用于综述段落；对我们的方案没有可直接搬的模块。
+<strong>边界</strong>：<strong>正文获取途径未核实</strong>，作者、导师、年份、单位来自源文件，未独立核实；学位论文非同行评议，<strong>只做线索，不进正式参考文献</strong>。特别提醒：不要用它支撑任何「四足 + DRL + 废墟」的技术判断，它的动作抽象与我们的需求不在同一层面。</p>
+<hr />
+<h2 id="9.-横切对比把前八节压成三张决策图">9. 横切对比：把前八节压成三张决策图</h2>
+<blockquote>
+<p>一句话导读：前八节是「一篇一篇看懂」，这一节是「一堆论文怎么选」。三张图分别对应我们三个真实的决策点：<strong>地图怎么表征</strong>、<strong>局部规划器用谁</strong>、<strong>受阻了怎么恢复</strong>。第三张是我们当前卡点的直接产物。</p>
+</blockquote>
+<h3 id="9.1-决策图一地形怎么表征2.5D-高程图--3D-体素--直接深度端到端">9.1 决策图一：地形怎么表征（2.5D 高程图 / 3D 体素 / 直接深度端到端）</h3>
+<figure class="diagram" id="d57"><div class="render" data-for="d57"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;赛场事实：圆管内径 1.0 m&lt;br/&gt;方涵 1.2×0.6 m 限高 0.6 m&lt;br/&gt;乱石 4–12 cm · 坡道 0.45 m&quot;]) --&gt; B{&quot;通道存在顶壁/悬垂，&lt;br/&gt;即限高是瓶颈？&quot;}
+
+    B --&gt;|&quot;否，只有地面起伏&quot;| C[&quot;2.5D 高程图够用&quot;]
+    C --&gt; C1[&quot;Fankhauser 2018：加方差层&lt;br/&gt;表达位姿不确定度&quot;]
+    C --&gt; C2[&quot;Jenelten 2020：局部最优落脚点&quot;]
+    C --&gt; C3[&quot;Zhang 2024：稀疏踏石精确落足&quot;]
+    C1 --&gt; OUT1([&quot;输出：栅格高度 + 可通行代价&quot;])
+
+    B --&gt;|&quot;是，圆管/方涵/塌落楼板&quot;| D[&quot;2.5D 结构性盲区&lt;br/&gt;悬垂障碍在图上不产生数据点&quot;]
+    D --&gt; E[&quot;必须升级表征&quot;]
+    E --&gt; E1[&quot;3D 体素 + 6D 姿态指令&lt;br/&gt;Miki 2024 ICRA&quot;]
+    E --&gt; E2[&quot;可变形包围盒 + 多层高程图&lt;br/&gt;Buchanan 2019&quot;]
+    E --&gt; E3[&quot;机身位姿当规划变量&lt;br/&gt;Buchanan 2021 JFR&quot;]
+    E1 --&gt; OUT2([&quot;输出：空间净空 + 机身姿态序列&quot;])
+
+    B --&gt;|&quot;都判不准，且算力受限&quot;| F[&quot;放弃显式地图，直接深度 → 策略&quot;]
+    F --&gt; F1[&quot;Zhuang 2023：crawl + squeeze&lt;br/&gt;免高程图&quot;]
+    F --&gt; F2[&quot;Agarwal 2022：单前向深度相机&quot;]
+    F --&gt; F3[&quot;Ma 2025 PPL：点云监督本体估计&lt;br/&gt;低能见度&quot;]
+    F1 --&gt; OUT3([&quot;输出：关节动作，无可解释地图&quot;])
+
+    OUT1 --&gt; G{&quot;限高仍是硬约束？&quot;}
+    G --&gt;|&quot;是&quot;| H[&quot;在 2.5D 之上补一层&lt;br/&gt;顶部净空高度图（最小改动）&quot;]
+    G --&gt;|&quot;否&quot;| I([&quot;直接进规划层&quot;])
+    H --&gt; I</code></pre></details></figure>
+<p><strong>读这张图的结论</strong>：我们同时有「乱石 + 坡道」和「圆管 + 方涵限高」，属于<strong>必须双表征</strong>的场景。工程上最低成本的解法不是上 3D 体素，而是<strong>在现有 2.5D 高程图旁再挂一张「顶部净空图」</strong>——同一套 <code>plan_grid</code> 代码，多一个通道。这条建议的依据是 §2.3（限高盲区）+ §4.3（方差层可扩展）。</p>
+<h3 id="9.2-决策图二局部规划器用谁">9.2 决策图二：局部规划器用谁</h3>
+<figure class="diagram" id="d58"><div class="render" data-for="d58"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;局部避障需求&quot;]) --&gt; B{&quot;有可靠的全局路径初值？&quot;}
+    B --&gt;|&quot;有&quot;| C[&quot;TEB 谱系起步&quot;]
+    C --&gt; C1[&quot;Rösmann 2012：时间维 + 稀疏多目标&quot;]
+    C1 --&gt; C2{&quot;解不可行 / 卡在错误一侧？&quot;}
+    C2 --&gt;|&quot;否&quot;| OK1([&quot;输出控制量&quot;])
+    C2 --&gt;|&quot;是&quot;| C3[&quot;Rösmann 2017：多 homotopy 并行&lt;br/&gt;换侧不重算&quot;]
+    C2 --&gt;|&quot;是&quot;| C4[&quot;Kulathunga 2025 RTEB：&lt;br/&gt;hybrid A* 重初始化 + 双向朝向&quot;]
+    C3 --&gt; OK1
+    C4 --&gt; OK1
+
+    B --&gt;|&quot;没有 / 初值本身不可信&quot;| D[&quot;采样类或无初值方法&quot;]
+    D --&gt; D1[&quot;Williams 2018 MPPI：&lt;br/&gt;采样 N 条加权，天然多模态&quot;]
+    D --&gt; D2[&quot;iPlanner 2023：单帧深度直出路径&quot;]
+    D --&gt; D3[&quot;ViPlanner 2024：语义可通行性&lt;br/&gt;楼梯算可过、0.2 m 窄口算不可过&quot;]
+
+    C --&gt;|&quot;计算量超预算&quot;| E[&quot;降级链：TEB → DWA → 停车观察&quot;]
+    E --&gt; E1[&quot;Fox 1997 DWA：轻量基线&quot;]
+
+    OK1 --&gt; S[&quot;安全层：CBF-QP 过滤&quot;]
+    D1 --&gt; S
+    D2 --&gt; S
+    D3 --&gt; S
+    E1 --&gt; S
+    S --&gt; S1[&quot;Ames 2017：CLF 性能 + CBF 前向不变性&quot;]
+    S --&gt; S2[&quot;Dai 2024：点云 CBF，Go2 实机验证&quot;]
+    S1 --&gt; OUT([&quot;安全控制量&quot;])
+    S2 --&gt; OUT
+    S --&gt;|&quot;QP 无可行解&quot;| X([&quot;停车 + 上报&quot;])</code></pre></details></figure>
+<p><strong>读这张图的结论</strong>：<strong>不要一上来换 MPPI 或学习式规划</strong>。RTEB（§2.6）给出的路径是「留在 TEB 生态里，用另一个算法救它」，工程风险远低于换赛道。CBF-QP（§6.5/§6.9）是唯一可以<strong>独立于规划器</strong>加的一层，也是唯一有 Go2 实机验证的（§6.9）。</p>
+<h3 id="9.3-决策图三start_blocked-恢复流程文献版">9.3 决策图三：<code>start_blocked</code> 恢复流程（文献版）</h3>
+<blockquote>
+<p>这是我们当前卡点的直接产物。综述 §4 第一行写的症状是：<strong>前沿选到机器人身后 + 估计位姿贴墙 → <code>plan_grid</code> 起点落在 0.28 m 膨胀区 → 直接进入终态 <code>start_blocked</code>，整段任务终止</strong>。文献里这件事从来不是终态。</p>
+</blockquote>
+<figure class="diagram" id="d59"><div class="render" data-for="d59"></div><details class="srcbox"><summary>查看该图 Mermaid 源码</summary><pre class="src"><code>flowchart TD
+    A([&quot;规划请求：起点 s + 目标 g&quot;]) --&gt; B{&quot;s 落在膨胀区 /&lt;br/&gt;无可通行邻格？&quot;}
+    B --&gt;|&quot;否&quot;| C[&quot;正常规划：全局 A* / RRT*&quot;]
+    C --&gt; D[&quot;局部 TEB 优化&quot;]
+    D --&gt; E{&quot;解运动学可行？&quot;}
+    E --&gt;|&quot;是&quot;| F([&quot;下发轨迹&quot;])
+    E --&gt;|&quot;否&quot;| G[&quot;RTEB 式重初始化&lt;br/&gt;hybrid A* 生成可行轨迹 + 软约束平滑&quot;]
+
+    B --&gt;|&quot;是&quot;| H[&quot;记录事件：start_blocked&lt;br/&gt;写 recovery_log&quot;]
+    H --&gt; I{&quot;恢复次数 &lt; 上限 N？&quot;}
+    I --&gt;|&quot;否&quot;| X([&quot;终态：上报不可达&lt;br/&gt;交上层换目标或返航&quot;])
+    I --&gt;|&quot;是&quot;| J[&quot;脱困：沿最近自由格方向&lt;br/&gt;短距离移动，优先后退&quot;]
+    J --&gt; K[&quot;重采样位姿 → 重建初值&quot;]
+    K --&gt; L{&quot;初值现在合法？&quot;}
+    L --&gt;|&quot;否&quot;| I
+    L --&gt;|&quot;是&quot;| C
+
+    G --&gt; M{&quot;生成成功？&quot;}
+    M --&gt;|&quot;是&quot;| F
+    M --&gt;|&quot;否&quot;| N{&quot;换拓扑 / 换侧可行？&quot;}
+    N --&gt;|&quot;是&quot;| D
+    N --&gt;|&quot;否&quot;| X
+
+    R[(&quot;recovery_log：&lt;br/&gt;事件类型 / 次数 / 位姿 / 结果&quot;)] -.-&gt; H
+    R -.-&gt; X</code></pre></details></figure>
+<p><strong>这张图的四条边，正好是我们要写的四段代码语义（不是代码本身）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>边</th>
+<th>文献出处</th>
+<th>语义</th>
+<th>为什么必须有</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>B</code> 的「是」分支 → <code>H</code></td>
+<td>Kulathunga 2025 §2.6</td>
+<td>把 <code>start_blocked</code> 从<strong>终态</strong>改成<strong>可恢复事件</strong></td>
+<td>现在一次贴墙就整段任务终止，赛题「异常时停止或恢复」直接失分</td>
+</tr>
+<tr>
+<td><code>H → I</code></td>
+<td>我们自己的边界条件</td>
+<td>恢复次数上限 N + 事件记账</td>
+<td>防止无限重试把「真的不可达」伪装成「还在努力」，对应笔记第 120 行的要求</td>
+</tr>
+<tr>
+<td><code>J → K</code></td>
+<td>RTEB 双向朝向 §2.6</td>
+<td>脱困允许<strong>后退</strong></td>
+<td>起点在膨胀区时，唯一可行方向常常是身后</td>
+</tr>
+<tr>
+<td><code>M/N → X</code></td>
+<td>GBPlanner §7.4 + Buchanan 2021 §2.5</td>
+<td>局部无解 → 交给全局层重定位/返航</td>
+<td>死胡同不是「失败」，是「该换层了」</td>
+</tr>
+</tbody>
+</table>
+<p><strong>这条链的风险点</strong>：脱困动作会改变真实位姿，而我们是<strong>在仿真里改的</strong>（MuJoCo）。仿真里后退可能撞上没建模的墙体，实机上后退可能踩空。所以恢复动作必须有独立的碰撞检查，不能直接复用规划器的 costmap——这一点文献里 RTEB 没讲，是我们的空白（见 9.4）。</p>
+<h3 id="9.4-三张图之外文献给不了我们的三件事">9.4 三张图之外：文献给不了我们的三件事</h3>
+<ol>
+<li><strong>恢复动作本身的安全校验</strong>：RTEB 假设机器人可以「后退脱困」，没讨论脱困过程中撞到什么。我们的场地有 0.28 m 膨胀区紧贴墙体，后退 20 cm 就可能出界。</li>
+<li><strong>前端状态机与规划器的责任划分</strong>：CERBERUS（§7）用 GBPlanner 做层间仲裁，但它是有全局图探索的系统；我们只有 frontier 探索 + TEB，层间仲裁要自己定。</li>
+<li><strong>限高判定的数值口径</strong>：Buchanan 2021 给了「站高 80 cm vs 开口 60 cm」的范式（§2.5），但「余量留多少算安全」没有通用公式——这是要我们实机测的，属于 <code>measured_pending</code>。</li>
+</ol>
+<hr />
+<h2 id="10.-引用边界这份文档能拿去写报告书吗">10. 引用边界：这份文档能拿去写报告书吗</h2>
+<h3 id="10.1-可以但必须守住三条">10.1 可以，但必须守住三条</h3>
+<ol>
+<li><strong>只引 <code>[已核实]</code></strong>。本文件所有「出处」行的字段都照抄综述，综述标「未核实」的（如 TEB 2012 的 DOI、FAST-LIO 正式 DOI、SQUID 的 venue）在这里仍然是「未核实」，<strong>不要因为读起来顺畅就当成已确认</strong>。</li>
+<li><strong>图是解读，不是原文</strong>。流程图是把论文方法压成机制后的<strong>我们的理解</strong>，报告里引用时必须写「据 X 方法整理」而不是「X 论文第 N 节」——因为我们没有逐句核对原文的图号与公式。</li>
+<li><strong>二手解读单独标注</strong>。凡综述里标「第三方解读」的内容（例如 Medeiros 2025 的 probing 降速、Miki 2024 的 <code>collapsed building</code> 部署、DreamWaQ++ 的细节），本文件同样标注，进报告时要么标「据第三方解读」，要么不写。</li>
+</ol>
+<h3 id="10.2-与其他文档的分工不要混写">10.2 与其他文档的分工（不要混写）</h3>
+<table>
+<thead>
+<tr>
+<th>文档</th>
+<th>回答什么</th>
+<th>与本文件的关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>plan/四足机器人导航避障文献综述与选型建议.md</code></td>
+<td>引谁、为什么、可信度</td>
+<td>本文件的<strong>字段底座</strong>，冲突时以它为准</td>
+</tr>
+<tr>
+<td>本文件</td>
+<td>每篇内部怎么转、怎么选</td>
+<td>综述的<strong>机制层补充</strong></td>
+</tr>
+<tr>
+<td><code>plan/2026-11-12-autonomy-randomization.md</code></td>
+<td>当前工程卡点与实测</td>
+<td>§9.3 的问题来源</td>
+</tr>
+<tr>
+<td><code>总体技术方案.md</code></td>
+<td>系统设计</td>
+<td>选型落地的下游</td>
+</tr>
+</tbody>
+</table>
+<h3 id="10.3-明确不要做的事">10.3 明确不要做的事</h3>
+<ul>
+<li>不要把本文件里的<strong>流程图当成实现方案</strong>。图里画的 <code>hybrid A* 重初始化</code> 是语义占位，真要做要评估 15 天窗口。</li>
+<li>不要把「Lite2 实物线」的文献结论搬到<strong>线上 ONNX 评测</strong>上。线上提交物是 <code>go2-agent-v1</code> / <code>go2-detection-v1</code> 两个模型，环境是 MuJoCo 3.17.0 + Unitree Go2 + ONNX Runtime 1.31.1 CPU，与本文件讨论的导航栈共享的是<strong>任务语义</strong>，不是模型。</li>
+<li>不要补全本文与综述里保留的「未核实」。空白是刻意的。</li>
+</ul>
+<hr />
+<h2 id="11.-核对记录本次逐篇复核中发现的字段修正">11. 核对记录：本次逐篇复核中发现的字段修正</h2>
+<blockquote>
+<p>一句话导读：逐篇画图的过程等于把 54 条文献重读了一遍，确实翻出<strong>若干与综述不一致的地方</strong>。结论以这里为准，综述那几处需要回改。<strong>没有一条是「推测补全」</strong>——每一条都写了证据来源。</p>
+</blockquote>
+<h3 id="11.1-需要回改综述的-3-处">11.1 需要回改综述的 3 处</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>位置</th>
+<th>综述原文</th>
+<th>本次核对结果</th>
+<th>建议动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>§3.7 NavDP</td>
+<td>「363.2 km / 1244 场景」</td>
+<td>arXiv <strong>v3</strong>（2025-12-24）摘要原文为 <code>over one million meters of navigation experience across 3,000 scenes</code>；v1 提交于 2025-05-13，v2 2025-05-15，v3 2025-12-24</td>
+<td>按「超过 100 万米 / 3000 场景」引用；若坚持旧数字须注明来源版本，否则属数字不一致</td>
+</tr>
+<tr>
+<td>2</td>
+<td>§3.7 MuJoCo Playground</td>
+<td>「<code>RSS 2025</code> Outstanding Demo Paper」＋「Go2 locomotion + ONNX 导出/部署参考」</td>
+<td>arXiv 该条<strong>无 Comments 字段</strong>；GitHub README 可印证属 RSS 2025，但<strong>「Outstanding Demo Paper」这一奖项等级未核实</strong>；且两份 README 里<strong>都没有 ONNX 导出流程</strong>；仓库 2026 已重写为 PyTorch 实现，论文版退到 <code>rss2025/</code> 目录</td>
+<td>奖项降级为「RSS 2025（奖项等级未核实）」；「ONNX 导出参考」这条用途删掉或标未核实</td>
+</tr>
+<tr>
+<td>3</td>
+<td>§3.7 SQUID</td>
+<td>综述列入「venue 未核实」并行</td>
+<td>arXiv <code>2605.13665</code> <strong>本次抓取成功</strong>：2026-05-13 提交，George Mason University；SQUID 全称 <strong>S</strong>kill-fused <strong>Q</strong>uadrupedal locomotion <strong>U</strong>sing <strong>I</strong>mitation and <strong>D</strong>istillation；四类隧道截面为 Triangle / Circle / Half-Circle / Gap；专家观测 108 维地形网格、12 维关节目标经 PD；DAgger + 隧道类别标签查询匹配专家 + 类别均衡回放；学生输入为深度图 + 本体历史</td>
+<td>venue / 代码 / 实机型号仍「未核实」，但摘要级事实可升级为已核实</td>
+</tr>
+</tbody>
+</table>
+<h3 id="11.2-需要守住的-4-处核对后确认确实不能写实">11.2 需要守住的 4 处（核对后确认「确实不能写实」）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>条目</th>
+<th>状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>CERBERUS Lessons Learned 2024 的 arXiv 编号</td>
+<td><strong>未核实</strong></td>
+<td>二手镜像给 <code>2207.04914</code>，arXiv 官方 abs 页未核实到；本文档与综述都不写编号</td>
+</tr>
+<tr>
+<td>5</td>
+<td>《基于多模态信息融合的四足机器人避障方法》（工程科学学报 2024）</td>
+<td><strong>摘要未核实</strong></td>
+<td>期刊站点有安全验证（反爬），只核到标题与 DOI 指向该刊同名文章；本文档 §8.8 的流程图是<strong>据综述描述重建</strong>，引用前必须自行下载原文核对</td>
+</tr>
+<tr>
+<td>6</td>
+<td>《基于深度强化学习的四足机器人决策算法研究》（张苏晨 硕士论文 2024）</td>
+<td><strong>正文未核实</strong></td>
+<td>仅高校图书馆检索页；只当线索</td>
+</tr>
+<tr>
+<td>7</td>
+<td>NavFoM / Parkour in the Wild 的会议录用信息</td>
+<td><strong>未核实</strong></td>
+<td>arXiv 页面无 venue 字段</td>
+</tr>
+</tbody>
+</table>
+<h3 id="11.3-工程字段核对与本仓库代码对齐">11.3 工程字段核对（与本仓库代码对齐）</h3>
+<p>流程图里的「赛场映射」段引用了下面这些<strong>本仓库真实存在</strong>的配置键，已逐个在代码里核实，不是编的：</p>
+<table>
+<thead>
+<tr>
+<th>引用处</th>
+<th>字段</th>
+<th>实际位置</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>§7.1 §7.3</td>
+<td><code>lidar.range_noise_m</code></td>
+<td><code>lite2_sim/config/randomization/sim2real_v1.json</code></td>
+<td>区间 <code>[0.0, 0.03]</code>（综述与本文引用的是<strong>上限</strong> 0.03）</td>
+</tr>
+<tr>
+<td>§7.1 §7.3</td>
+<td><code>lidar.dropout_probability</code></td>
+<td>同上</td>
+<td>区间 <code>[0.0, 0.08]</code>（上限 0.08）</td>
+</tr>
+<tr>
+<td>§7.3</td>
+<td><code>lidar.beam_block_probability</code></td>
+<td>同上</td>
+<td>区间 <code>[0.0, 0.05]</code></td>
+</tr>
+<tr>
+<td>§7.1</td>
+<td>参数来源标签</td>
+<td><code>randomization.py</code> / <code>sim2real_v1.json</code></td>
+<td><code>sim_assumed</code> / <code>vendor_reference</code> / <code>measured_pending</code> 三档</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意：<code>sim2real_v1.json</code> 里 <code>lidar.dropout_probability</code> 的 provenance 标的是 <strong><code>measured_pending</code></strong>，也就是说这个数<strong>还没有实测回填</strong>。写报告书时不能把它写成「实测值」，只能写「仿真假设区间」。</p>
+</blockquote>
+<h3 id="11.4-只改了渲染没改语义的-1-处">11.4 只改了渲染、没改语义的 1 处</h3>
+<p>§4.1 的流程图节点原写作「障碍高度达腿长 33%」，因 Mermaid 标签里 <code>%</code> 存在渲染风险，图表内改为「腿长的三分之一」；正文说明保持「33% 腿长」原样。<strong>数值不变，仅图表写法调整。</strong></p>
+<hr />
+<h2 id="附录-A篇目总表54-篇">附录 A：篇目总表（54 篇）</h2>
+<table>
+<thead>
+<tr>
+<th>节</th>
+<th>篇目</th>
+<th>类型</th>
+<th>本队用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.1</td>
+<td>Miki 2022 Science Robotics</td>
+<td>感知融合</td>
+<td>降级语义</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>Hoeller 2024 ANYmal Parkour</td>
+<td>分层导航</td>
+<td>技能库组织</td>
+</tr>
+<tr>
+<td>2.3</td>
+<td>Miki 2024 ICRA 3D confined</td>
+<td>限高</td>
+<td>3D 表征 + 6D 指令</td>
+</tr>
+<tr>
+<td>2.4</td>
+<td>Zhuang 2023 Robot Parkour</td>
+<td>技能学习</td>
+<td>crawl / squeeze</td>
+</tr>
+<tr>
+<td>2.5</td>
+<td>Buchanan 2021 JFR 全身规划</td>
+<td>全身规划</td>
+<td>通行/放弃判据</td>
+</tr>
+<tr>
+<td>2.6</td>
+<td>Kulathunga 2025 RTEB</td>
+<td>局部规划</td>
+<td><strong>start_blocked 解法</strong></td>
+</tr>
+<tr>
+<td>3.1–3.5</td>
+<td>A<em> / Dijkstra / RRT</em> / Frontier / DWA</td>
+<td>经典</td>
+<td>全局与降级基线</td>
+</tr>
+<tr>
+<td>3.6</td>
+<td>Rudin 2021 legged_gym</td>
+<td>训练基座</td>
+<td>域随机化来源</td>
+</tr>
+<tr>
+<td>3.7–3.9</td>
+<td>Lee 2020 / RMA / Agarwal 2022</td>
+<td>课件基线</td>
+<td>报告书理论依据</td>
+</tr>
+<tr>
+<td>4.1–4.8</td>
+<td>落脚点 / 地形 / 限高 / 承载</td>
+<td>感知地形</td>
+<td>限高与落足</td>
+</tr>
+<tr>
+<td>5.1–5.7</td>
+<td>Super Odometry / CompSLAM / FAST-LIO / LIO-SAM / LOAM / ORB-SLAM3 / RTAB-Map</td>
+<td>定位</td>
+<td>只取退化语义</td>
+</tr>
+<tr>
+<td>6.1–6.3</td>
+<td>TEB 三代</td>
+<td>局部规划</td>
+<td>多拓扑 / 稀疏优化</td>
+</tr>
+<tr>
+<td>6.4–6.9</td>
+<td>MPPI / CBF-QP / Wei 综述 / iPlanner / ViPlanner / Dai CBF</td>
+<td>规划替代与安全层</td>
+<td>选型边界</td>
+</tr>
+<tr>
+<td>7.1–7.6</td>
+<td>CERBERUS ×3 / GBPlanner / CSIRO / USAR 综述</td>
+<td>系统级</td>
+<td>恢复与放弃语义</td>
+</tr>
+<tr>
+<td>8.1–8.9</td>
+<td>VLA / 仿真基座 / 国内资料</td>
+<td>前沿与引用</td>
+<td>趋势 + 国内直连</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>说明：§2 与 §3.2 中 Miki 2022 重复出现，总表按一篇计。合计 6 + 9 + 8 + 7 + 9 + 6 + 9 = 54。</p>
+</blockquote>
+<h2 id="附录-B这份文档是怎么做出来的可复核">附录 B：这份文档是怎么做出来的（可复核）</h2>
+<ol>
+<li><strong>字段底座</strong>：全部作者/年份/venue/arXiv/DOI 抄自 <code>plan/四足机器人导航避障文献综述与选型建议.md</code>，不新增字段。</li>
+<li><strong>逐篇核对</strong>：有 arXiv 编号的篇目逐条抓 <code>https://arxiv.org/abs/&lt;id&gt;</code> 的 abstract、Comments、Journal reference 核对；抓不到的（国内期刊反爬、硕士论文）标「未核实」而不是补全。</li>
+<li><strong>机器校验</strong>（两个脚本都在 <code>tmp/</code> 下，可重跑）：
+   - <code>tmp/validate_mermaid.py</code>：检查 59 张流程图的渲染风险——首行格式、<code>subgraph</code>/<code>end</code> 配对、<strong>标签是否全部加引号</strong>、标签内是否含 <code>; # % |</code>、边标签是否加引号、是否有 <code>style</code>/<code>classDef</code> 等禁用关键字。当前 <strong>59 图 0 错误</strong>。
+   - <code>tmp/crosscheck_citations.py</code>：把全部分片里的 arXiv 编号与 DOI 抽出来，与综述逐条比对，任何「综述里没有的编号」都会被报出来（当前唯一 1 条 <code>2403.06341</code> 经查是综述第 135 行已出现的 RTAB-Map 编号，属正常）。</li>
+<li><strong>人工复核</strong>：章节编号 2.1→8.9 连续、每篇四块（一句话 / 出处 / 流程图 / 图里读什么 + 赛场映射 + 边界）齐全、每篇至少一条失败或退化分支。</li>
+</ol>
+<blockquote>
+<p>复核命令（Windows / PowerShell，本机已装 python）：
+<code>powershell
+python F:\airace\tmp\validate_mermaid.py F:\airace\tmp\flownotes\*.md
+python F:\airace\tmp\crosscheck_citations.py</code></p>
+</blockquote>
+  </main>
+</div>
+<script type="module">
+const DEFS = [{"id": "d1", "code": "flowchart TD\n    T([\"赛题：12×10 m 废墟 · 40 min · 圆管内径 1.0 m<br/>方涵 1.2×0.6 m 限高 0.6 m · 弱光扬尘 · S 弯 · 死胡同\"])\n\n    subgraph S1[\"① 感知与地形表征（§4）\"]\n        A1[\"深度 / RGB 相机\"] --> A2[\"高程图 elevation map\"]\n        A1 --> A3[\"3D 体素 / 点云重建\"]\n        A2 --> A4[\"可通行性代价 + 不确定度\"]\n        A3 --> A4\n    end\n\n    subgraph S2[\"② 状态估计（§5）\"]\n        B1[\"LiDAR / IMU / 视觉 / 腿部运动学\"] --> B2[\"LIO · VIO · 因子图\"]\n        B2 --> B3[\"位姿 + 协方差\"]\n    end\n\n    subgraph S3[\"③ 地图与探索（§3.1 §7.4）\"]\n        C1[(\"占据栅格 costmap\")]\n        C2[\"frontier 探索 / 图探索\"]\n    end\n\n    subgraph S4[\"④ 规划（§3 §6）\"]\n        D1[\"全局：A* · RRT* · hybrid A*\"] --> D2[\"局部：TEB · DWA · MPPI\"]\n        D2 --> D3[\"安全层：CBF-QP\"]\n        D2 -->|\"解不可行\"| D4[\"重初始化 / 换拓扑 / 放弃\"]\n    end\n\n    subgraph S5[\"⑤ 运动控制与系统仲裁（§2 §7）\"]\n        E1[\"RL locomotion 策略<br/>速度 / 6D 姿态指令\"] --> E2[\"关节目标 → 电机\"]\n        E3[\"任务状态机：恢复 · 返航 · 降级\"]\n    end\n\n    T --> S1\n    T --> S2\n    S1 --> S3\n    S2 --> S3\n    S3 --> S4\n    S4 --> S5\n    E3 -->|\"接管\"| S4\n    D3 --> E1\n    E2 -->|\"新位姿反馈\"| S2"}, {"id": "d2", "code": "flowchart TD\n    A([\"速度指令 v_cmd\"]) --> P\n    B([\"本体感知历史<br/>关节角/角速度/IMU/上一步动作\"]) --> E1\n    C([\"机器人中心高程图<br/>2.5D + 局部位姿\"]) --> E1\n\n    subgraph TR[\"训练期：teacher-student 两段\"]\n        T1[\"teacher：特权信息 + 完整高程图<br/>RL 学出参考策略\"] --> T2[\"student：只用可部署观测<br/>监督蒸馏对齐 teacher 动作\"]\n    end\n    E1[\"attention 循环编码器<br/>用本体状态作 query 去查高程图特征\"] --> E2[\"belief 隐变量 z_t\"]\n    E2 --> P[\"策略 MLP → 12 维关节位置目标\"]\n    T2 -.->|\"训练信号\"| E1\n    P --> O([\"关节目标 → PD 控制\"])\n\n    E1 -->|\"高程图无效：弱光/扬尘/反光/遮挡/里程计漂移\"| D1{\"attention 权重自然转向本体\"}\n    D1 -->|\"外感知置信低\"| D2[\"退化为纯本体盲走：降速、增大落脚裕度\"]\n    D1 -->|\"外感知可用\"| D3[\"正常感知步态：抬腿更高、速度维持\"]\n    D2 --> O\n    D3 --> O"}, {"id": "d3", "code": "flowchart TD\n    A([\"机载深度 / 点云：高遮挡 + 高噪声\"]) --> B[\"感知模块：重建障碍几何<br/>监督学习，输出场景表征\"]\n    B --> C[\"高层导航策略<br/>知道每个技能的能力边界\"]\n\n    subgraph SK[\"技能库（各自独立 RL 训练）\"]\n        S1[\"walk 走\"]\n        S2[\"jump 跳\"]\n        S3[\"climb 爬\"]\n        S4[\"crouch 蹲伏\"]\n    end\n\n    C -->|\"选技能 + 给技能参数\"| S1\n    C -->|\"选技能\"| S2\n    C -->|\"选技能\"| S3\n    C -->|\"限高 < 站高\"| S4\n\n    S1 --> J[\"低层技能策略输出关节动作\"]\n    S2 --> J\n    S3 --> J\n    S4 --> J\n    J --> O([\"实机运动，连续障碍最高 2 m/s\"])\n\n    C -->|\"前方障碍超出全部技能能力\"| D[\"放弃 / 绕行\"]\n    B -->|\"点云缺失区域\"| B2[\"按保守假设补齐，不冒险\"]\n    B2 --> C"}, {"id": "d4", "code": "flowchart TD\n    A([\"L1 任务层：目标点 / 方向\"]) --> H[\"高层策略：3D 空间感知\"]\n    V[(\"3D 体素表征<br/>机器人周围体素占用\")] --> H\n    H -->|\"输出 6D 指令\"| L[\"低层策略：稳健跟随 6D 指令\"]\n    P([\"本体感知历史\"]) --> L\n    L --> O([\"关节动作\"])\n\n    subgraph C6[\"6D 指令的六维\"]\n        C1[\"前进速度\"]\n        C2[\"横移速度\"]\n        C3[\"偏航角速度\"]\n        C4[\"机身高度\"]\n        C5[\"roll\"]\n        C6[\"pitch\"]\n    end\n    H -.-> C6\n    C6 -.-> L\n\n    G[\"程序化地形生成器<br/>碎石 / 不稳定台阶 / 倾斜顶部结构\"] -->|\"训练环境\"| H\n    G -->|\"训练环境\"| L\n\n    H -->|\"前方体素净空 < 当前机身高度\"| D1[\"输出低机身高度 + 侧倾的 6D 指令\"]\n    D1 --> L\n    H -->|\"净空连蹲伏都不够\"| D2[\"放弃该通道，回上层改目标\"]\n    V -->|\"体素稀疏 / 观测缺失\"| D3[\"保守假设：视为有障碍\"]\n    D3 --> H"}, {"id": "d5", "code": "flowchart TD\n    R[\"直接配点法启发的 RL<br/>把长动作序列拆成可学的短阶段\"] --> SK\n\n    subgraph SK[\"五类技能（各自训练）\"]\n        S1[\"翻越高障碍\"]\n        S2[\"跨越宽沟\"]\n        S3[\"低矮障碍下匍匐 crawl\"]\n        S4[\"挤过窄缝 squeeze\"]\n        S5[\"奔跑\"]\n    end\n\n    SK --> DS[\"蒸馏：多技能 → 单一视觉策略\"]\n    DS --> V[\"学生策略：输入仅前向深度图 + 本体状态\"]\n    V --> O([\"关节动作 · 自主选择用哪个技能\"])\n\n    D([\"机载前向深度相机\"]) --> V\n    P([\"本体状态\"]) --> V\n\n    V -->|\"深度图看到低矮横梁\"| A1[\"自动切到匍匐步态\"]\n    V -->|\"深度图看到窄缝\"| A2[\"自动切到挤缝姿态\"]\n    V -->|\"深度图退化 / 前方无纹理\"| A3[\"退化为盲走 + 减速\"]\n    A1 --> O\n    A2 --> O\n    A3 --> O"}, {"id": "d6", "code": "flowchart TD\n    A([\"机载深度相机\"]) --> B[\"建 3D 地形图（机器人周围）\"]\n    B --> C{\"碰撞检测：当前机身位姿可行？\"}\n    C -->|\"否\"| D[\"随机采样候选机身位姿\"]\n    D --> E[\"对采样位姿做平滑，去掉抖动\"]\n    E --> F{\"运动学可达 + 无碰撞？\"}\n    F -->|\"否\"| D\n    F -->|\"是\"| G[\"由机身位姿反推落脚点 + 摆腿轨迹\"]\n    G --> H[\"全身轨迹：机身 + 足端\"]\n    H --> O([\"下发执行\"])\n    O -->|\"500 ms 周期\"| C\n\n    C -->|\"周围连采样都无解\"| X[\"判定不可通过：放弃该通道\"]\n    S([\"ANYmal 站高 80 cm · 宽 59 cm\"]) -.->|\"用于限高判断的量化范式\"| C"}, {"id": "d7", "code": "flowchart TD\n    A([\"全局路径 + 当前位姿\"]) --> B[\"TEB 优化：位姿序列 + 时间间隔\"]\n    B --> C{\"本周期的轨迹<br/>运动学可行？\"}\n    C -->|\"可行\"| G[\"输出控制量 → 底盘执行\"]\n    G -->|\"下一周期\"| B\n    C -->|\"不可行（初值坏 / 起点在膨胀区 / 障碍突变）\"| H[\"hybrid A* 重初始化\"]\n    H --> H1[\"生成满足运动学的可行轨迹<br/>中间位姿带独立朝向 → 支持倒退\"]\n    H1 --> H2[\"软约束平滑：连续性 + 避障 + 运动学\"]\n    H2 --> B\n\n    OB[(\"动态 Voronoi 图<br/>障碍约束建模\")] -.->|\"改善窄通道通过\"| B\n\n    C -->|\"重试超上限\"| X[\"上报失败：交由上层决定换目标或停车\"]\n    H -->|\"hybrid A* 也搜不到\"| X"}, {"id": "d8", "code": "flowchart LR\n    A[\"2.1 感知退化怎么办<br/>attention 门控 + 盲走降级\"] --> D[\"一台能在废墟里跑完的机器狗\"]\n    B[\"2.2 技能怎么组织<br/>技能库 + 高层按能力选\"] --> D\n    C[\"2.3 限高怎么看见<br/>3D 体素 + 6D 姿态指令\"] --> D\n    E[\"2.4 单策略怎么自学技能<br/>crawl / squeeze 蒸馏\"] --> D\n    F[\"2.5 机身姿态怎么当变量<br/>全身规划 + 放弃判据\"] --> D\n    G[\"2.6 规划不可行怎么救<br/>hybrid A* 重初始化\"] --> D\n    D -.->|\"我们的 15 天窗口\"| H[\"只取语义：<br/>降级不终止 · 限高进地图 · 不可行可恢复\"]"}, {"id": "d9", "code": "flowchart TD\n    A([\"输入：膨胀后的 costmap + 起点 s + 目标 t\"]) --> B[\"初始化 open 表，只压入 s，g(s) = 0，f(s) = g(s) + h(s)\"]\n    B --> C{\"open 表为空？\"}\n    C -->|\"是\"| X([\"无解：目标不可达，plan_grid 返回失败\"])\n    C -->|\"否\"| D[\"弹出 f 最小的节点 n，移入 closed 表\"]\n    D --> E{\"n 就是目标？\"}\n    E -->|\"是\"| Y([\"回溯父指针链，输出栅格路径点序列\"])\n    E -->|\"否\"| F[\"展开 n 的 8 邻居，逐个取 m：g(m) = g(n) + 步长 × 栅格代价\"]\n    F --> G[\"查表得 m 的启发值 h(m)，累加出 f(m)\"]\n    G --> H{\"g(m) 比历史 g(m) 更小？\"}\n    H -->|\"否\"| C\n    H -->|\"是\"| I[\"改写 m 的父指针为 n，更新 g 与 f，压堆或减小堆键值\"]\n    I --> J{\"m 原本在 closed 表？\"}\n    J -->|\"是\"| K[\"重开 m：从 closed 移回 open，允许回头改路\"]\n    J -->|\"否\"| C\n    K --> C"}, {"id": "d10", "code": "flowchart TD\n    A([\"输入：带权图或栅格 + 源点 s\"]) --> B[\"dist(s) = 0，其余置无穷，最小堆只压 s\"]\n    B --> C{\"堆非空？\"}\n    C -->|\"否\"| X([\"循环收尾：所有可达点的距离都已定型\"])\n    C -->|\"是\"| D[\"弹出 dist 最小的 u，标记定型\"]\n    D --> E{\"u 就是我们唯一关心的目标点？\"}\n    E -->|\"是\"| Y([\"输出 dist，并沿父指针链还原路径\"])\n    E -->|\"否\"| F[\"遍历 u 的邻居 v，边权 w 取栅格代价\"]\n    F --> G{\"dist(u) + w 小于现有 dist(v)？\"}\n    G -->|\"是\"| H[\"松弛：更新 dist(v) 与父指针，v 入堆\"]\n    G -->|\"否\"| I[\"丢弃这条边，保留旧值\"]\n    H --> C\n    I --> C\n    X --> Z{\"关心点的 dist 仍为无穷？\"}\n    Z -->|\"是\"| W([\"不可达：该点与 s 之间不存在连通路径\"])\n    Z -->|\"否\"| V([\"距离场可用，输出全图 dist\"])"}, {"id": "d11", "code": "flowchart TD\n    A([\"输入：位姿空间 + 碰撞检测器 + 起点 + 目标\"]) --> B[\"树初始化，只含起点一个节点\"]\n    B --> C[\"采样：随机位姿 q_rand，按概率偏向目标\"]\n    C --> D[\"在树中找离 q_rand 最近的节点 q_near\"]\n    D --> E[\"从 q_near 朝 q_rand 步进一段，得 q_new\"]\n    E --> F{\"q_new 与 q_near 之间的边碰撞？\"}\n    F -->|\"是\"| G[\"丢弃本次采样，树不变\"]\n    G --> H{\"迭代次数或时间到预算？\"}\n    F -->|\"否\"| I[\"在 q_new 的半径 r 邻域内找候选父节点\"]\n    I --> J[\"选使起点到 q_new 累计代价最小的父节点并连边\"]\n    J --> K[\"重连：邻域内若有节点经 q_new 更近，则改其父指针\"]\n    K --> L{\"q_new 落入目标区域？\"}\n    L -->|\"是\"| Y([\"记下一条可行路径，继续采样以继续压代价\"])\n    L -->|\"否\"| H\n    Y --> H\n    H -->|\"否\"| C\n    H -->|\"是\"| X([\"失败：预算耗尽仍无可达路径，判定无可行通路\"])"}, {"id": "d12", "code": "flowchart TD\n    A([\"输入：占据栅格地图 + 机器人当前位姿\"]) --> B[\"逐格扫描，标出已知自由格与未知格\"]\n    B --> C[\"取出同时邻接自由格与未知格的自由格，作为 frontier 单元\"]\n    C --> D[\"按连通性把 frontier 单元聚成若干候选前沿\"]\n    D --> E{\"还有候选前沿？\"}\n    E -->|\"否\"| X([\"探索结束：已知空间内不再有未知边界\"])\n    E -->|\"是\"| F[\"对每个候选前沿取一个代表点\"]\n    F --> G[\"用全局规划器算到各代表点的路径与代价\"]\n    G --> H{\"该前沿可达且有完整路径？\"}\n    H -->|\"否\"| I[\"标记为不可达并在本轮剔除\"]\n    I --> E\n    H -->|\"是\"| J[\"按路径代价排序，选最优前沿作临时目标\"]\n    J --> K[\"下发局部目标，边走边更新地图\"]\n    K --> L{\"到达后地图里出现新前沿？\"}\n    L -->|\"是\"| B\n    L -->|\"否\"| M[\"把该前沿标记为已访问，交回候选集\"]\n    M --> E"}, {"id": "d13", "code": "flowchart TD\n    A([\"输入：当前位姿 + 上周期速度 (v, ω) + 局部栅格\"]) --> B[\"由电机加减速极限推出动态窗口：一周期内可达的 (v, ω) 集合\"]\n    B --> C[\"在窗口内按步长离散采样若干 (v, ω)，逐个取用\"]\n    C --> D[\"按机体运动模型前向仿真一段预测轨迹\"]\n    D --> E[\"在局部栅格上对这条轨迹做碰撞检测\"]\n    E --> F{\"这条轨迹撞障碍或越出地图？\"}\n    F -->|\"是\"| G[\"丢弃该 (v, ω)，不进入评分\"]\n    F -->|\"否\"| H[\"加权打分：朝向对齐 + 障碍间隙 + 速度项\"]\n    G --> P{\"还有未处理的采样？\"}\n    H --> P\n    P -->|\"是\"| C\n    P -->|\"否\"| I{\"可行采样数为零？\"}\n    I -->|\"是\"| X([\"退化：窗口为空，停车并上报受阻事件\"])\n    I -->|\"否\"| J[\"取总分最高的 (v, ω) 作为本周期指令\"]\n    J --> K[\"下发速度指令，机器人状态推进一个周期\"]\n    K --> L{\"到达目标或超时？\"}\n    L -->|\"否\"| A\n    L -->|\"是\"| Y([\"结束：输出速度序列与到达状态\"])"}, {"id": "d14", "code": "flowchart TD\n    subgraph S1[\"训练阶段：单卡并行仿真\"]\n        A([\"配置：地形课程等级 + 域随机化范围\"]) --> B[\"按当前等级程序化生成地形块，采样质量、摩擦、电机强度、外力\"]\n        B --> C[\"N 个环境并行推进物理步，写出观测：速度指令 + 本体历史 + 地形量测\"]\n        C --> D[\"actor 输出关节目标，critic 估计价值，PD 跟踪得力矩并结算奖励\"]\n        D --> F[\"PPO 用回报与价值估计更新 actor、critic\"]\n    end\n    F --> G{\"当前等级成功率过阈值？\"}\n    G -->|\"是\"| H[\"课程升一级，地形难度与随机化范围同时上移\"]\n    H --> B\n    G -->|\"否\"| I{\"训练步数到预算？\"}\n    I -->|\"否\"| C\n    I -->|\"是\"| J{\"最近若干轮回报还在涨？\"}\n    J -->|\"否\"| X([\"训练退化：课程或奖励写错，停在低难度\"])\n    J -->|\"是\"| K([\"导出策略权重\"])\n    K --> L[\"实机只喂观测：速度指令 + 本体历史\"]\n    L --> M[\"机载前向推理 → 关节目标 → PD → 电机\"]\n    M --> N{\"跟踪误差或姿态角超限？\"}\n    N -->|\"是\"| O([\"部署退化：退站立或停机，记录异常帧\"])\n    N -->|\"否\"| P([\"按指令继续行走\"])"}, {"id": "d15", "code": "flowchart TD\n    subgraph S1[\"训练阶段：纯本体感知闭环\"]\n        A([\"输入：关节位置与速度、机身 IMU、上一动作\"]) --> B[\"拼成固定长度的本体感知历史窗口作观测\"]\n        B --> C[\"策略网络输出 12 维关节目标位置\"]\n        C --> D[\"PD 跟踪 → 关节力矩 → 机器人状态推进\"]\n        D --> E[\"奖励：线速度与角速度跟踪 + 姿态 + 动作平滑 + 足部腾空\"]\n        E --> F[\"PPO 更新网络参数\"]\n    end\n    D --> G[\"地形随机化：台阶、斜坡、碎石、可变形地面\"]\n    G --> D\n    F --> H{\"训练收敛？\"}\n    H -->|\"否\"| B\n    H -->|\"是\"| I[\"零样本导出，不做任何实机微调\"]\n    I --> J[\"实机只喂同一套本体感知历史\"]\n    J --> K{\"足端打滑或踩空？\"}\n    K -->|\"否\"| L([\"正常行走，跟踪速度指令\"])\n    K -->|\"是\"| M[\"历史窗口内出现异常力矩与加速度偏差，网络隐式改步态\"]\n    M --> L"}, {"id": "d16", "code": "flowchart TD\n    subgraph S1[\"训练阶段：特权信息只在仿真里存在\"]\n        A([\"仿真环境：地形摩擦、载荷、电机强度、地面刚度\"]) --> B[\"特权编码器读取这些环境隐变量，压成低维 extrinsics 向量 z\"]\n        B --> C[\"base policy 以本体观测 + z 为输入，输出关节动作\"]\n        C --> D[\"PPO 用回报同时更新 base policy 与特权编码器\"]\n    end\n    B --> E[\"以 z 作监督标签，用同一段本体历史训练 adaptation module 回归 z\"]\n    D --> E\n    E --> F{\"回归误差低于阈值？\"}\n    F -->|\"否\"| G[\"继续训练 adaptation module，或加长历史窗口\"]\n    G --> E\n    F -->|\"是\"| H[\"冻结两个模块，导出部署\"]\n    H --> I([\"部署：只保留 本体历史 → adaptation module → z 估计\"])\n    I --> J[\"z 与当前本体观测拼接，送入 base policy\"]\n    J --> K{\"z 在连续几步内跳变过大？\"}\n    K -->|\"是\"| L[\"退化处理：平滑 z 或回退到标称值，同时降速\"]\n    K -->|\"否\"| M([\"按 z 修正步态，继续行走\"])\n    L --> M"}, {"id": "d17", "code": "flowchart TD\n    subgraph S1[\"阶段一：scandots 上做强化学习\"]\n        A([\"仿真地形：楼梯、路缘、踏石、沟隙\"]) --> B[\"用机身周围若干采样点的高度向量 scandots 代替深度图\"]\n        B --> C[\"scandots 编码器 + 本体历史 → 动作\"]\n        C --> D[\"PPO 用速度跟踪与姿态奖励更新\"]\n        D --> B\n    end\n    subgraph S2[\"阶段二：蒸馏到真实深度输入\"]\n        E([\"同一场景渲染前向深度图\"]) --> F[\"教师策略给出动作标签\"]\n        F --> G[\"学生策略：深度编码器 + 本体历史 → 动作\"]\n        G --> H[\"监督学习对齐教师动作，必要时再叠少量 RL 微调\"]\n    end\n    D --> E\n    H --> I{\"学生与教师动作偏差低于阈值？\"}\n    I -->|\"否\"| G\n    I -->|\"是\"| J([\"导出，部署到单目深度相机实机\"])\n    J --> K[\"机载推理：深度图 + 本体历史 → 关节目标\"]\n    K --> L{\"深度图缺失、过曝或严重噪声？\"}\n    L -->|\"是\"| M[\"退化：靠历史推断身下地形，降速通过\"]\n    L -->|\"否\"| N([\"正常通过楼梯与踏石\"])\n    M --> N"}, {"id": "d18", "code": "flowchart TD\n    A([\"机载深度相机\"]) --> B[\"实时 elevation map 更新<br/>坡度 / 粗糙度 / 高度跳变\"]\n    B --> C[\"机身姿态 / 高度层<br/>贴地参考高度 + 里程计位姿\"]\n    B --> D[\"粗路径规划<br/>在高程图上铺地形代价\"]\n    C --> E[\"候选落脚点采样<br/>沿路径的局部窗口\"]\n    D --> E\n    E --> F{\"落足代价可接受？<br/>坡度 + 边缘距离 + 运动学可达\"}\n    F -->|\"是\"| G[\"局部最优落脚点序列\"]\n    F -->|\"否\"| M[\"放弃该段落脚序列<br/>重新采样或换路径一侧\"]\n    M --> E\n    G --> H[\"terrain-aware contact schedule<br/>按执行器速度上限排抬落时序\"]\n    H --> I{\"速度上限满足？\"}\n    I -->|\"是\"| J[\"摆动腿轨迹 + 全身控制器跟踪\"]\n    I -->|\"否\"| L[\"退化：拉长支撑相 / 缩短步长\"]\n    L --> J\n    J --> K[\"台阶与乱石通行<br/>障碍高度达腿长的三分之一\"]"}, {"id": "d19", "code": "flowchart TD\n    A([\"机载深度相机 / 点云\"]) --> B[\"局部地形表征<br/>高程 + 平面与接触面估计\"]\n    B --> C[\"候选落足点评估<br/>接触质量 + 腿碰撞 + 运动学极限\"]\n    C --> D[\"安全落脚点集合\"]\n    B --> E[\"skills 库<br/>表征机器人能力与地形感知\"]\n    D --> F[\"姿态适配<br/>最大化各腿够到安全落点的概率\"]\n    E --> F\n    F --> G{\"该姿态可行？<br/>运动学 + 自碰撞 + 稳定性\"}\n    G -->|\"可行\"| H[\"6D 机身位姿指令<br/>高度 + roll / pitch\"]\n    H --> I[\"步态与落足序列\"]\n    G -->|\"不可行\"| L[\"退回基线：按给定落点选姿态<br/>此刻可能已无可达安全落点\"]\n    L --> I\n    B -->|\"地形置信度低\"| M[\"收敛到保守步态<br/>小步幅 + 保持标称姿态\"]\n    M --> I\n    I --> J[\"摆动腿轨迹 + 全身控制\"]\n    J --> K[\"楼梯 / 沟隙 / 乱石通行\"]"}, {"id": "d20", "code": "flowchart TD\n    A([\"深度 / 距离传感器\"]) --> B[\"单帧量测 + 传感器噪声模型\"]\n    C([\"关节编码器 + IMU\"]) --> D[\"本体定位估计<br/>运动学 + 惯性\"]\n    D --> E[\"位姿漂移与协方差<br/>随行程增长\"]\n    B --> G[\"量测变换到地图坐标系<br/>协方差一并传播\"]\n    E --> G\n    G --> H[\"逐格 Kalman 更新<br/>高度均值 + 方差\"]\n    H --> I[\"多层栅格输出<br/>高度 / 方差 / 上下置信界\"]\n    I --> J{\"该格方差超阈值？\"}\n    J -->|\"否\"| K[\"可通行性与落脚点评估<br/>正常使用该格\"]\n    J -->|\"是\"| L[\"标记不可信<br/>降权而非直接判障碍\"]\n    L --> M[\"减速 / 重定位 / 补观测\"]\n    M --> H"}, {"id": "d21", "code": "flowchart TD\n    A([\"程序化生成稀疏踏石 / 平衡木地形\"]) --> B[\"通才策略训练<br/>乱序稀疏踏石 + navigation 任务形式\"]\n    B --> C[\"探索策略<br/>破解踏石之间的稀疏奖励\"]\n    C --> D{\"训练是否收敛？\"}\n    D -->|\"收敛\"| E[\"专门化策略微调<br/>迁移到更难地形\"]\n    D -->|\"不收敛\"| J[\"降级：只求慢速稳定通过<br/>放弃速度指标\"]\n    E --> F[\"ANYmal-D 实机部署<br/>峰值速度 ≥ 2.5 m/s\"]\n    F --> G[\"高速通过稀疏踏石 / 窄平衡木\"]\n    F --> H[\"失足摔倒 → 回合终止\"]\n    E -->|\"迁移退化\"| I[\"退回通才策略<br/>保住基本可通行性\"]\n    I --> F\n    G -->|\"风险升高\"| J"}, {"id": "d22", "code": "flowchart TD\n    A([\"规划器给出的目标落脚点\"]) --> D[\"MPC<br/>稳定性 + probing 约束联合优化\"]\n    B([\"支撑腿关节力矩 / 位置测量\"]) --> C[\"承载评估<br/>由关节量测反推地形刚度与下陷\"]\n    C --> D\n    D --> E{\"该落足点承载存疑？\"}\n    E -->|\"是\"| F[\"试探性踩踏 probe<br/>轻放 + 逐步加载\"]\n    E -->|\"否\"| H[\"确认承重 → 正常步态继续\"]\n    F --> G{\"加载过程是否异常下陷？\"}\n    G -->|\"否\"| H\n    G -->|\"是\"| I[\"判定可塌陷 → 重选落足点\"]\n    I --> L[\"连续探测无可行点<br/>停止并请求绕行\"]\n    C --> J[\"安全优先策略<br/>降速 / 缩步幅 / 增大支撑面\"]\n    J --> K[\"通行效率下降<br/>probing 显著降低速度（第三方解读）\"]\n    F --> K"}, {"id": "d23", "code": "flowchart TD\n    subgraph S1[\"地图层\"]\n        A([\"机载距离传感器\"])\n        B[\"机器人中心多层高程图<br/>地面 + 悬垂 + 侧壁\"]\n    end\n    subgraph S2[\"机身模型层\"]\n        C[\"可变形包围盒<br/>标称高 33 cm 宽 82 cm 外扩\"]\n        D[\"构型搜索<br/>机身高度 + 侧倾 + 腿展\"]\n    end\n    subgraph S3[\"规划层\"]\n        E{\"包围盒与多层地图碰撞？\"}\n        F[\"CHOMP 平滑轨迹优化\"]\n        G[\"机身姿态 / 高度 + 落足序列\"]\n    end\n    A --> B\n    B --> E\n    C --> D\n    D --> E\n    E -->|\"无碰撞\"| F\n    F --> G\n    G --> H[\"通过 25 cm 悬垂 / 70 cm 窄缝 / 22 cm 障碍\"]\n    E -->|\"碰撞\"| I[\"换构型：压低机身 / 收窄腿展\"]\n    I --> D\n    D -->|\"无可行构型\"| J[\"判定通道不可通过<br/>上报高层规划\"]"}, {"id": "d24", "code": "flowchart TD\n    A([\"机器人中心 2.5D 高程图\"]) --> B[\"逐点 CNN 局部特征提取\"]\n    C([\"本体感知<br/>关节 / IMU 历史\"]) --> D[\"以本体状态为 query 的<br/>多头注意力\"]\n    B --> D\n    D --> E[\"注意力权重<br/>指向未来可落脚区域\"]\n    D --> F[\"地图特征 + 本体特征融合\"]\n    F --> G[\"RL 策略网络<br/>输出关节目标\"]\n    G --> H[\"稀疏地形上的精确落足与敏捷通行\"]\n    E --> I[\"注意力图可视化<br/>可解释网络在看哪\"]\n    A -->|\"缺帧 / 遮挡\"| J{\"地形输入是否可信？\"}\n    J -->|\"否\"| K[\"退化为本体感知主导<br/>保守步态\"]\n    K --> G\n    E --> L[\"注意力聚焦错误区域<br/>落足失准或失足\"]"}, {"id": "d25", "code": "flowchart TD\n    A([\"本体感知历史<br/>关节 / IMU / 上一动作\"]) --> B[\"状态估计网络<br/>碰撞状态 + 地面特征 + 空间特征\"]\n    C([\"训练期点云<br/>极坐标表示 + MLP 提特征\"]) --> D[\"点云特征监督信号\"]\n    D -->|\"监督\"| B\n    C -->|\"离线批量提特征\"| I[\"训练迭代更快<br/>省去在线编码开销\"]\n    B --> E{\"估计误差是否收敛？\"}\n    E -->|\"收敛\"| F[\"RL 策略<br/>输出关节目标\"]\n    E -->|\"不收敛\"| D\n    F --> G[\"爬行空间通行<br/>低净空 + 侧向受限\"]\n    F --> H[\"碰撞 / 卡死 → 回合终止\"]\n    F --> J[\"部署形态：无需外感知传感器\"]\n    B -->|\"空间特征失准\"| K[\"退化为保守爬行或停止<br/>此时不知道头顶还有多少余量\"]"}, {"id": "d26", "code": "flowchart TD\n    A([\"IMU 预积分：高频运动先验\"]) --> B[\"点云去畸变：用先验位姿逐点补偿\"]\n    B --> C[\"PCA：邻域协方差 → 特征值 λ1 λ2 λ3\"]\n    C --> D{\"几何特征质量够吗？\"}\n    D -->|\"是\"| E[\"保留边缘与平面特征 进入配准\"]\n    D -->|\"否\"| F[\"判为扬尘稀疏噪点 → 整簇丢弃\"]\n    E --> G[\"点面残差 → 迭代求解位姿\"]\n    F -->|\"其余点继续进入配准\"| G\n    G --> H[\"退化检测：最小特征值方向不可观\"]\n    H --> I{\"几何退化？\"}\n    I -->|\"否\"| N[\"输出位姿 → 地图与导航\"]\n    I -->|\"是\"| J[\"降权激光观测 放大 IMU 与视觉先验\"]\n    J --> K{\"视觉观测可用？\"}\n    K -->|\"是\"| L[\"视觉惯性里程计补位姿先验\"]\n    K -->|\"否\"| M[\"仅 IMU 递推 + 走廊轴向一维约束\"]\n    L --> N\n    M --> N"}, {"id": "d27", "code": "flowchart TD\n    A([\"输入：视觉 热成像 深度 激光 IMU 腿式运动学\"]) --> B[\"各模态独立里程计 → 位姿 + 协方差\"]\n    B --> C{\"模态间残差与协方差一致？\"}\n    C -->|\"一致\"| D[\"层次化融合：底层观测 → 中层局部地图 → 顶层全局位姿\"]\n    C -->|\"冲突\"| E[\"仲裁：按环境条件重估各模态权重\"]\n    E --> F[\"降级：剔除失效模态 只留可用子集\"]\n    F --> G{\"是否还剩至少一个观测源？\"}\n    G -->|\"是\"| D\n    G -->|\"否\"| H[\"声明跟踪丢失 → 冻结地图 → 触发重定位\"]\n    C -->|\"几何自相似\"| I[\"长走廊自相似：热成像与深度补语义 视觉纹理降权\"]\n    I --> D\n    D --> J[\"多模态子图 + 位姿图节点\"]\n    J --> K{\"检测到回环候选？\"}\n    K -->|\"是\"| L[\"回环验证 → 加入位姿图优化\"]\n    K -->|\"否\"| M[\"输出位姿与地图给规划\"]\n    L --> M"}, {"id": "d28", "code": "flowchart TD\n    A([\"IMU 高频采样\"]) --> B[\"状态传播：名义状态 + 协方差\"]\n    B --> C[\"点云去畸变：用传播位姿逐点补偿\"]\n    C --> D[\"特征提取：按曲率取面点与角点\"]\n    D --> E[\"残差构建：点到面 / 点到线\"]\n    E --> F[\"迭代 EKF：每次迭代在当前估计处重新线性化\"]\n    F --> G{\"迭代收敛？\"}\n    G -->|\"否\"| F\n    G -->|\"是\"| H[\"应用新 Kalman 增益公式\"]\n    H --> I[\"更新状态与协方差\"]\n    I --> J[\"输出高频里程计 + 注册点云\"]\n    J --> K{\"有效特征点过少或几何退化？\"}\n    K -->|\"是\"| L[\"仅靠 IMU 传播 放大输出协方差\"]\n    K -->|\"否\"| M[\"增量更新局部地图\"]\n    L --> M"}, {"id": "d29", "code": "flowchart TD\n    A([\"IMU 原始测量\"]) --> B[\"IMU 预积分因子：含 bias 随机游走\"]\n    A --> C[\"点云按预积分位姿去畸变 → 优化初值\"]\n    C --> D[\"激光里程计因子：与局部子关键帧配准\"]\n    D --> E{\"配准收敛且非退化？\"}\n    E -->|\"否\"| F[\"该帧降权或剔除 交回预积分维持\"]\n    E -->|\"是\"| G[\"关键帧入选：位移与旋转超阈值才建节点\"]\n    B --> H[\"因子图：增量优化\"]\n    F --> H\n    G --> H\n    I[\"GPS 因子：可选绝对约束\"] --> H\n    J[\"回环因子：候选关键帧 → ICP 验证\"] --> K{\"验证通过？\"}\n    K -->|\"否\"| L[\"误匹配 → 丢弃 不进因子图\"]\n    K -->|\"是\"| H\n    H --> M[\"滑动窗口：新关键帧只配准固定数量子关键帧 旧帧边缘化\"]\n    M --> N[\"输出位姿 + 去畸变点云拼图\"]"}, {"id": "d30", "code": "flowchart TD\n    A([\"单线或多线激光扫描\"]) --> B[\"按曲率提取边缘点与平面点\"]\n    B --> C[\"里程计线程：高频帧间配准 → 粗位姿\"]\n    C --> D{\"帧间运动是否过大？\"}\n    D -->|\"是\"| E[\"特征不足或运动过大 → 用预测位姿兜底\"]\n    D -->|\"否\"| F[\"把去畸变特征交给建图线程\"]\n    E --> F\n    F --> G[\"建图线程：低频 把特征注册到全局地图\"]\n    G --> H[\"精化位姿回吐给里程计线程 作为下一帧初值\"]\n    H --> C\n    G --> I[\"输出全局地图 + 精化位姿\"]\n    G --> J{\"长走廊 沿轴向几何不可观？\"}\n    J -->|\"是\"| K[\"轴向漂移无人纠正 误差累积\"]\n    J -->|\"否\"| I\n    K --> I"}, {"id": "d31", "code": "flowchart TD\n    A([\"单目 / 双目 / RGB-D 图像\"]) --> B[\"ORB 特征提取与描述子匹配\"]\n    B --> C{\"当前帧特征与匹配是否足够？\"}\n    C -->|\"否\"| D[\"跟踪失败：进入重定位\"]\n    C -->|\"是\"| E[\"跟踪线程：恒速模型或参考关键帧估计位姿\"]\n    D --> F{\"地点识别成功？\"}\n    F -->|\"是\"| E\n    F -->|\"否\"| G[\"新建地图（多地图之一）继续跟踪\"]\n    E --> H[\"局部建图：三角化新点 + 局部 BA\"]\n    I[\"IMU 初始化：MAP 估计初速 重力 bias\"] --> H\n    G --> H\n    H --> J{\"检测到回环或跨地图共视？\"}\n    J -->|\"是\"| K[\"Sim3 校正 + 位姿图 + 地图合并\"]\n    J -->|\"否\"| L[\"输出位姿与稀疏地图点\"]\n    K --> M[\"全局 BA：复用全部历史共视关键帧\"]\n    M --> L"}, {"id": "d32", "code": "flowchart TD\n    A([\"RGB-D / 双目 / 激光 输入\"]) --> B[\"前端里程计 → 相邻帧变换\"]\n    B --> C[\"建图：节点为关键帧 边为变换 + 外观签名\"]\n    C --> D[\"回环检测：词典签名相似度排序\"]\n    D --> E{\"相似度超过阈值？\"}\n    E -->|\"否\"| I[\"位姿图优化：仅里程计边\"]\n    E -->|\"是\"| F[\"几何验证：邻域特征匹配 + RANSAC\"]\n    F --> G{\"验证通过？\"}\n    G -->|\"否\"| H[\"误匹配 → 丢弃该候选\"]\n    G -->|\"是\"| I\n    I --> J[\"记忆管理：工作记忆 WM 满则转入长时记忆 LTM\"]\n    J --> K[\"重访时从 LTM 检索并重新激活节点 → 再走回环\"]\n    K --> D\n    I --> L[\"输出 2D/3D 占据栅格 + 点云地图\"]"}, {"id": "d33", "code": "flowchart TD\n    A([\"全局路径 Γ + 当前位姿\"]) --> B[\"初始化：离散为 SE(2) 位姿序列 + 时间间隔 ΔT\"]\n    B --> C[\"建超图：顶点为位姿与时间差\"]\n    C --> D[\"目标项：贴合全局路径 + 时间最优\"]\n    C --> E[\"约束项：障碍距离 速度 加速度 非完整运动学\"]\n    D --> F[\"加权多目标合成 稀疏最小二乘\"]\n    E --> F\n    F --> G[\"迭代求解超图 得到位姿与 ΔT\"]\n    G --> H{\"解收敛且约束全满足？\"}\n    H -->|\"是\"| I[\"按 ΔT 提取本周期可执行速度指令\"]\n    H -->|\"否\"| J[\"回退：保留上一周期可行轨迹\"]\n    I --> K[\"下一周期热启动：截断已执行段 + 重接全局路径\"]\n    J --> K\n    J --> L[\"连续失败：丢弃轨迹 上报不可行\"]\n    I --> M([\"下发给底盘执行\"])"}, {"id": "d34", "code": "flowchart TD\n    A([\"上一周期轨迹 + 新全局路径\"]) --> B[\"热启动：保留与新路径时间重叠的位姿\"]\n    B --> C[\"每个目标与约束各写成一个标量误差项 e_k\"]\n    C --> D[\"加权求和为单一最小二乘目标 F\"]\n    D --> E[\"求导后 Hessian 只连相邻位姿与障碍近邻\"]\n    E --> F[\"稀疏块三对角结构 可用 g2o 直接解\"]\n    F --> G[\"Levenberg-Marquardt 迭代下降\"]\n    G --> H{\"是否收敛？\"}\n    H -->|\"是\"| I[\"单次优化耗时随位姿数近线性\"]\n    H -->|\"否\"| J[\"增大阻尼或缩短优化时域再迭代\"]\n    J --> G\n    I --> K[\"支撑高频重规划 每周期都刷新整条带\"]\n    K --> L([\"下发速度指令\"])\n    G --> M[\"兜底：仍不收敛则沿用上一周期可行解\"]"}, {"id": "d35", "code": "flowchart TD\n    A([\"全局路径 + 当前位姿 + 局部 costmap\"]) --> B[\"初值生成：按不同绕行方式采样多条候选 homotopy 类\"]\n    B --> C1[\"候选 1：从障碍左侧绕\"]\n    B --> C2[\"候选 2：从障碍右侧绕\"]\n    B --> C3[\"候选 3：更外侧或上方绕行\"]\n    C1 --> D[\"各自独立建 TEB 超图 并行优化\"]\n    C2 --> D\n    C3 --> D\n    D --> E{\"每条候选是否收敛且可行？\"}\n    E -->|\"至少一条可行\"| F[\"按代价横向比较 切换全局最优候选\"]\n    E -->|\"全部不可行\"| G[\"回退：缩短时域或退化为单拓扑重初始化\"]\n    F --> H[\"以最优候选作为本周期 TEB 解\"]\n    G --> I[\"上报受阻 交上层换目标或倒退\"]\n    H --> J[\"下周期保留全部候选 继续并行跟踪\"]\n    J --> K[\"拓扑消失或障碍移动：剪枝并补采样新候选\"]\n    K --> D"}, {"id": "d36", "code": "flowchart TD\n    A([\"当前状态 + 任意初值序列（可全零或沿用上一周期）\"]) --> B[\"以该序列为均值 采样 N 条控制扰动\"]\n    B --> C[\"GPU 并行 rollout 每条候选的前向动力学\"]\n    C --> D[\"逐条算代价：到目标 障碍距离 平滑 控制量\"]\n    D --> E[\"指数加权：w_i 正比于 exp(-S_i / lambda)\"]\n    E --> F[\"加权平均得到新的控制序列 U_new\"]\n    F --> G[\"只执行 U_new 的前一小段\"]\n    G --> H[\"状态推进 进入下一周期\"]\n    H --> B\n    F --> I{\"是否全部候选代价无穷大？\"}\n    I -->|\"是\"| J[\"全撞：减速停车 请求重规划\"]\n    I -->|\"否\"| K[\"热启动：U_new 直接作为下周期采样均值\"]\n    K --> B"}, {"id": "d37", "code": "flowchart TD\n    A([\"上层规划器输出名义控制 u_nom\"]) --> B[\"定义安全集：与障碍的距离保持在 d_safe 以上\"]\n    B --> C[\"构造 CBF：h 的导数 + alpha 乘 h 大于等于 0\"]\n    C --> D[\"QP 目标：最小化偏离 u_nom 的平方\"]\n    D --> E[\"约束：CBF 不等式 + 执行器上下限\"]\n    E --> F{\"QP 是否可行？\"}\n    F -->|\"可行\"| G[\"输出安全控制 u_safe\"]\n    F -->|\"不可行\"| H[\"放宽：只留硬安全约束 求最小制动量\"]\n    H --> I[\"仍不可行：紧急停车\"]\n    G --> J[\"底盘执行 状态反馈进入下一周期\"]\n    J --> A\n    G --> K[\"解耦价值：规划器可任意替换 安全层不用改\"]"}, {"id": "d38", "code": "flowchart TD\n    A([\"综述的检索地图：ROS 导航与避障的架构 方法 趋势\"]) --> B[\"TEB 劣势 1：依赖全局规划器引导质量\"]\n    A --> C[\"TEB 劣势 2：动态场景响应迟滞\"]\n    A --> D[\"TEB 劣势 3：依赖倒退机动\"]\n    B --> E[\"检索分支：改进全局层 代价地图与路径平滑\"]\n    C --> F[\"检索分支：MPPI 谱系 GP-MPPI DRPA-MPPI Hybrid A-MPPI\"]\n    D --> G[\"检索分支：双向朝向与 hybrid A 重初始化\"]\n    E --> H[\"另一条赛道：端到端学习式局部规划 iPlanner ViPlanner\"]\n    F --> I[\"落地形态：Nav2 插件组合与控制器切换策略\"]\n    G --> I\n    H --> I\n    I --> J[\"我们的选型顺序：先修受阻恢复语义 再谈换赛道\"]\n    J --> K[\"不采信：综述层面没有可直接复现的实机数字\"]"}, {"id": "d39", "code": "flowchart TD\n    A([\"单帧深度图 + 目标位置\"]) --> B[\"感知与规划网络：编码深度与目标\"]\n    B --> C[\"预测关键点路径 + 每条路径的碰撞概率\"]\n    C --> D[\"可微 costmap：把预测路径投影成代价\"]\n    D --> E[\"下层：基于度量的轨迹优化 求平滑避障解\"]\n    E --> F[\"上层：任务代价与 fear loss 反传 更新网络权重\"]\n    F --> B\n    C --> G[\"推理：取最优关键点路径 交给跟踪器\"]\n    G --> H{\"跟踪中碰撞概率超阈值？\"}\n    H -->|\"是\"| I[\"减速 重取深度 重新推理\"]\n    H -->|\"否\"| J[\"继续跟踪 输出速度指令\"]\n    I --> K[\"连续无可行输出：停车\"]"}, {"id": "d40", "code": "flowchart TD\n    A([\"单帧深度图 + RGB 图像\"]) --> B[\"几何流：深度还原局部地形代价\"]\n    A --> C[\"语义流：30 类分割 用 RGB 颜色编码可通行性\"]\n    B --> D[\"可微语义 costmap：几何与语义融合\"]\n    C --> D\n    D --> E[\"网络输出通往目标的局部关键点路径\"]\n    E --> F[\"下层轨迹优化：平滑 避障 语义代价最小\"]\n    F --> G[\"上层任务代价反传 端到端更新权重\"]\n    G --> E\n    E --> H[\"零样本 sim-to-real：纯仿真训练 真机直接推理\"]\n    H --> I{\"语义是否误判 例如把楼梯当障碍？\"}\n    I -->|\"是\"| J[\"回退：退化为纯几何代价 保守绕行\"]\n    I -->|\"否\"| K[\"下发局部路径给跟踪器\"]\n    J --> K"}, {"id": "d41", "code": "flowchart TD\n    A([\"原始点云 + 目标方向\"]) --> B[\"Vessel：用缩放因子直接从点云构造 CBF\"]\n    B --> C[\"每个近邻点生成一条安全不等式 免建图免拟合\"]\n    C --> D[\"名义控制：指向目标的参考速度\"]\n    D --> E[\"QP 过滤：同时满足全部点云 CBF 约束\"]\n    E --> F{\"QP 是否可行？\"}\n    F -->|\"可行\"| G[\"输出安全控制 u_safe\"]\n    F -->|\"不可行\"| H[\"点太密或通道过窄：降低期望速度后重解\"]\n    H --> E\n    G --> I[\"Mariner：预览若干步 提前看未来约束\"]\n    I --> J{\"是否陷入伪平衡 局部卡死？\"}\n    J -->|\"是\"| K[\"预览项注入 打破对称 主动绕出\"]\n    J -->|\"否\"| L[\"作为最终指令下发底盘\"]\n    K --> L\n    L --> M([\"与全局规划器集成：接口只吃点云与控制\"])"}, {"id": "d42", "code": "flowchart TD\n    A([\"起点：未知地下环境<br/>粉尘 烟雾 弱光 断联\"]) --> B[\"感知重建：相机 LiDAR 惯性<br/>互补多模态位姿估计\"]\n    B --> C[\"GPU 局部高程图<br/>点云配准与几何退化判别\"]\n    C --> D[\"可通行性 cost map<br/>坡度 台阶 粗糙度 净空分层\"]\n    D --> E{\"reachability 梯级存在？\"}\n    E -->|\"存在\"| F[\"reachability 导航规划器<br/>生成机身可达航点序列\"]\n    E -->|\"不存在\"| G[\"本层判为不可达<br/>退回上层换目标\"]\n    F --> H[\"RL perceptive locomotion controller<br/>把航点转成速度与姿态指令\"]\n    R[\"域随机化：外力 质量 摩擦 初速度\"] --> S[\"显式注入外感知噪声<br/>策略自己决定信不信外感知\"]\n    S --> H\n    H --> T{\"外感知置信度够不够？\"}\n    T -->|\"够\"| U[\"关节力矩跟踪<br/>按标称速度通过\"]\n    T -->|\"不够\"| V[\"降低外感知权重<br/>退化为本体感知盲走 降速\"]\n    V --> W{\"连续 N 次仍失效？\"}\n    W -->|\"否\"| H\n    W -->|\"是\"| X[\"停车 请求操作员 或 返航起点\"]"}, {"id": "d43", "code": "flowchart TD\n    A([\"起点：隧道赛道与城市赛道入口\"]) --> B[\"ANYmal 四足主力平台<br/>续航与越障优先\"]\n    B --> C[\"统一探索路径规划策略<br/>四足与无人机共用同一套目标选择\"]\n    C --> D[\"推进到下一个探索前沿\"]\n    D --> E{\"进入支路前的几何判定<br/>净宽 净高 高差 对机体包围盒\"}\n    E -->|\"可容纳机身\"| F[\"四足继续推进并自我定位\"]\n    E -->|\"过窄或地面系统不可达\"| G[\"平台级放弃<br/>该支路标记为地面不可达\"]\n    G --> H[\"交给碰撞容忍无人机补位\"]\n    H --> I[\"无人机进入并回报目标位置\"]\n    F --> J{\"通信链是否可用？\"}\n    J -->|\"光纤通\"| K[\"地面漫游车高增益天线<br/>光纤回基站\"]\n    J -->|\"光纤断\"| L[\"四足沿途投放 breadcrumb 无线节点<br/>建多跳链路\"]\n    L --> M{\"多跳链路可用？\"}\n    M -->|\"否\"| N[\"该机退出探索<br/>保留本地建图与自主返航\"]\n    M -->|\"是\"| K\n    K --> O[\"集中式多机地图优化<br/>统一到 DARPA 坐标系\"]\n    I --> O\n    N --> O\n    O --> P[\"目标位置上报 计分\"]"}, {"id": "d44", "code": "flowchart TD\n    A([\"决赛系统上线 三条并行主线<br/>感知 规划 通信\"]) --> B{\"子系统自检通过？\"}\n    B -->|\"是\"| C[\"按标称策略推进任务\"]\n    B -->|\"否\"| D[\"记入失败模式清单\"]\n    D --> E[\"模式一 感知退化<br/>粉尘 烟雾 反光 几何自相似\"]\n    D --> F[\"模式二 通信中断<br/>长走廊 拐角 信号衰减\"]\n    D --> G[\"模式三 地形超限<br/>湿滑 松散 台阶 悬垂\"]\n    D --> H[\"模式四 定位漂移<br/>长走廊累积误差\"]\n    E --> I[\"仲裁 多模态冗余加置信度门控\"]\n    F --> J[\"仲裁 光纤与 breadcrumb 双路<br/>再退化为完全自主\"]\n    G --> K[\"仲裁 降速 换技能 或换平台\"]\n    H --> L[\"仲裁 多机地图优化回环修正\"]\n    I --> M[\"统一任务状态机\"]\n    J --> M\n    K --> M\n    L --> M\n    M --> N[\"四类终态<br/>继续 降级 返航 放弃\"]\n    N --> O[\"写入赛后复盘 供下次赛事复用\"]"}, {"id": "d45", "code": "flowchart TD\n    A([\"起点：矿道入口 无先验地图\"]) --> B[\"全局规划器<br/>维护探索图与探索空间边缘\"]\n    B --> C[\"选定下一个探索目标\"]\n    C --> D[\"局部规划器<br/>局部体积内做 RRG 随机图扩展\"]\n    D --> E[\"候选路径按探索增益打分<br/>增益看新增可探索体积与代价之比\"]\n    E --> F[\"执行最优局部路径<br/>边推进边重规划下一段\"]\n    F --> G{\"触发切层条件？\"}\n    G -->|\"局部走到 dead-end 矿道尽头\"| H[\"局部增益耗尽\"]\n    G -->|\"增益不再增加\"| H\n    G -->|\"电量低于返航阈值\"| I[\"电量不足\"]\n    G -->|\"否\"| B\n    H --> J[\"切全局规划器<br/>重定位到探索空间边缘\"]\n    I --> K[\"切全局规划器<br/>生成返航起点路径\"]\n    J --> L[\"沿全局路径导航<br/>到达后恢复局部规划\"]\n    L --> B\n    K --> M{\"返航路径可行？\"}\n    M -->|\"可行\"| N[\"返航并停机\"]\n    M -->|\"不可行\"| O[\"停在已知自由空间<br/>停止探索并上报操作员\"]"}, {"id": "d46", "code": "flowchart TD\n    A([\"起点：决赛场地<br/>烟雾 窄门 湿滑 动态障碍\"]) --> B[\"统一感知与自主栈<br/>异构平台共享同一套接口\"]\n    B --> C[\"导航层常规局部规划\"]\n    C --> D{\"前方几何判定\"}\n    D -->|\"净宽小于阈值\"| E[\"Gaps Planner<br/>为窄通道与门洞生成穿越路径\"]\n    D -->|\"地面倾斜或松软\"| F[\"Orientation Correction<br/>修姿态保住支撑多边形\"]\n    D -->|\"动态障碍封堵路径\"| G[\"重规划 换侧 或限时等待\"]\n    D -->|\"无障碍\"| H[\"按标称速度推进\"]\n    E --> I{\"找到可行穿越？\"}\n    I -->|\"找到\"| J[\"低速穿过窄缝\"]\n    I -->|\"没有\"| K[\"判为不可通行 换支路\"]\n    F --> L{\"姿态修正量在界内？\"}\n    L -->|\"在界内\"| J\n    L -->|\"超界\"| M[\"停车 后退 重新选路\"]\n    J --> N[\"返回统一自主栈继续探索\"]\n    K --> N\n    M --> N\n    G --> N\n    H --> N\n    N --> O[\"检测目标并上报位置计分\"]"}, {"id": "d47", "code": "flowchart TD\n    A([\"USAR 任务<br/>在废墟中搜索并定位受害者\"]) --> B[\"低层 地形与运动控制<br/>不平地面 楼梯 碎石 窄缝\"]\n    A --> C[\"中层 USAR 三维建图与定位<br/>SLAM 与多传感器融合\"]\n    A --> D[\"高层 半自主人机任务分配<br/>共享控制与操作员监督\"]\n    A --> E[\"系统层 多机器人高层控制<br/>任务分解 通信 协调\"]\n    B --> F[\"我们的落点 主战场<br/>12×10 m 废墟 乱石 坡道 圆管 方涵\"]\n    C --> G[\"我们的落点 部分覆盖<br/>在线栅格建图 前沿探索 弱光扬尘\"]\n    D --> H[\"我们的落点 被压缩<br/>无实时操作员 监督前置到赛前\"]\n    E --> I[\"我们明确不做<br/>单机运行 这一格空缺\"]\n    F --> J[\"失效 打滑 卡死 侧翻\"]\n    G --> K[\"失效 定位漂移 地图失真\"]\n    H --> L[\"失效 无人在环 异常无人裁决\"]\n    J --> M[\"必须自带受阻恢复与放弃判据\"]\n    K --> M\n    L --> N[\"由任务状态机与 40 分钟时限兜底\"]\n    I --> O[\"标为已知边界 不写进报告书能力项\"]"}, {"id": "d48", "code": "flowchart TD\n    A([\"自然语言指令 + 头部 RGB 相机\"]) --> B[\"VLM 高层：微调为 VLA，输出中层语言动作\"]\n    B --> C[\"解析为离散原语：前进 75 cm、左转 30 度\"]\n    C --> D[\"视觉 locomotion RL 策略：深度障碍感知 + 本体历史\"]\n    D --> E[\"12 维关节目标 → PD 控制器 → 力矩\"]\n    E --> F([\"到达 / 任务继续\"])\n    F -->|\"未到达，取新一帧观测\"| B\n    B --> G{\"中层动作是否可执行？\"}\n    G -->|\"否：前方高于台阶极限或被废墟封死\"| H[\"原语被低层策略静默放大或撞停\"]\n    H --> I[\"失败：无显式受阻回声，高层不知道低层做不到\"]\n    D --> J[\"VLN-CE-Isaac 基准：IsaacLab 里接真实低层控制做评测\"]\n    J --> K([\"Habitat 的 R2R-CE / RxR-CE 上可比\"])"}, {"id": "d49", "code": "flowchart TD\n    A([\"MJCF 模型 + 任务定义：locomotion / manipulation\"]) --> B[\"物理后端二选一：MJX（JAX）或 MuJoCo Warp\"]\n    B --> C[\"GPU 上批量并行环境（数千 env 同时跑）\"]\n    C --> D[\"PPO 训练：JAX PPO 或 RSL-RL\"]\n    D --> E{\"奖励收敛且域随机化覆盖足够？\"}\n    E -->|\"否：调奖励 / 扩地形与随机化\"| C\n    E -->|\"是\"| F[\"策略 checkpoint（JAX 或 PyTorch）\"]\n    F --> G[\"ONNX 导出：源文件称有参考流程，本轮两份 README 均未见明确说明\"]\n    G --> H([\"ONNX Runtime CPU 推理：与竞赛契约同构\"])\n    F --> I[\"实机零样本部署：state 与 pixel 输入都声称可迁移\"]\n    I --> J{\"实机与仿真的接触 / 执行器误差\"}\n    J -->|\"超预期\"| K[\"零样本失效，需 sysid 或再微调\"]\n    C --> L[\"平台限制：论文版 rss2025 要求 CUDA 12 jax，新版 main 的 CPU 路径只列 macOS / Linux\"]"}, {"id": "d50", "code": "flowchart TD\n    A([\"仅局部 RGB-D 观测（无地图、无全局位姿）\"]) --> B[\"统一 Transformer 主干\"]\n    B --> C[\"轨迹生成头：一次采样多条候选局部轨迹\"]\n    B --> D[\"轨迹评价头：给每条候选预测 critic 值\"]\n    C --> D\n    D --> E[\"对比候选打分 → 取 critic 最高的一条\"]\n    E --> F[\"输出局部路径点 / 速度指令\"]\n    F --> G[\"底层控制器执行\"]\n    P([\"仿真特权信息：真值位姿、障碍距离、碰撞标签\"]) -->|\"只用于训练期监督\"| D\n    T([\"仿真数据管线：超 100 万米航程、3000 个场景\"]) -->|\"训练数据\"| B\n    E --> H{\"局部极小：长走廊 / 死胡同 / 前方全堵\"}\n    H -->|\"是\"| I[\"无全局层可回退，只能原地抖动或贴墙\"]\n    I --> J[\"失败模式：本文未覆盖受阻恢复语义\"]"}, {"id": "d51", "code": "flowchart TD\n    A([\"异构本体输入：四足 / 无人机 / 轮式 / 车辆\"]) --> B[\"统一 token 化：多相机图像 patch + 语言指令\"]\n    B --> C[\"identifier token：编码相机视角与本体的对应关系\"]\n    C --> D[\"identifier token：编码任务的时间跨度与导航视野\"]\n    D --> E[\"token 预算受限下的动态采样策略\"]\n    E --> F[\"统一导航 Transformer\"]\n    F --> G[\"输出：局部航点 / 动作\"]\n    G --> H([\"执行并进入下一观测\"])\n    T([\"800 万条导航样本：VLN、找物、目标跟踪、自动驾驶\"]) -->|\"混合训练\"| F\n    G --> I{\"遇训练分布外的几何约束\"}\n    I -->|\"是：限高 0.6 m 的方涵、圆管内径 1.0 m\"| J[\"训练集里没有对应本体与场景，泛化未验证\"]\n    J --> K[\"失败风险：输出航点物理不可达，模型自己不知道\"]"}, {"id": "d52", "code": "flowchart TD\n    A([\"地形生成器：程序化生成四类隧道截面\"]) --> B[\"Triangle 等边三角 / Circle 整圆 / Half-Circle 半圆 / Gap 中央空档加侧台\"]\n    B --> C[\"难度参数连续缩放：边长、半径、间隙宽度、侧台角、坡度过渡\"]\n    C --> D[\"四个特权专家策略，各专精一类隧道\"]\n    D --> E[\"专家观测：本体 + 108 维地形高度网格 + 特权真值\"]\n    E --> F[\"12 维关节目标 → PD 控制器 → 力矩\"]\n    C --> G[\"学生策略：深度图 + 本体历史（部署时的真实输入）\"]\n    D -->|\"隧道类别标签 c_t\"| H[\"DAgger：学生自行 rollout，按 c_t 查询匹配专家要纠正\"]\n    G --> H\n    H --> I[\"类别均衡回放缓冲，防止偏向单一截面\"]\n    I -->|\"迭代采集与更新\"| G\n    G --> J([\"实机部署：仅深度 + 本体，无特权信息\"])\n    B --> K{\"四类截面是否覆盖真实废墟\"}\n    K -->|\"否：倾斜顶板、杂物、不规则坍塌\"| L[\"sim-to-real 仍有 gap，摘要自承是几何原语\"]"}, {"id": "d53", "code": "flowchart TD\n    A([\"地形课程：按地形类型分别训练专家\"]) --> B[\"多个地形专用专家策略\"]\n    B --> C[\"DAgger 蒸馏：多专家 → 单一 foundation policy\"]\n    C --> D[\"RL 微调：更广地形集，含真实 3D 扫描数据\"]\n    D --> E{\"是否还有新地形要覆盖\"}\n    E -->|\"有：采集该地形 3D 扫描\"| F[\"重复微调，扩展同一策略\"]\n    F --> D\n    E -->|\"否\"| G[\"部署策略：深度图外感知 + 本体\"]\n    G --> H([\"ANYmal D 实机：敏捷且鲁棒地通过复杂环境\"])\n    D --> I[\"失效条件：新地形无扫描数据可采\"]\n    I --> J[\"退回蒸馏前能力，分布外地形性能下降\"]\n    A --> K{\"专家数量与覆盖\"}\n    K -->|\"地形类别缺失\"| L[\"蒸馏后策略在该类地形上无对应技能\"]"}, {"id": "d54", "code": "flowchart TD\n    A([\"上层决策层：速度、步态、质心高度、抬腿高度指令\"]) --> B[\"相位变量映射为期望接触状态\"]\n    B --> C[\"接触状态用双曲正切连续化，替代二值离散\"]\n    C --> D[\"执行层：PPO 策略输出 12 维关节目标\"]\n    A --> E[\"LSTM 地面特性实时估计网络：输入本体历史\"]\n    E --> F[\"质心位置自适应调整：高度与俯仰\"]\n    F --> D\n    D --> G[\"PD → 关节力矩\"]\n    D --> H[\"奖励项之单次落足点偏差惩罚：评估连续滑动\"]\n    H -->|\"足端滑动被抑制\"| D\n    G --> I[\"Isaac Gym：μ 从 1.0 到 0.05，速度 1.5 / 2.0 m/s\"]\n    I --> J{\"足端滑动距离是否仍超阈\"}\n    J -->|\"是\"| E\n    J -->|\"否\"| K([\"稳定高速通行\"])\n    I --> L[\"局限：仅仿真验证，无实机；真实地面材质与接触模型差异未覆盖\"]"}, {"id": "d55", "code": "flowchart TD\n    A([\"本体感知：关节角与角速度、IMU、足端接触\"]) --> C[\"多模态特征编码\"]\n    B([\"外部传感：深度 / 视觉 / 测距观测\"]) --> C\n    C --> D[\"Transformer 层：跨模态自注意力融合\"]\n    D --> E[\"注意力过滤：抑制噪声通道与冗余时序\"]\n    E --> F[\"策略头：避障动作 / 速度指令\"]\n    F --> G[\"四足底层执行\"]\n    S([\"仿真训练：不平坦地形 + 动态障碍\"]) -->|\"训练工况\"| D\n    G --> H{\"传感器退化：弱光、扬尘、反光\"}\n    H -->|\"是\"| I[\"注意力权重失真，融合退化为不可信输入\"]\n    I --> J[\"需降级：降速 / 退回本体盲走\"]\n    E --> K{\"是否把 4–12 cm 凸起误判为障碍\"}\n    K -->|\"是\"| L[\"过度保守，反复绕行或原地停\"]"}, {"id": "d56", "code": "flowchart TD\n    A([\"任务设定：救灾 / 消防救援场景下的无地图避障导航\"]) --> B[\"PyBullet 仿真环境：四种场景配置\"]\n    B --> C[\"DRL 智能体：观测 → 高层离散动作\"]\n    C --> D[\"动作简化：每步只允许旋转 + 直线\"]\n    D --> E[\"MPC 跟踪该简化动作，输出底层控制\"]\n    E --> F[\"四足在仿真中运动，返回新观测\"]\n    F --> G[\"回报：到达目标 / 碰撞 / 超时\"]\n    G --> C\n    C --> H{\"训练是否收敛\"}\n    H -->|\"否：换奖励函数重训\"| I[\"两种奖励函数对比\"]\n    I --> C\n    H -->|\"是\"| J([\"输出避障决策策略\"])\n    D --> K[\"结构性局限：动作被压成旋转加直线，连续动态避障与限高通过未验证\"]"}, {"id": "d57", "code": "flowchart TD\n    A([\"赛场事实：圆管内径 1.0 m<br/>方涵 1.2×0.6 m 限高 0.6 m<br/>乱石 4–12 cm · 坡道 0.45 m\"]) --> B{\"通道存在顶壁/悬垂，<br/>即限高是瓶颈？\"}\n\n    B -->|\"否，只有地面起伏\"| C[\"2.5D 高程图够用\"]\n    C --> C1[\"Fankhauser 2018：加方差层<br/>表达位姿不确定度\"]\n    C --> C2[\"Jenelten 2020：局部最优落脚点\"]\n    C --> C3[\"Zhang 2024：稀疏踏石精确落足\"]\n    C1 --> OUT1([\"输出：栅格高度 + 可通行代价\"])\n\n    B -->|\"是，圆管/方涵/塌落楼板\"| D[\"2.5D 结构性盲区<br/>悬垂障碍在图上不产生数据点\"]\n    D --> E[\"必须升级表征\"]\n    E --> E1[\"3D 体素 + 6D 姿态指令<br/>Miki 2024 ICRA\"]\n    E --> E2[\"可变形包围盒 + 多层高程图<br/>Buchanan 2019\"]\n    E --> E3[\"机身位姿当规划变量<br/>Buchanan 2021 JFR\"]\n    E1 --> OUT2([\"输出：空间净空 + 机身姿态序列\"])\n\n    B -->|\"都判不准，且算力受限\"| F[\"放弃显式地图，直接深度 → 策略\"]\n    F --> F1[\"Zhuang 2023：crawl + squeeze<br/>免高程图\"]\n    F --> F2[\"Agarwal 2022：单前向深度相机\"]\n    F --> F3[\"Ma 2025 PPL：点云监督本体估计<br/>低能见度\"]\n    F1 --> OUT3([\"输出：关节动作，无可解释地图\"])\n\n    OUT1 --> G{\"限高仍是硬约束？\"}\n    G -->|\"是\"| H[\"在 2.5D 之上补一层<br/>顶部净空高度图（最小改动）\"]\n    G -->|\"否\"| I([\"直接进规划层\"])\n    H --> I"}, {"id": "d58", "code": "flowchart TD\n    A([\"局部避障需求\"]) --> B{\"有可靠的全局路径初值？\"}\n    B -->|\"有\"| C[\"TEB 谱系起步\"]\n    C --> C1[\"Rösmann 2012：时间维 + 稀疏多目标\"]\n    C1 --> C2{\"解不可行 / 卡在错误一侧？\"}\n    C2 -->|\"否\"| OK1([\"输出控制量\"])\n    C2 -->|\"是\"| C3[\"Rösmann 2017：多 homotopy 并行<br/>换侧不重算\"]\n    C2 -->|\"是\"| C4[\"Kulathunga 2025 RTEB：<br/>hybrid A* 重初始化 + 双向朝向\"]\n    C3 --> OK1\n    C4 --> OK1\n\n    B -->|\"没有 / 初值本身不可信\"| D[\"采样类或无初值方法\"]\n    D --> D1[\"Williams 2018 MPPI：<br/>采样 N 条加权，天然多模态\"]\n    D --> D2[\"iPlanner 2023：单帧深度直出路径\"]\n    D --> D3[\"ViPlanner 2024：语义可通行性<br/>楼梯算可过、0.2 m 窄口算不可过\"]\n\n    C -->|\"计算量超预算\"| E[\"降级链：TEB → DWA → 停车观察\"]\n    E --> E1[\"Fox 1997 DWA：轻量基线\"]\n\n    OK1 --> S[\"安全层：CBF-QP 过滤\"]\n    D1 --> S\n    D2 --> S\n    D3 --> S\n    E1 --> S\n    S --> S1[\"Ames 2017：CLF 性能 + CBF 前向不变性\"]\n    S --> S2[\"Dai 2024：点云 CBF，Go2 实机验证\"]\n    S1 --> OUT([\"安全控制量\"])\n    S2 --> OUT\n    S -->|\"QP 无可行解\"| X([\"停车 + 上报\"])"}, {"id": "d59", "code": "flowchart TD\n    A([\"规划请求：起点 s + 目标 g\"]) --> B{\"s 落在膨胀区 /<br/>无可通行邻格？\"}\n    B -->|\"否\"| C[\"正常规划：全局 A* / RRT*\"]\n    C --> D[\"局部 TEB 优化\"]\n    D --> E{\"解运动学可行？\"}\n    E -->|\"是\"| F([\"下发轨迹\"])\n    E -->|\"否\"| G[\"RTEB 式重初始化<br/>hybrid A* 生成可行轨迹 + 软约束平滑\"]\n\n    B -->|\"是\"| H[\"记录事件：start_blocked<br/>写 recovery_log\"]\n    H --> I{\"恢复次数 < 上限 N？\"}\n    I -->|\"否\"| X([\"终态：上报不可达<br/>交上层换目标或返航\"])\n    I -->|\"是\"| J[\"脱困：沿最近自由格方向<br/>短距离移动，优先后退\"]\n    J --> K[\"重采样位姿 → 重建初值\"]\n    K --> L{\"初值现在合法？\"}\n    L -->|\"否\"| I\n    L -->|\"是\"| C\n\n    G --> M{\"生成成功？\"}\n    M -->|\"是\"| F\n    M -->|\"否\"| N{\"换拓扑 / 换侧可行？\"}\n    N -->|\"是\"| D\n    N -->|\"否\"| X\n\n    R[(\"recovery_log：<br/>事件类型 / 次数 / 位姿 / 结果\")] -.-> H\n    R -.-> X"}];
+const banner = document.getElementById('banner');
+let mermaid = null;
+try {
+  const mod = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+  mermaid = mod.default;
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'base',
+    securityLevel: 'loose',
+    fontFamily: '-apple-system,"Segoe UI","Microsoft YaHei",sans-serif',
+    themeVariables: {
+      fontSize: '14px',
+      primaryColor: '#eef4ff',
+      primaryBorderColor: '#4b7bd6',
+      primaryTextColor: '#16202c',
+      lineColor: '#5b6470',
+      clusterBkg: '#f7f9fc',
+      clusterBorder: '#c8d2de'
+    },
+    flowchart: { htmlLabels: true, curve: 'basis', nodeSpacing: 36, rankSpacing: 44 }
+  });
+} catch (e) {
+  banner.style.display = 'block';
+  banner.textContent = '无法从 CDN 加载 mermaid（可能处于离网环境）。每张图下方仍可展开查看 Mermaid 源码；也可用 Typora / VS Code / Obsidian 打开同名 .md 文件查看渲染结果。';
+}
+
+if (mermaid) {
+  let ok = 0, fail = 0;
+  for (const d of DEFS) {
+    const box = document.querySelector('.render[data-for="' + d.id + '"]');
+    if (!box) continue;
+    try {
+      const { svg } = await mermaid.render('svg-' + d.id, d.code);
+      box.innerHTML = svg;
+      ok++;
+    } catch (err) {
+      box.classList.add('err');
+      box.textContent = '该图渲染失败（' + (err && err.message ? err.message : err) + '），请展开下方源码查看。';
+      fail++;
+    }
+  }
+  const badge = document.createElement('p');
+  badge.className = 'meta';
+  badge.textContent = '已渲染 ' + ok + ' 张流程图' + (fail ? '，失败 ' + fail + ' 张' : '') + '。';
+  document.querySelector('main').prepend(badge);
+}
+</script>
+</body>
+</html>

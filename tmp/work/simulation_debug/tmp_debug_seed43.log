@@ -1,0 +1,149 @@
+Run output: F:\airace\lite2_sim\runs\mujoco_20261113_143528_282a45
+{
+  "result": "passed",
+  "scope": "fixed_base_model_sensors_and_course_scene_load",
+  "scene_id": "ruins_reference",
+  "joint_count": 12,
+  "max_joint_error_rad": 0.010694951822417776,
+  "center_depth_m": 1.2854357957839966,
+  "expected_depth_m": null,
+  "depth_valid_fraction": 0.5884532232704403,
+  "backend": "mujoco",
+  "mujoco_version": "3.17.0",
+  "floating_root": true,
+  "actuator_count": 12,
+  "source_model_mass_kg": 10.03,
+  "fixture_drift_m": 1.9294714334538998e-05,
+  "fixture_drift_tolerance_m": 0.005,
+  "pose_dependent_checks": true,
+  "gyro_norm_rad_s": 1.1615985097433175e-10,
+  "imu_gravity_error_m_s2": 3.849027480652143e-09,
+  "max_inertia_relative_error": 3.0824836748832284e-06,
+  "geometry_count": 1939,
+  "lidar_wall_error_m": 2.8904548800334773e-05
+}
+DBG t=2.00 status=insufficient_observations reason=oriented_start_clearance_recovery_no_reachable_known_free_frontier radius=0.34 pose=(-5.006,-4.294,0.033) cell=(19,14) lo=-4.00 blocked=True blocked24=False free=3910 unknown=43766 reach24=6 goal=(-4.0, 4.1)
+DBG recov t=2.00 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.05 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.10 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.15 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.20 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.25 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.30 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.35 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.40 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.45 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.50 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.55 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.60 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.65 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.70 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.75 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.80 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.85 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.90 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=2.95 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.00 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.05 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.10 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.15 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.20 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.25 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.30 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.35 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.40 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.45 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.50 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.55 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.60 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.65 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.70 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.75 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.80 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.85 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.90 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG recov t=3.95 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=1
+DBG t=4.55 status=insufficient_observations reason=oriented_start_clearance_recovery_no_reachable_known_free_frontier radius=0.34 pose=(-5.006,-4.294,0.056) cell=(19,14) lo=-4.00 blocked=True blocked24=False free=4097 unknown=43525 reach24=3 goal=(-4.0, 4.1)
+DBG recov t=4.55 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=4.60 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=4.65 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=4.70 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=4.75 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=4.80 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=4.85 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=4.90 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=4.95 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+NAV_PROGRESS t=5.0 status=recovering pose=(-5.01,-4.29) scans=49
+DBG recov t=5.00 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.05 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.10 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.15 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.20 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.25 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.30 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.35 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.40 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.45 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.50 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.55 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.60 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.65 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.70 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.75 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.80 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.85 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.90 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=5.95 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=6.00 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=6.05 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=6.10 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=6.15 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=6.20 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=6.25 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=6.30 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=6.35 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=6.40 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=6.45 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG recov t=6.50 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=2
+DBG t=7.10 status=insufficient_observations reason=oriented_start_clearance_recovery_no_reachable_known_free_frontier radius=0.34 pose=(-5.006,-4.294,0.079) cell=(19,14) lo=-4.00 blocked=True blocked24=False free=4326 unknown=43297 reach24=3 goal=(-4.0, 4.1)
+DBG recov t=7.10 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.15 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.20 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.25 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.30 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.35 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.40 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.45 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.50 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.55 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.60 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.65 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.70 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.75 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.80 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.85 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.90 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=7.95 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.00 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.05 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.10 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.15 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.20 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.25 req=(0.000,0.240) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.30 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.35 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.40 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.45 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.50 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.55 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.60 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.65 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.70 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.75 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.80 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.85 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.90 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=8.95 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=9.00 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=3
+DBG recov t=9.05 req=(-0.080,0.000) got=(0.000,0.000) reason=insufficient_observations attempts=3
+NAVIGATION_FINISHED {"passed": false, "result": "insufficient_observations", "goal_error_m": 8.412068711084093, "collisions": 0, "output": "F:\\airace\\lite2_sim\\runs\\mujoco_20261113_143528_282a45"}

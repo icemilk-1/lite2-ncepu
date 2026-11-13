@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "F:\airace\lite2_sim\controllers\sensor_capture\sensor_capture.py", line 121, in <module>
+    main(supervisor)
+  File "F:\airace\lite2_sim\controllers\sensor_capture\sensor_capture.py", line 105, in main
+    summary = run_navigation(robot, config, output, timestep)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\airace\lite2_sim\controllers\sensor_capture\navigation.py", line 95, in run_navigation
+    current_command = VelocityCommand(0.0, 0.0, mapping_start,
+                      ^^^^^^^^^^^^^^^
+NameError: name 'VelocityCommand' is not defined

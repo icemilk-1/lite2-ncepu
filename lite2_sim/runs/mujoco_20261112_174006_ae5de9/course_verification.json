@@ -1,0 +1,48 @@
+{
+  "passed": false,
+  "result": "timeout",
+  "checks": {
+    "collision_free": true,
+    "stopped_for_one_second": true,
+    "finite_state": true,
+    "goal_reached": false,
+    "position_tolerance": false,
+    "all_stages_passed": false,
+    "no_manual_intervention": true
+  },
+  "stages": [
+    {
+      "id": "ramp",
+      "passed": false,
+      "checkpoints": [],
+      "scheduled_completion": false
+    },
+    {
+      "id": "stage_finish",
+      "passed": false,
+      "checkpoints": [],
+      "scheduled_completion": false
+    }
+  ],
+  "manual_interventions": 0,
+  "recovery_count": 0,
+  "scope": "velocity_level_ordered_course_navigation",
+  "physical_gait_validated": false,
+  "elapsed_simulation_s": 121.1,
+  "evaluation_only": {
+    "final_truth_xy_m": [
+      -4.897174449112186,
+      -2.6831579258569866
+    ],
+    "goal_error_m": 6.842233074023145,
+    "goal_tolerance_m": 0.25,
+    "truth_goal_tolerance_met": false,
+    "distance_travelled_m": 8.081165137410954,
+    "scan_match_corrections": 24,
+    "collision_stop_events": 0
+  },
+  "active_stage": "ramp",
+  "state": "failed",
+  "random_seed": 42,
+  "failure_reason": "timeout"
+}

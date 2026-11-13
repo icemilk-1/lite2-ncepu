@@ -1,0 +1,7 @@
+{
+  "result": "failed",
+  "backend": "mujoco",
+  "scene_id": "sensor_lab",
+  "error": "URDF body mass, center of mass or inertia changed: TORSO",
+  "error_log": "error.log"
+}

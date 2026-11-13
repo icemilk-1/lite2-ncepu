@@ -1,0 +1,690 @@
+[
+  {
+    "sim_time_s": 2.0,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.0,
+      4.1
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 2.05,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.0,
+      4.1
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 2.55,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.0,
+      4.1
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 3.05,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.0,
+      4.1
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 3.55,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.019902733978805,
+      4.094131471181366
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.05,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.058255288502584,
+      4.0827700645122755
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.1,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.060652323160321,
+      4.082059976595458
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.15,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.061611137023416,
+      4.081775941428731
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.2,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.061611137023416,
+      4.081775941428731
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.25,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.061611137023416,
+      4.081775941428731
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.3,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.061611137023416,
+      4.081775941428731
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.35,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.061611137023416,
+      4.081775941428731
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.4,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.061611137023416,
+      4.081775941428731
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.45,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.061611137023416,
+      4.081775941428731
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.5,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.061611137023416,
+      4.081775941428731
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 4.55,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.061611137023416,
+      4.081775941428731
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 5.05,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.061611137023416,
+      4.081775941428731
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 5.55,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.061611137023416,
+      4.081775941428731
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.05,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.079161387355901,
+      4.070705839189215
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.55,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.112966331110133,
+      4.049323000795469
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.6,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.115079140094773,
+      4.0479865733958595
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.65,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.115924263688629,
+      4.047452002436016
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.7,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.115924263688629,
+      4.047452002436016
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.75,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.115924263688629,
+      4.047452002436016
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.8,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.115924263688629,
+      4.047452002436016
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.85,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.115924263688629,
+      4.047452002436016
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.9,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.115924263688629,
+      4.047452002436016
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 6.95,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.115924263688629,
+      4.047452002436016
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 7.0,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.115924263688629,
+      4.047452002436016
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 7.05,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.115924263688629,
+      4.047452002436016
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 7.55,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.115924263688629,
+      4.047452002436016
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 8.05,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.115924263688629,
+      4.047452002436016
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 8.55,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.1269734716084665,
+      4.03486334213557
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.05,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.152324923353725,
+      4.005888285717888
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.1,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.152983402619836,
+      4.005135686849896
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.15,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.152983402619836,
+      4.005135686849896
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.2,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.152983402619836,
+      4.005135686849896
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.25,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.152983402619836,
+      4.005135686849896
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.3,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.152983402619836,
+      4.005135686849896
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.35,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.152983402619836,
+      4.005135686849896
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.4,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.152983402619836,
+      4.005135686849896
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.45,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.152983402619836,
+      4.005135686849896
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  },
+  {
+    "sim_time_s": 9.5,
+    "status": "start_blocked",
+    "reason": "start_not_known_traversable",
+    "from_xy_m": [
+      -4.152983402619836,
+      4.005135686849896
+    ],
+    "planning_radius_m": 0.34,
+    "goal_xy_m": [
+      -1.25,
+      3.8
+    ],
+    "target_xy_m": null,
+    "poses_xy_m": []
+  }
+]

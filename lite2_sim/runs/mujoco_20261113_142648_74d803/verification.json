@@ -1,0 +1,7 @@
+{
+  "result": "failed",
+  "backend": "mujoco",
+  "scene_id": "ruins_reference",
+  "error": "cannot access local variable 'standstill_escapes' where it is not associated with a value",
+  "error_log": "error.log"
+}

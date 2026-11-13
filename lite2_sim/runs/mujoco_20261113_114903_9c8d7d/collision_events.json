@@ -1,0 +1,18 @@
+[
+  {
+    "timestamp_s": 66.9,
+    "proposed_pose": [
+      -4.986246116040548,
+      2.8346188202082883,
+      1.0707936429142757
+    ],
+    "retained_pose": [
+      -4.986965257881442,
+      2.8333024482955387,
+      1.0707936429142757
+    ],
+    "ground_height_m": 0.3679804546355868,
+    "reason": "body_geometry_clearance",
+    "geometry": "ramp_inner_edge_collision_0"
+  }
+]

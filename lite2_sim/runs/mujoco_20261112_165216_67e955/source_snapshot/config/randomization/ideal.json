@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "profile_id": "ideal",
+  "description": "Zero-noise baseline: every additive term is 0.0 and every scale factor is 1.0, so applying this profile reproduces the existing ideal-sensor regression baseline byte for byte.",
+  "provenance": {
+    "default": "sim_assumed"
+  },
+  "lidar": {
+    "range_noise_m": 0.0,
+    "range_bias_m": 0.0,
+    "dropout_probability": 0.0,
+    "beam_block_probability": 0.0,
+    "missing_scan_probability": 0.0,
+    "scan_latency_s": 0.0
+  },
+  "odometry": {
+    "linear_scale_error": 1.0,
+    "yaw_scale_error": 1.0,
+    "linear_noise_fraction": 0.0,
+    "yaw_noise_rad_s": 0.0,
+    "yaw_bias_rad_s": 0.0,
+    "slip_probability": 0.0,
+    "slip_ratio": 0.0
+  },
+  "imu": {
+    "roll_pitch_noise_rad": 0.0
+  },
+  "actuation": {
+    "command_latency_s": 0.0,
+    "acceleration_scale": 1.0,
+    "linear_gain_error": 1.0
+  },
+  "initial_pose": {
+    "dx_m": 0.0,
+    "dy_m": 0.0,
+    "yaw_offset_rad": 0.0
+  }
+}

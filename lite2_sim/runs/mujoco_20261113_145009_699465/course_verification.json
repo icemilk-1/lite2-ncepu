@@ -1,0 +1,258 @@
+{
+  "passed": true,
+  "result": "goal_reached",
+  "checks": {
+    "obstacles_avoided": true,
+    "collision_free": true,
+    "stopped_for_one_second": true,
+    "finite_state": true,
+    "goal_reached": true,
+    "position_tolerance": true,
+    "all_stages_passed": true,
+    "no_manual_intervention": true
+  },
+  "stages": [
+    {
+      "id": "ramp",
+      "passed": true,
+      "checkpoints": [
+        {
+          "index": 0,
+          "timestamp_s": 63.85,
+          "truth_pose_m_rad": [
+            -4.314331038526839,
+            4.114428913829659,
+            0.0910784694260478
+          ],
+          "reverse": false
+        }
+      ],
+      "scheduled_completion": true
+    },
+    {
+      "id": "s_bend",
+      "passed": true,
+      "checkpoints": [
+        {
+          "index": 0,
+          "timestamp_s": 86.4,
+          "truth_pose_m_rad": [
+            -1.4424423024080404,
+            4.073592329074247,
+            -0.464352726402784
+          ],
+          "reverse": false
+        },
+        {
+          "index": 1,
+          "timestamp_s": 108.55,
+          "truth_pose_m_rad": [
+            -1.4491891058826754,
+            1.7043807775432893,
+            -1.689986400643718
+          ],
+          "reverse": false
+        },
+        {
+          "index": 2,
+          "timestamp_s": 122.55,
+          "truth_pose_m_rad": [
+            -0.46991130292652467,
+            0.7536592754404783,
+            -0.3704368726855587
+          ],
+          "reverse": false
+        }
+      ],
+      "scheduled_completion": true
+    },
+    {
+      "id": "dead_end_exit",
+      "passed": true,
+      "checkpoints": [
+        {
+          "index": 0,
+          "timestamp_s": 151.0,
+          "truth_pose_m_rad": [
+            -1.1361607821135562,
+            -1.002231171240538,
+            -1.5758187750048076
+          ],
+          "reverse": false
+        },
+        {
+          "index": 1,
+          "timestamp_s": 169.6,
+          "truth_pose_m_rad": [
+            -1.0330322442510735,
+            0.15336173570195616,
+            1.7090699138190484
+          ],
+          "reverse": false
+        }
+      ],
+      "observation_evidence": [
+        {
+          "timestamp_s": 152.9,
+          "stage_id": "dead_end_exit",
+          "checkpoint_index": 0,
+          "event": "branch_closed",
+          "estimated_pose_m_rad": [
+            -1.1248879531640807,
+            -1.1508521658331718,
+            -1.5673616516656097
+          ],
+          "evidence": {
+            "reason": "observed_closed_branch",
+            "return_count": 340,
+            "observation_timestamp_s": 152.9
+          }
+        }
+      ],
+      "scheduled_completion": true
+    },
+    {
+      "id": "obstacle_bypass",
+      "passed": true,
+      "checkpoints": [
+        {
+          "index": 0,
+          "timestamp_s": 194.95,
+          "truth_pose_m_rad": [
+            1.6837795925185812,
+            0.9417158642665115,
+            0.07410625047836383
+          ],
+          "reverse": false
+        }
+      ],
+      "scheduled_completion": true
+    },
+    {
+      "id": "narrow_passage_rejection",
+      "passed": true,
+      "checkpoints": [
+        {
+          "index": 0,
+          "timestamp_s": 219.65,
+          "truth_pose_m_rad": [
+            2.0333645439898196,
+            3.6842659360517356,
+            1.2876226941296327
+          ],
+          "reverse": false
+        },
+        {
+          "index": 1,
+          "timestamp_s": 290.05,
+          "truth_pose_m_rad": [
+            5.022711171825684,
+            2.303246092219178,
+            2.1945259361378504
+          ],
+          "reverse": false
+        }
+      ],
+      "observation_evidence": [
+        {
+          "timestamp_s": 222.25,
+          "stage_id": "narrow_passage_rejection",
+          "checkpoint_index": 0,
+          "event": "passage_rejected",
+          "estimated_pose_m_rad": [
+            2.063501754157571,
+            3.849461879480088,
+            0.738848710778254
+          ],
+          "evidence": {
+            "reason": "observed_aperture_too_narrow",
+            "observed_width_m": 0.015427869824448326,
+            "required_width_m": 0.6,
+            "return_count": 345,
+            "observation_timestamp_s": 222.20000000000002
+          }
+        }
+      ],
+      "scheduled_completion": true
+    },
+    {
+      "id": "square_culvert",
+      "passed": true,
+      "checkpoints": [
+        {
+          "index": 0,
+          "timestamp_s": 303.3,
+          "truth_pose_m_rad": [
+            5.064391280929699,
+            1.8436570200637001,
+            -1.2946593710417509
+          ],
+          "reverse": false
+        },
+        {
+          "index": 1,
+          "timestamp_s": 318.9,
+          "truth_pose_m_rad": [
+            5.224585705388095,
+            2.3144023581823925,
+            1.992744639190863
+          ],
+          "reverse": false
+        }
+      ],
+      "scheduled_completion": true
+    },
+    {
+      "id": "finish",
+      "passed": true,
+      "checkpoints": [
+        {
+          "index": 0,
+          "timestamp_s": 330.8,
+          "truth_pose_m_rad": [
+            5.027623622441494,
+            3.575787237397372,
+            1.699278110394574
+          ],
+          "reverse": false
+        }
+      ],
+      "scheduled_completion": true
+    }
+  ],
+  "excluded_stages": [
+    {
+      "id": "round_pipe",
+      "reason": "user_requested_obstacle_avoidance_only"
+    },
+    {
+      "id": "south_rubble_route",
+      "reason": "replaced_by_obstacle_bypass"
+    },
+    {
+      "id": "rubble_return",
+      "reason": "user_requested_no_return"
+    }
+  ],
+  "manual_interventions": 0,
+  "recovery_count": 0,
+  "scope": "velocity_level_ordered_course_navigation",
+  "physical_gait_validated": false,
+  "elapsed_simulation_s": 333.5,
+  "evaluation_only": {
+    "final_truth_xy_m": [
+      5.0174721429815845,
+      3.6500966146447973
+    ],
+    "goal_error_m": 0.17812540000443988,
+    "goal_tolerance_m": 0.25,
+    "truth_goal_tolerance_met": true,
+    "distance_travelled_m": 40.36001055269451,
+    "scan_match_corrections": 150,
+    "collision_stop_events": 0
+  },
+  "active_stage": "finish",
+  "state": "finished",
+  "random_seed": 42,
+  "failure_reason": null
+}

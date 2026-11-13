@@ -1,0 +1,32 @@
+{
+  "platform": "Windows-11-10.0.26200-SP0",
+  "architecture": "AMD64",
+  "python": "3.12.13 (main, May 10 2026, 19:35:37) [MSC v.1944 64 bit (AMD64)]",
+  "checks": [
+    {
+      "command": [
+        "rosversion",
+        "-d"
+      ],
+      "returncode": null,
+      "error": "[WinError 2] 系统找不到指定的文件。"
+    },
+    {
+      "command": [
+        "rostopic",
+        "list"
+      ],
+      "returncode": null,
+      "error": "[WinError 2] 系统找不到指定的文件。"
+    },
+    {
+      "command": [
+        "rosnode",
+        "list"
+      ],
+      "returncode": null,
+      "error": "[WinError 2] 系统找不到指定的文件。"
+    }
+  ],
+  "ros_inspection_passed": false
+}

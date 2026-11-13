@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "source": "webots",
+  "simulation_time_s": 2.0,
+  "robot_mode": "fixed_base_ruins_reference",
+  "scene_id": "ruins_reference",
+  "camera": {
+    "frame_id": "front_camera_optical",
+    "sensor_model": "ideal_geometry_pending_real_sensor_characterization",
+    "optical_axes": "x_right_y_down_z_forward",
+    "width": 424,
+    "height": 240,
+    "K": [
+      302.6000000000001,
+      0,
+      212.0,
+      0,
+      302.6000000000001,
+      120.0,
+      0,
+      0,
+      1
+    ],
+    "rgb_file": "rgb.png",
+    "depth_file": "depth_m.npy",
+    "depth_unit": "m",
+    "depth_invalid": "nonfinite",
+    "mount_position_body_m": [
+      0.22,
+      0.0,
+      0.05
+    ],
+    "R_body_optical": [
+      0,
+      0,
+      1,
+      -1,
+      0,
+      0,
+      0,
+      -1,
+      0
+    ],
+    "mount_status": "assumed_pending_physical_calibration"
+  },
+  "imu": {
+    "frame_id": "base_link",
+    "orientation_source": "simulated_inertial_unit_ground_truth",
+    "rpy_rad": [
+      6.721342092183682e-08,
+      1.3600676360535484e-06,
+      3.321299741803326e-08
+    ],
+    "angular_velocity_rad_s": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "accelerometer_m_s2": [
+      -1.3342263509681198e-05,
+      6.593636592426089e-07,
+      9.809999999990906
+    ]
+  },
+  "joint_positions_rad": {
+    "FL_HipX": -4.3245670413052963e-07,
+    "FL_HipY": -0.6999998222025826,
+    "FL_Knee": 1.3999998836735954,
+    "FR_HipX": -4.250522813720181e-07,
+    "FR_HipY": -0.699999822202642,
+    "FR_Knee": 1.3999998836734249,
+    "HL_HipX": -4.324561482249578e-07,
+    "HL_HipY": -0.6999998222020954,
+    "HL_Knee": 1.399999883673599,
+    "HR_HipX": -4.324596059035457e-07,
+    "HR_HipY": -0.6999998222031051,
+    "HR_Knee": 1.3999998836734289
+  },
+  "depth_valid_fraction": 0.4560141509433962,
+  "center_depth_m": null,
+  "evaluation_ground_truth": {
+    "usage": "evaluation_only",
+    "body_position_world_m": [
+      -5.450000000000009,
+      -3.6499999999976085,
+      0.3299212846203224
+    ]
+  }
+}

@@ -1,0 +1,469 @@
+{
+  "scene_id": "ruins_reference",
+  "field_size_m": [
+    12.0,
+    10.0
+  ],
+  "joint_positions_rad": {
+    "FL_HipX": 0.0,
+    "FL_HipY": -0.7,
+    "FL_Knee": 1.4,
+    "FR_HipX": 0.0,
+    "FR_HipY": -0.7,
+    "FR_Knee": 1.4,
+    "HL_HipX": 0.0,
+    "HL_HipY": -0.7,
+    "HL_Knee": 1.4,
+    "HR_HipX": 0.0,
+    "HR_HipY": -0.7,
+    "HR_Knee": 1.4
+  },
+  "camera": {
+    "width": 424,
+    "height": 240,
+    "focal_length_px": 302.6,
+    "mount_position_m": [
+      0.22,
+      0.0,
+      0.05
+    ],
+    "mount_status": "assumed_pending_physical_calibration",
+    "min_depth_m": 0.15,
+    "max_depth_m": 6.0
+  },
+  "lidar": {
+    "model_status": "ideal_simulated_multilayer_lidar_placeholder_model_not_selected",
+    "mount_xyz_m": [
+      0.0,
+      0.0,
+      0.1
+    ],
+    "mount_xy_m": [
+      0.0,
+      0.0
+    ],
+    "horizontal_resolution": 360,
+    "field_of_view_rad": 6.28318530718,
+    "vertical_field_of_view_rad": 0.6,
+    "projection": "cylindrical",
+    "number_of_layers": 16,
+    "self_filter_body_box_m": [
+      [
+        -0.38,
+        -0.27,
+        -0.36
+      ],
+      [
+        0.38,
+        0.27,
+        0.1
+      ]
+    ],
+    "self_filter_status": "provisional_fixed_joint_pose_envelope_pending_physical_measurement",
+    "obstacle_height_min_m": 0.04,
+    "obstacle_height_max_m": 0.45,
+    "type": "fixed",
+    "min_range_m": 0.08,
+    "max_range_m": 8.0,
+    "noise_m": 0.0,
+    "frequency_hz": 10.0
+  },
+  "navigation": {
+    "goal_xy_m": [
+      5.2,
+      4.15
+    ],
+    "grid_resolution_m": 0.1,
+    "robot_radius_m": 0.28,
+    "planning_clearance_m": 0.1,
+    "occupied_log_odds_threshold": 0.7,
+    "unknown_cell_cost": 2.8,
+    "scan_stride": 1,
+    "scan_mapping_period_s": 0.12,
+    "initial_mapping_duration_s": 2.0,
+    "replan_period_s": 0.5,
+    "observation_timeout_s": 0.36,
+    "command_timeout_s": 0.3,
+    "frontier_tolerance_m": 0.16,
+    "progress_distance_m": 0.08,
+    "scan_match_search_xy_m": 0.12,
+    "scan_match_search_yaw_rad": 0.06,
+    "max_linear_speed_m_s": 0.22,
+    "max_yaw_speed_rad_s": 0.65,
+    "lookahead_m": 0.25,
+    "front_stop_angle_rad": 0.42,
+    "front_stop_distance_m": 0.45,
+    "goal_tolerance_m": 0.25,
+    "estimated_stop_tolerance_m": 0.08,
+    "navigation_timeout_s": 160.0,
+    "stuck_timeout_s": 10.0,
+    "odom_linear_noise_fraction": 0.02,
+    "odom_yaw_noise_rad_s": 0.008,
+    "random_seed": 42
+  },
+  "description": "Reference-image reconstruction for user layout review",
+  "layout_type": "image_reference_v2",
+  "geometry_status": "image_estimated_dimensions_pending_user_review",
+  "review_status": "awaiting_user_confirmation",
+  "reference_image": {
+    "file": "mujoco/reference/arena_reference.png",
+    "sha256": "fbb15e9cc5af8488a30f7f0fa6fe5f4c4267ae0e4f105e3afdc616e1021c6b34",
+    "measurement_canvas_px": [
+      1824,
+      1368
+    ],
+    "floor_corners_px": [
+      [
+        205,
+        185
+      ],
+      [
+        1609,
+        214
+      ],
+      [
+        1756,
+        1200
+      ],
+      [
+        73,
+        1199
+      ]
+    ],
+    "scale_assumption": "12 x 10 m from existing competition reference"
+  },
+  "robot_position_m": [
+    -5.02,
+    -4.25,
+    0.33
+  ],
+  "outer_wall_height_m": 0.6,
+  "outer_wall_thickness_m": 0.18,
+  "wall_style": {
+    "color": [
+      0.47,
+      0.48,
+      0.47
+    ],
+    "height_m": 0.6,
+    "thickness_m": 0.18,
+    "brick_length_m": 0.32,
+    "brick_height_m": 0.15,
+    "joint_gap_m": 0.008
+  },
+  "wall_paths": [
+    {
+      "name": "serpentine_inner",
+      "points_m": [
+        [
+          -2.4695,
+          -5
+        ],
+        [
+          -3.7513,
+          -3.9102
+        ],
+        [
+          -4.0928,
+          -3.3014
+        ],
+        [
+          -4.2152,
+          -2.5868
+        ],
+        [
+          -4.3105,
+          -0.8069
+        ],
+        [
+          -4.3233,
+          1.5183
+        ],
+        [
+          -4.2468,
+          3.2824
+        ],
+        [
+          -4.0928,
+          3.8301
+        ],
+        [
+          -3.6069,
+          3.3543
+        ],
+        [
+          -2.9218,
+          2.8233
+        ],
+        [
+          -2.1208,
+          2.4121
+        ],
+        [
+          -1.539,
+          2.0764
+        ],
+        [
+          -1.3249,
+          1.7899
+        ],
+        [
+          -1.4312,
+          1.4047
+        ],
+        [
+          -1.8651,
+          0.8839
+        ],
+        [
+          -2.2713,
+          0.2725
+        ],
+        [
+          -2.4798,
+          -0.4207
+        ],
+        [
+          -2.5264,
+          -1.2287
+        ],
+        [
+          -2.5148,
+          -1.9378
+        ]
+      ],
+      "smooth": true
+    },
+    {
+      "name": "dead_end_hook",
+      "points_m": [
+        [
+          -2.5148,
+          -1.9378
+        ],
+        [
+          -1.0987,
+          -1.9244
+        ],
+        [
+          -1.1298,
+          0.1788
+        ]
+      ],
+      "smooth": false
+    },
+    {
+      "name": "serpentine_outer",
+      "points_m": [
+        [
+          -2.3829,
+          5
+        ],
+        [
+          -1.9983,
+          4.3133
+        ],
+        [
+          -1.2968,
+          3.9027
+        ],
+        [
+          -0.4946,
+          3.4307
+        ],
+        [
+          -0.0166,
+          2.9237
+        ],
+        [
+          0.1662,
+          2.3082
+        ],
+        [
+          0.1095,
+          1.6042
+        ],
+        [
+          -0.0731,
+          0.9464
+        ],
+        [
+          -0.3072,
+          0.1205
+        ]
+      ],
+      "smooth": true
+    },
+    {
+      "name": "helipad_partition",
+      "points_m": [
+        [
+          3.12,
+          5.0
+        ],
+        [
+          3.12,
+          1.88
+        ],
+        [
+          4.6,
+          1.88
+        ]
+      ],
+      "smooth": false
+    }
+  ],
+  "helipads": [
+    {
+      "name": "start_helipad",
+      "center_m": [
+        -5.05,
+        -4.2563
+      ],
+      "radius_m": 0.65
+    },
+    {
+      "name": "finish_helipad",
+      "center_m": [
+        4.9339,
+        3.8074
+      ],
+      "radius_m": 0.62
+    }
+  ],
+  "capped_piers": [
+    {
+      "center_m": [
+        2.9,
+        3.9
+      ],
+      "size_m": [
+        0.34,
+        0.48,
+        0.48
+      ]
+    },
+    {
+      "center_m": [
+        3.34,
+        3.9
+      ],
+      "size_m": [
+        0.34,
+        0.48,
+        0.48
+      ]
+    }
+  ],
+  "pipe": {
+    "center_m": [
+      3.5735,
+      0.9786
+    ],
+    "length_m": 1.82,
+    "inner_radius_m": 0.48,
+    "outer_radius_m": 0.59,
+    "segments": 96
+  },
+  "frame": {
+    "center_m": [
+      5.2486,
+      1.0078
+    ],
+    "length_m": 1.36,
+    "width_m": 1.38,
+    "height_m": 0.47,
+    "wall_thickness_m": 0.18
+  },
+  "sphere_landmark": {
+    "center_m": [
+      -5.5216,
+      -2.1688
+    ],
+    "radius_m": 0.26,
+    "base_radius_m": 0.27,
+    "base_height_m": 0.065
+  },
+  "blue_marker": {
+    "position_m": [
+      -5.9,
+      0.95,
+      0.45
+    ],
+    "width_m": 0.4,
+    "height_m": 0.6,
+    "alpha": 0.42
+  },
+  "rubble_piles": [
+    {
+      "name": "north_rubble",
+      "center_m": [
+        -1.285,
+        4.2743
+      ],
+      "footprint_m": [
+        1.12,
+        0.65
+      ],
+      "stone_count": 13
+    },
+    {
+      "name": "inner_bay_rubble",
+      "center_m": [
+        -3.2212,
+        1.6138
+      ],
+      "footprint_m": [
+        1.43,
+        1.05
+      ],
+      "stone_count": 20
+    },
+    {
+      "name": "center_rubble",
+      "center_m": [
+        1.5075,
+        -1.7199
+      ],
+      "footprint_m": [
+        1.62,
+        1.3
+      ],
+      "stone_count": 24
+    },
+    {
+      "name": "south_rubble",
+      "center_m": [
+        -0.0836,
+        -4.1562
+      ],
+      "footprint_m": [
+        1.7,
+        1.05
+      ],
+      "stone_count": 25
+    },
+    {
+      "name": "southeast_rubble",
+      "center_m": [
+        4.5218,
+        -4.203
+      ],
+      "footprint_m": [
+        1.65,
+        1.15
+      ],
+      "stone_count": 24
+    }
+  ],
+  "preview": {
+    "lookat_m": [
+      0,
+      0,
+      0
+    ],
+    "distance_m": 16.0,
+    "azimuth_deg": 90,
+    "elevation_deg": -62
+  }
+}

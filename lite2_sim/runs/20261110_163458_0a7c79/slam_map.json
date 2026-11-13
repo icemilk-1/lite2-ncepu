@@ -1,0 +1,14 @@
+{
+  "frame_id": "map",
+  "resolution_m": 0.1,
+  "width_cells": 120,
+  "height_cells": 100,
+  "origin_xy_m": [
+    -6.0,
+    -5.0
+  ],
+  "integrated_scans": 554,
+  "occupied_cells": 770,
+  "free_cells": 9725,
+  "unknown_cells": 1505
+}

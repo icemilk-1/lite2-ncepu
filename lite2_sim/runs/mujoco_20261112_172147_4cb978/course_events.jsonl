@@ -1,0 +1,2 @@
+{"timestamp_s": 0.0, "stage_id": "ramp", "checkpoint_index": 0, "event": "checkpoint_started", "estimated_pose_m_rad": [-5.02, -4.25, 0.0], "goal_xy_m": [-4.0, 4.1], "state": "approaching"}
+{"timestamp_s": 120.0, "stage_id": "ramp", "checkpoint_index": 0, "event": "stage_failed", "estimated_pose_m_rad": [-4.931968102432696, -1.430533435541626, 1.7498442648188064], "reason": "stage_timeout"}

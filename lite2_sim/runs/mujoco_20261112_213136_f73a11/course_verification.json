@@ -1,0 +1,48 @@
+{
+  "passed": false,
+  "result": "timeout",
+  "checks": {
+    "collision_free": true,
+    "stopped_for_one_second": true,
+    "finite_state": true,
+    "goal_reached": false,
+    "position_tolerance": false,
+    "all_stages_passed": false,
+    "no_manual_intervention": true
+  },
+  "stages": [
+    {
+      "id": "round_pipe",
+      "passed": false,
+      "checkpoints": [],
+      "scheduled_completion": false
+    },
+    {
+      "id": "stage_finish",
+      "passed": false,
+      "checkpoints": [],
+      "scheduled_completion": false
+    }
+  ],
+  "manual_interventions": 0,
+  "recovery_count": 0,
+  "scope": "velocity_level_ordered_course_navigation",
+  "physical_gait_validated": false,
+  "elapsed_simulation_s": 81.25,
+  "evaluation_only": {
+    "final_truth_xy_m": [
+      2.269905529661965,
+      -0.007287009740741488
+    ],
+    "goal_error_m": 1.6324770354912654,
+    "goal_tolerance_m": 0.25,
+    "truth_goal_tolerance_met": false,
+    "distance_travelled_m": 7.695999999999797,
+    "scan_match_corrections": 10,
+    "collision_stop_events": 0
+  },
+  "active_stage": "round_pipe",
+  "state": "failed",
+  "random_seed": 42,
+  "failure_reason": "timeout"
+}

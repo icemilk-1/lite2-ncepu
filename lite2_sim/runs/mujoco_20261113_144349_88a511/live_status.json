@@ -1,0 +1,145 @@
+{
+  "time_s": 225.0,
+  "status": "navigating",
+  "estimated_pose": [
+    -1.1258097142171912,
+    -1.2732340125756771,
+    1.5676876725841087
+  ],
+  "truth_eval": [
+    -1.139186686404656,
+    -1.2272030428802474,
+    1.5562828667062867
+  ],
+  "corrections": 76,
+  "ground_eval": 0.0,
+  "odometry_height": 0.03146541244964579,
+  "command": [
+    0.0,
+    0.0
+  ],
+  "target": [
+    -1.11,
+    0.42
+  ],
+  "local_rollout": {
+    "candidate_count": 18,
+    "valid_count": 1,
+    "rejected": {
+      "terrain": 0,
+      "support": 0,
+      "map_edge": 0,
+      "occupied": 0,
+      "unknown": 0,
+      "turn_unknown": 0,
+      "rotation_clearance": 0
+    },
+    "target_xy_m": [
+      -1.125,
+      -0.8232408085158625
+    ],
+    "preferred": [
+      0.14999999872704628,
+      -0.00026055875683184127
+    ],
+    "reverse_only": true,
+    "reverse_used": false,
+    "phase_forward": [
+      0.0
+    ],
+    "phase_reverse": [],
+    "forward_only": false,
+    "velocities": [
+      -0.08,
+      -0.03,
+      0.0
+    ],
+    "turns": [
+      -0.4,
+      -0.2,
+      -0.00026055875683184127,
+      0.0,
+      0.2,
+      0.4
+    ],
+    "desired_heading_rad": 0.0013092640511436215,
+    "standstill_escape": 0,
+    "best": [
+      -0.900322997887308,
+      0.0,
+      0.0
+    ],
+    "top_scores": [
+      [
+        -0.9,
+        0.0,
+        0.0
+      ],
+      [
+        -0.9,
+        0.0,
+        -0.0
+      ],
+      [
+        -0.929,
+        0.0,
+        0.2
+      ],
+      [
+        -0.929,
+        0.0,
+        -0.2
+      ],
+      [
+        -0.95,
+        0.0,
+        0.4
+      ],
+      [
+        -0.95,
+        0.0,
+        -0.4
+      ]
+    ],
+    "scores": [
+      [
+        -0.95,
+        0.0,
+        -0.4
+      ],
+      [
+        -0.929,
+        0.0,
+        -0.2
+      ],
+      [
+        -0.9,
+        0.0,
+        -0.0
+      ],
+      [
+        -0.9,
+        0.0,
+        0.0
+      ],
+      [
+        -0.929,
+        0.0,
+        0.2
+      ],
+      [
+        -0.95,
+        0.0,
+        0.4
+      ]
+    ],
+    "progress": {
+      "net_displacement_m": 0.0,
+      "path_progress_m": 0.0,
+      "no_progress_s": 5.049999999999983,
+      "reset_reason": "recovery_window_completed",
+      "timeout_reason": null
+    }
+  },
+  "ground_returns": null
+}

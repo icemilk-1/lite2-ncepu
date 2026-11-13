@@ -1,0 +1,28 @@
+{
+  "status": "awaiting_user_confirmation",
+  "scope": "ramp_and_covered_culvert_revision",
+  "latest_preview_run": "F:\\airace\\lite2_sim\\runs\\mujoco_20261112_092753_e8a8db",
+  "ramp_rise_m": 0.34,
+  "culvert_clear_height_m": 0.76,
+  "culvert_clear_width_m": 1.0,
+  "cover_thickness_m": 0.09,
+  "passage_ray_checks": [
+    {
+      "offset_m": -0.35,
+      "first_hit_distance_m": 4.742200000001014,
+      "first_hit": "perimeter_collision_2"
+    },
+    {
+      "offset_m": 0,
+      "first_hit_distance_m": 4.742200000001086,
+      "first_hit": "perimeter_collision_2"
+    },
+    {
+      "offset_m": 0.35,
+      "first_hit_distance_m": 4.742200000001159,
+      "first_hit": "perimeter_collision_2"
+    }
+  ],
+  "ramp_midpoint_height_m": 0.1699999983517575,
+  "parameter_status": "image_estimate_pending_user_confirmation"
+}

@@ -1,0 +1,58 @@
+Run output: F:\airace\lite2_sim\runs\mujoco_20261113_150640_c2ad05
+{
+  "result": "passed",
+  "scope": "fixed_base_model_sensors_and_course_scene_load",
+  "scene_id": "ruins_reference",
+  "joint_count": 12,
+  "max_joint_error_rad": 0.010694951822417776,
+  "center_depth_m": 1.2854357957839966,
+  "expected_depth_m": null,
+  "depth_valid_fraction": 0.5884532232704403,
+  "backend": "mujoco",
+  "mujoco_version": "3.17.0",
+  "floating_root": true,
+  "actuator_count": 12,
+  "source_model_mass_kg": 10.03,
+  "fixture_drift_m": 1.9294714334538998e-05,
+  "fixture_drift_tolerance_m": 0.005,
+  "pose_dependent_checks": true,
+  "gyro_norm_rad_s": 1.1615985097433175e-10,
+  "imu_gravity_error_m_s2": 3.849027480652143e-09,
+  "max_inertia_relative_error": 3.0824836748832284e-06,
+  "geometry_count": 1939,
+  "lidar_wall_error_m": 2.8904548800334773e-05
+}
+NAV_PROGRESS t=5.0 status=exploring pose=(-4.70,-4.03) scans=50
+NAV_PROGRESS t=15.0 status=exploring pose=(-4.89,-2.58) scans=150
+NAV_PROGRESS t=25.0 status=exploring pose=(-5.07,-1.12) scans=250
+NAV_PROGRESS t=35.0 status=exploring pose=(-5.21,0.35) scans=350
+NAV_PROGRESS t=45.0 status=exploring pose=(-5.27,1.84) scans=450
+NAV_PROGRESS t=55.0 status=navigating pose=(-5.27,3.34) scans=550
+NAV_PROGRESS t=65.0 status=navigating pose=(-4.15,4.07) scans=650
+NAV_PROGRESS t=75.0 status=navigating pose=(-3.16,4.08) scans=750
+NAV_PROGRESS t=85.0 status=navigating pose=(-1.66,4.07) scans=850
+NAV_PROGRESS t=95.0 status=navigating pose=(-0.87,3.54) scans=950
+NAV_PROGRESS t=105.0 status=navigating pose=(-1.35,2.17) scans=1050
+NAV_PROGRESS t=115.0 status=navigating pose=(-1.40,1.20) scans=1150
+NAV_PROGRESS t=125.0 status=goal_reached pose=(-0.29,0.60) scans=1250
+NAV_PROGRESS t=135.0 status=navigating pose=(-0.72,0.50) scans=1350
+NAV_PROGRESS t=145.0 status=navigating pose=(-1.18,-0.15) scans=1450
+NAV_PROGRESS t=155.0 status=navigating pose=(-1.12,-1.15) scans=1550
+NAV_PROGRESS t=165.0 status=navigating pose=(-0.96,-0.58) scans=1650
+NAV_PROGRESS t=175.0 status=navigating pose=(-1.11,0.41) scans=1750
+NAV_PROGRESS t=185.0 status=navigating pose=(0.16,0.78) scans=1850
+NAV_PROGRESS t=195.0 status=navigating pose=(1.65,0.93) scans=1950
+NAV_PROGRESS t=205.0 status=navigating pose=(2.13,1.50) scans=2050
+NAV_PROGRESS t=215.0 status=navigating pose=(2.01,2.98) scans=2150
+NAV_PROGRESS t=225.0 status=exploring pose=(2.06,3.85) scans=2250
+NAV_PROGRESS t=235.0 status=exploring pose=(2.06,2.89) scans=2350
+NAV_PROGRESS t=245.0 status=exploring pose=(1.92,1.41) scans=2450
+NAV_PROGRESS t=255.0 status=exploring pose=(2.19,-0.02) scans=2550
+NAV_PROGRESS t=265.0 status=exploring pose=(3.62,-0.28) scans=2650
+NAV_PROGRESS t=275.0 status=navigating pose=(4.96,0.13) scans=2750
+NAV_PROGRESS t=285.0 status=navigating pose=(5.05,1.62) scans=2850
+NAV_PROGRESS t=295.0 status=navigating pose=(4.82,2.47) scans=2950
+NAV_PROGRESS t=305.0 status=navigating pose=(5.06,1.67) scans=3050
+NAV_PROGRESS t=315.0 status=navigating pose=(5.30,1.85) scans=3150
+NAV_PROGRESS t=325.0 status=navigating pose=(5.05,2.77) scans=3250
+NAVIGATION_FINISHED {"passed": true, "result": "goal_reached", "goal_error_m": 0.17812540000443988, "collisions": 0, "output": "F:\\airace\\lite2_sim\\runs\\mujoco_20261113_150640_c2ad05"}

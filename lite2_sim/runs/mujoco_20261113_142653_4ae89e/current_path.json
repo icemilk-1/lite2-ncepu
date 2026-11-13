@@ -1,0 +1,16 @@
+{
+  "sim_time_s": 7.1,
+  "status": "insufficient_observations",
+  "reason": "oriented_start_clearance_recovery_no_reachable_known_free_frontier",
+  "from_xy_m": [
+    -5.030599553094304,
+    -4.170437029122374
+  ],
+  "planning_radius_m": 0.24,
+  "goal_xy_m": [
+    -4.0,
+    4.1
+  ],
+  "target_xy_m": null,
+  "poses_xy_m": []
+}

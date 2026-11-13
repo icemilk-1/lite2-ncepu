@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "F:\airace\lite2_sim\run_mujoco.py", line 57, in main
+    model, data, manifest = build_scene(config, args.scene, output)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\airace\lite2_sim\tools\prepare_mujoco.py", line 221, in build_scene
+    model = mujoco.MjModel.from_xml_string(ET.tostring(root, encoding="unicode"))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: XML Error: Schema violation: unrecognized attribute: 'orthographic'
+Element 'camera', line 89
+

@@ -1,0 +1,8 @@
+{"timestamp_s": 0.0, "stage_id": "round_pipe", "checkpoint_index": 0, "event": "checkpoint_started", "estimated_pose_m_rad": [2.0, 0.98, 0.0], "goal_xy_m": [3.57, 0.98], "state": "approaching"}
+{"timestamp_s": 30.4, "stage_id": "round_pipe", "checkpoint_index": 0, "event": "checkpoint_reached", "estimated_pose_m_rad": [3.455329942339735, 0.9794664846043782, 0.004454202680195252]}
+{"timestamp_s": 30.4, "stage_id": "round_pipe", "checkpoint_index": 1, "event": "checkpoint_started", "estimated_pose_m_rad": [3.455329942339735, 0.9794664846043782, 0.004454202680195252], "goal_xy_m": [2.0, 0.98], "state": "recovering"}
+{"timestamp_s": 59.6, "stage_id": "round_pipe", "checkpoint_index": 1, "event": "checkpoint_reached", "estimated_pose_m_rad": [2.1104760580443154, 0.9748673625626186, -0.013916219488182335]}
+{"timestamp_s": 59.6, "stage_id": "round_pipe", "checkpoint_index": 2, "event": "stage_completed", "estimated_pose_m_rad": [2.1104760580443154, 0.9748673625626186, -0.013916219488182335]}
+{"timestamp_s": 59.6, "stage_id": "stage_finish", "checkpoint_index": 0, "event": "checkpoint_started", "estimated_pose_m_rad": [2.1104760580443154, 0.9748673625626186, -0.013916219488182335], "goal_xy_m": [2.0, 0.98], "state": "approaching"}
+{"timestamp_s": 62.65, "stage_id": "stage_finish", "checkpoint_index": 0, "event": "checkpoint_reached", "estimated_pose_m_rad": [2.1104760580443154, 0.9748673625626186, -0.013916219488182335]}
+{"timestamp_s": 62.65, "stage_id": "stage_finish", "checkpoint_index": 1, "event": "stage_completed", "estimated_pose_m_rad": [2.1104760580443154, 0.9748673625626186, -0.013916219488182335]}

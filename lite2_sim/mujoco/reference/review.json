@@ -1,0 +1,10 @@
+{
+  "status": "awaiting_user_confirmation",
+  "scope": "ramp_opening_touching_rubble",
+  "latest_preview_run": "F:\\airace\\lite2_sim\\runs\\mujoco_20261112_095353_a9f29c",
+  "opening_length_m": 0.95,
+  "rubble_west_edge_m": -4.22,
+  "route_intent": "direct_rubble_crossing_or_main_corridor_detour",
+  "dimensions_source": "image_estimates",
+  "regression_tests_passed": 18
+}

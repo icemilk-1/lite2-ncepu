@@ -1,0 +1,7 @@
+{
+  "result": "failed",
+  "backend": "mujoco",
+  "scene_id": "sensor_lab",
+  "error": "Course requires stages with unique IDs.",
+  "error_log": "error.log"
+}

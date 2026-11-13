@@ -1,0 +1,23 @@
+{
+  "time_s": 5.0,
+  "status": "recovering",
+  "estimated_pose": [
+    -4.061816766489207,
+    4.072334088501643,
+    0.36987925416711054
+  ],
+  "truth_eval": [
+    -4.061611137023416,
+    4.081775941428731,
+    0.37800000000000056
+  ],
+  "corrections": 3,
+  "ground_eval": 0.0,
+  "odometry_height": 0.0,
+  "command": [
+    0.0,
+    0.24
+  ],
+  "target": null,
+  "ground_returns": null
+}

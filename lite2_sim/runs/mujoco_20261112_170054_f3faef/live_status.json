@@ -1,0 +1,26 @@
+{
+  "time_s": 45.0,
+  "status": "exploring",
+  "estimated_pose": [
+    -4.9483633831678855,
+    -4.185305652416354,
+    2.388514732384886
+  ],
+  "truth_eval": [
+    -5.02,
+    -4.25,
+    2.3928146928203393
+  ],
+  "corrections": 70,
+  "ground_eval": 0.0,
+  "odometry_height": 0.0,
+  "command": [
+    0.0,
+    0.0
+  ],
+  "target": [
+    -4.425,
+    -3.275
+  ],
+  "ground_returns": null
+}

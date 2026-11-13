@@ -1,0 +1,7 @@
+{
+  "result": "failed",
+  "backend": "mujoco",
+  "scene_id": "ruins_reference",
+  "error": "Object of type int64 is not JSON serializable",
+  "error_log": "error.log"
+}

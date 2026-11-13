@@ -1,0 +1,16 @@
+{
+  "sim_time_s": 38.75,
+  "status": "start_blocked",
+  "reason": "start_not_known_traversable",
+  "from_xy_m": [
+    -4.506093682545734,
+    -4.251310216981741
+  ],
+  "planning_radius_m": 0.28,
+  "goal_xy_m": [
+    -4.0,
+    4.1
+  ],
+  "target_xy_m": null,
+  "poses_xy_m": []
+}

@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "scenario": "dynamic_obstacle",
+  "expected_result": "goal_reached",
+  "actual_result": "goal_reached",
+  "events": [
+    {
+      "time_s": 10.0,
+      "event": "insert",
+      "position_m": [
+        -1.9246681181798877,
+        -3.6046467800102326,
+        0.2
+      ]
+    },
+    {
+      "time_s": 25.0,
+      "event": "remove"
+    }
+  ],
+  "output": "F:\\airace\\lite2_sim\\runs\\navigation_scenario_dynamic_obstacle_20261113_130249_d974f1"
+}

@@ -1,0 +1,2650 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-13T06:29:40+00:00",
+  "scene": "ruins_reference",
+  "mode": "course",
+  "profile": "sim2real_v1",
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61
+  ],
+  "jobs": 3,
+  "python": "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+  "command_template": [
+    "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+    "F:\\airace\\lite2_sim\\run_mujoco.py",
+    "--scene",
+    "ruins_reference",
+    "--course",
+    "--headless",
+    "--seed",
+    "42",
+    "--randomize",
+    "sim2real_v1"
+  ],
+  "randomization_enabled": true,
+  "runs": [
+    {
+      "seed": 42,
+      "run_dir": "runs/mujoco_20261113_142143_375650",
+      "result": "start_blocked",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 8.412068711084093,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 17.35,
+      "duration_s": 20.179,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 42,
+        "values": {
+          "actuation.acceleration_scale": 1.164373629133578,
+          "actuation.command_latency_s": 0.06583176596280785,
+          "actuation.linear_gain_error": 1.0717195839822766,
+          "imu.roll_pitch_noise_rad": 0.006973680290593639,
+          "initial_pose.dx_m": -0.06493162433797607,
+          "initial_pose.dy_m": 0.07609957626188095,
+          "initial_pose.yaw_offset_rad": 0.015668382119421176,
+          "lidar.beam_block_probability": 0.039303215263847696,
+          "lidar.dropout_probability": 0.01024909061404367,
+          "lidar.missing_scan_probability": 0.022519296894778357,
+          "lidar.range_bias_m": -0.0051680790306967515,
+          "lidar.range_noise_m": 0.027802949665458054,
+          "lidar.scan_latency_s": 0.07726381440967975,
+          "odometry.linear_noise_fraction": 0.0429104645308332,
+          "odometry.linear_scale_error": 0.9886828397654663,
+          "odometry.slip_probability": 0.006817161653543307,
+          "odometry.slip_ratio": 0.5327508722095009,
+          "odometry.yaw_bias_rad_s": -0.008723654877916494,
+          "odometry.yaw_noise_rad_s": 0.01724209875188131,
+          "odometry.yaw_scale_error": 1.0210663038595305
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "42",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142143_375650\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=recovering pose=(-5.08,-4.17) scans=49\nNAV_PROGRESS t=15.0 status=recovering pose=(-5.08,-4.17) scans=147\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"start_blocked\", \"goal_error_m\": 8.412068711084093, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142143_375650\"}\n"
+    },
+    {
+      "seed": 43,
+      "run_dir": "runs/mujoco_20261113_142143_815e21",
+      "result": "insufficient_observations",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 8.412068711084093,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 10.65,
+      "duration_s": 13.633,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 43,
+        "values": {
+          "actuation.acceleration_scale": 1.0913795576205465,
+          "actuation.command_latency_s": 0.006566298545849491,
+          "actuation.linear_gain_error": 0.9040059173748434,
+          "imu.roll_pitch_noise_rad": 0.0083921258251103,
+          "initial_pose.dx_m": 0.01394288761408935,
+          "initial_pose.dy_m": -0.04404716316742009,
+          "initial_pose.yaw_offset_rad": 0.015107536309116931,
+          "lidar.beam_block_probability": 0.013184609873918736,
+          "lidar.dropout_probability": 0.033598232777301444,
+          "lidar.missing_scan_probability": 0.022551569350055447,
+          "lidar.range_bias_m": 0.018212583168849505,
+          "lidar.range_noise_m": 0.02675705007549128,
+          "lidar.scan_latency_s": 0.03343596306227322,
+          "odometry.linear_noise_fraction": 0.021141371911175027,
+          "odometry.linear_scale_error": 0.9843999149694527,
+          "odometry.slip_probability": 0.00012233174957966054,
+          "odometry.slip_ratio": 0.3853542606470758,
+          "odometry.yaw_bias_rad_s": 0.00903508032927229,
+          "odometry.yaw_noise_rad_s": 0.01741127645229567,
+          "odometry.yaw_scale_error": 1.0056205211356166
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "43",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142143_815e21\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=recovering pose=(-5.01,-4.29) scans=49\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"insufficient_observations\", \"goal_error_m\": 8.412068711084093, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142143_815e21\"}\n"
+    },
+    {
+      "seed": 44,
+      "run_dir": "runs/mujoco_20261113_142143_4a2512",
+      "result": "timeout",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 7.425099288019514,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 121.3,
+      "duration_s": 184.952,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 44,
+        "values": {
+          "actuation.acceleration_scale": 0.773539305804323,
+          "actuation.command_latency_s": 0.03871696121591595,
+          "actuation.linear_gain_error": 0.9811541455642263,
+          "imu.roll_pitch_noise_rad": 0.00969183948144422,
+          "initial_pose.dx_m": -0.054029260034309315,
+          "initial_pose.dy_m": 0.05716698776908345,
+          "initial_pose.yaw_offset_rad": -0.020217283735736072,
+          "lidar.beam_block_probability": 0.01689809744829587,
+          "lidar.dropout_probability": 0.05421782539044293,
+          "lidar.missing_scan_probability": 0.030826708578195444,
+          "lidar.range_bias_m": 0.018197446562739975,
+          "lidar.range_noise_m": 0.012342023426021215,
+          "lidar.scan_latency_s": 0.11275701743740733,
+          "odometry.linear_noise_fraction": 0.04706994771014241,
+          "odometry.linear_scale_error": 1.0431143483885732,
+          "odometry.slip_probability": 0.0005838633241003244,
+          "odometry.slip_ratio": 0.6784395800332574,
+          "odometry.yaw_bias_rad_s": 0.008015103769062273,
+          "odometry.yaw_noise_rad_s": 0.012381805116472999,
+          "odometry.yaw_scale_error": 0.9515460302253574
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "44",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142143_4a2512\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=recovering pose=(-5.09,-4.23) scans=47\nNAV_PROGRESS t=15.0 status=exploring pose=(-5.00,-4.12) scans=144\nNAV_PROGRESS t=25.0 status=recovering pose=(-4.90,-4.23) scans=239\nNAV_PROGRESS t=35.0 status=recovering pose=(-4.68,-4.25) scans=336\nNAV_PROGRESS t=45.0 status=recovering pose=(-4.49,-3.98) scans=433\nNAV_PROGRESS t=55.0 status=exploring pose=(-4.74,-3.68) scans=528\nNAV_PROGRESS t=65.0 status=exploring pose=(-4.75,-3.28) scans=627\nNAV_PROGRESS t=75.0 status=exploring pose=(-4.84,-3.43) scans=721\nNAV_PROGRESS t=85.0 status=exploring pose=(-4.90,-2.88) scans=818\nNAV_PROGRESS t=95.0 status=exploring pose=(-4.69,-3.48) scans=914\nNAV_PROGRESS t=105.0 status=exploring pose=(-4.74,-3.42) scans=1011\nNAV_PROGRESS t=115.0 status=exploring pose=(-4.88,-2.81) scans=1107\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"timeout\", \"goal_error_m\": 7.425099288019514, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142143_4a2512\"}\n"
+    },
+    {
+      "seed": 45,
+      "run_dir": "runs/mujoco_20261113_142156_dbb0b8",
+      "result": "insufficient_observations",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 8.412068711084093,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 10.65,
+      "duration_s": 14.004,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 45,
+        "values": {
+          "actuation.acceleration_scale": 1.0438783941685035,
+          "actuation.command_latency_s": 0.07927367177553042,
+          "actuation.linear_gain_error": 1.0527300479603854,
+          "imu.roll_pitch_noise_rad": 0.00811692767009607,
+          "initial_pose.dx_m": 0.0016366168321157865,
+          "initial_pose.dy_m": 0.04469434758364599,
+          "initial_pose.yaw_offset_rad": 0.017766798267602683,
+          "lidar.beam_block_probability": 0.029737750217043387,
+          "lidar.dropout_probability": 0.03268624375167551,
+          "lidar.missing_scan_probability": 0.033563821990239884,
+          "lidar.range_bias_m": 0.005098713194143501,
+          "lidar.range_noise_m": 0.02520247067199524,
+          "lidar.scan_latency_s": 0.08689961862153213,
+          "odometry.linear_noise_fraction": 0.031160736325561843,
+          "odometry.linear_scale_error": 1.0928131843717928,
+          "odometry.slip_probability": 0.014062626213911661,
+          "odometry.slip_ratio": 0.6866635798592009,
+          "odometry.yaw_bias_rad_s": 0.007305537405274081,
+          "odometry.yaw_noise_rad_s": 0.014077486922449606,
+          "odometry.yaw_scale_error": 0.9275058630050929
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "45",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142156_dbb0b8\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=recovering pose=(-5.02,-4.21) scans=49\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"insufficient_observations\", \"goal_error_m\": 8.412068711084093, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142156_dbb0b8\"}\n"
+    },
+    {
+      "seed": 46,
+      "run_dir": "runs/mujoco_20261113_142203_912dac",
+      "result": "timeout",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 6.814450313205557,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 121.05,
+      "duration_s": 209.0,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 46,
+        "values": {
+          "actuation.acceleration_scale": 1.2433625660141874,
+          "actuation.command_latency_s": 0.01158401898176148,
+          "actuation.linear_gain_error": 0.9545139511837276,
+          "imu.roll_pitch_noise_rad": 0.0062185048224613305,
+          "initial_pose.dx_m": 0.06944454532629828,
+          "initial_pose.dy_m": -0.06640851408979576,
+          "initial_pose.yaw_offset_rad": 0.00775378600367773,
+          "lidar.beam_block_probability": 0.038778587323713094,
+          "lidar.dropout_probability": 0.04091548096825678,
+          "lidar.missing_scan_probability": 0.03742538593312517,
+          "lidar.range_bias_m": 0.015219659104248374,
+          "lidar.range_noise_m": 0.014974399254928324,
+          "lidar.scan_latency_s": 0.09538861394436213,
+          "odometry.linear_noise_fraction": 0.012206891568148307,
+          "odometry.linear_scale_error": 1.0460718364279562,
+          "odometry.slip_probability": 0.02318708197560143,
+          "odometry.slip_ratio": 0.23988196111084747,
+          "odometry.yaw_bias_rad_s": -0.00789881676933207,
+          "odometry.yaw_noise_rad_s": 0.010241514575656464,
+          "odometry.yaw_scale_error": 0.9721741904045537
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "46",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142203_912dac\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=recovering pose=(-4.99,-4.32) scans=43\nNAV_PROGRESS t=15.0 status=recovering pose=(-4.83,-4.22) scans=140\nNAV_PROGRESS t=25.0 status=exploring pose=(-4.78,-3.46) scans=235\nNAV_PROGRESS t=35.0 status=exploring pose=(-4.69,-3.00) scans=333\nNAV_PROGRESS t=45.0 status=exploring pose=(-4.73,-3.78) scans=427\nNAV_PROGRESS t=55.0 status=exploring pose=(-4.61,-2.83) scans=517\nNAV_PROGRESS t=65.0 status=exploring pose=(-4.69,-3.12) scans=612\nNAV_PROGRESS t=75.0 status=exploring pose=(-4.82,-3.89) scans=707\nNAV_PROGRESS t=85.0 status=recovering pose=(-4.76,-4.06) scans=800\nNAV_PROGRESS t=95.0 status=exploring pose=(-4.71,-3.41) scans=897\nNAV_PROGRESS t=105.0 status=exploring pose=(-4.47,-2.97) scans=995\nNAV_PROGRESS t=115.0 status=recovering pose=(-4.44,-3.02) scans=1091\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"timeout\", \"goal_error_m\": 6.814450313205557, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142203_912dac\"}\n"
+    },
+    {
+      "seed": 47,
+      "run_dir": "runs/mujoco_20261113_142210_d763ba",
+      "result": "insufficient_observations",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 8.412068711084093,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 10.65,
+      "duration_s": 14.05,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 47,
+        "values": {
+          "actuation.acceleration_scale": 1.1450811967855363,
+          "actuation.command_latency_s": 0.11305032256794117,
+          "actuation.linear_gain_error": 0.9930361076458968,
+          "imu.roll_pitch_noise_rad": 0.00103725029647892,
+          "initial_pose.dx_m": 0.0746962959721174,
+          "initial_pose.dy_m": -0.028679948659315037,
+          "initial_pose.yaw_offset_rad": -0.017980106926894425,
+          "lidar.beam_block_probability": 0.04288795945965472,
+          "lidar.dropout_probability": 0.041051687246839184,
+          "lidar.missing_scan_probability": 0.008962002739441416,
+          "lidar.range_bias_m": 0.010018583063899023,
+          "lidar.range_noise_m": 0.023789346596515742,
+          "lidar.scan_latency_s": 0.06645946861092704,
+          "odometry.linear_noise_fraction": 0.04286953011367003,
+          "odometry.linear_scale_error": 1.0221737690333896,
+          "odometry.slip_probability": 0.013010685385259442,
+          "odometry.slip_ratio": 0.38619786425798397,
+          "odometry.yaw_bias_rad_s": 0.004288535367012958,
+          "odometry.yaw_noise_rad_s": 0.018434794888593863,
+          "odometry.yaw_scale_error": 0.9509790356662291
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "47",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142210_d763ba\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=recovering pose=(-4.95,-4.28) scans=48\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"insufficient_observations\", \"goal_error_m\": 8.412068711084093, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142210_d763ba\"}\n"
+    },
+    {
+      "seed": 48,
+      "run_dir": "runs/mujoco_20261113_142224_26ca63",
+      "result": "timeout",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 6.281935760545847,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 121.45,
+      "duration_s": 207.041,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 48,
+        "values": {
+          "actuation.acceleration_scale": 0.9326199233713567,
+          "actuation.command_latency_s": 0.089366023504401,
+          "actuation.linear_gain_error": 1.002760109010802,
+          "imu.roll_pitch_noise_rad": 0.006944919040074025,
+          "initial_pose.dx_m": 0.024399479960542397,
+          "initial_pose.dy_m": 0.05809868882814988,
+          "initial_pose.yaw_offset_rad": 0.005390579927788776,
+          "lidar.beam_block_probability": 0.026398666286103017,
+          "lidar.dropout_probability": 0.06173761557382414,
+          "lidar.missing_scan_probability": 0.010527073065826975,
+          "lidar.range_bias_m": -0.015796955490395795,
+          "lidar.range_noise_m": 0.002565441981656641,
+          "lidar.scan_latency_s": 0.05703991964562368,
+          "odometry.linear_noise_fraction": 0.02507125297596927,
+          "odometry.linear_scale_error": 0.9359295667126787,
+          "odometry.slip_probability": 0.010466042816096827,
+          "odometry.slip_ratio": 0.6014430081128586,
+          "odometry.yaw_bias_rad_s": 0.004199678902497138,
+          "odometry.yaw_noise_rad_s": 0.015839605978490684,
+          "odometry.yaw_scale_error": 0.9687869172995326
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "48",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142224_26ca63\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=exploring pose=(-5.03,-4.19) scans=49\nNAV_PROGRESS t=15.0 status=recovering pose=(-4.87,-3.87) scans=149\nNAV_PROGRESS t=25.0 status=exploring pose=(-4.89,-3.16) scans=247\nNAV_PROGRESS t=35.0 status=exploring pose=(-4.92,-1.76) scans=346\nNAV_PROGRESS t=45.0 status=exploring pose=(-5.07,-1.15) scans=444\nNAV_PROGRESS t=55.0 status=exploring pose=(-4.88,-1.87) scans=543\nNAV_PROGRESS t=65.0 status=exploring pose=(-4.78,-2.64) scans=642\nNAV_PROGRESS t=75.0 status=exploring pose=(-4.62,-3.37) scans=739\nNAV_PROGRESS t=85.0 status=exploring pose=(-4.41,-3.64) scans=837\nNAV_PROGRESS t=95.0 status=exploring pose=(-4.67,-3.12) scans=936\nNAV_PROGRESS t=105.0 status=recovering pose=(-4.50,-3.57) scans=1034\nNAV_PROGRESS t=115.0 status=exploring pose=(-4.72,-2.98) scans=1133\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"timeout\", \"goal_error_m\": 6.281935760545847, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142224_26ca63\"}\n"
+    },
+    {
+      "seed": 49,
+      "run_dir": "runs/mujoco_20261113_142448_b7565d",
+      "result": "insufficient_observations",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 8.415198881718007,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 11.65,
+      "duration_s": 15.918,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 49,
+        "values": {
+          "actuation.acceleration_scale": 0.9177125153656818,
+          "actuation.command_latency_s": 0.08898258902545984,
+          "actuation.linear_gain_error": 0.9783900423928374,
+          "imu.roll_pitch_noise_rad": 0.006236992856766135,
+          "initial_pose.dx_m": 0.02493034816913721,
+          "initial_pose.dy_m": -0.07782626213151686,
+          "initial_pose.yaw_offset_rad": 0.01658013616426688,
+          "lidar.beam_block_probability": 0.04978772427776959,
+          "lidar.dropout_probability": 0.04074302619339565,
+          "lidar.missing_scan_probability": 0.005583205169091532,
+          "lidar.range_bias_m": 0.01570570277285972,
+          "lidar.range_noise_m": 0.018782307061313595,
+          "lidar.scan_latency_s": 0.044669889417598176,
+          "odometry.linear_noise_fraction": 0.03874637155571635,
+          "odometry.linear_scale_error": 1.0866988601272025,
+          "odometry.slip_probability": 0.017050576070092274,
+          "odometry.slip_ratio": 0.2112536235007271,
+          "odometry.yaw_bias_rad_s": -0.007176622225265508,
+          "odometry.yaw_noise_rad_s": 0.016638454037349676,
+          "odometry.yaw_scale_error": 0.9263532563555933
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "49",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142448_b7565d\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=exploring pose=(-5.00,-4.33) scans=50\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"insufficient_observations\", \"goal_error_m\": 8.415198881718007, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142448_b7565d\"}\n"
+    },
+    {
+      "seed": 50,
+      "run_dir": "runs/mujoco_20261113_142504_cff05e",
+      "result": "insufficient_observations",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 8.611191887056638,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 23.35,
+      "duration_s": 31.104,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 50,
+        "values": {
+          "actuation.acceleration_scale": 1.1724536151319742,
+          "actuation.command_latency_s": 0.12505040018753738,
+          "actuation.linear_gain_error": 1.009580892036845,
+          "imu.roll_pitch_noise_rad": 0.009734490961401129,
+          "initial_pose.dx_m": -0.042106630734022425,
+          "initial_pose.dy_m": 0.023507734920034787,
+          "initial_pose.yaw_offset_rad": -0.02609843573526667,
+          "lidar.beam_block_probability": 0.02777888033259306,
+          "lidar.dropout_probability": 0.03218859864422933,
+          "lidar.missing_scan_probability": 0.013298289869613473,
+          "lidar.range_bias_m": 0.019467292006018887,
+          "lidar.range_noise_m": 0.011919530029126381,
+          "lidar.scan_latency_s": 0.03941474293871162,
+          "odometry.linear_noise_fraction": 0.015006279616245725,
+          "odometry.linear_scale_error": 0.9222915601450885,
+          "odometry.slip_probability": 0.02953720206137182,
+          "odometry.slip_ratio": 0.5473637203531296,
+          "odometry.yaw_bias_rad_s": 0.00784185190895288,
+          "odometry.yaw_noise_rad_s": 0.004241282897207402,
+          "odometry.yaw_scale_error": 1.0159517880822713
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "50",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142504_cff05e\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=recovering pose=(-5.05,-4.25) scans=49\nNAV_PROGRESS t=15.0 status=recovering pose=(-4.99,-4.26) scans=148\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"insufficient_observations\", \"goal_error_m\": 8.611191887056638, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142504_cff05e\"}\n"
+    },
+    {
+      "seed": 51,
+      "run_dir": "runs/mujoco_20261113_142532_116596",
+      "result": "insufficient_observations",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 8.412068711084093,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 10.65,
+      "duration_s": 14.145,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 51,
+        "values": {
+          "actuation.acceleration_scale": 1.2654647177622502,
+          "actuation.command_latency_s": 0.04607075411831102,
+          "actuation.linear_gain_error": 0.9509813268828716,
+          "imu.roll_pitch_noise_rad": 0.0022261852499022095,
+          "initial_pose.dx_m": 0.045792675309740086,
+          "initial_pose.dy_m": -0.04532671284367215,
+          "initial_pose.yaw_offset_rad": 0.018343590228665996,
+          "lidar.beam_block_probability": 0.03663290732523427,
+          "lidar.dropout_probability": 0.03374197866835346,
+          "lidar.missing_scan_probability": 0.024591677451785216,
+          "lidar.range_bias_m": 0.01636963240054107,
+          "lidar.range_noise_m": 0.02372916397735002,
+          "lidar.scan_latency_s": 0.018456874536900834,
+          "odometry.linear_noise_fraction": 0.039959668477947685,
+          "odometry.linear_scale_error": 0.9806017245486415,
+          "odometry.slip_probability": 0.02974221482217183,
+          "odometry.slip_ratio": 0.3269646358367498,
+          "odometry.yaw_bias_rad_s": -0.001790488343618996,
+          "odometry.yaw_noise_rad_s": 0.019092601201688566,
+          "odometry.yaw_scale_error": 1.0128325191472922
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "51",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142532_116596\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=recovering pose=(-4.97,-4.30) scans=48\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"insufficient_observations\", \"goal_error_m\": 8.412068711084093, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142532_116596\"}\n"
+    },
+    {
+      "seed": 52,
+      "run_dir": "runs/mujoco_20261113_142535_e9b637",
+      "result": "collision",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": false,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": true,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": true
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": true,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 0.16215614911565396,
+      "collisions": 3,
+      "recoveries": 0,
+      "elapsed_simulation_s": 167.8,
+      "duration_s": 245.423,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 52,
+        "values": {
+          "actuation.acceleration_scale": 1.0694577728814596,
+          "actuation.command_latency_s": 0.08613394434529378,
+          "actuation.linear_gain_error": 1.0039087158379858,
+          "imu.roll_pitch_noise_rad": 6.389541503153518e-05,
+          "initial_pose.dx_m": 0.008046782811966899,
+          "initial_pose.dy_m": 0.07493414917020723,
+          "initial_pose.yaw_offset_rad": -0.006116418215918962,
+          "lidar.beam_block_probability": 0.0007918702101960107,
+          "lidar.dropout_probability": 0.019500193023550577,
+          "lidar.missing_scan_probability": 0.04732251482681389,
+          "lidar.range_bias_m": 0.015840452346432676,
+          "lidar.range_noise_m": 0.014213606603892509,
+          "lidar.scan_latency_s": 0.014058833929854315,
+          "odometry.linear_noise_fraction": 0.013152308866238962,
+          "odometry.linear_scale_error": 1.096557507650826,
+          "odometry.slip_probability": 0.0019336784107385296,
+          "odometry.slip_ratio": 0.49368995010792255,
+          "odometry.yaw_bias_rad_s": -0.0018198652983231964,
+          "odometry.yaw_noise_rad_s": 0.01624165093058452,
+          "odometry.yaw_scale_error": 0.9316023124136632
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "52",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=exploring pose=(-4.96,-4.17) scans=48\nNAV_PROGRESS t=15.0 status=exploring pose=(-4.88,-2.84) scans=145\nNAV_PROGRESS t=25.0 status=exploring pose=(-4.88,-1.41) scans=239\nNAV_PROGRESS t=35.0 status=exploring pose=(-5.10,0.08) scans=336\nNAV_PROGRESS t=45.0 status=exploring pose=(-5.13,1.55) scans=432\nNAV_PROGRESS t=55.0 status=navigating pose=(-5.12,3.06) scans=527\nNAV_PROGRESS t=65.0 status=navigating pose=(-4.48,4.24) scans=618\nNAV_PROGRESS t=75.0 status=navigating pose=(-3.61,4.23) scans=712\nNAV_PROGRESS t=85.0 status=navigating pose=(-2.09,4.32) scans=809\nNAV_PROGRESS t=95.0 status=navigating pose=(-1.14,3.98) scans=907\nNAV_PROGRESS t=105.0 status=navigating pose=(-1.17,3.94) scans=999\nNAV_PROGRESS t=115.0 status=navigating pose=(-1.17,3.94) scans=1095\nNAV_PROGRESS t=125.0 status=navigating pose=(-1.17,3.94) scans=1190\nNAV_PROGRESS t=135.0 status=navigating pose=(-1.22,3.94) scans=1285\nNAV_PROGRESS t=145.0 status=navigating pose=(-1.22,3.94) scans=1380\nNAV_PROGRESS t=155.0 status=navigating pose=(-1.22,3.94) scans=1477\nNAV_PROGRESS t=165.0 status=navigating pose=(-1.12,4.00) scans=1567\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"collision\", \"goal_error_m\": 0.16215614911565396, \"collisions\": 3, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142535_e9b637\"}\n"
+    },
+    {
+      "seed": 53,
+      "run_dir": "runs/mujoco_20261113_142546_a4df67",
+      "result": "insufficient_observations",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 8.497102948215048,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 11.65,
+      "duration_s": 17.236,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 53,
+        "values": {
+          "actuation.acceleration_scale": 0.7066761967385597,
+          "actuation.command_latency_s": 0.10783659806515514,
+          "actuation.linear_gain_error": 0.9662254382301991,
+          "imu.roll_pitch_noise_rad": 0.009330886636200264,
+          "initial_pose.dx_m": -0.06322803611434766,
+          "initial_pose.dy_m": 0.026629862417670805,
+          "initial_pose.yaw_offset_rad": 0.019155235608372165,
+          "lidar.beam_block_probability": 0.03457834549705371,
+          "lidar.dropout_probability": 0.07986361877511024,
+          "lidar.missing_scan_probability": 0.03843955847901866,
+          "lidar.range_bias_m": -0.00832690387351731,
+          "lidar.range_noise_m": 0.00903948754525212,
+          "lidar.scan_latency_s": 0.0719812339125003,
+          "odometry.linear_noise_fraction": 0.03518059396258964,
+          "odometry.linear_scale_error": 0.9364261042046148,
+          "odometry.slip_probability": 0.0234179469706952,
+          "odometry.slip_ratio": 0.7380852072407336,
+          "odometry.yaw_bias_rad_s": 0.0040917590935180635,
+          "odometry.yaw_noise_rad_s": 0.005282214910439638,
+          "odometry.yaw_scale_error": 1.0489068125654433
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "53",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142546_a4df67\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=recovering pose=(-5.11,-4.24) scans=48\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"insufficient_observations\", \"goal_error_m\": 8.497102948215048, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142546_a4df67\"}\n"
+    },
+    {
+      "seed": 54,
+      "run_dir": "runs/mujoco_20261113_142552_960809",
+      "result": "start_blocked",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 8.412068711084093,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 17.35,
+      "duration_s": 21.086,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 54,
+        "values": {
+          "actuation.acceleration_scale": 0.8334709268031371,
+          "actuation.command_latency_s": 0.07778699563244305,
+          "actuation.linear_gain_error": 0.9159307943892819,
+          "imu.roll_pitch_noise_rad": 0.005774397097652505,
+          "initial_pose.dx_m": -0.06622073789091625,
+          "initial_pose.dy_m": -0.007153683617183229,
+          "initial_pose.yaw_offset_rad": 0.010061197904441134,
+          "lidar.beam_block_probability": 0.006428589990715772,
+          "lidar.dropout_probability": 0.07410963842193243,
+          "lidar.missing_scan_probability": 0.04658020870875931,
+          "lidar.range_bias_m": -0.0010173115317695068,
+          "lidar.range_noise_m": 0.02135125577857889,
+          "lidar.scan_latency_s": 0.01721708412726316,
+          "odometry.linear_noise_fraction": 0.01693610960915794,
+          "odometry.linear_scale_error": 1.053813941264826,
+          "odometry.slip_probability": 0.011569469766521451,
+          "odometry.slip_ratio": 0.6941047845665865,
+          "odometry.yaw_bias_rad_s": 0.008883999228764724,
+          "odometry.yaw_noise_rad_s": 0.007361198288145335,
+          "odometry.yaw_scale_error": 1.0261084948583694
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "54",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142552_960809\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=recovering pose=(-5.09,-4.26) scans=48\nNAV_PROGRESS t=15.0 status=recovering pose=(-5.09,-4.26) scans=144\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"start_blocked\", \"goal_error_m\": 8.412068711084093, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142552_960809\"}\n"
+    },
+    {
+      "seed": 55,
+      "run_dir": "runs/mujoco_20261113_142603_45a188",
+      "result": "start_blocked",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 8.412068711084093,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 17.35,
+      "duration_s": 21.503,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 55,
+        "values": {
+          "actuation.acceleration_scale": 1.1993513100729705,
+          "actuation.command_latency_s": 0.13059684175745118,
+          "actuation.linear_gain_error": 0.9436723797685246,
+          "imu.roll_pitch_noise_rad": 0.0023009715061195536,
+          "initial_pose.dx_m": -0.0011611041207277434,
+          "initial_pose.dy_m": 0.04051566464229063,
+          "initial_pose.yaw_offset_rad": 0.012253945560798056,
+          "lidar.beam_block_probability": 0.04735429947168347,
+          "lidar.dropout_probability": 0.0054228221584449,
+          "lidar.missing_scan_probability": 0.024554760820349228,
+          "lidar.range_bias_m": -0.006464294676156253,
+          "lidar.range_noise_m": 0.018057506783391315,
+          "lidar.scan_latency_s": 0.005074282866395481,
+          "odometry.linear_noise_fraction": 0.02359991798566401,
+          "odometry.linear_scale_error": 0.9163399728337425,
+          "odometry.slip_probability": 0.02913716714939407,
+          "odometry.slip_ratio": 0.5532677861832145,
+          "odometry.yaw_bias_rad_s": 0.0001535418548197897,
+          "odometry.yaw_noise_rad_s": 0.01969199249434023,
+          "odometry.yaw_scale_error": 0.9792530034353975
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "55",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142603_45a188\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=recovering pose=(-5.02,-4.21) scans=47\nNAV_PROGRESS t=15.0 status=recovering pose=(-5.02,-4.21) scans=144\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"start_blocked\", \"goal_error_m\": 8.412068711084093, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142603_45a188\"}\n"
+    },
+    {
+      "seed": 56,
+      "run_dir": "runs/mujoco_20261113_142613_e37130",
+      "result": "start_blocked",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 8.412068711084093,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 17.35,
+      "duration_s": 21.956,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 56,
+        "values": {
+          "actuation.acceleration_scale": 1.135675629978124,
+          "actuation.command_latency_s": 0.0025354221717964753,
+          "actuation.linear_gain_error": 1.0961602135538553,
+          "imu.roll_pitch_noise_rad": 0.007246042121238003,
+          "initial_pose.dx_m": 0.007073945441501375,
+          "initial_pose.dy_m": -0.04230074523727728,
+          "initial_pose.yaw_offset_rad": 0.00639787023585596,
+          "lidar.beam_block_probability": 0.01796357527097612,
+          "lidar.dropout_probability": 0.04712001901101791,
+          "lidar.missing_scan_probability": 0.013051279096032216,
+          "lidar.range_bias_m": -0.01877617472720115,
+          "lidar.range_noise_m": 0.017804575492535207,
+          "lidar.scan_latency_s": 0.10531467496300066,
+          "odometry.linear_noise_fraction": 0.012539323396498277,
+          "odometry.linear_scale_error": 1.070047613064292,
+          "odometry.slip_probability": 0.029499338089483216,
+          "odometry.slip_ratio": 0.41043581436334703,
+          "odometry.yaw_bias_rad_s": -0.006022112665246944,
+          "odometry.yaw_noise_rad_s": 0.008578349096854563,
+          "odometry.yaw_scale_error": 1.0346261799817087
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "56",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142613_e37130\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=recovering pose=(-5.01,-4.29) scans=48\nNAV_PROGRESS t=15.0 status=recovering pose=(-5.01,-4.29) scans=148\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"start_blocked\", \"goal_error_m\": 8.412068711084093, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142613_e37130\"}\n"
+    },
+    {
+      "seed": 57,
+      "run_dir": "runs/mujoco_20261113_142625_9e7852",
+      "result": "start_blocked",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 8.412068711084093,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 17.35,
+      "duration_s": 22.824,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 57,
+        "values": {
+          "actuation.acceleration_scale": 1.110500021893325,
+          "actuation.command_latency_s": 0.07024679523263527,
+          "actuation.linear_gain_error": 1.0682467339503758,
+          "imu.roll_pitch_noise_rad": 0.0034031980785869166,
+          "initial_pose.dx_m": -0.016988546205072327,
+          "initial_pose.dy_m": -0.05496928246221911,
+          "initial_pose.yaw_offset_rad": -0.004246911735081529,
+          "lidar.beam_block_probability": 0.03631697178751136,
+          "lidar.dropout_probability": 0.02326988523457504,
+          "lidar.missing_scan_probability": 0.0168538749116147,
+          "lidar.range_bias_m": -0.012497446879659205,
+          "lidar.range_noise_m": 0.014475767217027154,
+          "lidar.scan_latency_s": 0.11384715377006988,
+          "odometry.linear_noise_fraction": 0.04844770727602955,
+          "odometry.linear_scale_error": 1.0099899694319374,
+          "odometry.slip_probability": 0.019351172556159184,
+          "odometry.slip_ratio": 0.24262004238941456,
+          "odometry.yaw_bias_rad_s": -0.0049739957668894184,
+          "odometry.yaw_noise_rad_s": 0.012861134131512875,
+          "odometry.yaw_scale_error": 0.9988952142234012
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "57",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142625_9e7852\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=recovering pose=(-5.04,-4.30) scans=49\nNAV_PROGRESS t=15.0 status=recovering pose=(-5.04,-4.30) scans=148\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"start_blocked\", \"goal_error_m\": 8.412068711084093, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142625_9e7852\"}\n"
+    },
+    {
+      "seed": 58,
+      "run_dir": "runs/mujoco_20261113_142635_cac573",
+      "result": "runtime_error",
+      "passed": false,
+      "checks": {},
+      "stages": [],
+      "stage_pass": {},
+      "truth_error_m": null,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": null,
+      "duration_s": 4.627,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 58,
+        "values": {
+          "actuation.acceleration_scale": 0.8854070803397469,
+          "actuation.command_latency_s": 0.13197504138461563,
+          "actuation.linear_gain_error": 0.9486182904314424,
+          "imu.roll_pitch_noise_rad": 0.002084204656153591,
+          "initial_pose.dx_m": 0.05533006931152325,
+          "initial_pose.dy_m": -0.05750832405010419,
+          "initial_pose.yaw_offset_rad": -0.011680047661710598,
+          "lidar.beam_block_probability": 0.006924059386095783,
+          "lidar.dropout_probability": 0.042125771972814426,
+          "lidar.missing_scan_probability": 0.04625084705152396,
+          "lidar.range_bias_m": 0.0013718396666121749,
+          "lidar.range_noise_m": 0.008101485222394185,
+          "lidar.scan_latency_s": 0.1140655817902664,
+          "odometry.linear_noise_fraction": 0.026877803753560074,
+          "odometry.linear_scale_error": 0.9521746659106738,
+          "odometry.slip_probability": 0.016797733721216703,
+          "odometry.slip_ratio": 0.7654554365239372,
+          "odometry.yaw_bias_rad_s": 0.007692545781329668,
+          "odometry.yaw_noise_rad_s": 0.011201123919707255,
+          "odometry.yaw_scale_error": 0.953048467506923
+        }
+      },
+      "exit_code": 1,
+      "error": "cannot access local variable 'standstill_escapes' where it is not associated with a value",
+      "error_log": "Traceback (most recent call last):\n  File \"F:\\airace\\lite2_sim\\run_mujoco.py\", line 184, in main\n    navigation = run_navigation(model, data, config, output, args.headless)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"F:\\airace\\lite2_sim\\mujoco_navigation.py\", line 458, in run_navigation\n    command = session.tick(now, motion, cancelled=cancel_file.exists() or (viewer is not None and not viewer.is_running()))\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"F:\\airace\\lite2_sim\\controllers\\sensor_capture\\navigation_core\\course.py\", line 150, in tick\n    command = self.navigation.tick(now, motion, cancelled)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"F:\\airace\\lite2_sim\\controllers\\sensor_capture\\navigation_core\\session.py\", line 353, in tick\n    return self._local_rollout(command, now)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"F:\\airace\\lite2_sim\\controllers\\sensor_capture\\navigation_core\\session.py\", line 846, in _local_rollout\n    \"velocities\": [float(value) for value in velocities],\n                             ^^^^^^^^^^^^^^^^^^\nUnboundLocalError: cannot access local variable 'standstill_escapes' where it is not associated with a value\n\nFailed run: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142635_cac573\n",
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "58",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142635_cac573\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\n"
+    },
+    {
+      "seed": 59,
+      "run_dir": "runs/mujoco_20261113_142639_7c58ef",
+      "result": "start_blocked",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 8.412068711084093,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 17.35,
+      "duration_s": 22.105,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 59,
+        "values": {
+          "actuation.acceleration_scale": 1.0526482951998186,
+          "actuation.command_latency_s": 0.12390992522982529,
+          "actuation.linear_gain_error": 0.92338875604945,
+          "imu.roll_pitch_noise_rad": 0.00377429608675686,
+          "initial_pose.dx_m": -0.050198023977073,
+          "initial_pose.dy_m": -0.05435478389020206,
+          "initial_pose.yaw_offset_rad": -0.02965082519821778,
+          "lidar.beam_block_probability": 0.048632534696483015,
+          "lidar.dropout_probability": 0.008293089325014434,
+          "lidar.missing_scan_probability": 0.046725893065229784,
+          "lidar.range_bias_m": -0.002948736468022361,
+          "lidar.range_noise_m": 0.021192560445845644,
+          "lidar.scan_latency_s": 0.013126679146117882,
+          "odometry.linear_noise_fraction": 0.030244443139718358,
+          "odometry.linear_scale_error": 1.0607238766741407,
+          "odometry.slip_probability": 0.0030945099361904625,
+          "odometry.slip_ratio": 0.3458792740975005,
+          "odometry.yaw_bias_rad_s": -0.007803769040829665,
+          "odometry.yaw_noise_rad_s": 0.009543021149386651,
+          "odometry.yaw_scale_error": 0.9761142608332227
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "59",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142639_7c58ef\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=recovering pose=(-5.07,-4.30) scans=45\nNAV_PROGRESS t=15.0 status=recovering pose=(-5.07,-4.30) scans=142\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"start_blocked\", \"goal_error_m\": 8.412068711084093, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142639_7c58ef\"}\n"
+    },
+    {
+      "seed": 60,
+      "run_dir": "runs/mujoco_20261113_142648_74d803",
+      "result": "runtime_error",
+      "passed": false,
+      "checks": {},
+      "stages": [],
+      "stage_pass": {},
+      "truth_error_m": null,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": null,
+      "duration_s": 4.88,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 60,
+        "values": {
+          "actuation.acceleration_scale": 0.8945702876207658,
+          "actuation.command_latency_s": 0.004071958784250684,
+          "actuation.linear_gain_error": 0.9109441774884447,
+          "imu.roll_pitch_noise_rad": 0.009904915213015465,
+          "initial_pose.dx_m": 0.05812639344281258,
+          "initial_pose.dy_m": 0.008084826952517943,
+          "initial_pose.yaw_offset_rad": 0.028091075954429855,
+          "lidar.beam_block_probability": 0.04957679555397135,
+          "lidar.dropout_probability": 0.03146035991704956,
+          "lidar.missing_scan_probability": 0.01597897539048373,
+          "lidar.range_bias_m": 0.007161716082616426,
+          "lidar.range_noise_m": 0.0006187662126618964,
+          "lidar.scan_latency_s": 0.06814090105947854,
+          "odometry.linear_noise_fraction": 0.04118041915300394,
+          "odometry.linear_scale_error": 1.0206414368643926,
+          "odometry.slip_probability": 0.0171724767477644,
+          "odometry.slip_ratio": 0.5144076680760893,
+          "odometry.yaw_bias_rad_s": -0.005809290177491131,
+          "odometry.yaw_noise_rad_s": 0.010900080632361461,
+          "odometry.yaw_scale_error": 0.9377802470637084
+        }
+      },
+      "exit_code": 1,
+      "error": "cannot access local variable 'standstill_escapes' where it is not associated with a value",
+      "error_log": "Traceback (most recent call last):\n  File \"F:\\airace\\lite2_sim\\run_mujoco.py\", line 184, in main\n    navigation = run_navigation(model, data, config, output, args.headless)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"F:\\airace\\lite2_sim\\mujoco_navigation.py\", line 458, in run_navigation\n    command = session.tick(now, motion, cancelled=cancel_file.exists() or (viewer is not None and not viewer.is_running()))\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"F:\\airace\\lite2_sim\\controllers\\sensor_capture\\navigation_core\\course.py\", line 150, in tick\n    command = self.navigation.tick(now, motion, cancelled)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"F:\\airace\\lite2_sim\\controllers\\sensor_capture\\navigation_core\\session.py\", line 353, in tick\n    return self._local_rollout(command, now)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"F:\\airace\\lite2_sim\\controllers\\sensor_capture\\navigation_core\\session.py\", line 849, in _local_rollout\n    \"standstill_escape\": int(standstill_escapes),\n                             ^^^^^^^^^^^^^^^^^^\nUnboundLocalError: cannot access local variable 'standstill_escapes' where it is not associated with a value\n\nFailed run: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142648_74d803\n",
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "60",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142648_74d803\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\n"
+    },
+    {
+      "seed": 61,
+      "run_dir": "runs/mujoco_20261113_142653_4ae89e",
+      "result": "insufficient_observations",
+      "passed": false,
+      "checks": {
+        "obstacles_avoided": true,
+        "collision_free": true,
+        "stopped_for_one_second": true,
+        "finite_state": true,
+        "goal_reached": false,
+        "position_tolerance": false,
+        "all_stages_passed": false,
+        "no_manual_intervention": true
+      },
+      "stages": [
+        {
+          "id": "ramp",
+          "passed": false
+        },
+        {
+          "id": "s_bend",
+          "passed": false
+        },
+        {
+          "id": "dead_end_exit",
+          "passed": false
+        },
+        {
+          "id": "obstacle_bypass",
+          "passed": false
+        },
+        {
+          "id": "narrow_passage_rejection",
+          "passed": false
+        },
+        {
+          "id": "square_culvert",
+          "passed": false
+        },
+        {
+          "id": "finish",
+          "passed": false
+        }
+      ],
+      "stage_pass": {
+        "ramp": false,
+        "s_bend": false,
+        "dead_end_exit": false,
+        "obstacle_bypass": false,
+        "narrow_passage_rejection": false,
+        "square_culvert": false,
+        "finish": false
+      },
+      "truth_error_m": 8.412467907426882,
+      "collisions": 0,
+      "recoveries": 0,
+      "elapsed_simulation_s": 10.65,
+      "duration_s": 15.312,
+      "randomization": {
+        "parameter_count": 20,
+        "profile_id": "sim2real_v1",
+        "provenance": {
+          "actuation.acceleration_scale": "sim_assumed",
+          "actuation.command_latency_s": "measured_pending",
+          "actuation.linear_gain_error": "measured_pending",
+          "imu.roll_pitch_noise_rad": "vendor_reference",
+          "initial_pose.dx_m": "sim_assumed",
+          "initial_pose.dy_m": "sim_assumed",
+          "initial_pose.yaw_offset_rad": "sim_assumed",
+          "lidar.beam_block_probability": "sim_assumed",
+          "lidar.dropout_probability": "measured_pending",
+          "lidar.missing_scan_probability": "sim_assumed",
+          "lidar.range_bias_m": "measured_pending",
+          "lidar.range_noise_m": "vendor_reference",
+          "lidar.scan_latency_s": "vendor_reference",
+          "odometry.linear_noise_fraction": "measured_pending",
+          "odometry.linear_scale_error": "measured_pending",
+          "odometry.slip_probability": "sim_assumed",
+          "odometry.slip_ratio": "sim_assumed",
+          "odometry.yaw_bias_rad_s": "sim_assumed",
+          "odometry.yaw_noise_rad_s": "measured_pending",
+          "odometry.yaw_scale_error": "measured_pending"
+        },
+        "provenance_summary": {
+          "measured_pending": 8,
+          "sim_assumed": 9,
+          "vendor_reference": 3
+        },
+        "schema_version": 1,
+        "seed": 61,
+        "values": {
+          "actuation.acceleration_scale": 0.9246245697265847,
+          "actuation.command_latency_s": 0.11579034272883998,
+          "actuation.linear_gain_error": 1.034228620700113,
+          "imu.roll_pitch_noise_rad": 0.00709154836540658,
+          "initial_pose.dx_m": -0.010599553094304798,
+          "initial_pose.dy_m": 0.07956297087762611,
+          "initial_pose.yaw_offset_rad": 0.029885571371393492,
+          "lidar.beam_block_probability": 0.04738664006922372,
+          "lidar.dropout_probability": 0.01538381663807213,
+          "lidar.missing_scan_probability": 0.034272654624372165,
+          "lidar.range_bias_m": 0.006725034143484937,
+          "lidar.range_noise_m": 0.01813952076652472,
+          "lidar.scan_latency_s": 0.06877528557388222,
+          "odometry.linear_noise_fraction": 0.03622540235675801,
+          "odometry.linear_scale_error": 0.9477807733691455,
+          "odometry.slip_probability": 0.013950641181222448,
+          "odometry.slip_ratio": 0.24668149905829298,
+          "odometry.yaw_bias_rad_s": 0.006781776235814026,
+          "odometry.yaw_noise_rad_s": 0.004317379042260499,
+          "odometry.yaw_scale_error": 0.9235846247771856
+        }
+      },
+      "exit_code": 1,
+      "error": null,
+      "error_log": null,
+      "command": [
+        "F:\\airace\\lite2_sim\\.venv-mujoco\\Scripts\\python.exe",
+        "F:\\airace\\lite2_sim\\run_mujoco.py",
+        "--scene",
+        "ruins_reference",
+        "--course",
+        "--headless",
+        "--seed",
+        "61",
+        "--randomize",
+        "sim2real_v1"
+      ],
+      "stdout_tail": "Run output: F:\\airace\\lite2_sim\\runs\\mujoco_20261113_142653_4ae89e\n{\n  \"result\": \"passed\",\n  \"scope\": \"fixed_base_model_sensors_and_course_scene_load\",\n  \"scene_id\": \"ruins_reference\",\n  \"joint_count\": 12,\n  \"max_joint_error_rad\": 0.010694951822417776,\n  \"center_depth_m\": 1.2854357957839966,\n  \"expected_depth_m\": null,\n  \"depth_valid_fraction\": 0.5884532232704403,\n  \"backend\": \"mujoco\",\n  \"mujoco_version\": \"3.17.0\",\n  \"floating_root\": true,\n  \"actuator_count\": 12,\n  \"source_model_mass_kg\": 10.03,\n  \"fixture_drift_m\": 1.9294714334538998e-05,\n  \"fixture_drift_tolerance_m\": 0.005,\n  \"pose_dependent_checks\": true,\n  \"gyro_norm_rad_s\": 1.1615985097433175e-10,\n  \"imu_gravity_error_m_s2\": 3.849027480652143e-09,\n  \"max_inertia_relative_error\": 3.0824836748832284e-06,\n  \"geometry_count\": 1939,\n  \"lidar_wall_error_m\": 2.8904548800334773e-05\n}\nNAV_PROGRESS t=5.0 status=recovering pose=(-5.03,-4.17) scans=46\nNAVIGATION_FINISHED {\"passed\": false, \"result\": \"insufficient_observations\", \"goal_error_m\": 8.412467907426882, \"collisions\": 0, \"output\": \"F:\\\\airace\\\\lite2_sim\\\\runs\\\\mujoco_20261113_142653_4ae89e\"}\n"
+    }
+  ],
+  "aggregate": {
+    "runs": 20,
+    "passed": 0,
+    "failed": 20,
+    "error_runs": 2,
+    "success_rate": 0.0,
+    "truth_error_m": {
+      "count": 18,
+      "mean": 7.70779390256356,
+      "std": 1.9328139182422632,
+      "min": 0.16215614911565396,
+      "max": 8.611191887056638
+    },
+    "stage_order": [
+      "ramp",
+      "s_bend",
+      "dead_end_exit",
+      "obstacle_bypass",
+      "narrow_passage_rejection",
+      "square_culvert",
+      "finish"
+    ],
+    "stage_pass_rates": {
+      "ramp": {
+        "passed": 1,
+        "total": 18,
+        "rate": 0.05555555555555555
+      },
+      "s_bend": {
+        "passed": 0,
+        "total": 18,
+        "rate": 0.0
+      },
+      "dead_end_exit": {
+        "passed": 0,
+        "total": 18,
+        "rate": 0.0
+      },
+      "obstacle_bypass": {
+        "passed": 0,
+        "total": 18,
+        "rate": 0.0
+      },
+      "narrow_passage_rejection": {
+        "passed": 0,
+        "total": 18,
+        "rate": 0.0
+      },
+      "square_culvert": {
+        "passed": 0,
+        "total": 18,
+        "rate": 0.0
+      },
+      "finish": {
+        "passed": 0,
+        "total": 18,
+        "rate": 0.0
+      }
+    },
+    "failure_reasons": {
+      "insufficient_observations": 8,
+      "start_blocked": 6,
+      "timeout": 3,
+      "run_error": 2,
+      "collision": 1
+    },
+    "collisions_total": 3,
+    "recoveries_total": 0,
+    "mean_elapsed_simulation_s": 40.86666666666667,
+    "mean_wall_duration_s": 56.0489,
+    "randomization_profiles": [
+      "sim2real_v1"
+    ],
+    "min_pass_rate": 0.8,
+    "threshold_met": false
+  }
+}

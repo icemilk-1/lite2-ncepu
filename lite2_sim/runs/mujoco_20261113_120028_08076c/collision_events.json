@@ -1,0 +1,18 @@
+[
+  {
+    "timestamp_s": 270.7,
+    "proposed_pose": [
+      -0.09835622475594855,
+      -3.3079311188552056,
+      -0.02306246612090046
+    ],
+    "retained_pose": [
+      -0.10585423030431278,
+      -3.307758165691895,
+      -0.02306246612090046
+    ],
+    "ground_height_m": 0.0,
+    "reason": "body_geometry_clearance",
+    "geometry": "south_rubble_stone_24"
+  }
+]

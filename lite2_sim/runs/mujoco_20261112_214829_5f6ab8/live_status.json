@@ -1,0 +1,38 @@
+{
+  "time_s": 65.0,
+  "status": "navigating",
+  "estimated_pose": [
+    3.913839543340164,
+    0.9762990577039365,
+    0.00417635514089465
+  ],
+  "truth_eval": [
+    3.913817497487459,
+    0.9809914968715077,
+    0.009176355140894543
+  ],
+  "corrections": 0,
+  "ground_eval": 0.11007828932241828,
+  "odometry_height": 0.00016300823304902528,
+  "command": [
+    0.0,
+    0.0
+  ],
+  "target": [
+    4.8,
+    0.98
+  ],
+  "local_rollout": {
+    "candidate_count": 8,
+    "valid_count": 1,
+    "rejected": {
+      "terrain": 0,
+      "support": 0,
+      "map_edge": 0,
+      "occupied": 0,
+      "unknown": 6,
+      "turn_unknown": 0
+    }
+  },
+  "ground_returns": null
+}

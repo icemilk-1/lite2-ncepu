@@ -1,0 +1,18 @@
+[
+  {
+    "timestamp_s": 84.75,
+    "proposed_pose": [
+      -1.1670142222331068,
+      3.8587041133395075,
+      -0.36920320422412933
+    ],
+    "retained_pose": [
+      -1.1740088361075913,
+      3.8614106566602153,
+      -0.36920320422412933
+    ],
+    "ground_height_m": 0.03698671339091529,
+    "reason": "body_geometry_clearance",
+    "geometry": "north_rubble_stone_5"
+  }
+]

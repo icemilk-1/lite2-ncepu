@@ -1,0 +1,23 @@
+Monte Carlo: 20 seed(s), 3 job(s), mode=course, profile=sim2real_v1
+Report directory: F:\airace\lite2_sim\runs\monte_carlo_20261113_142142_4bbdda
+seed 43: passed=False result=insufficient_observations error=None
+seed 42: passed=False result=start_blocked error=None
+seed 45: passed=False result=insufficient_observations error=None
+seed 47: passed=False result=insufficient_observations error=None
+seed 44: passed=False result=timeout error=None
+seed 49: passed=False result=insufficient_observations error=None
+seed 46: passed=False result=timeout error=None
+seed 50: passed=False result=insufficient_observations error=None
+seed 51: passed=False result=insufficient_observations error=None
+seed 48: passed=False result=timeout error=None
+seed 53: passed=False result=insufficient_observations error=None
+seed 54: passed=False result=start_blocked error=None
+seed 55: passed=False result=start_blocked error=None
+seed 56: passed=False result=start_blocked error=None
+seed 58: passed=False result=runtime_error error=cannot access local variable 'standstill_escapes' where it is not associated with a value
+seed 57: passed=False result=start_blocked error=None
+seed 60: passed=False result=runtime_error error=cannot access local variable 'standstill_escapes' where it is not associated with a value
+seed 59: passed=False result=start_blocked error=None
+seed 61: passed=False result=insufficient_observations error=None
+seed 52: passed=False result=collision error=None
+MONTE_CARLO_FINISHED {"report_dir": "F:\\airace\\lite2_sim\\runs\\monte_carlo_20261113_142142_4bbdda", "report_json": "F:\\airace\\lite2_sim\\runs\\monte_carlo_20261113_142142_4bbdda\\report.json", "report_markdown": "F:\\airace\\lite2_sim\\runs\\monte_carlo_20261113_142142_4bbdda\\report.md", "runs": 20, "passed": 0, "success_rate": 0.0, "threshold_met": false}

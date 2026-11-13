@@ -1,0 +1,22 @@
+{
+  "result": "passed",
+  "scope": "fixed_base_model_sensors_and_course_scene_load",
+  "scene_id": "ruins_reference",
+  "joint_count": 12,
+  "max_joint_error_rad": 0.010694951822356151,
+  "center_depth_m": 2.0979905128479004,
+  "expected_depth_m": null,
+  "depth_valid_fraction": 0.7968455188679245,
+  "backend": "mujoco",
+  "mujoco_version": "3.17.0",
+  "floating_root": true,
+  "actuator_count": 12,
+  "source_model_mass_kg": 10.03,
+  "fixture_drift_m": 1.9294714333928376e-05,
+  "fixture_drift_tolerance_m": 0.02,
+  "pose_dependent_checks": false,
+  "gyro_norm_rad_s": 1.2974022073328008e-10,
+  "imu_gravity_error_m_s2": 4.829121820535377e-10,
+  "max_inertia_relative_error": 3.0824836748832284e-06,
+  "geometry_count": 1939
+}

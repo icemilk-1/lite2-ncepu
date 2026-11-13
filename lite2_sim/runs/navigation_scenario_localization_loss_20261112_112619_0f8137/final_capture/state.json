@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "source": "mujoco",
+  "backend": "mujoco",
+  "simulation_time_s": 6.299999999999528,
+  "robot_mode": "velocity_level_navigation_sensor_lab",
+  "fixture": "free_root_welded_to_colocated_mocap_anchor",
+  "scene_id": "sensor_lab",
+  "camera": {
+    "frame_id": "front_camera_optical",
+    "optical_axes": "x_right_y_down_z_forward",
+    "sensor_model": "ideal_geometry_pending_real_sensor_characterization",
+    "width": 424,
+    "height": 240,
+    "K": [
+      302.6,
+      0,
+      212.0,
+      0,
+      302.6,
+      120.0,
+      0,
+      0,
+      1
+    ],
+    "rgb_file": "rgb.png",
+    "depth_file": "depth_m.npy",
+    "depth_valid_file": "depth_valid.npy",
+    "depth_unit": "m",
+    "depth_invalid": "nonfinite",
+    "mount_position_body_m": [
+      0.22,
+      0.0,
+      0.05
+    ],
+    "R_body_optical": [
+      0,
+      0,
+      1,
+      -1,
+      0,
+      0,
+      0,
+      -1,
+      0
+    ],
+    "mount_status": "assumed_pending_physical_calibration"
+  },
+  "imu": {
+    "frame_id": "base_link",
+    "orientation_source": "mujoco_simulated_body_orientation",
+    "rpy_rad": [
+      0.0,
+      0.0,
+      0.4378826915195462
+    ],
+    "quaternion_wxyz": [
+      0.9761279321353721,
+      0.0,
+      0.0,
+      0.21719636301080747
+    ],
+    "angular_velocity_rad_s": [
+      4.763980286073115e-06,
+      -0.00010532345522682067,
+      4.3763553291031164e-07
+    ],
+    "accelerometer_m_s2": [
+      -0.004901375585758961,
+      0.0008350176290167601,
+      8.726558754829348
+    ],
+    "accelerometer_quantity": "specific_force_body_frame_including_gravity_response"
+  },
+  "joint_positions_rad": {
+    "FL_HipX": -0.010714039120230761,
+    "FL_HipY": -0.6956023614411477,
+    "FL_Knee": 1.3970762869024076,
+    "FR_HipX": -0.010532983139262295,
+    "FR_HipY": -0.6956019510232665,
+    "FR_Knee": 1.397076018073878,
+    "HL_HipX": -0.010682248948510966,
+    "HL_HipY": -0.6956148586212378,
+    "HL_Knee": 1.3970831867489646,
+    "HR_HipX": -0.010684734452899964,
+    "HR_HipY": -0.6956144490533355,
+    "HR_Knee": 1.3970829104503715
+  },
+  "depth_valid_fraction": 0.5274764150943396,
+  "center_depth_m": 4.74737024307251,
+  "evaluation_ground_truth": {
+    "usage": "evaluation_only",
+    "body_position_world_m": [
+      -3.5857354511146413,
+      -2.8491648502577958,
+      0.33
+    ]
+  },
+  "lidar": {
+    "frame_id": "front_lidar_level",
+    "valid": false,
+    "timestamp_s": 6.299999999999528,
+    "source": "mujoco_organized_cloud_projection",
+    "data_file": "lidar_raw_first.npz",
+    "metadata_file": "lidar_scan.json"
+  }
+}

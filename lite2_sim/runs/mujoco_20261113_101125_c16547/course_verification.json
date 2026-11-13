@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "result": "runtime_error",
+  "error": "Course requires stages with unique IDs.",
+  "error_log": "error.log"
+}

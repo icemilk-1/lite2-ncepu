@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "checked_frames": 233,
+  "monitored_rubble_geometries": 276,
+  "overlap_frames": 0,
+  "overlaps": [],
+  "footprint_m": [
+    0.6,
+    0.44
+  ],
+  "scope": "evaluation_only_full_body_xy_footprint_against_rubble"
+}

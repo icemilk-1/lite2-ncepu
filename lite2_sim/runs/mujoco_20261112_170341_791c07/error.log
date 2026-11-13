@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "F:\airace\lite2_sim\run_mujoco.py", line 148, in main
+    navigation = run_navigation(model, data, config, output, args.headless)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\airace\lite2_sim\mujoco_navigation.py", line 318, in run_navigation
+    build_randomization(config, output)
+  File "F:\airace\lite2_sim\mujoco_navigation.py", line 92, in build_randomization
+    profile_data = load_profile(profile, base_dir=Path(__file__).resolve().parent)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\airace\lite2_sim\controllers\sensor_capture\navigation_core\randomization.py", line 67, in load_profile
+    path = _resolve_profile_path(path_or_id, base_dir)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\airace\lite2_sim\controllers\sensor_capture\navigation_core\randomization.py", line 342, in _resolve_profile_path
+    raise FileNotFoundError("Unknown randomization profile %r under %s (available: %s)."
+FileNotFoundError: Unknown randomization profile 'does_not_exist' under F:\airace\lite2_sim\config\randomization (available: ideal, sim2real_aggressive, sim2real_v1).

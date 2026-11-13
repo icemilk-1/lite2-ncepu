@@ -1,0 +1,27 @@
+{
+  "frame_id": "map",
+  "planner": "8-connected A* with line-of-sight smoothing",
+  "planning_snapshot": "initial accumulated SLAM map",
+  "start_xy_m": [
+    -5.47,
+    -3.67
+  ],
+  "goal_xy_m": [
+    5.2,
+    4.15
+  ],
+  "poses_xy_m": [
+    [
+      -5.45,
+      -3.65
+    ],
+    [
+      -3.05,
+      1.1500000000000004
+    ],
+    [
+      5.15,
+      4.15
+    ]
+  ]
+}

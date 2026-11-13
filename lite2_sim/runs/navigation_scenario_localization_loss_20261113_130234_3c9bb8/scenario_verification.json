@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "scenario": "localization_loss",
+  "expected_result": "localization_lost",
+  "actual_result": "localization_lost",
+  "events": [],
+  "output": "F:\\airace\\lite2_sim\\runs\\navigation_scenario_localization_loss_20261113_130234_3c9bb8"
+}
