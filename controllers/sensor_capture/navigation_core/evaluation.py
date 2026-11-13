@@ -16,6 +16,17 @@ class NavigationEvaluator(object):
             self.collision_stop_events += 1
 
     def summary(self, goal_xy, scan_match_corrections, goal_tolerance_m):
+        """Goal metrics are unavailable for exploration runs, which have no target."""
+        if goal_xy is None:
+            return {
+                "final_truth_xy_m": self.final_truth_pose[:2],
+                "goal_error_m": None,
+                "goal_tolerance_m": None,
+                "truth_goal_tolerance_met": None,
+                "distance_travelled_m": self.distance_travelled_m,
+                "scan_match_corrections": int(scan_match_corrections),
+                "collision_stop_events": self.collision_stop_events,
+            }
         goal_error = math.hypot(goal_xy[0] - self.final_truth_pose[0],
                                 goal_xy[1] - self.final_truth_pose[1])
         return {

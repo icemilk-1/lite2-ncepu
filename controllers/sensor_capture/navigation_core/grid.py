@@ -19,6 +19,7 @@ class OccupancyGrid:
         self.log_odds = np.zeros((self.height, self.width), dtype=np.float32)
         self.scan_count = 0
         self.hit_count = 0
+        self.last_hit_mask = np.zeros((self.height, self.width), dtype=bool)
 
     def world_to_cell(self, x, y):
         column = int(math.floor((x - self.x_min) / self.resolution))
@@ -109,6 +110,7 @@ class OccupancyGrid:
         # cell. Count each cell once and never clear an occupied endpoint with
         # a neighboring beam from this same scan.
         free_mask &= ~hit_mask
+        self.last_hit_mask = hit_mask
         self.log_odds[free_mask] = np.maximum(-4.0, self.log_odds[free_mask] - 0.35)
         self.log_odds[hit_mask] = np.minimum(4.0, self.log_odds[hit_mask] + 0.9)
         self.scan_count += 1
@@ -173,8 +175,15 @@ class OccupancyGrid:
                         best_pose, best_score = (x, y, yaw), score
         return best_pose
 
-    def inflated(self, radius_m, occupied_threshold):
+    def inflated(self, radius_m, occupied_threshold, extra=None):
         occupied = self.log_odds >= occupied_threshold
+        if extra is not None:
+            # Terrain hazards (unsupported steps, too-steep edges) are impassable
+            # for the velocity model but never reach the occupied log-odds, so the
+            # planner must be told about them explicitly.  Treating them as solid
+            # keeps the route and every smoothed shortcut a body radius away from
+            # a ramp inner edge instead of letting the path graze it.
+            occupied = occupied | np.asarray(extra, dtype=bool)
         radius = int(math.ceil(radius_m / self.resolution))
         radius_squared = (radius_m / self.resolution) ** 2
         result = occupied.copy()
@@ -194,12 +203,59 @@ class OccupancyGrid:
         result[:, -edge:] = True
         return result
 
-    def plan_result(self, start, goal, radius_m, occupied_threshold, unknown_cost=2.8, preferred_clearance_m=0.0):
-        from navigation_core.planner import plan_grid
-        return plan_grid(self, start, goal, radius_m, occupied_threshold, unknown_cost, preferred_clearance_m)
+    def clearance_field(self, occupied_threshold):
+        """Distance in metres from every cell centre to the nearest occupied cell.
 
-    def plan(self, start, goal, radius_m, occupied_threshold, unknown_cost, preferred_clearance_m=0.0):
-        return self.plan_result(start, goal, radius_m, occupied_threshold, unknown_cost, preferred_clearance_m).path
+        Two-pass chamfer distance. Cells farther than any observation keep
+        ``inf`` so unobserved space never looks like a wall.
+        """
+        occupied = self.log_odds >= occupied_threshold
+        distance = np.full(occupied.shape, np.inf, dtype=np.float32)
+        distance[occupied] = 0.0
+        if not occupied.any():
+            return distance
+        straight = self.resolution
+        diagonal = self.resolution * math.sqrt(2.0)
+        height, width = distance.shape
+        # Column offsets let the row-wise pass be exact instead of one-cell:
+        #   left-to-right  d[x] = min over x'<=x of d[x'] + straight*(x-x')
+        columns = np.arange(width, dtype=np.float32) * straight
+        for row in range(1, height):
+            above, current = distance[row - 1], distance[row]
+            current[:] = np.minimum(current, above + straight)
+            current[1:] = np.minimum(current[1:], above[:-1] + diagonal)
+            current[:-1] = np.minimum(current[:-1], above[1:] + diagonal)
+            current[:] = np.minimum.accumulate(current - columns) + columns
+        for row in range(height - 2, -1, -1):
+            below, current = distance[row + 1], distance[row]
+            current[:] = np.minimum(current, below + straight)
+            current[1:] = np.minimum(current[1:], below[:-1] + diagonal)
+            current[:-1] = np.minimum(current[:-1], below[1:] + diagonal)
+            current[:] = np.minimum.accumulate((current + columns)[::-1])[::-1] - columns
+        return distance
+
+    def clearance(self, occupied_threshold):
+        """Clearance field cached against the current scan count."""
+        key = (int(self.scan_count), float(occupied_threshold))
+        cached = getattr(self, "_clearance_cached", None)
+        if cached is not None and cached[0] == key:
+            return cached[1]
+        field = self.clearance_field(occupied_threshold)
+        self._clearance_cached = (key, field)
+        return field
+
+    def plan_result(self, start, goal, radius_m, occupied_threshold, unknown_cost=2.8,
+                    preferred_clearance_m=0.0, clearance_preference_m=0.0, clearance_weight=0.0,
+                    clearance_threshold=None):
+        from navigation_core.planner import plan_grid
+        return plan_grid(self, start, goal, radius_m, occupied_threshold, unknown_cost,
+                         preferred_clearance_m, clearance_preference_m, clearance_weight,
+                         clearance_threshold)
+
+    def plan(self, start, goal, radius_m, occupied_threshold, unknown_cost, preferred_clearance_m=0.0,
+             clearance_preference_m=0.0, clearance_weight=0.0):
+        return self.plan_result(start, goal, radius_m, occupied_threshold, unknown_cost,
+                                preferred_clearance_m, clearance_preference_m, clearance_weight).path
 
     @staticmethod
     def nearest_open(cell, blocked, max_radius):
@@ -218,19 +274,32 @@ class OccupancyGrid:
                 return min(candidates)[1]
         return None
 
-    @staticmethod
-    def smooth(cells, blocked):
+    def smooth(self, cells, blocked):
         if len(cells) < 3:
             return cells
+        resolution = self.resolution
+        x_min, y_min = self.x_min, self.y_min
+        width, height = self.width, self.height
+        window = max(1, int(getattr(self, "smooth_window_cells", 40)))
 
         def clear(a, b):
-            cells_on_line = OccupancyGrid.line_cells(a, b)
-            return all(not blocked[y, x] for x, y in cells_on_line)
+            # Vectorised line probe: sampling beats Bresenham per candidate and
+            # keeps smoothing cheap enough for the wider shortcut band.
+            length = math.hypot(b[0] - a[0], b[1] - a[1])
+            steps = max(1, int(math.ceil(length / resolution)))
+            samples = np.linspace(0.0, 1.0, steps + 1)
+            xs = a[0] + (b[0] - a[0]) * samples
+            ys = a[1] + (b[1] - a[1]) * samples
+            columns = np.floor((xs - x_min) / resolution).astype(np.int64)
+            rows = np.floor((ys - y_min) / resolution).astype(np.int64)
+            if ((columns < 0) | (columns >= width) | (rows < 0) | (rows >= height)).any():
+                return False
+            return not blocked[rows, columns].any()
 
         result = [cells[0]]
         current = 0
         while current < len(cells) - 1:
-            candidate = len(cells) - 1
+            candidate = min(len(cells) - 1, current + window)
             while candidate > current + 1 and not clear(cells[current], cells[candidate]):
                 candidate -= 1
             result.append(cells[candidate])

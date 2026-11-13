@@ -93,7 +93,13 @@ def reference_geometry(config):
               box("concrete_apron", [0, 0, -0.14], [width + 2, length + 2, 0.1], [0.48, 0.49, 0.47], collision=False)]
     boundary = [[-width / 2, -length / 2], [width / 2, -length / 2],
                 [width / 2, length / 2], [-width / 2, length / 2], [-width / 2, -length / 2]]
-    shapes.extend(brick_wall("perimeter", boundary, style))
+    perimeter_sections = config.get("perimeter_wall_sections")
+    if perimeter_sections:
+        for section in perimeter_sections:
+            shapes.extend(brick_wall(section["name"], section["points_m"], style,
+                                     height=section["height_m"]))
+    else:
+        shapes.extend(brick_wall("perimeter", boundary, style))
     # Stable collision names also support the existing known-distance sensor check.
     for name, start, end in [("west_wall", boundary[3], boundary[0]),
                              ("east_wall", boundary[1], boundary[2]),
@@ -107,7 +113,8 @@ def reference_geometry(config):
     for index, y in enumerate(np.arange(-3.0, 5.0, 2.0)):
         shapes.append(box("floor_joint_y_" + str(index), [0, y, 0.001], [width, 0.007, 0.002], [0.47, 0.47, 0.45], collision=False))
     for path in config["wall_paths"]:
-        shapes.extend(brick_wall(path["name"], path["points_m"], style, path["smooth"]))
+        shapes.extend(brick_wall(path["name"], path["points_m"], style, path["smooth"],
+                                 height=path.get("height_m")))
     ramp = config.get("upper_left_ramp")
     if ramp:
         faces = [[0, 2, 1], [0, 3, 2], [4, 5, 6], [4, 6, 7],
@@ -167,6 +174,14 @@ def reference_geometry(config):
                                            (0, [0.34, 0.075, 0.006])]):
             shapes.append(box(helipad["name"] + "_H_" + str(index), [x + dx, y, 0.006],
                               size, [0.93, 0.93, 0.90], collision=False))
+    for region in config.get("marked_areas", []):
+        x, y = region["center_m"]
+        sx, sy = region["size_m"]
+        for side in (-1, 1):
+            shapes.append(box(region["name"] + "_x_" + str(side), [x + side*sx/2, y, .006],
+                              [.015, sy, .006], [.85, .88, .90], collision=False))
+            shapes.append(box(region["name"] + "_y_" + str(side), [x, y + side*sy/2, .006],
+                              [sx, .015, .006], [.85, .88, .90], collision=False))
     sphere = config["sphere_landmark"]
     x, y = sphere["center_m"]
     shapes.append({"name": "sphere_base", "type": "cylinder", "position_m": [x, y, sphere["base_height_m"] / 2],
@@ -209,6 +224,11 @@ def reference_geometry(config):
             vertices = template.vertices * size * random.uniform(0.73, 1.15, template.vertices.shape)
             yaw = random.uniform(0, 2 * math.pi)
             height = -float(vertices[:, 2].min()) + (0.16 * (1 - radius) if large else 0)
+            if "height_range_m" in pile:
+                low, high = pile["height_range_m"]
+                target_height = high if index == 0 else low + (high-low)*((index*17 % total)/max(1, total-1))
+                vertices[:, 2] *= target_height / float(np.ptp(vertices[:, 2]))
+                height = -float(vertices[:, 2].min())
             shade = float(random.uniform(0.49, 0.65))
             shapes.append(mesh_shape(f"{pile['name']}_stone_{index}", [*center, height], vertices,
                                      template.faces, [shade, shade, shade * 0.97],

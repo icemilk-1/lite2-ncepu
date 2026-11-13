@@ -11,16 +11,23 @@ sys.path.insert(0, str(PROJECT / "controllers/sensor_capture"))
 
 from navigation_core.contracts import MotionObservation, NavigationObservation
 from navigation_core.session import NavigationSession
+from navigation_core.course import CourseSession
 from navigation_core.terrain import TerrainGrid
 
 
 def replay(run_directory, until_s=None):
     directory = Path(run_directory)
+    if (directory / "log_cleanup.json").exists():
+        raise ValueError("Full replay inputs were removed by log retention. See log_cleanup.json.")
     config = json.loads((directory / "config_snapshot.json").read_text(encoding="utf-8"))
     grid = TerrainGrid(config["field_size_m"], config["navigation"]["grid_resolution_m"], config["navigation"])
-    session = NavigationSession(config, [*config["robot_position_m"][:2], 0.0], grid)
+    course_mode = config.get("course_enabled", False)
+    session = (CourseSession if course_mode else NavigationSession)(config, [*config["robot_position_m"][:2], 0.0], grid)
     mismatches, count = 0, 0
     sensor_index = 0
+    collision_file = directory / "collision_events.json"
+    collisions = json.loads(collision_file.read_text(encoding="utf-8")) if collision_file.exists() else []
+    collision_index = 0
     with open_log(directory, "navigation_inputs") as stream, open_log(directory, "sensor_observations") as sensors:
         for line in stream:
             record = json.loads(line)
@@ -38,12 +45,24 @@ def replay(run_directory, until_s=None):
             if value is not None:
                 session.observe(NavigationObservation(value["timestamp_s"], value["frame_id"], value["points"],
                                                       value["valid"], value["source"], value["metadata"]))
+            # The simulator applies its contact stop after execution. Replay the
+            # same external stop before the following control tick.
+            while (collision_index < len(collisions)
+                   and collisions[collision_index]["timestamp_s"] + record["dt_s"] <= record["timestamp_s"] + 1e-8):
+                session.status = "collision"
+                collision_index += 1
             command = session.tick(record["timestamp_s"], motion, record["cancelled"])
             values = (command.linear_x_m_s, command.angular_z_rad_s)
-            if record["status"] != session.status or any(abs(a-b) > 1e-8 for a, b in zip(values, record["command"])):
+            course_matches = not course_mode or (record["course_stage"] == session.stage["id"] and record["course_state"] == session.state)
+            if not course_matches or record["status"] != session.status or any(abs(a-b) > 1e-8 for a, b in zip(values, record["command"])):
                 mismatches += 1
             count += 1
-    return {"passed": mismatches == 0 and count > 0, "frames": count, "mismatched_frames": mismatches,
+    events_match = True
+    if course_mode and until_s is None:
+        recorded_events = [json.loads(line) for line in (directory / "course_events.jsonl").read_text(encoding="utf-8").splitlines()]
+        events_match = recorded_events == session.events
+    return {"passed": mismatches == 0 and count > 0 and events_match, "frames": count, "mismatched_frames": mismatches,
+            "course_events_match": events_match,
             "result": session.status, "control_output": "recorded_values_only"}, session
 
 

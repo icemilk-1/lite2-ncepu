@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "profile_id": "sim2real_aggressive",
+  "description": "Stress profile roughly twice the sim2real_v1 ranges. Use it to find the autonomy stack's failure boundary, not as a realistic hardware model.",
+  "provenance": {
+    "default": "sim_assumed"
+  },
+  "lidar": {
+    "range_noise_m": [0.0, 0.06],
+    "range_bias_m": [-0.04, 0.04],
+    "dropout_probability": [0.0, 0.15],
+    "beam_block_probability": [0.0, 0.10],
+    "missing_scan_probability": [0.0, 0.10],
+    "scan_latency_s": [0.0, 0.20]
+  },
+  "odometry": {
+    "linear_scale_error": [0.85, 1.15],
+    "yaw_scale_error": [0.88, 1.12],
+    "linear_noise_fraction": [0.02, 0.08],
+    "yaw_noise_rad_s": [0.008, 0.035],
+    "yaw_bias_rad_s": [-0.02, 0.02],
+    "slip_probability": [0.0, 0.06],
+    "slip_ratio": [0.1, 0.9]
+  },
+  "imu": {
+    "roll_pitch_noise_rad": [0.0, 0.02]
+  },
+  "actuation": {
+    "command_latency_s": [0.0, 0.25],
+    "acceleration_scale": [0.6, 1.4],
+    "linear_gain_error": [0.85, 1.15]
+  },
+  "initial_pose": {
+    "dx_m": [-0.15, 0.15],
+    "dy_m": [-0.15, 0.15],
+    "yaw_offset_rad": [-0.06, 0.06]
+  }
+}

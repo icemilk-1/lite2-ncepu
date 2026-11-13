@@ -23,19 +23,41 @@ def main():
     parser.add_argument("--scene", choices=["sensor_lab", "ruins_reference"], default="sensor_lab")
     parser.add_argument("--check", action="store_true", help="Simulate five seconds, capture, verify and exit.")
     parser.add_argument("--navigate", action="store_true", help="Build a map online and navigate to the configured goal.")
+    parser.add_argument("--explore", action="store_true", help="Map the arena online without a target and report coverage.")
+    parser.add_argument("--randomize", metavar="PROFILE", help="Sample a randomization profile id or JSON path.")
+    parser.add_argument("--course", action="store_true", help="Run and score the ordered course.")
+    parser.add_argument("--course-stage", help="Run one configured course stage followed by a stop.")
+    parser.add_argument("--config", type=Path, help="Use a separate scene configuration, including course variants.")
     parser.add_argument("--headless", action="store_true", help="Run without the interactive viewer.")
     parser.add_argument("--goal-x", type=float)
     parser.add_argument("--goal-y", type=float)
     parser.add_argument("--seed", type=int, help="Override navigation noise seed.")
     args = parser.parse_args()
+    if args.course and (args.navigate or args.check or args.explore or args.goal_x is not None or args.goal_y is not None):
+        parser.error("--course is exclusive with --navigate, --explore, --check and goal overrides.")
+    if args.explore and (args.navigate or args.check or args.goal_x is not None or args.goal_y is not None):
+        parser.error("--explore is exclusive with --navigate, --check and goal overrides.")
+    if args.course_stage and not args.course:
+        parser.error("--course-stage requires --course.")
+    navigation_requested = args.navigate or args.course or args.explore
     if (args.goal_x is None) != (args.goal_y is None):
         parser.error("--goal-x and --goal-y must be supplied together.")
     if args.goal_x is not None and not all(math.isfinite(value) for value in (args.goal_x, args.goal_y)):
         parser.error("Goal coordinates must be finite.")
     if args.check and args.navigate:
         parser.error("Choose --check or --navigate.")
-    if not args.navigate and (args.goal_x is not None or args.seed is not None):
+    if not navigation_requested and (args.goal_x is not None or args.seed is not None):
         parser.error("Goal and seed overrides require --navigate.")
+    if args.randomize:
+        # Validate the profile before any simulator work so a typo fails fast
+        # instead of leaving a half-built run directory behind.
+        sys.path.insert(0, str(PROJECT / "controllers" / "sensor_capture"))
+        from navigation_core.randomization import load_profile
+        try:
+            load_profile(args.randomize, base_dir=PROJECT)
+        except (FileNotFoundError, ValueError) as error:
+            parser.error(str(error))
+        sys.path.remove(str(PROJECT / "controllers" / "sensor_capture"))
     python = PROJECT / ".venv-mujoco" / "Scripts" / "python.exe"
     if not python.is_file():
         raise RuntimeError("Create .venv-mujoco with standalone CPython 3.12 and install requirements-mujoco.txt.")
@@ -56,11 +78,33 @@ def main():
         versions = {name: importlib.metadata.version(name) for name in expected}
         if versions != expected or sys.version_info[:2] != (3, 12):
             raise RuntimeError("Use the locked CPython 3.12 environment: " + str(versions))
-        config = json.loads((PROJECT / "config" / (args.scene + ".json")).read_text(encoding="utf-8"))
-        if args.navigate:
+        config_path = args.config or PROJECT / "config" / (args.scene + ".json")
+        config = json.loads(config_path.read_text(encoding="utf-8"))
+        if navigation_requested:
             from mujoco_navigation import configure_navigation
             goal = None if args.goal_x is None else (args.goal_x, args.goal_y)
             configure_navigation(config, args.scene, goal, args.seed)
+            if args.explore:
+                config["navigation"]["exploration_mode"] = True
+                config["navigation"]["navigation_timeout_s"] = max(
+                    config["navigation"]["navigation_timeout_s"], 900.0)
+            if args.randomize:
+                config["randomization_profile"] = args.randomize
+        if args.course:
+            from navigation_core.course import validate_course
+            validate_course(config.get("course", {}))
+            config["course_enabled"] = True
+            config["navigation"]["navigation_timeout_s"] = config["course"]["timeout_s"]
+            if args.course_stage:
+                stages = [s for s in config["course"]["stages"] if s["id"] == args.course_stage]
+                if not stages:
+                    raise ValueError("Unknown course stage: " + args.course_stage)
+                stage = stages[0]
+                config["robot_position_m"][:2] = stage["start_xy_m"]
+                finish = {"id": "stage_finish", "kind": "finish", "timeout_s": 30,
+                          "checkpoints": [dict(stage["checkpoints"][-1])]}
+                finish["checkpoints"][0].pop("reverse", None)
+                config["course"]["stages"] = [stage, finish]
         (output / "config_snapshot.json").write_text(json.dumps(config, indent=2), encoding="utf-8")
         (output / "versions.json").write_text(
             json.dumps({"python": sys.version, "executable": sys.executable, "packages": versions}, indent=2), encoding="utf-8")
@@ -72,6 +116,18 @@ def main():
         files.extend(str(path.relative_to(PROJECT)).replace("\\", "/") for path in
                      (PROJECT / "controllers/sensor_capture/navigation_core").rglob("*.py")
                      if str(path.relative_to(PROJECT)).replace("\\", "/") not in files)
+        profile = config.get("randomization_profile")
+        if profile:
+            candidate = Path(profile)
+            if not candidate.is_file():
+                candidate = PROJECT / "config" / "randomization" / (str(profile) + ".json")
+            if candidate.is_file():
+                try:
+                    relative = str(candidate.resolve().relative_to(PROJECT.resolve())).replace("\\", "/")
+                except ValueError:
+                    relative = None
+                if relative and relative not in files:
+                    files.append(relative)
         for relative in files:
             target = output / "source_snapshot" / relative
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -82,6 +138,31 @@ def main():
         model, data, manifest = build_scene(config, args.scene, output)
         (output / "model_manifest.json").write_text(
             json.dumps(manifest, indent=2), encoding="utf-8")
+
+        def support_height(xy):
+            """Height of the environment support directly under a planar point."""
+            import numpy
+            origin = numpy.array([float(xy[0]), float(xy[1]), 2.0])
+            direction = numpy.array([0.0, 0.0, -1.0])
+            geometry = numpy.zeros(6, dtype=numpy.uint8)
+            geometry[3] = 1  # environment geoms only
+            distance = mujoco.mj_ray(model, data, origin, direction, geometry, True, -1, None,
+                                    numpy.zeros(3))
+            return float(origin[2] - distance) if distance > 0 else 0.0
+
+        if args.course_stage:
+            # A stage can start on an elevated platform; spawn the torso on the
+            # local support surface instead of the scene's ground-level height,
+            # otherwise the fixture weld fights the platform and drifts.
+            spawn_x, spawn_y = config["robot_position_m"][:2]
+            torso_height = float(config["robot_position_m"][2])
+            spawn_z = support_height((spawn_x, spawn_y)) + torso_height
+            config["robot_position_m"][2] = spawn_z
+            data.qpos[model.jnt_qposadr[model.joint("root").id] + 2] = spawn_z
+            data.mocap_pos[model.body("base_fixture").mocapid] = [spawn_x, spawn_y, spawn_z]
+            mujoco.mj_forward(model, data)
+            (output / "config_snapshot.json").write_text(
+                json.dumps(config, indent=2), encoding="utf-8")
         steps = round(SIMULATION["settle_time_s"] / SIMULATION["physics_step_s"])
         control_steps = round(SIMULATION["control_period_s"] / SIMULATION["physics_step_s"])
 
@@ -95,9 +176,10 @@ def main():
             mujoco.mj_step(model, data)
         mujoco.mj_forward(model, data)
         capture(model, data, config, args.scene, output)
-        result = verify(model, data, config, args.scene, output, manifest)
+        result = verify(model, data, config, args.scene, output, manifest,
+                        pose_dependent_checks=not args.course_stage)
         print(json.dumps(result, indent=2), flush=True)
-        if args.navigate:
+        if navigation_requested:
             from mujoco_navigation import run_navigation
             navigation = run_navigation(model, data, config, output, args.headless)
             final_output = output / "final_capture"
@@ -131,10 +213,14 @@ def main():
         (output / "verification.json").write_text(
             json.dumps({"result": "failed", "backend": "mujoco", "scene_id": args.scene,
                         "error": str(sys.exc_info()[1]), "error_log": "error.log"}, indent=2), encoding="utf-8")
-        if args.navigate and not (output / "navigation_verification.json").exists():
+        if navigation_requested and not (output / "navigation_verification.json").exists():
             (output / "navigation_verification.json").write_text(json.dumps({
                 "passed": False, "result": "runtime_error", "error": str(sys.exc_info()[1]),
                 "error_log": "error.log", "backend": "mujoco"}, indent=2), encoding="utf-8")
+        if args.course and not (output / "course_verification.json").exists():
+            (output / "course_verification.json").write_text(json.dumps({
+                "passed": False, "result": "runtime_error", "error": str(sys.exc_info()[1]),
+                "error_log": "error.log"}, indent=2), encoding="utf-8")
         print(error, file=sys.stderr)
         print("Failed run:", output, file=sys.stderr)
         return 1

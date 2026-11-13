@@ -3,6 +3,8 @@ import sys
 from types import SimpleNamespace
 import unittest
 
+import numpy as np
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "controllers" / "sensor_capture"))
 
 from navigation_core.contracts import NavigationObservation, VelocityCommand
@@ -98,6 +100,28 @@ class NavigationCoreTests(unittest.TestCase):
         self.assertEqual(result.status, "exploring")
         edge = grid.world_to_cell(-1.95, 0.0)
         self.assertTrue(grid.inflated(0.1, 0.7)[edge[1], edge[0]])
+
+    def test_wall_like_corridor_keeps_the_path_on_the_centre_line(self):
+        """Sub-threshold wall cells must still centre the path.
+
+        Terrain height jumps sit at log-odds ~0.35, below the 0.7 occupied
+        threshold. The distance transform, the clearance cost and the shortcut
+        band all had to learn about them; otherwise the smoothed path hugs a
+        wall with only ~0.08 m of body clearance instead of running down the
+        middle of the corridor.
+        """
+        grid = OccupancyGrid((8.0, 6.0), 0.05)
+        grid.log_odds.fill(-0.7)
+        for y in np.arange(-3.0, 3.0, 0.05):
+            row = int((y + 3.0) / 0.05)
+            if abs(y) >= 0.6:
+                grid.log_odds[row, :] = 0.35
+        result = grid.plan_result((-3.0, -0.35), (3.0, -0.35), 0.34, 0.7, 2.8,
+                                  0.26, 0.60, 0.8, 0.2)
+        self.assertEqual(result.status, "path_found")
+        middle = [point for point in result.path if -2.0 <= point[0] <= 2.0]
+        self.assertTrue(middle, result.path)
+        self.assertLess(max(abs(point[1]) for point in middle), 0.15, result.path)
 
     def test_command_expiry_cancellation_and_estimated_pose_control(self):
         settings = {

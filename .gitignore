@@ -8,3 +8,12 @@ runs/
 .env.*
 !.env.example
 worlds/.*.wbproj
+
+# Local process output and temporary installation files
+*.err
+*.pid
+/tmp_debug*
+/pip-build-tracker-*/
+/pip-ephem-wheel-cache-*/
+/pip-install-*/
+/pip-unpack-*/

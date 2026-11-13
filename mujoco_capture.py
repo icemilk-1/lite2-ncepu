@@ -119,8 +119,14 @@ def capture(model, data, config, scene_id, output, motion=None):
     return state
 
 
-def verify(model, data, config, scene_id, output, manifest):
-    """Apply shared capture checks plus model, fixture and ray checks."""
+def verify(model, data, config, scene_id, output, manifest, pose_dependent_checks=True):
+    """Apply shared capture checks plus model, fixture and ray checks.
+
+    ``pose_dependent_checks`` gates the checks calibrated against the canonical
+    scene start pose (the single-beam west-wall range and the 5 mm fixture weld
+    tolerance). Stage-start runs spawn the robot elsewhere, so they skip the
+    pose-specific range check and allow 20 mm of weld settle, recording both.
+    """
     output = Path(output)
     state = json.loads((output / "state.json").read_text(encoding="utf-8"))
     checks = {}
@@ -167,8 +173,9 @@ def verify(model, data, config, scene_id, output, manifest):
                 not np.allclose(actuator.forcerange, [-joint["effort_nm"], joint["effort_nm"]])):
             raise ValueError("URDF actuator effort limit changed: " + name)
     drift = float(np.linalg.norm(data.body("TORSO").xpos - config["robot_position_m"]))
-    if drift > 0.005:
-        raise ValueError("Fixture drift exceeds 0.005 m: " + str(drift))
+    drift_tolerance = 0.005 if pose_dependent_checks else 0.02
+    if drift > drift_tolerance:
+        raise ValueError("Fixture drift exceeds %g m: %s" % (drift_tolerance, drift))
     gyro = np.asarray(state["imu"]["angular_velocity_rad_s"])
     acceleration = np.asarray(state["imu"]["accelerometer_m_s2"])
     expected = -data.body("TORSO").xmat.reshape(3, 3).T @ model.opt.gravity
@@ -205,7 +212,7 @@ def verify(model, data, config, scene_id, output, manifest):
                     not np.allclose(geom.size[:len(expected_size)], expected_size) or
                     not np.allclose(geom.quat, quaternion)):
                 raise ValueError("Shared scene geometry differs: " + shape["name"])
-    if config.get("lidar"):
+    if config.get("lidar") and pose_dependent_checks:
         settings = config["lidar"]
         with np.load(output / "lidar_raw_first.npz", allow_pickle=False) as scan:
             expected_shape = (settings["number_of_layers"], settings["horizontal_resolution"])
@@ -234,7 +241,9 @@ def verify(model, data, config, scene_id, output, manifest):
     result = verify_capture(output, scene_id, config=config, report=False)
     result.update(backend="mujoco", mujoco_version=mujoco.__version__,
                   floating_root=True, actuator_count=model.nu, source_model_mass_kg=mass,
-                  fixture_drift_m=drift, gyro_norm_rad_s=float(np.linalg.norm(gyro)),
+                  fixture_drift_m=drift, fixture_drift_tolerance_m=drift_tolerance,
+                  pose_dependent_checks=pose_dependent_checks,
+                  gyro_norm_rad_s=float(np.linalg.norm(gyro)),
                   imu_gravity_error_m_s2=float(np.linalg.norm(acceleration - expected)),
                   max_inertia_relative_error=inertia_error,
                   geometry_count=len(manifest["geometry"]), **checks)

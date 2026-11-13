@@ -30,7 +30,14 @@ class MujocoLidarObservationAdapter:
             np.cos(self.vertical[:, None]) * np.cos(horizontal),
             np.cos(self.vertical[:, None]) * np.sin(horizontal),
             np.sin(self.vertical[:, None]) * np.ones(self.beams)), axis=-1)
-        self.random = np.random.default_rng(42)
+        self.random = np.random.default_rng(int(settings.get("random_seed", 42)))
+        # A blocked beam models a dirty lens or a permanent occluder: no return at
+        # any layer, while the beam keeps its identity in the organized cloud.
+        block_probability = float(settings.get("beam_block_probability", 0.0) or 0.0)
+        if not 0.0 <= block_probability <= 1.0:
+            raise ValueError("LiDAR beam_block_probability must be in [0, 1].")
+        self.blocked_beams = (self.random.random(self.beams) < block_probability
+                              if block_probability > 0.0 else np.zeros(self.beams, dtype=bool))
         self.raw = None
 
     def read(self, timestamp_s, capture_path=None):
@@ -50,8 +57,21 @@ class MujocoLidarObservationAdapter:
         finite_hit = np.isfinite(distances) & (distances >= 0)
         beyond = finite_hit & (distances > maximum)
         hit = finite_hit & (distances >= minimum) & ~beyond
+        range_bias = float(settings.get("range_bias_m", 0.0) or 0.0)
         measured = distances.copy()
+        if hit.any():
+            # A constant additive bias is a low-cost stand-in for a calibration
+            # error; the zero-mean term models the ranging noise floor.
+            measured[hit] += range_bias
         measured[hit] += self.random.normal(0, float(settings.get("noise_m", 0)), int(hit.sum()))
+        dropout = float(settings.get("dropout_probability", 0.0))
+        if not 0.0 <= dropout < 1.0:
+            raise ValueError("LiDAR dropout_probability must be in [0, 1).")
+        dropped = hit & (self.random.random(hit.shape) < dropout)
+        if self.blocked_beams.any():
+            dropped |= np.broadcast_to(self.blocked_beams[None, :], hit.shape)
+        hit[dropped] = False
+        no_hit[dropped] = True
         hit &= (measured >= minimum) & (measured <= maximum)
         valid = hit | no_hit | beyond
         ranges = np.where(hit, measured, maximum)
@@ -85,6 +105,12 @@ class MujocoLidarObservationAdapter:
             "status_codes": {"0": "invalid", "1": "hit", "2": "no_hit", "3": "beyond_range"},
             "status_counts": {str(code): int(np.count_nonzero(status == code)) for code in range(4)},
             "range_limits_m": [minimum, maximum], "frequency_hz": settings["frequency_hz"],
+            "noise_m": float(settings.get("noise_m", 0)),
+            "range_bias_m": float(settings.get("range_bias_m", 0.0) or 0.0),
+            "dropout_probability": dropout,
+            "beam_block_probability": float(settings.get("beam_block_probability", 0.0) or 0.0),
+            "blocked_beams": int(np.count_nonzero(self.blocked_beams)),
+            "scan_latency_s": float(settings.get("scan_latency_s", 0.0) or 0.0),
             "projection_reference_height_world_m": self.reference_height_m,
             "projection_status": "fixed_fixture_reference_height",
         }

@@ -43,6 +43,8 @@ def save_map(grid, output, path, start, goal, radius_m, occupied_threshold, traj
     if len(trajectory_pixels) > 1:
         draw.line(trajectory_pixels, fill=(35, 90, 220), width=max(1, int(0.06 / grid.resolution)))
     for point, color in ((start, (35, 100, 230)), (goal, (220, 35, 35))):
+        if point is None:
+            continue
         p = pixel(point)
         if p is not None:
             radius = max(2, int(radius_m / grid.resolution))

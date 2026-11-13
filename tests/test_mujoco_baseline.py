@@ -18,9 +18,26 @@ sys.path.insert(0, str(PROJECT / "controllers" / "sensor_capture"))
 
 from navigation_core.mujoco_adapter import MujocoLidarObservationAdapter
 from tools import prepare_model, prepare_mujoco
+from tools.scene_geometry import build_geometry
 
 
 class MujocoBaselineTests(unittest.TestCase):
+    def test_rubble_stays_outside_ramp_surfaces(self):
+        config = json.loads((PROJECT / "config/ruins_reference.json").read_text())
+        for shape in build_geometry(config, "ruins_reference"):
+            if "rubble_stone_" not in shape["name"]:
+                continue
+            yaw = shape["rotation"][3]
+            rotation = np.array([[np.cos(yaw), -np.sin(yaw)],
+                                 [np.sin(yaw), np.cos(yaw)]])
+            vertices = np.asarray(shape["vertices_m"])[:, :2] @ rotation.T
+            vertices += np.asarray(shape["position_m"])[:2]
+            lower, upper = vertices.min(axis=0), vertices.max(axis=0)
+            for section in config["upper_left_ramp"]["sections"]:
+                x0, x1, y0, y1 = section["bounds_m"]
+                overlaps = upper[0] > x0 and lower[0] < x1 and upper[1] > y0 and lower[1] < y1
+                self.assertFalse(overlaps, (shape["name"], section["name"]))
+
     def test_partition_culvert_and_ramp_side_opening(self):
         config = json.loads((PROJECT / "config/ruins_reference.json").read_text())
         with tempfile.TemporaryDirectory() as output:
@@ -35,7 +52,7 @@ class MujocoBaselineTests(unittest.TestCase):
 
             gate = config["partition_culvert"]
             x, y = gate["center_m"]
-            for offset in [-0.15, 0, 0.15]:
+            for offset in [-gate["clear_width_m"]*.3, 0, gate["clear_width_m"]*.3]:
                 distance = ray([x - gate["length_m"] / 2 - 0.1, y + offset, 0.25])
                 self.assertTrue(distance == -1 or distance > gate["length_m"] + 0.1)
             lower, upper = config["ramp_side_opening"]["y_limits_m"]
@@ -67,7 +84,7 @@ class MujocoBaselineTests(unittest.TestCase):
             x, y = frame["center_m"]
             entrance_y = y - frame["width_m"] / 2 - 0.15
             for offset in [-0.35, 0, 0.35]:
-                for height in [0.08, 0.38, 0.68]:
+                for height in [frame["height_m"]*.1, frame["height_m"]*.5, frame["height_m"]*.9]:
                     with self.subTest(offset=offset, height=height):
                         hit_distance = distance([x + offset, entrance_y, height], [0, 1, 0])
                         self.assertTrue(hit_distance == -1.0 or hit_distance > frame["width_m"] + 0.15)
@@ -78,6 +95,24 @@ class MujocoBaselineTests(unittest.TestCase):
                 center = np.mean(section.get("corners_xy_m", [[x0, y0], [x1, y0], [x1, y1], [x0, y1]]), axis=0)
                 self.assertAlmostEqual(2 - distance([*center, 2], [0, 0, -1]),
                                        expected_height, places=5)
+
+            # Check near both ramp edges as well as the center. A wall crossing
+            # the descending ramp previously passed the center-only check.
+            for index in range(model.ngeom):
+                if "rubble_stone_" in model.geom(index).name:
+                    model.geom_group[index] = 5
+            approach, _, descent = config["upper_left_ramp"]["sections"]
+            for section, axis in [(approach, 1), (descent, 0)]:
+                x0, x1, y0, y1 = section["bounds_m"]
+                for along in np.linspace(0.05, 0.95, 9):
+                    for across in [0.03, 0.5, 0.97]:
+                        u, v = (across, along) if axis == 1 else (along, across)
+                        position = [x0 + u * (x1 - x0), y0 + v * (y1 - y0), 2]
+                        expected = config["upper_left_ramp"]["rise_m"] * (along if axis == 1 else 1 - along)
+                        self.assertAlmostEqual(2 - distance(position, [0, 0, -1]), expected, places=5,
+                                               msg=str(position))
+            for x, y in [[-6, 3], [-4, 5], [-4.62, 3.2], [-3, 3.41]]:
+                self.assertAlmostEqual(2 - distance([x, y, 2], [0, 0, -1]), 1.05, places=5)
 
     def test_shared_geometry_matches_pre_migration_webots_scenes(self):
         # Full generated scenes normalized for whitespace and temporary root.
