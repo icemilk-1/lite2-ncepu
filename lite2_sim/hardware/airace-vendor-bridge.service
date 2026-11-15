@@ -1,0 +1,21 @@
+[Unit]
+Description=Airace Lite2 persistent vendor bridge and standby heartbeat
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=ysc
+Environment=PYTHONUNBUFFERED=1
+Environment=AIRACE_DEPLOYMENT_ROOT=/home/ysc/airace_deployment_20261114
+ExecStart=/bin/bash /home/ysc/airace_deployment_20261114/hardware/run_bridge_service.sh
+Restart=always
+RestartSec=1
+TimeoutStopSec=8
+KillSignal=SIGINT
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

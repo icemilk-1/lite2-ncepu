@@ -1,9 +1,0 @@
-# Lite2 上位机运行依赖（Windows / Python 3.9+）
-# 安装： python -m pip install -r host_ui/requirements-host-ui.txt
-fastapi>=0.110
-uvicorn[standard]>=0.27
-websockets>=12
-paramiko>=3.4
-python-multipart>=0.0.9
-pytest>=7.4
-httpx>=0.27

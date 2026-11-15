@@ -27,6 +27,7 @@ from navigation_core.contracts import NavigationObservation
 from navigation_core.control import NavigationController
 from navigation_core.planner import PlanResult
 from vendor_protocol import decode_state, decode_command, velocity_packets
+from bridge_runtime import ControlOwnerStore, open_bridge_sockets
 from execution_guard import (fresh, guarded_velocity, MAX_FORWARD_M_S,
                              MAX_REVERSE_M_S, MAX_YAW_RAD_S)
 
@@ -55,13 +56,8 @@ def emit(event, **values):
 def bridge():
     # Own the receive socket before registering the fixed ROS node name.
     # A duplicate startup must fail before ROS can shut down the existing node.
-    receiver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    try:
-        receiver.bind(("127.0.0.1", 43898))
-        receiver.settimeout(0.05)
-    except Exception:
-        receiver.close()
-        raise
+    receiver, sender = open_bridge_sockets()
+    owner_store = ControlOwnerStore()
     rospy.init_node("airace_vendor_bridge")
     velocity_limits = rospy.get_param("~velocity_limits", dict(
         max_forward_m_s=MAX_FORWARD_M_S, max_reverse_m_s=MAX_REVERSE_M_S,
@@ -69,16 +65,7 @@ def bridge():
     state_pub = rospy.Publisher("/airace/state", String, queue_size=2)
     raw_pub = rospy.Publisher("/airace/raw_packet", String, queue_size=128)
     diagnostic_pub = rospy.Publisher("/airace/execution", String, queue_size=10)
-    sender = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    # 保留当前部署的发送端口。厂商 bridge_server 的 sport 是目标端口，
-    # 实际发送 socket 绑定 rport=43897；控制终端仲裁按源 IP 判断。
-    vendor_source_port = 43893
-    try:
-        sender.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        sender.bind(("0.0.0.0", vendor_source_port))
-        emit("vendor_source_port", port=vendor_source_port)
-    except OSError as error:
-        emit("vendor_source_port", port=0, error=str(error))
+    emit("vendor_source_port", port=sender.getsockname()[1])
     lock = threading.RLock()
     # ROS services run on separate threads. Safety cancellation must not wait for
     # a posture/prepare request, while ordinary control actions remain exclusive.
@@ -96,6 +83,8 @@ def bridge():
     def velocity(msg):
         with lock:
             command[:] = [msg.linear.x, msg.angular.z, time.monotonic()]
+            if control.get("stream_attached"):
+                control["stream_received"] = command[2]
 
     rospy.Subscriber("/airace/cmd_vel", Twist, velocity, queue_size=1)
 
@@ -111,6 +100,8 @@ def bridge():
     def start_session(reason=""):
         """建立/恢复机载控制会话（单一心跳源）。"""
         with lock:
+            if session["paused_reason"] in ("release", "estop", "remote_takeover"):
+                raise RuntimeError("Explicit /airace/claim required after %s" % session["paused_reason"])
             resumed = not session["active"]
             if resumed:
                 # Send immediately: a newly connected controller must not wait
@@ -147,6 +138,9 @@ def bridge():
             if session["paused_reason"] in ("estop", "remote_takeover"):
                 reason = session["paused_reason"]
             session.update(active=False, paused_reason=reason)
+            control["stream_attached"] = False
+            if reason in ("release", "estop", "remote_takeover"):
+                owner_store.save(reason)
         if was_active:
             emit("control_session", active=False, reason=reason)
 
@@ -166,13 +160,14 @@ def bridge():
     def acquire_service(_request):
         """Acquire standby heartbeats only; never arm or issue a posture toggle."""
         with lock:
-            if session["paused_reason"] in ("estop", "remote_takeover"):
+            if session["paused_reason"] in ("release", "estop", "remote_takeover"):
                 return TriggerResponse(success=False,
                                        message="Control acquisition refused: %s; explicit operator recovery required"
                                                % session["paused_reason"])
             # A replacement stream can arrive after its predecessor was killed
             # without cleanup. Never inherit its armed state or pending action.
             cancel_operations()
+            control.update(stream_attached=True, stream_received=time.monotonic())
             send(0.0, 0.0)
             if session["active"]:
                 return TriggerResponse(success=True,
@@ -180,6 +175,46 @@ def bridge():
             start_session("control_connection")
         return TriggerResponse(success=True,
                                message="Standby heartbeat started; motion remains disarmed")
+
+    def daemon_standby():
+        """Start independently of SSH/UI; a persisted explicit handoff stays released."""
+        with lock:
+            mode = owner_store.load()
+            cancel_operations()
+            if mode != "host":
+                session.update(active=False, paused_reason=mode)
+                emit("control_session", active=False, reason="persisted_%s" % mode)
+                return
+            send(0.0, 0.0)
+            start_session("daemon_start")
+
+    def detach_service(_request):
+        """A UI/SSH exit cancels motion without relinquishing the daemon's heartbeat."""
+        with lock:
+            cancel_operations()
+            control["stream_attached"] = False
+            if session["active"]:
+                send(0.0, 0.0)
+                mode_packet(0x21010C02)
+        return TriggerResponse(success=True,
+                               message="Motion disarmed; daemon standby heartbeat unchanged")
+
+    def claim_service(_request):
+        """Explicit operator recovery only; never called by automatic reconnect."""
+        with lock:
+            now = time.monotonic()
+            if not fresh(state.get("received"), now, 0.3) or state.get("basic") not in (1, 6):
+                return TriggerResponse(success=False, message="Claim refused: require fresh normal lying/standing state")
+            if (not fresh(feedback.get("command_received"), now, 0.3)
+                    or max(abs(value) for value in feedback.get("joystick", [0.0])) >= 0.03):
+                return TriggerResponse(success=False, message="Claim refused: remote state stale or joystick active")
+            cancel_operations()
+            control["stream_attached"] = False
+            owner_store.save("host")
+            session["paused_reason"] = ""
+            send(0.0, 0.0)
+            start_session("explicit_claim")
+        return TriggerResponse(success=True, message="Host standby claimed; motion remains disarmed")
 
     def posture_service(target_basic, label):
         """站立/趴下服务：由单一控制会话发心跳 + 单次 0x21010202，轮询 basic。"""
@@ -195,6 +230,8 @@ def bridge():
         def run_posture():
             deadline = time.monotonic() + POSTURE_TIMEOUT_S
             with lock:
+                if session["paused_reason"] in ("release", "estop", "remote_takeover"):
+                    return TriggerResponse(success=False, message="Posture refused: explicit control claim required")
                 current = state.get("basic")
                 state_time = state.get("received")
                 if not fresh(state_time, time.monotonic(), 0.3):
@@ -260,9 +297,12 @@ def bridge():
 
     def estop_service(_request):
         with lock:
-            stop_session("estop")
-            send(0.0, 0.0)
-            mode_packet(0x21010C0E)
+            try:
+                # The emergency packet must not wait on persistent storage.
+                send(0.0, 0.0)
+                mode_packet(0x21010C0E)
+            finally:
+                stop_session("estop")
         for _ in range(2):
             time.sleep(0.02)
             with lock:
@@ -273,9 +313,11 @@ def bridge():
     def release_service(_request):
         """安全释放控制会话：零速 + 手动模式，不发送站立/姿态指令。"""
         with lock:
-            stop_session("release")
-            send(0.0, 0.0)
-            mode_packet(0x21010C02)  # 手动模式：交还控制权
+            try:
+                send(0.0, 0.0)
+                mode_packet(0x21010C02)  # 手动模式：交还控制权
+            finally:
+                stop_session("release")
         return TriggerResponse(
             success=True,
             message="Manual mode requested; control session released (no posture command)")
@@ -290,6 +332,8 @@ def bridge():
 
     def run_prepare():
         with lock:
+            if session["paused_reason"] in ("release", "estop", "remote_takeover"):
+                return TriggerResponse(success=False, message="Prepare refused: explicit control claim required")
             cancel_operations()
             generation = start_session("prepare")
         time.sleep(CONTROL_SESSION_SETTLE_S)
@@ -323,9 +367,10 @@ def bridge():
     def disarm(_):
         with lock:
             cancel_operations()
-            send(0.0, 0.0)
-            mode_packet(0x21010C02)
-            mode_packet(0x21010D05)
+            if session["active"]:
+                send(0.0, 0.0)
+                mode_packet(0x21010C02)
+                mode_packet(0x21010D05)
         return TriggerResponse(success=True,
                                message="Zero velocity sent and manual standing requested; standby heartbeat unchanged")
 
@@ -340,6 +385,8 @@ def bridge():
     rospy.Service("/airace/lie", Trigger, posture_service(1, "lying"))
     rospy.Service("/airace/estop", Trigger, estop_service)
     rospy.Service("/airace/release", Trigger, release_service)
+    rospy.Service("/airace/detach", Trigger, detach_service)
+    rospy.Service("/airace/claim", Trigger, claim_service)
 
     def watchdog():
         last_reason = None
@@ -354,12 +401,25 @@ def bridge():
                                 and max(abs(v) for v in feedback.get("joystick", [0.0])) >= 0.03)
                     if takeover and session["active"]:
                         stop_session("remote_takeover")
+                    if (control.get("stream_attached") and not fresh(
+                            control.get("stream_received"), now, 0.35)):
+                        # SIGKILL/SSH failure can bypass stream cleanup. Cancel
+                        # pending posture/prepare workers as well as velocities.
+                        cancel_operations()
+                        control["stream_attached"] = False
+                        if session["active"]:
+                            send(0.0, 0.0)
+                            mode_packet(0x21010C02)
+                        emit("control_stream_timeout", message="Motion disarmed; standby heartbeat continues")
                     v, w, reason = guarded_velocity(request, now, current,
                                                     control["armed"], control["mode_confirmed"],
                                                     control["depth_time"], velocity_limits)
                     # Do not let a velocity computed before release/estop be
                     # sent after that cancellation acquired the same lock.
-                    send(v, w)
+                    if session["active"]:
+                        send(v, w)
+                    else:
+                        v, w, reason = 0.0, 0.0, "control_released"
                 depth_age = (now - control["depth_time"]
                              if control["depth_time"] > 0 else None)
                 with lock:
@@ -389,9 +449,12 @@ def bridge():
             rospy.signal_shutdown("Execution watchdog failed")
         finally:
             for _ in range(5):
-                send(0.0, 0.0)
+                with lock:
+                    if session["active"]:
+                        send(0.0, 0.0)
                 time.sleep(0.02)
 
+    daemon_standby()
     thread = threading.Thread(target=watchdog)
     thread.start()
     heartbeat_thread = threading.Thread(target=heartbeat_loop)
@@ -430,10 +493,10 @@ def bridge():
                 state.update(report)
             state_pub.publish(String(data=json.dumps(report)))
     finally:
+        detach_service(None)
         rospy.signal_shutdown("bridge exit")
         stop_session("bridge_exit")
         thread.join(2)
-        release_service(None)
         receiver.close()
         sender.close()
 
