@@ -1,5 +1,0 @@
-{"timestamp_s": 0.0, "stage_id": "s_bend", "checkpoint_index": 0, "event": "checkpoint_started", "estimated_pose_m_rad": [-4.0, 4.1, 0.0], "goal_xy_m": [-1.25, 3.8], "state": "approaching"}
-{"timestamp_s": 2.0, "stage_id": "s_bend", "checkpoint_index": 0, "event": "recovery_started", "estimated_pose_m_rad": [-4.0, 4.1, 0.0], "recovery_status": "start_blocked", "recovery_attempt": 1}
-{"timestamp_s": 4.5, "stage_id": "s_bend", "checkpoint_index": 0, "event": "recovery_retry", "estimated_pose_m_rad": [-4.061816766489207, 4.072334088501643, 0.2792418204364644], "recovery_status": "start_blocked", "recovery_attempt": 2}
-{"timestamp_s": 7.0, "stage_id": "s_bend", "checkpoint_index": 0, "event": "recovery_retry", "estimated_pose_m_rad": [-4.106173541313387, 4.038014588153609, 0.5656022601376152], "recovery_status": "start_blocked", "recovery_attempt": 3}
-{"timestamp_s": 9.5, "stage_id": "s_bend", "checkpoint_index": 0, "event": "recovery_exhausted", "estimated_pose_m_rad": [-4.143314326102115, 3.995200333225969, 0.8564322612356783], "recovery_status": "start_blocked", "recovery_attempt": 3}

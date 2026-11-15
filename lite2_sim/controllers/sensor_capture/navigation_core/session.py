@@ -81,6 +81,8 @@ class NavigationSession(object):
         # configured open-space speed so it can be restored when leaving a pipe.
         self.base_max_linear_speed_m_s = float(self.settings["max_linear_speed_m_s"])
         self.narrow_corridor = False
+        self.local_policy = None
+        self.local_policy_debug = None
 
     @property
     def finished(self):
@@ -309,6 +311,12 @@ class NavigationSession(object):
             return zero
         if self.status in TERMINAL_STATES or self.recovery_exhausted:
             return zero
+        self.local_policy_preparation_error = None
+        if self.local_policy is not None and hasattr(self.local_policy, 'prepare'):
+            try:
+                self.local_policy.prepare(self, now)
+            except Exception as error:
+                self.local_policy_preparation_error = str(error) or type(error).__name__
         moved = math.hypot(self.pose[0] - self.last_tick_pose[0], self.pose[1] - self.last_tick_pose[1])
         if math.isfinite(moved) and moved < 1.0:
             self.distance_m += moved
@@ -365,6 +373,9 @@ class NavigationSession(object):
             return VelocityCommand(0, self.settings["max_yaw_speed_rad_s"], now, now + ttl)
         command = decision.command
         if self.oriented_footprint and self.status in ("navigating", "exploring"):
+            if self.local_policy is not None:
+                from navigation_core.local_policy import guarded_policy_command
+                return guarded_policy_command(self, self.local_policy, command, now)
             return self._local_rollout(command, now)
         if command.linear_x_m_s:
             blocked = self.grid.inflated(self.settings["robot_radius_m"],
@@ -590,6 +601,80 @@ class NavigationSession(object):
         values = self.grid.log_odds[row, col]
         return not (values >= self.settings["occupied_log_odds_threshold"]).any()
 
+    def check_local_candidate(self, linear, angular, context=None):
+        """Check the same swept body and terrain constraints used by the baseline."""
+        if context is None:
+            occupied = self.grid.log_odds >= self.settings["occupied_log_odds_threshold"]
+            support_hazard = getattr(self.grid, "terrain_hazard", np.zeros_like(occupied))
+            known_free = self.grid.log_odds <= -0.18
+            wall_clearance = None
+            if hasattr(self.grid, "clearance"):
+                wall_clearance = self.grid.clearance(float(self.settings.get("wall_log_odds_threshold", 0.2)))
+            body_points = self.body_points
+            half_width = self.settings.get("local_body_half_width_m")
+            if half_width is not None:
+                body_points = body_points[np.abs(body_points[:, 1]) <= float(half_width) + 1e-9]
+        else:
+            occupied, support_hazard, known_free, wall_clearance, body_points = context
+        pose = list(self.pose)
+        executed_v = self.motion.linear_x_m_s if self.motion is not None else 0.0
+        executed_w = self.motion.angular_z_rad_s if self.motion is not None else 0.0
+        margin_cost = 0.0
+        for _ in range(5):
+            acceleration = self.settings.get("acceleration_m_s2", 0.35) if abs(linear) > abs(executed_v) else self.settings.get("deceleration_m_s2", 0.6)
+            executed_v += max(-acceleration*0.1, min(acceleration*0.1, linear-executed_v))
+            angular_step = self.settings.get("angular_acceleration_rad_s2", 1.2)*0.1
+            executed_w += max(-angular_step, min(angular_step, angular-executed_w))
+            mid = pose[2] + executed_w*0.05
+            pose[0] += executed_v*math.cos(mid)*0.1
+            pose[1] += executed_v*math.sin(mid)*0.1
+            pose[2] = wrap_angle(pose[2] + executed_w*0.1)
+            center = self.grid.world_to_cell(*pose[:2])
+            if center is None or support_hazard[center[1], center[0]]:
+                return False, margin_cost, "terrain"
+            if not self._support_continuous(pose, center):
+                return False, margin_cost, "support"
+            if (wall_clearance is not None and abs(linear) < 0.05
+                    and abs(angular) > 0.02):
+                gap = float(wall_clearance[center[1], center[0]])
+                if math.isfinite(gap) and gap < self.body_corner_radius_m:
+                    return False, margin_cost, "rotation_clearance"
+            c, s = math.cos(pose[2]), math.sin(pose[2])
+            x = pose[0] + c*body_points[:, 0] - s*body_points[:, 1]
+            y = pose[1] + s*body_points[:, 0] + c*body_points[:, 1]
+            col = np.floor((x-self.grid.x_min)/self.grid.resolution).astype(int)
+            row = np.floor((y-self.grid.y_min)/self.grid.resolution).astype(int)
+            inside = (col >= 0) & (col < self.grid.width) & (row >= 0) & (row < self.grid.height)
+            if not inside.all():
+                return False, margin_cost, "map_edge"
+            unobserved = ~known_free[row, col]
+            hazard_fraction = float(np.mean(support_hazard[row, col]))
+            # The lidar cannot observe the cells directly below the torso.
+            # Keep occupied and terrain-hazard cells as hard stops, while
+            # allowing a bounded unknown patch inside an otherwise observed
+            # footprint so narrow corridors remain traversable.
+            max_unknown = float(self.settings.get("local_unknown_fraction_limit", 0.35))
+            if support_hazard[row, col].any():
+                return False, margin_cost, "terrain"
+            if occupied[row, col].any():
+                return False, margin_cost, "occupied"
+            if float(np.mean(unobserved)) > max_unknown:
+                return False, margin_cost, "unknown"
+            # Turning in place sweeps the body corners sideways; in a
+            # corridor that is only as wide as the inflated planning
+            # band, any unobserved cell under the body makes the turn a
+            # body-clearance violation for the executor.
+            if (abs(linear) < 0.02 and abs(angular) > 0.02
+                    and float(np.mean(unobserved)) > max_unknown):
+                return False, margin_cost, "turn_unknown"
+            x = pose[0] + c*self.footprint_points[:, 0] - s*self.footprint_points[:, 1]
+            y = pose[1] + s*self.footprint_points[:, 0] + c*self.footprint_points[:, 1]
+            guard_col = np.clip(np.floor((x-self.grid.x_min)/self.grid.resolution).astype(int), 0, self.grid.width-1)
+            guard_row = np.clip(np.floor((y-self.grid.y_min)/self.grid.resolution).astype(int), 0, self.grid.height-1)
+            margin_cost += float(np.mean(occupied[guard_row, guard_col]))
+            margin_cost += 2.0 * hazard_fraction
+        return True, margin_cost, pose
+
     def _local_rollout(self, preferred, now):
         # Score against a longer look-ahead than the controller uses: the short
         # 0.25 m target sits at the near corner of a ramp/pipe mouth and aiming at
@@ -686,82 +771,12 @@ class NavigationSession(object):
                         "rotation_clearance": 0}
             for linear in candidate_velocities:
                 for angular in turns:
-                    pose = list(self.pose)
-                    executed_v = self.motion.linear_x_m_s if self.motion is not None else 0.0
-                    executed_w = self.motion.angular_z_rad_s if self.motion is not None else 0.0
-                    clear = True
-                    margin_cost = 0.0
-                    for _ in range(5):
-                        acceleration = self.settings.get("acceleration_m_s2", 0.35) if abs(linear) > abs(executed_v) else self.settings.get("deceleration_m_s2", 0.6)
-                        executed_v += max(-acceleration*0.1, min(acceleration*0.1, linear-executed_v))
-                        angular_step = self.settings.get("angular_acceleration_rad_s2", 1.2)*0.1
-                        executed_w += max(-angular_step, min(angular_step, angular-executed_w))
-                        mid = pose[2] + executed_w*0.05
-                        pose[0] += executed_v*math.cos(mid)*0.1
-                        pose[1] += executed_v*math.sin(mid)*0.1
-                        pose[2] = wrap_angle(pose[2] + executed_w*0.1)
-                        center = self.grid.world_to_cell(*pose[:2])
-                        if center is None or support_hazard[center[1], center[0]]:
-                            rejected["terrain"] += 1
-                            clear = False
-                            break
-                        if not self._support_continuous(pose, center):
-                            rejected["support"] += 1
-                            clear = False
-                            break
-                        if (wall_clearance is not None and abs(linear) < 0.05
-                                and abs(angular) > 0.02):
-                            gap = float(wall_clearance[center[1], center[0]])
-                            if math.isfinite(gap) and gap < self.body_corner_radius_m:
-                                rejected["rotation_clearance"] += 1
-                                clear = False
-                                break
-                        c, s = math.cos(pose[2]), math.sin(pose[2])
-                        x = pose[0] + c*body_points[:, 0] - s*body_points[:, 1]
-                        y = pose[1] + s*body_points[:, 0] + c*body_points[:, 1]
-                        col = np.floor((x-self.grid.x_min)/self.grid.resolution).astype(int)
-                        row = np.floor((y-self.grid.y_min)/self.grid.resolution).astype(int)
-                        inside = (col >= 0) & (col < self.grid.width) & (row >= 0) & (row < self.grid.height)
-                        if not inside.all():
-                            rejected["map_edge"] += 1
-                            clear = False
-                            break
-                        unobserved = ~known_free[row, col]
-                        hazard_fraction = float(np.mean(support_hazard[row, col]))
-                        # The lidar cannot observe the cells directly below the torso.
-                        # Keep occupied and terrain-hazard cells as hard stops, while
-                        # allowing a bounded unknown patch inside an otherwise observed
-                        # footprint so narrow corridors remain traversable.
-                        max_unknown = float(self.settings.get("local_unknown_fraction_limit", 0.35))
-                        if support_hazard[row, col].any():
-                            rejected["terrain"] += 1
-                            clear = False
-                            break
-                        if occupied[row, col].any():
-                            rejected["occupied"] += 1
-                            clear = False
-                            break
-                        if float(np.mean(unobserved)) > max_unknown:
-                            rejected["unknown"] += 1
-                            clear = False
-                            break
-                        # Turning in place sweeps the body corners sideways; in a
-                        # corridor that is only as wide as the inflated planning
-                        # band, any unobserved cell under the body makes the turn a
-                        # body-clearance violation for the executor.
-                        if (abs(linear) < 0.02 and abs(angular) > 0.02
-                                and float(np.mean(unobserved)) > max_unknown):
-                            rejected["turn_unknown"] += 1
-                            clear = False
-                            break
-                        x = pose[0] + c*self.footprint_points[:, 0] - s*self.footprint_points[:, 1]
-                        y = pose[1] + s*self.footprint_points[:, 0] + c*self.footprint_points[:, 1]
-                        guard_col = np.clip(np.floor((x-self.grid.x_min)/self.grid.resolution).astype(int), 0, self.grid.width-1)
-                        guard_row = np.clip(np.floor((y-self.grid.y_min)/self.grid.resolution).astype(int), 0, self.grid.height-1)
-                        margin_cost += float(np.mean(occupied[guard_row, guard_col]))
-                        margin_cost += 2.0 * hazard_fraction
+                    context = (occupied, support_hazard, known_free, wall_clearance, body_points)
+                    clear, margin_cost, result = self.check_local_candidate(linear, angular, context)
                     if not clear:
+                        rejected[result] += 1
                         continue
+                    pose = result
                     travel_heading = pose[2] + (math.pi if linear < 0 else 0.0)
                     heading = wrap_angle(math.atan2(target[1]-pose[1], target[0]-pose[0])-travel_heading)
                     score = -2.0*math.hypot(target[0]-pose[0], target[1]-pose[1]) - 0.25*abs(heading)

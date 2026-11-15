@@ -1,7 +1,0 @@
-Traceback (most recent call last):
-  File "F:\airace\lite2_sim\run_mujoco.py", line 72, in main
-    result = verify(model, data, config, args.scene, output, manifest)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "F:\airace\lite2_sim\mujoco_capture.py", line 131, in verify
-    raise ValueError("URDF body mass, center of mass or inertia changed: " + name)
-ValueError: URDF body mass, center of mass or inertia changed: TORSO

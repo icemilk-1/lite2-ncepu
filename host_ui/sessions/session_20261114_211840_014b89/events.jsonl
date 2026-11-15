@@ -1,0 +1,119 @@
+{"seq":21,"ts":1794662320.842651,"time":"21:18:40.842","level":"info","code":"record_start","message":"开始录制：session_20261114_211840_014b89"}
+{"seq":22,"ts":1794662320.8436577,"time":"21:18:40.843","level":"warn","code":"stop","message":"姿态切换前停车"}
+{"seq":23,"ts":1794662320.844658,"time":"21:18:40.844","level":"info","code":"posture_request","message":"请求起立，运动已锁定"}
+{"seq":24,"ts":1794662323.9726095,"time":"21:18:43.972","level":"info","code":"mode_change","message":"机器人模式 basic: 1 -> 8","detail":{"basic":8}}
+{"seq":25,"ts":1794662324.106863,"time":"21:18:44.106","level":"warn","code":"stop","message":"操作者立即停车"}
+{"seq":26,"ts":1794662324.1078696,"time":"21:18:44.107","level":"warn","code":"stop","message":"操控者已离开，自动任务已停止"}
+{"seq":27,"ts":1794662324.1078696,"time":"21:18:44.107","level":"info","code":"operator_release","message":"客户端 3 释放操控权"}
+{"seq":28,"ts":1794662324.8387387,"time":"21:18:44.838","level":"warn","code":"ssh_ros_control","message":"机载控制回执 posture：Robot entered protection state basic=8 during standing; stop and recover manually"}
+{"seq":29,"ts":1794662324.8387387,"time":"21:18:44.838","level":"error","code":"posture","message":"Robot entered protection state basic=8 during standing; stop and recover manually"}
+{"seq":30,"ts":1794662326.4638875,"time":"21:18:46.463","level":"info","code":"mode_change","message":"机器人模式 basic: 8 -> 9","detail":{"basic":9}}
+{"seq":31,"ts":1794662467.683748,"time":"21:21:07.683","level":"info","code":"operator_claim","message":"客户端 2 取得操控权（接管需在界面确认）"}
+{"seq":32,"ts":1794662467.6843514,"time":"21:21:07.684","level":"warn","code":"operator_takeover","message":"操控权被客户端 2 接管（原为 None）"}
+{"seq":33,"ts":1794662641.353035,"time":"21:24:01.353","level":"warn","code":"stop","message":"操控者已离开，自动任务已停止"}
+{"seq":34,"ts":1794662641.353035,"time":"21:24:01.353","level":"info","code":"operator_release","message":"客户端 2 释放操控权"}
+{"seq":35,"ts":1794662641.353035,"time":"21:24:01.353","level":"warn","code":"operator_lost","message":"操控者客户端 2 断开，操控权已释放"}
+{"seq":36,"ts":1794662641.353035,"time":"21:24:01.353","level":"warn","code":"stop","message":"所有客户端断开，零速"}
+{"seq":37,"ts":1794662667.7373934,"time":"21:24:27.737","level":"info","code":"operator_claim","message":"客户端 4 取得操控权（接管需在界面确认）"}
+{"seq":38,"ts":1794662715.977493,"time":"21:25:15.977","level":"warn","code":"stop","message":"操作者立即停车"}
+{"seq":39,"ts":1794662715.989652,"time":"21:25:15.989","level":"warn","code":"stop","message":"操控者已离开，自动任务已停止"}
+{"seq":40,"ts":1794662715.989652,"time":"21:25:15.989","level":"info","code":"operator_release","message":"客户端 4 释放操控权"}
+{"seq":41,"ts":1794662715.989652,"time":"21:25:15.989","level":"warn","code":"operator_lost","message":"操控者客户端 4 断开，操控权已释放"}
+{"seq":42,"ts":1794662715.989652,"time":"21:25:15.989","level":"warn","code":"stop","message":"所有客户端断开，零速"}
+{"seq":43,"ts":1794662719.771164,"time":"21:25:19.771","level":"info","code":"operator_claim","message":"客户端 5 取得操控权（接管需在界面确认）"}
+{"seq":44,"ts":1794662719.771164,"time":"21:25:19.771","level":"warn","code":"operator_takeover","message":"操控权被客户端 5 接管（原为 None）"}
+{"seq":45,"ts":1794662903.4872582,"time":"21:28:23.487","level":"warn","code":"stop","message":"操作者立即停车"}
+{"seq":46,"ts":1794663005.9759161,"time":"21:30:05.975","level":"warn","code":"stop","message":"操作者立即停车"}
+{"seq":47,"ts":1794663005.9916556,"time":"21:30:05.991","level":"warn","code":"stop","message":"操控者已离开，自动任务已停止"}
+{"seq":48,"ts":1794663005.9916556,"time":"21:30:05.991","level":"info","code":"operator_release","message":"客户端 5 释放操控权"}
+{"seq":49,"ts":1794663005.9916556,"time":"21:30:05.991","level":"warn","code":"operator_lost","message":"操控者客户端 5 断开，操控权已释放"}
+{"seq":50,"ts":1794663005.9916556,"time":"21:30:05.991","level":"warn","code":"stop","message":"所有客户端断开，零速"}
+{"seq":51,"ts":1794663011.2735012,"time":"21:30:11.273","level":"info","code":"operator_claim","message":"客户端 6 取得操控权（接管需在界面确认）"}
+{"seq":52,"ts":1794663011.2744591,"time":"21:30:11.274","level":"warn","code":"operator_takeover","message":"操控权被客户端 6 接管（原为 None）"}
+{"seq":53,"ts":1794663221.995297,"time":"21:33:41.995","level":"info","code":"operator_claim","message":"客户端 6 取得操控权（接管需在界面确认）"}
+{"seq":54,"ts":1794663221.995297,"time":"21:33:41.995","level":"warn","code":"operator_takeover","message":"操控权被客户端 6 接管（原为 6）"}
+{"seq":55,"ts":1794663228.1461613,"time":"21:33:48.146","level":"warn","code":"stop","message":"操作者立即停车"}
+{"seq":56,"ts":1794663228.2547204,"time":"21:33:48.254","level":"warn","code":"stop","message":"操控者已离开，自动任务已停止"}
+{"seq":57,"ts":1794663228.2547204,"time":"21:33:48.254","level":"info","code":"operator_release","message":"客户端 6 释放操控权"}
+{"seq":58,"ts":1794663228.2547204,"time":"21:33:48.254","level":"warn","code":"operator_lost","message":"操控者客户端 6 断开，操控权已释放"}
+{"seq":59,"ts":1794663228.2547204,"time":"21:33:48.254","level":"warn","code":"stop","message":"所有客户端断开，零速"}
+{"seq":60,"ts":1794663283.6170936,"time":"21:34:43.617","level":"warn","code":"stop","message":"操作者立即停车"}
+{"seq":61,"ts":1794663283.9188938,"time":"21:34:43.918","level":"warn","code":"stop","message":"操作者立即停车"}
+{"seq":62,"ts":1794663283.9462492,"time":"21:34:43.946","level":"warn","code":"stop","message":"所有客户端断开，零速"}
+{"seq":63,"ts":1794663682.3509386,"time":"21:41:22.350","level":"warn","code":"ssh_ros_down","message":"机载 ROS 连接中断：机载 ROS 数据流已退出"}
+{"seq":64,"ts":1794663682.3509386,"time":"21:41:22.350","level":"warn","code":"ssh_ros_reconnecting","message":"机载 ROS 连接断开，1.0 s 后进行第 1 次重连（机载 ROS 数据流已退出）"}
+{"seq":65,"ts":1794663683.5985334,"time":"21:41:23.598","level":"warn","code":"ssh_host_key_unverified","message":"未配置 known_hosts，SSH 主机密钥未固定校验（存在中间人风险）"}
+{"seq":66,"ts":1794663688.414404,"time":"21:41:28.414","level":"warn","code":"ssh_ros_reconnecting","message":"机载 ROS 连接断开，2.0 s 后进行第 2 次重连（SSH 连接机载 ROS 失败（ysc@192.168.1.103）：Error reading SSH protocol banner）"}
+{"seq":67,"ts":1794663694.0822914,"time":"21:41:34.082","level":"warn","code":"ssh_ros_reconnecting","message":"机载 ROS 连接断开，4.0 s 后进行第 3 次重连（SSH 连接机载 ROS 失败（ysc@192.168.1.103）：Error reading SSH protocol banner）"}
+{"seq":68,"ts":1794663701.8031833,"time":"21:41:41.803","level":"warn","code":"ssh_ros_reconnecting","message":"机载 ROS 连接断开，8.0 s 后进行第 4 次重连（SSH 连接机载 ROS 失败（ysc@192.168.1.103）：Error reading SSH protocol banner）"}
+{"seq":69,"ts":1794663713.2134814,"time":"21:41:53.213","level":"warn","code":"ssh_ros_reconnecting","message":"机载 ROS 连接断开，10.0 s 后进行第 5 次重连（SSH 连接机载 ROS 失败（ysc@192.168.1.103）：Error reading SSH protocol banner）"}
+{"seq":70,"ts":1794663728.2266986,"time":"21:42:08.226","level":"warn","code":"ssh_ros_reconnecting","message":"机载 ROS 连接断开，10.0 s 后进行第 6 次重连（SSH 连接机载 ROS 失败（ysc@192.168.1.103）：Error reading SSH protocol banner）"}
+{"seq":71,"ts":1794663744.3138309,"time":"21:42:24.313","level":"warn","code":"ssh_ros_reconnecting","message":"机载 ROS 连接断开，10.0 s 后进行第 7 次重连（SSH 连接机载 ROS 失败（ysc@192.168.1.103）：No existing session）"}
+{"seq":72,"ts":1794663756.3152208,"time":"21:42:36.315","level":"info","code":"ssh_ros_reconnected","message":"机载 ROS 连接已恢复（第 7 次重连成功）"}
+{"seq":73,"ts":1794663756.3152208,"time":"21:42:36.315","level":"info","code":"link_up","message":"SSH 已连接 192.168.1.103，机载 JSON 数据流已恢复"}
+{"seq":74,"ts":1794663760.6073732,"time":"21:42:40.607","level":"warn","code":"ssh_ros_stderr","message":"the rosdep view is empty: call 'sudo rosdep init' and 'rosdep update'\n"}
+{"seq":75,"ts":1794663773.6968482,"time":"21:42:53.696","level":"warn","code":"ssh_ros_stderr","message":"Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"host_ui_stream\", line 730, in <module>\n  File \"host_ui_stream\", line 685, in begin_control_connection\n  File \"/opt/ros/melodic/lib/python2.7/dist-packages/rospy/impl/tcpros_service.py\", line 148, in wait_for_service\n    raise ROSException(\"timeout exceeded while waiting for service %s\"%resolved_name)\nrospy.exceptions.ROSException: timeout exceeded while waiting for service /airace/acquire\n"}
+{"seq":76,"ts":1794663774.0990984,"time":"21:42:54.099","level":"warn","code":"ssh_ros_down","message":"机载 ROS 连接中断：机载 ROS 数据流已退出"}
+{"seq":77,"ts":1794663774.0990984,"time":"21:42:54.099","level":"warn","code":"ssh_ros_reconnecting","message":"机载 ROS 连接断开，10.0 s 后进行第 8 次重连（机载 ROS 数据流已退出）"}
+{"seq":78,"ts":1794663785.919109,"time":"21:43:05.919","level":"info","code":"ssh_ros_reconnected","message":"机载 ROS 连接已恢复（第 8 次重连成功）"}
+{"seq":79,"ts":1794663785.919109,"time":"21:43:05.919","level":"info","code":"link_up","message":"SSH 已连接 192.168.1.103，机载 JSON 数据流已恢复"}
+{"seq":80,"ts":1794663789.4807348,"time":"21:43:09.480","level":"warn","code":"ssh_ros_stderr","message":"the rosdep view is empty: call 'sudo rosdep init' and 'rosdep update'\n"}
+{"seq":81,"ts":1794663795.5100336,"time":"21:43:15.510","level":"warn","code":"ssh_ros_stderr","message":"Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"host_ui_stream\", line 730, in <module>\n  File \"host_ui_stream\", line 685, in begin_control_connection\n  File \"/opt/ros/melodic/lib/python2.7/dist-packages/rospy/impl/tcpros_service.py\", line 148, in wait_for_service\n    raise ROSException(\"timeout exceeded while waiting for service %s\"%resolved_name)\nrospy.exceptions.ROSException: timeout exceeded while waiting for service /airace/acquire\n"}
+{"seq":82,"ts":1794663795.89669,"time":"21:43:15.896","level":"warn","code":"ssh_ros_down","message":"机载 ROS 连接中断：机载 ROS 数据流已退出"}
+{"seq":83,"ts":1794663795.89669,"time":"21:43:15.896","level":"warn","code":"ssh_ros_reconnecting","message":"机载 ROS 连接断开，10.0 s 后进行第 9 次重连（机载 ROS 数据流已退出）"}
+{"seq":84,"ts":1794663807.515225,"time":"21:43:27.515","level":"info","code":"ssh_ros_reconnected","message":"机载 ROS 连接已恢复（第 9 次重连成功）"}
+{"seq":85,"ts":1794663807.515225,"time":"21:43:27.515","level":"info","code":"link_up","message":"SSH 已连接 192.168.1.103，机载 JSON 数据流已恢复"}
+{"seq":86,"ts":1794663810.6387103,"time":"21:43:30.638","level":"warn","code":"ssh_ros_stderr","message":"the rosdep view is empty: call 'sudo rosdep init' and 'rosdep update'\n"}
+{"seq":87,"ts":1794663816.7463994,"time":"21:43:36.746","level":"warn","code":"ssh_ros_stderr","message":"Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"host_ui_stream\", line 730, in <module>\n  File \"host_ui_stream\", line 685, in begin_control_connection\n  File \"/opt/ros/melodic/lib/python2.7/dist-packages/rospy/impl/tcpros_service.py\", line 148, in wait_for_service\n    raise ROSException(\"timeout exceeded while waiting for service %s\"%resolved_name)\nrospy.exceptions.ROSException: timeout exceeded while waiting for service /airace/acquire\n"}
+{"seq":88,"ts":1794663817.0494113,"time":"21:43:37.049","level":"warn","code":"ssh_ros_down","message":"机载 ROS 连接中断：机载 ROS 数据流已退出"}
+{"seq":89,"ts":1794663817.0494113,"time":"21:43:37.049","level":"warn","code":"ssh_ros_reconnecting","message":"机载 ROS 连接断开，10.0 s 后进行第 10 次重连（机载 ROS 数据流已退出）"}
+{"seq":90,"ts":1794663829.1383483,"time":"21:43:49.138","level":"info","code":"ssh_ros_reconnected","message":"机载 ROS 连接已恢复（第 10 次重连成功）"}
+{"seq":91,"ts":1794663829.1383483,"time":"21:43:49.138","level":"info","code":"link_up","message":"SSH 已连接 192.168.1.103，机载 JSON 数据流已恢复"}
+{"seq":92,"ts":1794663832.385213,"time":"21:43:52.385","level":"warn","code":"ssh_ros_stderr","message":"the rosdep view is empty: call 'sudo rosdep init' and 'rosdep update'\n"}
+{"seq":93,"ts":1794663837.5844078,"time":"21:43:57.584","level":"info","code":"operator_claim","message":"客户端 9 取得操控权（接管需在界面确认）"}
+{"seq":94,"ts":1794663837.5844078,"time":"21:43:57.584","level":"warn","code":"operator_takeover","message":"操控权被客户端 9 接管（原为 None）"}
+{"seq":95,"ts":1794663838.439924,"time":"21:43:58.439","level":"warn","code":"ssh_ros_stderr","message":"Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"host_ui_stream\", line 730, in <module>\n  File \"host_ui_stream\", line 685, in begin_control_connection\n  File \"/opt/ros/melodic/lib/python2.7/dist-packages/rospy/impl/tcpros_service.py\", line 148, in wait_for_service\n    raise ROSException(\"timeout exceeded while waiting for service %s\"%resolved_name)\nrospy.exceptions.ROSException: timeout exceeded while waiting for service /airace/acquire\n"}
+{"seq":96,"ts":1794663839.1793911,"time":"21:43:59.179","level":"warn","code":"ssh_ros_down","message":"机载 ROS 连接中断：机载 ROS 数据流已退出"}
+{"seq":97,"ts":1794663839.1793911,"time":"21:43:59.179","level":"warn","code":"ssh_ros_reconnecting","message":"机载 ROS 连接断开，10.0 s 后进行第 11 次重连（机载 ROS 数据流已退出）"}
+{"seq":98,"ts":1794663840.950318,"time":"21:44:00.950","level":"info","code":"link_down","message":"机载 ROS SSH 链路已关闭，已补发零速"}
+{"seq":99,"ts":1794663840.950318,"time":"21:44:00.950","level":"warn","code":"stop","message":"操控者已离开，自动任务已停止"}
+{"seq":100,"ts":1794663840.950318,"time":"21:44:00.950","level":"info","code":"operator_release","message":"客户端 9 释放操控权"}
+{"seq":101,"ts":1794663840.972251,"time":"21:44:00.972","level":"warn","code":"ssh_host_key_unverified","message":"未配置 known_hosts，SSH 主机密钥未固定校验（存在中间人风险）"}
+{"seq":102,"ts":1794663842.63441,"time":"21:44:02.634","level":"info","code":"link_up","message":"已连接链路：机载 ROS · SSH"}
+{"seq":103,"ts":1794663845.5084016,"time":"21:44:05.508","level":"warn","code":"ssh_ros_stderr","message":"the rosdep view is empty: call 'sudo rosdep init' and 'rosdep update'\n"}
+{"seq":104,"ts":1794663851.401429,"time":"21:44:11.401","level":"warn","code":"ssh_ros_stderr","message":"Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"host_ui_stream\", line 730, in <module>\n  File \"host_ui_stream\", line 685, in begin_control_connection\n  File \"/opt/ros/melodic/lib/python2.7/dist-packages/rospy/impl/tcpros_service.py\", line 148, in wait_for_service\n    raise ROSException(\"timeout exceeded while waiting for service %s\"%resolved_name)\nrospy.exceptions.ROSException: timeout exceeded while waiting for service /airace/acquire\n"}
+{"seq":105,"ts":1794663852.4208682,"time":"21:44:12.420","level":"warn","code":"ssh_ros_down","message":"机载 ROS 连接中断：机载 ROS 数据流已退出"}
+{"seq":106,"ts":1794663852.4208682,"time":"21:44:12.420","level":"warn","code":"ssh_ros_reconnecting","message":"机载 ROS 连接断开，1.0 s 后进行第 1 次重连（机载 ROS 数据流已退出）"}
+{"seq":107,"ts":1794663855.4271097,"time":"21:44:15.427","level":"info","code":"ssh_ros_reconnected","message":"机载 ROS 连接已恢复（第 1 次重连成功）"}
+{"seq":108,"ts":1794663855.4271097,"time":"21:44:15.427","level":"info","code":"link_up","message":"SSH 已连接 192.168.1.103，机载 JSON 数据流已恢复"}
+{"seq":109,"ts":1794663858.5174558,"time":"21:44:18.517","level":"warn","code":"ssh_ros_stderr","message":"the rosdep view is empty: call 'sudo rosdep init' and 'rosdep update'\n"}
+{"seq":110,"ts":1794663864.2516503,"time":"21:44:24.251","level":"warn","code":"ssh_ros_stderr","message":"Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"host_ui_stream\", line 730, in <module>\n  File \"host_ui_stream\", line 685, in begin_control_connection\n  File \"/opt/ros/melodic/lib/python2.7/dist-packages/rospy/impl/tcpros_service.py\", line 148, in wait_for_service\n    raise ROSException(\"timeout exceeded while waiting for service %s\"%resolved_name)\nrospy.exceptions.ROSException: timeout exceeded while waiting for service /airace/acquire\n"}
+{"seq":111,"ts":1794663865.0661423,"time":"21:44:25.066","level":"warn","code":"ssh_ros_down","message":"机载 ROS 连接中断：机载 ROS 数据流已退出"}
+{"seq":112,"ts":1794663865.0661423,"time":"21:44:25.066","level":"warn","code":"ssh_ros_reconnecting","message":"机载 ROS 连接断开，2.0 s 后进行第 2 次重连（机载 ROS 数据流已退出）"}
+{"seq":113,"ts":1794663868.6490178,"time":"21:44:28.649","level":"info","code":"ssh_ros_reconnected","message":"机载 ROS 连接已恢复（第 2 次重连成功）"}
+{"seq":114,"ts":1794663868.6490178,"time":"21:44:28.649","level":"info","code":"link_up","message":"SSH 已连接 192.168.1.103，机载 JSON 数据流已恢复"}
+{"seq":115,"ts":1794663871.5005584,"time":"21:44:31.500","level":"warn","code":"ssh_ros_stderr","message":"the rosdep view is empty: call 'sudo rosdep init' and 'rosdep update'\n"}
+{"seq":116,"ts":1794663877.324526,"time":"21:44:37.324","level":"warn","code":"ssh_ros_stderr","message":"Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"host_ui_stream\", line 730, in <module>\n  File \"host_ui_stream\", line 685, in begin_control_connection\n  File \"/opt/ros/melodic/lib/python2.7/dist-packages/rospy/impl/tcpros_service.py\", line 148, in wait_for_service\n    raise ROSException(\"timeout exceeded while waiting for service %s\"%resolved_name)\nrospy.exceptions.ROSException: timeout exceeded while waiting for service /airace/acquire\n"}
+{"seq":117,"ts":1794663877.5487697,"time":"21:44:37.548","level":"warn","code":"ssh_ros_down","message":"机载 ROS 连接中断：机载 ROS 数据流已退出"}
+{"seq":118,"ts":1794663877.5487697,"time":"21:44:37.548","level":"warn","code":"ssh_ros_reconnecting","message":"机载 ROS 连接断开，4.0 s 后进行第 3 次重连（机载 ROS 数据流已退出）"}
+{"seq":119,"ts":1794663883.4867296,"time":"21:44:43.486","level":"info","code":"ssh_ros_reconnected","message":"机载 ROS 连接已恢复（第 3 次重连成功）"}
+{"seq":120,"ts":1794663883.4867296,"time":"21:44:43.486","level":"info","code":"link_up","message":"SSH 已连接 192.168.1.103，机载 JSON 数据流已恢复"}
+{"seq":121,"ts":1794663886.3834932,"time":"21:44:46.383","level":"warn","code":"ssh_ros_stderr","message":"the rosdep view is empty: call 'sudo rosdep init' and 'rosdep update'\n"}
+{"seq":122,"ts":1794663892.3070562,"time":"21:44:52.307","level":"warn","code":"ssh_ros_stderr","message":"Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"host_ui_stream\", line 730, in <module>\n  File \"host_ui_stream\", line 685, in begin_control_connection\n  File \"/opt/ros/melodic/lib/python2.7/dist-packages/rospy/impl/tcpros_service.py\", line 148, in wait_for_service\n    raise ROSException(\"timeout exceeded while waiting for service %s\"%resolved_name)\nrospy.exceptions.ROSException: timeout exceeded while waiting for service /airace/acquire\n"}
+{"seq":123,"ts":1794663892.5864718,"time":"21:44:52.586","level":"warn","code":"ssh_ros_down","message":"机载 ROS 连接中断：机载 ROS 数据流已退出"}
+{"seq":124,"ts":1794663892.5864718,"time":"21:44:52.586","level":"warn","code":"ssh_ros_reconnecting","message":"机载 ROS 连接断开，8.0 s 后进行第 4 次重连（机载 ROS 数据流已退出）"}
+{"seq":125,"ts":1794663892.7971096,"time":"21:44:52.797","level":"info","code":"link_down","message":"机载 ROS SSH 链路已关闭，已补发零速"}
+{"seq":126,"ts":1794663892.8222332,"time":"21:44:52.822","level":"warn","code":"ssh_host_key_unverified","message":"未配置 known_hosts，SSH 主机密钥未固定校验（存在中间人风险）"}
+{"seq":127,"ts":1794663894.85856,"time":"21:44:54.858","level":"info","code":"link_up","message":"已连接链路：机载 ROS · SSH"}
+{"seq":128,"ts":1794663897.703817,"time":"21:44:57.703","level":"warn","code":"ssh_ros_stderr","message":"the rosdep view is empty: call 'sudo rosdep init' and 'rosdep update'\n"}
+{"seq":129,"ts":1794663898.6984425,"time":"21:44:58.698","level":"info","code":"operator_claim","message":"客户端 9 取得操控权（接管需在界面确认）"}
+{"seq":130,"ts":1794663898.6984425,"time":"21:44:58.698","level":"warn","code":"operator_takeover","message":"操控权被客户端 9 接管（原为 None）"}
+{"seq":131,"ts":1794663899.8947444,"time":"21:44:59.894","level":"info","code":"link_down","message":"机载 ROS SSH 链路已关闭，已补发零速"}
+{"seq":132,"ts":1794663899.8947444,"time":"21:44:59.894","level":"warn","code":"stop","message":"操控者已离开，自动任务已停止"}
+{"seq":133,"ts":1794663899.8947444,"time":"21:44:59.894","level":"info","code":"operator_release","message":"客户端 9 释放操控权"}
+{"seq":134,"ts":1794663899.897181,"time":"21:44:59.897","level":"warn","code":"ssh_host_key_unverified","message":"未配置 known_hosts，SSH 主机密钥未固定校验（存在中间人风险）"}
+{"seq":135,"ts":1794663901.6124892,"time":"21:45:01.612","level":"info","code":"link_up","message":"已连接链路：机载 ROS · SSH"}
+{"seq":136,"ts":1794663904.5525255,"time":"21:45:04.552","level":"warn","code":"ssh_ros_stderr","message":"the rosdep view is empty: call 'sudo rosdep init' and 'rosdep update'\n"}
+{"seq":137,"ts":1794663909.6790907,"time":"21:45:09.679","level":"warn","code":"stop","message":"操作者立即停车"}
+{"seq":138,"ts":1794663909.6966093,"time":"21:45:09.696","level":"info","code":"link_down","message":"机载 ROS SSH 链路已关闭，已补发零速"}
+{"seq":139,"ts":1794663909.6966093,"time":"21:45:09.696","level":"info","code":"link_down","message":"链路已断开：界面断开"}

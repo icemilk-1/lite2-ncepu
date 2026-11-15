@@ -1,2 +1,0 @@
-{"timestamp_s": 0.0, "stage_id": "round_pipe", "checkpoint_index": 0, "event": "checkpoint_started", "estimated_pose_m_rad": [2.0, 0.98, 0.0], "goal_xy_m": [3.57, 0.98], "state": "approaching"}
-{"timestamp_s": 80.0, "stage_id": "round_pipe", "checkpoint_index": 0, "event": "stage_failed", "estimated_pose_m_rad": [2.088315958099283, 1.383151741501226, 1.4929034679681887], "reason": "stage_timeout"}

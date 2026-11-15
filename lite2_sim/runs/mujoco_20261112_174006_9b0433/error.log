@@ -1,7 +1,0 @@
-Traceback (most recent call last):
-  File "F:\airace\lite2_sim\run_mujoco.py", line 154, in main
-    result = verify(model, data, config, args.scene, output, manifest)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "F:\airace\lite2_sim\mujoco_capture.py", line 171, in verify
-    raise ValueError("Fixture drift exceeds 0.005 m: " + str(drift))
-ValueError: Fixture drift exceeds 0.005 m: 0.009319157294952201

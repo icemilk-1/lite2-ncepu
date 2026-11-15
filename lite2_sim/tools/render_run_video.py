@@ -74,7 +74,15 @@ def main():
 
     model = mujoco.MjModel.from_xml_path(str(run / "scene.xml"))
     data = mujoco.MjData(model)
+    config_path = run / 'config_snapshot.json'
+    if config_path.exists():
+        config = json.loads(config_path.read_text(encoding='utf-8'))
+        for name, target in config.get('joint_positions_rad', {}).items():
+            data.qpos[model.joint(name).qposadr[0]] = target
     rows, poses = load_trajectory(run)
+    moving_obstacle = None
+    if rows and 'obstacle_x_m' in rows[0]:
+        moving_obstacle = model.geom('rl_obstacle').id
     if not poses:
         raise SystemExit("no trajectory rows in %s" % run)
 
@@ -118,12 +126,14 @@ def main():
     stage_events = stage_timeline(run)
     from PIL import Image, ImageDraw
     try:
-        for time_s, x, y, yaw, ground in poses:
+        for row, (time_s, x, y, yaw, ground) in zip(rows, poses):
             if time_s + 1e-9 < next_time:
                 continue
             next_time = time_s + args.step
             data.qpos[0:3] = [x, y, ground + args.base_height]
             data.qpos[3:7] = yaw_quaternion(yaw)
+            if moving_obstacle is not None:
+                model.geom_pos[moving_obstacle] = [float(row[key]) for key in ('obstacle_x_m', 'obstacle_y_m', 'obstacle_z_m')]
             mujoco.mj_forward(model, data)
             if args.follow:
                 free_camera.lookat[:] = [x, y, ground + 0.2]

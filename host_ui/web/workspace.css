@@ -1,0 +1,67 @@
+/* Camera-first operator workspace, with dedicated configuration and diagnostics. */
+:root { --font: "Inter", "Microsoft YaHei", system-ui, sans-serif; --radius: 10px; }
+body { font-size: 14px; }
+#app { grid-template-rows: 72px auto 54px minmax(0, 1fr) auto; min-height: 720px; }
+.topbar { padding: 0 22px; background: #111820; }
+.brand-text h1 { font-size: 17px; }
+.brand-text span { letter-spacing: .12em; }
+.workspace-nav { grid-row: 3; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; border-bottom: 1px solid var(--line); background: #0d141b; }
+.workspace-tabs { display: flex; height: 100%; gap: 28px; }
+.workspace-tabs button { border: 0; border-bottom: 3px solid transparent; background: none; color: var(--muted); font: inherit; padding: 0 4px; cursor: pointer; }
+.workspace-tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--cyan); }
+#workspace-context { color: var(--muted); font-size: 12px; }
+#app > .layout { grid-row: 4; grid-template-columns: minmax(0, 1fr) 310px; padding: 18px 22px; gap: 18px; }
+#app > .bottom { grid-row: 5; }
+.col-center { grid-column: 1; grid-row: 1; }
+.col-right { grid-column: 2; grid-row: 1; gap: 16px; }
+.col-left, .bottom, .map-card, .teleop-card { display: none; }
+.sensor-workspace { display: flex; flex-direction: column; gap: 16px; flex: 1; min-height: 0; }
+.camera-card { flex: 1.25; min-height: 240px; display: flex; flex-direction: column; overflow: hidden; }
+.sensor-secondary { flex: 1; min-height: 220px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.depth-card, .lidar-card { display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+.card-head { min-height: 46px; padding: 10px 16px; }
+.card-head h2 { font-size: 14px; color: var(--text); }
+.card-head .tool:last-child { margin-left: auto; }
+.camera-view, .lidar-view { position: relative; display: grid; place-items: center; flex: 1; min-height: 0; overflow: hidden; background: #080d12; }
+.camera-view img { width: 100%; height: 100%; object-fit: contain; position: absolute; }
+.camera-view img[hidden] { display: none; }
+.camera-view img.stale { opacity: .3; }
+.sensor-empty { position: absolute; padding: 10px 18px; border-radius: 6px; background: #0f1820e8; color: #a9bcc9; pointer-events: none; }
+.sensor-empty[hidden] { display: none; }
+.sensor-foot { display: flex; justify-content: space-between; gap: 8px; padding: 9px 14px; color: var(--muted); font-size: 11px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+#lidar-canvas { width: 100%; height: 100%; position: absolute; }
+#lidar-range { width: auto; padding: 5px; margin-left: auto; }
+.pose-grid { gap: 10px; }
+.pose-item b { font-size: 23px; }
+.estop-btn { min-width: 168px; height: 54px; }
+body[data-workspace="drive"] .sensor-workspace { display: none; }
+body[data-workspace="drive"] .map-card { display: flex; }
+body[data-workspace="drive"] .teleop-card { display: block; }
+.dpad { grid-template-columns: repeat(3, 68px); grid-template-rows: repeat(3, 46px); }
+body[data-workspace="settings"] #app > .layout { grid-template-columns: minmax(0, 1fr); overflow: auto; }
+body[data-workspace="settings"] .col-left { display: grid; grid-template-columns: repeat(2, minmax(280px, 1fr)); align-content: start; gap: 18px; overflow: visible; max-width: 1200px; width: 100%; margin: 0 auto; }
+body[data-workspace="settings"] .col-center, body[data-workspace="settings"] .col-right { display: none; }
+body[data-workspace="diagnostics"] #app > .layout { display: none; }
+body[data-workspace="diagnostics"] #app > .bottom { display: grid; grid-row: 4; height: 100%; padding: 18px 22px; grid-template-columns: 1fr 1fr; }
+.btn { min-height: 36px; }
+.top-estop-side .btn { min-height: 24px; }
+@media (max-width: 1100px) {
+  #workspace-context { display: none; }
+  #app > .layout { grid-template-columns: minmax(0, 1fr) 260px; padding: 12px; gap: 12px; }
+  .top-status .ghost, #clock-pill { display: none; }
+  .brand-text h1 { font-size: 14px; }
+}
+@media (max-width: 800px) {
+  body { overflow: auto; }
+  #app { height: auto; min-height: 100vh; grid-template-rows: auto auto 54px auto auto; }
+  .topbar { padding: 10px; gap: 10px; flex-wrap: wrap; }
+  .top-status { width: 100%; }
+  #app > .layout { grid-template-columns: 1fr; }
+  .col-right { grid-column: 1; grid-row: 2; }
+  .camera-card { height: 330px; flex: auto; }
+  .sensor-secondary { min-height: 260px; }
+  body[data-workspace="settings"] .col-left { grid-template-columns: 1fr; }
+  .workspace-tabs { gap: 20px; }
+  .sensor-foot { font-size: 10px; }
+  body[data-workspace="diagnostics"] #app > .bottom { min-height: 600px; grid-template-columns: 1fr; }
+}

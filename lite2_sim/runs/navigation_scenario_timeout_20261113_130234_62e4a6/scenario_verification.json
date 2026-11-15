@@ -1,8 +1,0 @@
-{
-  "passed": true,
-  "scenario": "timeout",
-  "expected_result": "timeout",
-  "actual_result": "timeout",
-  "events": [],
-  "output": "F:\\airace\\lite2_sim\\runs\\navigation_scenario_timeout_20261113_130234_62e4a6"
-}

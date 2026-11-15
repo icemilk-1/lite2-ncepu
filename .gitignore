@@ -1,0 +1,38 @@
+# Local installation leftovers.
+/pip-build-tracker-*/
+/pip-ephem-wheel-cache-*/
+/pip-install-*/
+/pip-metadata-*/
+/pip-unpack-*/
+/tmp/pip/
+
+# Generated Python caches and local process logs.
+__pycache__/
+*.py[cod]
+*.log
+*.err
+*.pid
+
+# Workspace-local scratch outputs. Existing tracked files remain tracked.
+/tmp/
+/.pytest_cache/
+
+# Local Python environments and generated model exports.
+lite2_sim/.venv/
+lite2_sim/.venv-*/
+lite2_sim/lite2_rl_*/
+# Local environments, caches and generated outputs
+lite2_sim/.venv*/
+lite2_sim/lite2_rl_*/
+lite2_sim/SB3-*/
+lite2_sim/runs/
+tmp/
+__pycache__/
+*.py[cod]
+*.log
+*.err
+*.pid
+.pytest_cache/
+.env
+.env.*
+!.env.example

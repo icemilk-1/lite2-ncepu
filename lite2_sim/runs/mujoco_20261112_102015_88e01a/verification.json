@@ -1,7 +1,0 @@
-{
-  "result": "failed",
-  "backend": "mujoco",
-  "scene_id": "sensor_lab",
-  "error": "'outer_wall_thickness_m'",
-  "error_log": "error.log"
-}

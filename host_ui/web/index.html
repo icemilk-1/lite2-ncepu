@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Lite2 机器狗 · 实机调试上位机</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1720'/%3E%3Cpath d='M14 46V18h8v20h14v8H14zm26 0V18h8l8 14V18h6v28h-7l-9-16v16h-6z' fill='%2338dbe5'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="/static/workspace.css">
+</head>
+<body data-workspace="sensors">
+<div id="app">
+  <!-- ============================== 顶栏（急停常驻） ============================== -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">L2</div>
+      <div class="brand-text">
+        <h1>机器狗实机调试上位机</h1>
+        <span>Lite2 · Deployment Console</span>
+      </div>
+    </div>
+
+    <div class="top-estop">
+      <button id="estop-btn" class="estop-btn" type="button" title="急停（Esc）：立即锁存并拦截所有运动指令">
+        <span class="estop-title">急 停</span>
+        <span class="estop-sub">STOP · Esc</span>
+      </button>
+      <div class="top-estop-side">
+        <button id="btn-stop" class="btn warn compact" type="button">立即停车 <kbd>Space</kbd></button>
+        <button id="btn-estop-reset" class="btn reset compact" type="button" disabled>
+          <span>长按复位</span><i class="hold-fill" id="hold-fill"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="top-status">
+      <button class="pill control-pill" id="control-pill" type="button" title="操作权：点击申请 / 接管 / 释放操控权">
+        <span class="pill-label">操控权</span><b id="control-pill-text">未启用</b><i class="caret">▾</i>
+      </button>
+      <div class="pill" id="link-pill" title="链路状态">
+        <i class="dot"></i><span id="link-pill-text">未连接</span>
+      </div>
+      <div class="pill" id="mode-pill">
+        <span class="pill-label">模式</span><b id="mode-pill-text">--</b>
+      </div>
+      <div class="pill" id="estop-pill">
+        <span class="pill-label">急停</span><b id="estop-pill-text">正常</b>
+      </div>
+      <div class="pill mono" id="clock-pill"><span id="clock-text">--:--:--</span></div>
+      <div class="pill mono ghost" id="hz-pill" title="状态帧率 / 控制频率">-- Hz</div>
+      <div class="pill warn hidden" id="readonly-link-pill" title="只读接收模式：不会向机器人发送任何运动/姿态/急停指令">只读接收</div>
+    </div>
+  </header>
+
+  <!-- 操作权弹层（在顶栏操控权徽标下方） -->
+  <div id="operator-pop" class="popover hidden" role="dialog" aria-label="操作权">
+    <header class="popover-head">
+      <b>操作权</b>
+      <button id="operator-close" class="tool icon" type="button" title="关闭">✕</button>
+    </header>
+    <div class="kv-grid compact">
+      <div><span>当前持有者</span><b id="op-holder">--</b></div>
+      <div><span>持有时长</span><b id="op-since">--</b></div>
+      <div><span>在线客户端</span><b id="op-clients">--</b></div>
+      <div><span>我的客户端</span><b id="op-self">--</b></div>
+    </div>
+    <p class="hint" id="op-hint">持有操控权才能下发速度/使能/姿态/导航指令；急停与立即停车始终可用。</p>
+    <div class="btn-row">
+      <button class="btn primary small" id="op-claim" type="button">申请操控权</button>
+      <button class="btn warn small" id="op-takeover" type="button">接管</button>
+      <button class="btn ghost small" id="op-release" type="button">释放</button>
+    </div>
+  </div>
+
+  <div id="banner-stack">
+    <div id="readonly-banner" class="readonly-banner hidden">
+      <span class="readonly-banner-icon">◉</span>
+      <div>
+        <b>只读接收模式</b>
+        <span>当前不会向机器狗发送任何运动/姿态/急停指令；需要操作时请使用物理遥控器与急停，或切换到非只读链路。</span>
+      </div>
+    </div>
+    <div id="estop-banner" class="estop-banner hidden">
+      <span class="estop-banner-icon">■</span>
+      <div>
+        <b>急停已锁存</b>
+        <span>所有来源的速度指令已被拦截为零。确认机器狗周围安全后，长按顶栏「长按复位」。</span>
+      </div>
+    </div>
+    <div id="link-banner" class="link-banner hidden">
+      <span class="link-banner-icon">⚠</span>
+      <div>
+        <b id="link-banner-title">机器人链路断开</b>
+        <span id="link-banner-text">自动重连中…</span>
+      </div>
+      <button id="btn-link-reconnect" class="btn warn small" type="button">立即重连</button>
+    </div>
+  </div>
+
+  <nav class="workspace-nav" aria-label="工作区">
+    <div class="workspace-tabs">
+      <button type="button" data-workspace="sensors" aria-selected="true">传感器</button>
+      <button type="button" data-workspace="drive" aria-selected="false">导航操控</button>
+      <button type="button" data-workspace="settings" aria-selected="false">设备设置</button>
+      <button type="button" data-workspace="diagnostics" aria-selected="false">日志诊断</button>
+    </div>
+    <span id="workspace-context">彩色相机 · 深度相机 · 雷达点云</span>
+  </nav>
+  <main class="layout">
+    <!-- ============================== 左栏 ============================== -->
+    <aside class="col col-left">
+      <section class="card">
+        <header class="card-head">
+          <h2>链路连接</h2>
+          <span class="badge" id="link-badge">离线</span>
+        </header>
+        <div class="card-body">
+          <label class="field">
+            <span>通信接口</span>
+            <select id="link-kind"></select>
+          </label>
+          <div id="link-options" class="link-options"></div>
+          <div class="btn-row">
+            <button id="btn-connect" class="btn primary">连接</button>
+            <button id="btn-disconnect" class="btn ghost">断开</button>
+          </div>
+          <div class="kv-grid" id="link-detail">
+            <div><span>状态</span><b id="ld-state">未连接</b></div>
+            <div><span>收到帧</span><b id="ld-frames">0</b></div>
+            <div><span>帧龄</span><b id="ld-age">--</b></div>
+            <div><span>链路耗时</span><b id="ld-rtt">--</b></div>
+          </div>
+          <p class="hint" id="link-hint">厂商 UDP 默认监听本机 43898，向机器人 192.168.1.120:43893 发送速度包。</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <header class="card-head">
+          <h2>速度限幅</h2>
+          <span class="badge soft" id="limits-badge">安全边界</span>
+        </header>
+        <div class="card-body">
+          <div class="slider-row">
+            <label for="limit-linear">手动线速度上限</label>
+            <input type="range" id="limit-linear" min="0.02" max="0.30" step="0.01">
+            <output id="limit-linear-out">0.10 m/s</output>
+          </div>
+          <div class="slider-row">
+            <label for="limit-angular">手动角速度上限</label>
+            <input type="range" id="limit-angular" min="0.05" max="0.80" step="0.05">
+            <output id="limit-angular-out">0.35 rad/s</output>
+          </div>
+          <div class="kv-grid">
+            <div><span>硬限幅 前进</span><b id="hard-forward">--</b></div>
+            <div><span>硬限幅 后退</span><b id="hard-reverse">--</b></div>
+            <div><span>硬限幅 偏航</span><b id="hard-yaw">--</b></div>
+            <div><span>加速度上限</span><b id="hard-accel">--</b></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <header class="card-head">
+          <h2>地图对齐</h2>
+          <span class="badge soft">map ← odom</span>
+        </header>
+        <div class="card-body">
+          <div class="triple-row">
+            <label><span>X 偏移 m</span><input type="number" id="align-x" step="0.05" value="0"></label>
+            <label><span>Y 偏移 m</span><input type="number" id="align-y" step="0.05" value="0"></label>
+            <label><span>Yaw °</span><input type="number" id="align-yaw" step="1" value="0"></label>
+          </div>
+          <div class="btn-row">
+            <button id="btn-align" class="btn ghost small">应用对齐</button>
+          </div>
+          <p class="hint">里程计起点与地图原点不一致时，用平移/旋转把机器人位姿对齐到地图坐标系。</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <header class="card-head">
+          <h2>会话录制</h2>
+          <span class="badge soft" id="record-badge">未录制</span>
+        </header>
+        <div class="card-body">
+          <div class="btn-row">
+            <button id="btn-record" class="btn primary small">开始录制</button>
+            <button id="btn-download" class="btn ghost small" disabled>下载数据</button>
+          </div>
+          <div class="kv-grid">
+            <div><span>文件行数</span><b id="rec-rows">0</b></div>
+            <div><span>事件数</span><b id="rec-events">0</b></div>
+            <div class="wide"><span>目录</span><b id="rec-path" class="path">--</b></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card token-card">
+        <header class="card-head">
+          <h2>访问令牌</h2>
+          <span class="badge soft" id="token-badge">未设置</span>
+        </header>
+        <div class="card-body">
+          <label class="field">
+            <span>令牌（来自 URL ?token= 或 localStorage.host_ui_token）</span>
+            <input type="password" id="token-input" autocomplete="off" spellcheck="false" placeholder="留空表示不使用令牌">
+          </label>
+          <div class="btn-row">
+            <button class="btn primary small" id="btn-token-save" type="button">保存并重连</button>
+            <button class="btn ghost small" id="btn-token-clear" type="button">清除</button>
+          </div>
+          <p class="hint" id="token-hint">REST 请求附加 X-Auth-Token，WebSocket 使用 ?token= 查询参数。连接 0.0.0.0/局域网时必须在服务端配置令牌。</p>
+        </div>
+      </section>
+
+      <section class="card health-card">
+        <header class="card-head">
+          <h2>设备健康</h2>
+          <span class="badge soft" id="health-badge">--</span>
+        </header>
+        <div class="card-body">
+          <div class="kv-grid compact">
+            <div><span>电量</span><b id="health-battery">--</b></div>
+            <div><span>厂商 error_state（Lite 无效·仅记录）</span><b id="health-error">--</b></div>
+            <div><span>运动状态 motion</span><b id="health-motion">--</b></div>
+            <div><span>机载/关节温度</span><b id="health-temperature">--</b></div>
+            <div><span>机载控制会话</span><b id="health-session">--</b></div>
+            <div><span>控制心跳帧龄</span><b id="health-heartbeat">--</b></div>
+            <div><span>深度门禁（桥接判定）</span><b id="health-depth">--</b></div>
+            <div><span>相机帧龄</span><b id="health-depth-camera">--</b></div>
+            <div><span>执行就绪</span><b id="health-execution">--</b></div>
+            <div><span>主机版本</span><b id="health-host-version">--</b></div>
+            <div><span>机载版本</span><b id="health-onboard-version">--</b></div>
+            <div><span>重连次数</span><b id="health-reconnect">--</b></div>
+            <div><span>状态帧龄</span><b id="health-frame-age">--</b></div>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <!-- ============================== 中间：地图 + 手动操控 ============================== -->
+    <section class="col col-center">
+      <section class="sensor-workspace">
+        <div class="card camera-card">
+          <header class="card-head"><h2>前视相机</h2><span class="badge" id="color-state">等待数据</span><button class="tool" id="camera-fullscreen" type="button">全屏</button></header>
+          <div class="camera-view"><img id="color-image" alt="机器人前视相机实时画面" hidden><span class="sensor-empty" id="color-empty">等待彩色图像</span></div>
+          <footer class="sensor-foot"><span>/camera/color/image_raw</span><span id="color-detail">--</span></footer>
+        </div>
+        <div class="sensor-secondary">
+          <div class="card depth-card">
+            <header class="card-head"><h2>深度相机</h2><span class="badge" id="depth-state">等待数据</span></header>
+            <div class="camera-view"><img id="depth-image" alt="深度图，黑色表示无效深度" hidden><span class="sensor-empty" id="depth-empty">等待深度图像</span></div>
+            <footer class="sensor-foot"><span>色标 0–5 m · 黑色为无效深度</span><span id="depth-detail">--</span></footer>
+          </div>
+          <div class="card lidar-card">
+            <header class="card-head"><h2>雷达点云</h2><span class="badge" id="lidar-state">等待数据</span><select id="lidar-range" aria-label="雷达显示半径"><option value="5">半径 5 m</option><option value="10" selected>半径 10 m</option><option value="20">半径 20 m</option></select></header>
+            <div class="lidar-view"><canvas id="lidar-canvas"></canvas><span class="sensor-empty" id="lidar-empty">等待雷达点云</span></div>
+            <footer class="sensor-foot"><span>雷达坐标系 · 俯视投影</span><span id="lidar-detail">--</span></footer>
+          </div>
+        </div>
+      </section>
+      <div class="card map-card">
+        <header class="map-head">
+          <div class="map-title">
+            <h2>导航地图</h2>
+            <span class="map-meta" id="map-meta">未加载地图</span>
+            <span class="badge soft hidden" id="map-localization"></span>
+            <span class="badge soft" id="mapping-state" role="status">建图待命</span>
+            <span class="badge soft" id="exploration-state" role="status" title="自主前沿探索状态">探索待命</span>
+            <span class="map-meta" id="exploration-stats" title="前沿簇数 · 已访问目标 · 已拉黑">--</span>
+          </div>
+          <div class="map-tools">
+            <button class="tool" id="mapping-start" type="button" disabled>开始建图</button>
+            <button class="tool" id="mapping-stop" type="button" disabled>停止建图</button>
+            <button class="tool" id="map-save" type="button" disabled>保存地图</button>
+            <button class="tool" id="exploration-start" type="button" disabled>开始探索</button>
+            <button class="tool" id="exploration-stop" type="button" disabled>停止探索</button>
+            <button class="tool active" id="tool-goal" type="button" title="在地图上点选导航目标">◎ 点选目标</button>
+            <button class="tool" id="tool-clear" type="button" title="清除机器人轨迹">清除轨迹</button>
+            <button class="tool" id="tool-fit" type="button" title="缩放到整张地图">适配视图</button>
+            <button class="tool icon" id="tool-in" type="button" title="放大">＋</button>
+            <button class="tool icon" id="tool-out" type="button" title="缩小">－</button>
+            <select id="map-select" class="tool map-select" title="加载 host_ui/maps 下已保存的地图">
+              <option value="">选择地图…</option>
+            </select>
+            <button class="tool" id="map-load" type="button" title="加载选中的地图">加载</button>
+            <button class="tool" id="tool-upload" type="button" title="上传地图（json / yaml / pgm）">上传地图</button>
+            <button class="tool" id="tool-demo" type="button" title="切换到内置示例地图">示例地图</button>
+            <input type="file" id="map-file" class="hidden" accept=".json,.yaml,.yml,.pgm">
+            <label class="toggle"><input type="checkbox" id="opt-trail" checked>轨迹</label>
+            <label class="toggle"><input type="checkbox" id="opt-scan" checked>点云</label>
+            <label class="toggle"><input type="checkbox" id="opt-grid" checked>网格</label>
+          </div>
+        </header>
+        <div class="map-wrap" id="map-wrap">
+          <canvas id="map-canvas"></canvas>
+          <div class="map-empty hidden" id="map-empty">
+            <b>尚未加载地图</b>
+            <span>等待机载 /projected_map 发布（建图/机载桥接未启动时无地图），或上传已标定地图。可通过「离线演示」查看示例。</span>
+          </div>
+          <div class="map-overlay top-left">
+            <div class="map-chip" id="map-mode-chip">等待数据</div>
+            <div class="map-chip subtle" id="nav-chip">导航待命</div>
+          </div>
+          <div class="map-overlay bottom-left">
+            <div class="coord-readout">游标 <b id="cursor-xy">-- / --</b> m</div>
+          </div>
+          <div class="map-overlay bottom-right">
+            <div class="scale-bar"><i id="scale-line"></i><span id="scale-label">1 m</span></div>
+            <div class="compass"><span>N</span><i></i></div>
+          </div>
+          <div class="goal-hint hidden" id="goal-hint">左键点击地图设置目标点</div>
+        </div>
+        <footer class="map-foot">
+          <div class="goal-box">
+            <span class="goal-label">目标点</span>
+            <b id="goal-text">未设置</b>
+            <button id="btn-go" class="btn primary small" type="button" disabled>前往目标</button>
+            <button id="btn-nav-cancel" class="btn ghost small" type="button" disabled>取消导航</button>
+          </div>
+          <div class="map-legend">
+            <span><i class="swatch robot"></i>机器人</span>
+            <span><i class="swatch trail"></i>轨迹</span>
+            <span><i class="swatch path"></i>规划路径</span>
+            <span><i class="swatch goal"></i>目标</span>
+            <span><i class="swatch scan"></i>雷达点</span>
+          </div>
+        </footer>
+      </div>
+
+      <section class="card teleop-card">
+        <header class="card-head">
+          <h2>手动操控</h2>
+          <span class="badge danger hidden" id="readonly-badge">只读 · 无操控权</span>
+          <span class="badge soft" id="deadman-badge">待命</span>
+          <span class="teleop-hint">按住 W/A/S/D 或方向键点动 · 松开立即零速</span>
+        </header>
+        <div class="teleop-body">
+          <div class="dpad">
+            <button class="dpad-btn up" data-move="forward" type="button"><b>▲</b><span>W</span></button>
+            <button class="dpad-btn left" data-move="left" type="button"><b>◀</b><span>A</span></button>
+            <button class="dpad-btn center" data-move="stop" type="button"><b>■</b></button>
+            <button class="dpad-btn right" data-move="right" type="button"><b>▶</b><span>D</span></button>
+            <button class="dpad-btn down" data-move="back" type="button"><b>▼</b><span>S</span></button>
+          </div>
+          <div class="teleop-side">
+            <div class="speed-readout"><span>线速度</span><b id="cmd-v">0.00</b><i>m/s</i></div>
+            <div class="speed-readout"><span>角速度</span><b id="cmd-w">0.00</b><i>rad/s</i></div>
+            <div class="output-row">
+              <span>指令源</span><b id="output-source">待命</b>
+            </div>
+            <div class="output-row fault hidden" id="fault-row">
+              <span>拦截</span><b id="fault-text">--</b>
+            </div>
+            <div class="sim-buttons hidden" id="sim-buttons">
+              <button class="btn ghost tiny" id="btn-sim-joystick" type="button">模拟遥控接管</button>
+              <button class="btn ghost tiny" id="btn-sim-link" type="button">模拟断链</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ============================== 右栏 ============================== -->
+    <aside class="col col-right">
+      <section class="card control-card" id="control-card">
+        <header class="card-head"><h2>使能 / 就绪</h2><span class="badge soft" id="arm-state">未知</span></header>
+        <div class="card-body">
+          <div class="btn-row">
+            <button class="btn primary small" id="btn-arm" type="button" title="机载进入自动模式并允许运动">使能</button>
+            <button class="btn warn small" id="btn-disarm" type="button" title="解除使能并回手动站立">解除</button>
+          </div>
+          <div class="btn-row">
+            <button class="btn ghost small" id="btn-stand" type="button">站立</button>
+            <button class="btn ghost small" id="btn-lie" type="button">趴下</button>
+            <button class="btn ghost small" id="btn-posture-cancel" type="button">取消姿态</button>
+          </div>
+          <div class="output-row"><span>执行门禁</span><b id="execution-state">--</b></div>
+          <div class="ready-list" id="ready-list"></div>
+          <p class="hint" id="posture-result" role="status">根据实机反馈确认姿态</p>
+        </div>
+      </section>
+      <section class="card pose-card" id="pose-card">
+        <header class="card-head">
+          <h2>实际坐标</h2>
+          <span class="badge soft" id="pose-frame">MAP 坐标</span>
+        </header>
+        <span class="pose-stale hidden" id="pose-stale">数据过期</span>
+        <div class="pose-main">
+          <div class="pose-item"><span>X</span><b id="pose-x">--</b><i>m</i></div>
+          <div class="pose-item"><span>Y</span><b id="pose-y">--</b><i>m</i></div>
+          <div class="pose-item"><span>YAW</span><b id="pose-yaw">--</b><i>°</i></div>
+        </div>
+        <div class="kv-grid compact">
+          <div><span>横滚 Roll</span><b id="rpy-r">--</b></div>
+          <div><span>俯仰 Pitch</span><b id="rpy-p">--</b></div>
+          <div><span>前进速度</span><b id="vel-vx">--</b></div>
+          <div><span>偏航角速度</span><b id="vel-wz">--</b></div>
+          <div><span>累计里程</span><b id="odometer">--</b></div>
+          <div><span>状态帧龄</span><b id="frame-age">--</b></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <header class="card-head">
+          <h2>机器人状态</h2>
+          <span class="badge soft" id="source-badge">--</span>
+        </header>
+        <div class="card-body">
+          <div class="mode-grid">
+            <div class="mode-item">
+              <span>控制模式</span>
+              <b id="basic-text">--</b>
+              <i id="basic-code">basic --</i>
+            </div>
+            <div class="mode-item"><span>步态 gait</span><b id="gait-text">--</b></div>
+            <div class="mode-item"><span>运动 motion</span><b id="motion-text">--</b></div>
+            <div class="mode-item"><span>遥控摇杆</span><b id="joystick-text">--</b></div>
+          </div>
+          <div class="flag-row" id="flag-row"></div>
+          <div class="kv-grid compact">
+            <div><span>机载执行状态</span><b id="execution-state">--</b></div>
+            <div><span>电量反馈</span><b id="battery-level">--</b></div>
+          </div>
+          <div class="output-row">
+            <span>下发</span>
+            <b id="output-text">0.00 m/s · 0.00 rad/s</b>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" title="控制循环 25 Hz 持续下发；浏览器心跳超时、状态超时、链路断开均自动零速">
+        <header class="card-head">
+          <h2>安全看门狗</h2>
+          <span class="badge ok" id="watchdog-badge">正常</span>
+        </header>
+        <div class="card-body">
+          <div class="kv-grid compact">
+            <div><span>操纵客户端</span><b id="wd-clients">0</b></div>
+            <div><span>急停触发次数</span><b id="wd-estop-count">0</b></div>
+            <div><span>指令超时</span><b id="wd-cmd-timeout">--</b></div>
+            <div><span>状态超时</span><b id="wd-state-timeout">--</b></div>
+            <div><span>可运动模式码</span><b id="wd-ready-basic">--</b></div>
+            <div><span>工作模式</span><b id="wd-mode">--</b></div>
+          </div>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <!-- ============================== 底部 ============================== -->
+  <section class="bottom">
+    <div class="card log-card">
+      <header class="card-head">
+        <h2>事件日志</h2>
+        <div class="log-filters" id="log-filters" role="group" aria-label="事件筛选">
+          <button type="button" class="tool active" data-filter="all">全部</button>
+          <button type="button" class="tool" data-filter="operator">操作权</button>
+          <button type="button" class="tool" data-filter="control">使能/姿态</button>
+          <button type="button" class="tool" data-filter="safety">安全/急停</button>
+          <button type="button" class="tool" data-filter="link">链路</button>
+        </div>
+        <span class="badge soft" id="log-count">0 条</span>
+      </header>
+      <div class="log-list" id="log-list"></div>
+    </div>
+    <div class="card chart-card">
+      <header class="card-head">
+        <h2>速度遥测</h2>
+        <span class="chart-legend">
+          <i class="line cmd-v"></i>指令线速度
+          <i class="line meas-v"></i>实测线速度
+          <i class="line w"></i>角速度
+        </span>
+      </header>
+      <canvas id="chart-canvas"></canvas>
+    </div>
+  </section>
+
+  <div id="toast" class="toast hidden"></div>
+  <div id="confirm-layer" class="confirm-layer hidden" role="dialog" aria-modal="true">
+    <div class="confirm-box">
+      <b id="confirm-title">确认操作</b>
+      <span id="confirm-text"></span>
+      <div class="btn-row">
+        <button id="confirm-cancel" class="btn ghost small" type="button">取消</button>
+        <button id="confirm-ok" class="btn warn small" type="button">确认</button>
+      </div>
+    </div>
+  </div>
+  <div id="conn-overlay" class="conn-overlay hidden">
+    <div class="conn-box">
+      <div class="spinner"></div>
+      <b>与上位机服务断开</b>
+      <span>正在自动重连… 断链期间看门狗会持续下发零速</span>
+    </div>
+  </div>
+</div>
+<script src="/static/map.js"></script>
+<script src="/static/app.js"></script>
+<script src="/static/workspace.js"></script>
+</body>
+</html>

@@ -1,1 +1,0 @@
-{"timestamp_s": 0.0, "stage_id": "dead_end_exit", "checkpoint_index": 0, "event": "checkpoint_started", "estimated_pose_m_rad": [-0.2, 0.55, 0.0], "goal_xy_m": [-1.11, -1.25], "state": "approaching"}

@@ -32,6 +32,8 @@ def main():
     parser.add_argument("--goal-x", type=float)
     parser.add_argument("--goal-y", type=float)
     parser.add_argument("--seed", type=int, help="Override navigation noise seed.")
+    parser.add_argument("--local-policy", type=Path, help="Optional PPO local policy ZIP, loaded in .venv-rl.")
+    parser.add_argument("--policy-stage", action="append", default=[], help="Course stage where the policy is enabled (repeatable).")
     args = parser.parse_args()
     if args.course and (args.navigate or args.check or args.explore or args.goal_x is not None or args.goal_y is not None):
         parser.error("--course is exclusive with --navigate, --explore, --check and goal overrides.")
@@ -40,6 +42,10 @@ def main():
     if args.course_stage and not args.course:
         parser.error("--course-stage requires --course.")
     navigation_requested = args.navigate or args.course or args.explore
+    if args.local_policy and not navigation_requested:
+        parser.error("--local-policy requires navigation or course mode.")
+    if args.policy_stage and (not args.local_policy or not args.course):
+        parser.error("--policy-stage requires --local-policy and --course.")
     if (args.goal_x is None) != (args.goal_y is None):
         parser.error("--goal-x and --goal-y must be supplied together.")
     if args.goal_x is not None and not all(math.isfinite(value) for value in (args.goal_x, args.goal_y)):
@@ -58,9 +64,10 @@ def main():
         except (FileNotFoundError, ValueError) as error:
             parser.error(str(error))
         sys.path.remove(str(PROJECT / "controllers" / "sensor_capture"))
-    python = PROJECT / ".venv-mujoco" / "Scripts" / "python.exe"
+    python = PROJECT / (".venv-rl" if args.local_policy else ".venv-mujoco") / "Scripts" / "python.exe"
     if not python.is_file():
-        raise RuntimeError("Create .venv-mujoco with standalone CPython 3.12 and install requirements-mujoco.txt.")
+        requirements = 'requirements-rl.txt' if args.local_policy else 'requirements-mujoco.txt'
+        raise RuntimeError("Create " + python.parent.parent.name + " with CPython 3.12 and install " + requirements)
     if Path(sys.executable).resolve() != python.resolve():
         return subprocess.run([str(python), str(Path(__file__).resolve()), *sys.argv[1:]]).returncode
 
@@ -105,6 +112,16 @@ def main():
                           "checkpoints": [dict(stage["checkpoints"][-1])]}
                 finish["checkpoints"][0].pop("reverse", None)
                 config["course"]["stages"] = [stage, finish]
+        if args.local_policy:
+            if args.policy_stage:
+                known_stages = {stage['id'] for stage in config['course']['stages']}
+                unknown_stages = set(args.policy_stage) - known_stages
+                if unknown_stages:
+                    raise ValueError('Unknown policy stages: ' + ', '.join(sorted(unknown_stages)))
+            policy_path = args.local_policy.resolve()
+            shutil.copy2(policy_path, output / "local_policy.zip")
+            config["rl_policy"] = {"model": str(output / "local_policy.zip"), "stages": args.policy_stage,
+                                   "sha256": hashlib.sha256(policy_path.read_bytes()).hexdigest()}
         (output / "config_snapshot.json").write_text(json.dumps(config, indent=2), encoding="utf-8")
         (output / "versions.json").write_text(
             json.dumps({"python": sys.version, "executable": sys.executable, "packages": versions}, indent=2), encoding="utf-8")
@@ -116,6 +133,8 @@ def main():
         files.extend(str(path.relative_to(PROJECT)).replace("\\", "/") for path in
                      (PROJECT / "controllers/sensor_capture/navigation_core").rglob("*.py")
                      if str(path.relative_to(PROJECT)).replace("\\", "/") not in files)
+        if args.local_policy:
+            files.extend(str(path.relative_to(PROJECT)).replace('\\', '/') for path in (PROJECT / 'rl').glob('*.py'))
         profile = config.get("randomization_profile")
         if profile:
             candidate = Path(profile)

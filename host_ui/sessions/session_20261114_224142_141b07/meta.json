@@ -1,0 +1,32 @@
+{
+  "started_at": 1794667302.2721913,
+  "started_at_text": "2026-11-14T22:41:42",
+  "python_version": "3.12.4 | packaged by Anaconda, Inc. | (main, Jun 18 2024, 15:03:56) [MSC v.1929 64 bit (AMD64)]",
+  "link": "ssh_ros",
+  "limits": {
+    "max_forward_m_s": 0.5,
+    "max_reverse_m_s": 0.05,
+    "max_yaw_rad_s": 0.1,
+    "max_accel_m_s2": 0.2,
+    "max_yaw_accel_rad_s2": 0.3,
+    "teleop_linear_m_s": 0.1,
+    "teleop_angular_rad_s": 0.1
+  },
+  "safety": {
+    "command_timeout_s": 0.35,
+    "state_timeout_s": 0.8,
+    "ready_basic": 6,
+    "joystick_threshold": 0.03,
+    "takeover_hold_s": 0.5,
+    "estop_reset_hold_s": 1.2,
+    "low_battery_percent": 20.0,
+    "nav_operator_timeout_s": 1.5,
+    "require_operator": true
+  },
+  "map": null,
+  "map_align": {
+    "x": 0.0,
+    "y": 0.0,
+    "yaw_deg": 0.0
+  }
+}

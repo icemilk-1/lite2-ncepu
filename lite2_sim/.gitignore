@@ -1,5 +1,6 @@
 .venv/
 .venv-mujoco/
+.venv-rl/
 __pycache__/
 runs/
 *.py[cod]
@@ -17,3 +18,5 @@ worlds/.*.wbproj
 /pip-ephem-wheel-cache-*/
 /pip-install-*/
 /pip-unpack-*/
+/pip-metadata-*/
+/SB3-*/

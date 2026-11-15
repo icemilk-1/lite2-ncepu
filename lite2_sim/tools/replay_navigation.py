@@ -3,16 +3,29 @@
 import argparse
 import gzip
 import json
+import math
 from pathlib import Path
 import sys
 
 PROJECT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT))
 sys.path.insert(0, str(PROJECT / "controllers/sensor_capture"))
 
 from navigation_core.contracts import MotionObservation, NavigationObservation
 from navigation_core.session import NavigationSession
 from navigation_core.course import CourseSession
 from navigation_core.terrain import TerrainGrid
+
+
+def events_equal(expected, actual):
+    """Compare structure exactly and float values at command replay tolerance."""
+    if isinstance(expected, dict) and isinstance(actual, dict):
+        return expected.keys() == actual.keys() and all(events_equal(expected[key], actual[key]) for key in expected)
+    if isinstance(expected, (list, tuple)) and isinstance(actual, (list, tuple)):
+        return len(expected) == len(actual) and all(events_equal(a, b) for a, b in zip(expected, actual))
+    if isinstance(expected, float) and isinstance(actual, float):
+        return math.isclose(expected, actual, rel_tol=0.0, abs_tol=1e-8)
+    return expected == actual
 
 
 def replay(run_directory, until_s=None):
@@ -23,6 +36,10 @@ def replay(run_directory, until_s=None):
     grid = TerrainGrid(config["field_size_m"], config["navigation"]["grid_resolution_m"], config["navigation"])
     course_mode = config.get("course_enabled", False)
     session = (CourseSession if course_mode else NavigationSession)(config, [*config["robot_position_m"][:2], 0.0], grid)
+    local_policy = None
+    if config.get("rl_policy"):
+        from navigation_core.local_policy import SavedLocalPolicy
+        local_policy = SavedLocalPolicy(directory / 'local_policy.zip')
     mismatches, count = 0, 0
     sensor_index = 0
     collision_file = directory / "collision_events.json"
@@ -51,6 +68,11 @@ def replay(run_directory, until_s=None):
                    and collisions[collision_index]["timestamp_s"] + record["dt_s"] <= record["timestamp_s"] + 1e-8):
                 session.status = "collision"
                 collision_index += 1
+            if local_policy is not None:
+                stages = config['rl_policy'].get('stages', [])
+                enabled = not stages or (course_mode and session.stage['id'] in stages)
+                navigation_session = session.navigation if course_mode else session
+                navigation_session.local_policy = local_policy if enabled else None
             command = session.tick(record["timestamp_s"], motion, record["cancelled"])
             values = (command.linear_x_m_s, command.angular_z_rad_s)
             course_matches = not course_mode or (record["course_stage"] == session.stage["id"] and record["course_state"] == session.state)
@@ -60,7 +82,7 @@ def replay(run_directory, until_s=None):
     events_match = True
     if course_mode and until_s is None:
         recorded_events = [json.loads(line) for line in (directory / "course_events.jsonl").read_text(encoding="utf-8").splitlines()]
-        events_match = recorded_events == session.events
+        events_match = events_equal(recorded_events, session.events)
     return {"passed": mismatches == 0 and count > 0 and events_match, "frames": count, "mismatched_frames": mismatches,
             "course_events_match": events_match,
             "result": session.status, "control_output": "recorded_values_only"}, session

@@ -1,7 +1,0 @@
-Traceback (most recent call last):
-  File "F:\airace\lite2_sim\run_mujoco.py", line 94, in main
-    result = verify(model, data, config, args.scene, output, manifest)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "F:\airace\lite2_sim\mujoco_capture.py", line 130, in verify
-    raise ValueError("Model mass changed during scene assembly.")
-ValueError: Model mass changed during scene assembly.

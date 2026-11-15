@@ -20,7 +20,10 @@ def build(output):
     files = [CORE / module for module in MODULES]
     files.extend(Path(name) for name in (
         "tools/replay_navigation.py", "tools/collect_lite2_environment.py",
-        "tests/test_navigation_core.py", "hardware/README.md", "hardware/profile.example.json"))
+        "tests/test_navigation_core.py", "tests/test_vendor_protocol.py",
+        "hardware/README.md", "hardware/profile.example.json",
+        "hardware/lite2_live.py", "hardware/vendor_protocol.py", "hardware/run_lite2_trial.py",
+        "hardware/execution_guard.py", "hardware/navigation_mapping.launch"))
     hashes = {}
     for relative in files:
         data = (PROJECT / relative).read_bytes()

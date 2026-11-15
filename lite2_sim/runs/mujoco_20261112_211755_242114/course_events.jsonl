@@ -1,9 +1,0 @@
-{"timestamp_s": 0.0, "stage_id": "dead_end_exit", "checkpoint_index": 0, "event": "checkpoint_started", "estimated_pose_m_rad": [-0.2, 0.55, 0.0], "goal_xy_m": [-1.11, -1.25], "state": "approaching"}
-{"timestamp_s": 45.35, "stage_id": "dead_end_exit", "checkpoint_index": 0, "event": "branch_closed", "estimated_pose_m_rad": [-1.1052749083665205, -1.1568212357378729, -1.832870671525497], "evidence": {"reason": "observed_closed_branch", "return_count": 272, "observation_timestamp_s": 45.3}}
-{"timestamp_s": 45.35, "stage_id": "dead_end_exit", "checkpoint_index": 0, "event": "checkpoint_reached", "estimated_pose_m_rad": [-1.1052749083665205, -1.1568212357378729, -1.832870671525497]}
-{"timestamp_s": 45.35, "stage_id": "dead_end_exit", "checkpoint_index": 1, "event": "checkpoint_started", "estimated_pose_m_rad": [-1.1052749083665205, -1.1568212357378729, -1.832870671525497], "goal_xy_m": [-1.11, 0.42], "state": "recovering"}
-{"timestamp_s": 66.95, "stage_id": "dead_end_exit", "checkpoint_index": 1, "event": "checkpoint_reached", "estimated_pose_m_rad": [-1.1003627261497346, 0.3104078418085943, -1.4098706715254998]}
-{"timestamp_s": 66.95, "stage_id": "dead_end_exit", "checkpoint_index": 2, "event": "stage_completed", "estimated_pose_m_rad": [-1.1003627261497346, 0.3104078418085943, -1.4098706715254998]}
-{"timestamp_s": 66.95, "stage_id": "stage_finish", "checkpoint_index": 0, "event": "checkpoint_started", "estimated_pose_m_rad": [-1.1003627261497346, 0.3104078418085943, -1.4098706715254998], "goal_xy_m": [-1.11, 0.42], "state": "approaching"}
-{"timestamp_s": 70.0, "stage_id": "stage_finish", "checkpoint_index": 0, "event": "checkpoint_reached", "estimated_pose_m_rad": [-1.1003627261497346, 0.3104078418085943, -1.4098706715254998]}
-{"timestamp_s": 70.0, "stage_id": "stage_finish", "checkpoint_index": 1, "event": "stage_completed", "estimated_pose_m_rad": [-1.1003627261497346, 0.3104078418085943, -1.4098706715254998]}

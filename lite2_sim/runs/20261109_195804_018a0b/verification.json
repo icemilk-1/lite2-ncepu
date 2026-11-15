@@ -1,9 +1,0 @@
-{
-  "result": "passed",
-  "scope": "fixed_base_model_and_sensors",
-  "joint_count": 12,
-  "max_joint_error_rad": 4.3245748212438617e-07,
-  "center_depth_m": 2.2200000286102295,
-  "expected_depth_m": 2.2199999999999998,
-  "depth_valid_fraction": 0.5212362421383647
-}

@@ -1,7 +1,0 @@
-{
-  "result": "failed",
-  "backend": "mujoco",
-  "scene_id": "ruins_reference",
-  "error": "Unknown randomization profile 'nominal' under F:\\airace\\lite2_sim\\config\\randomization (available: ideal, sim2real_aggressive, sim2real_v1).",
-  "error_log": "error.log"
-}

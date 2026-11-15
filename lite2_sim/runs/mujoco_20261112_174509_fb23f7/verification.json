@@ -1,7 +1,0 @@
-{
-  "result": "failed",
-  "backend": "mujoco",
-  "scene_id": "ruins_reference",
-  "error": "Known west wall LiDAR distance is incorrect.",
-  "error_log": "error.log"
-}

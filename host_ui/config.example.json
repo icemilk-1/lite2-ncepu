@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "link": {
+    "kind": "ssh_ros",
+    "options": {
+      "host": "192.168.1.103",
+      "username": "ysc",
+      "source_ip": "",
+      "known_hosts": ""
+    },
+    "reconnect": {
+      "enabled": true,
+      "min_delay_s": 1.0,
+      "max_delay_s": 10.0
+    }
+  },
+  "limits": {
+    "max_forward_m_s": 1.0,
+    "max_reverse_m_s": 1.0,
+    "max_yaw_rad_s": 1.0,
+    "max_accel_m_s2": 0.8,
+    "max_yaw_accel_rad_s2": 3.0,
+    "teleop_linear_m_s": 0.5,
+    "teleop_angular_rad_s": 0.5
+  },
+  "safety": {
+    "command_timeout_s": 0.35,
+    "state_timeout_s": 0.8,
+    "ready_basic": 6,
+    "joystick_threshold": 0.03,
+    "takeover_hold_s": 0.5,
+    "estop_reset_hold_s": 1.2,
+    "low_battery_percent": 20.0,
+    "nav_operator_timeout_s": 1.5,
+    "require_operator": true,
+    "vendor_estop_on_estop": true
+  },
+  "posture": {
+    "timeout_s": 10.0,
+    "settle_margin_s": 1.0
+  },
+  "nav": {
+    "enabled": true,
+    "max_speed_m_s": 0.5,
+    "max_yaw_rad_s": 0.5,
+    "tolerance_m": 0.15,
+    "yaw_tolerance_deg": 15.0,
+    "lookahead_m": 0.45,
+    "inflate_m": 0.3,
+    "allow_unknown": false
+  },
+  "map": {
+    "file": null,
+    "demo": false,
+    "align": {"x": 0.0, "y": 0.0, "yaw_deg": 0.0}
+  },
+  "web": {
+    "host": "127.0.0.1",
+    "port": 8710,
+    "token": "",
+    "allowed_origins": [],
+    "max_clients": 6,
+    "max_message_bytes": 65536
+  },
+  "record": {
+    "enabled": false,
+    "dir": "host_ui/sessions",
+    "hz": 10.0
+  }
+}

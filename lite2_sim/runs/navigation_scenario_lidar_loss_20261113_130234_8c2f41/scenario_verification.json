@@ -1,8 +1,0 @@
-{
-  "passed": true,
-  "scenario": "lidar_loss",
-  "expected_result": "timeout",
-  "actual_result": "timeout",
-  "events": [],
-  "output": "F:\\airace\\lite2_sim\\runs\\navigation_scenario_lidar_loss_20261113_130234_8c2f41"
-}

@@ -1,7 +1,0 @@
-{
-  "passed": false,
-  "result": "runtime_error",
-  "error": "cannot access local variable 'standstill_escapes' where it is not associated with a value",
-  "error_log": "error.log",
-  "backend": "mujoco"
-}

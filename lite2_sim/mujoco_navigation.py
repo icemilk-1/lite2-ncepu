@@ -390,6 +390,10 @@ def run_navigation(model, data, config, output, headless=False, scenario=None):
     course_mode = config.get("course_enabled", False) and not exploration_mode
     initial_pose = executor.initial_estimate_pose()
     session = (CourseSession if course_mode else NavigationSession)(config, initial_pose, grid)
+    local_policy = None
+    if config.get("rl_policy"):
+        from navigation_core.local_policy import SavedLocalPolicy
+        local_policy = SavedLocalPolicy(config["rl_policy"]["model"])
     course_evaluator = CourseEvaluator(config["course"]) if course_mode else None
     lidar = MujocoLidarObservationAdapter(model, data, config["lidar"], executor.base_height + config["lidar"]["mount_xyz_m"][2])
     evaluator = NavigationEvaluator(executor.pose)
@@ -411,6 +415,7 @@ def run_navigation(model, data, config, output, headless=False, scenario=None):
     trace, commands = [], []
     sensor_stream = gzip.open(output / "sensor_observations.jsonl.gz", "wt", encoding="utf-8", compresslevel=3)
     input_stream = gzip.open(output / "navigation_inputs.jsonl.gz", "wt", encoding="utf-8", compresslevel=3)
+    policy_stream = (output / "local_policy_decisions.jsonl").open("w", encoding="utf-8") if local_policy else None
     sensor_index = 0
     last_report = -5.
     raw_batches = []
@@ -457,6 +462,12 @@ def run_navigation(model, data, config, output, headless=False, scenario=None):
                             observation_index = sensor_index
                         sensor_index += 1
                 next_scan += 1 / config["lidar"]["frequency_hz"]
+            navigation_session = session.navigation if course_mode else session
+            navigation_session.local_policy_debug = None
+            if local_policy is not None:
+                stages = config["rl_policy"].get("stages", [])
+                enabled = not stages or (course_mode and session.stage["id"] in stages)
+                navigation_session.local_policy = local_policy if enabled else None
             command = session.tick(now, motion, cancelled=cancel_file.exists() or (viewer is not None and not viewer.is_running()))
             if course_mode:
                 executor.target_base_height = float(
@@ -473,6 +484,9 @@ def run_navigation(model, data, config, output, headless=False, scenario=None):
                                           "course_state": session.state if course_mode else None,
                                           "status": session.status}, default=json_ready, allow_nan=False) + "\n")
             commands.append((now, command.linear_x_m_s, command.angular_z_rad_s, command.expires_at_s, session.status))
+            if policy_stream is not None:
+                policy_stream.write(json.dumps({"timestamp_s": now, "debug": navigation_session.local_policy_debug,
+                    "applied": [command.linear_x_m_s, command.angular_z_rad_s]}, allow_nan=False) + "\n")
             motion, collision = executor.step(command, now, dt)
             native_state_finite &= bool(np.isfinite(data.qpos).all() and np.isfinite(data.qvel).all()
                                         and np.isfinite(data.sensordata).all())
@@ -534,6 +548,8 @@ def run_navigation(model, data, config, output, headless=False, scenario=None):
         _write_csv(output / "velocity_commands.csv", ["sim_time_s", "linear_x_m_s", "angular_z_rad_s", "expires_at_s", "status"], commands)
         sensor_stream.close()
         input_stream.close()
+        if policy_stream is not None:
+            policy_stream.close()
         if course_mode:
             with (output / "course_events.jsonl").open("w", encoding="utf-8") as stream:
                 for event in session.events:

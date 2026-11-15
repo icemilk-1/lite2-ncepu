@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "F:\airace\lite2_sim\run_mujoco.py", line 95, in main
-    validate_course(config.get("course", {}))
-  File "F:\airace\lite2_sim\controllers\sensor_capture\navigation_core\course.py", line 19, in validate_course
-    raise ValueError("Course requires stages with unique IDs.")
-ValueError: Course requires stages with unique IDs.
