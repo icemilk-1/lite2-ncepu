@@ -4,12 +4,12 @@
 
 | 目录 | 内容 |
 | --- | --- |
-| [lite2_sim](lite2_sim/README.md) | MuJoCo / Webots 仿真、导航代码、场景、模型、测试与运行记录 |
+| [lite2_sim](lite2_sim/README.md) | MuJoCo / Webots 仿真、导航代码、场景、模型与测试 |
 | [host_ui](host_ui/README.md) | 实机调试上位机（浏览器版）：导航地图、实际坐标、手动操控、急停、传感器、使能与姿态、会话录制 |
 | [plan](plan/) | 总体方案、备赛计划、进度、流程图、文献综述与演示视频 |
 | [research](research/) | 专题调研、论文分析与检索脚本 |
-| [resources](resources/) | 官方赛题资料、厂商资料、原始资料压缩包与软件安装包 |
-| [tmp](tmp/) | 调研工具、依赖、排查记录、过程数据和历史临时产物 |
+| [resources](resources/) | 官方赛题资料、厂商资料、赛事与厂商参考资料 |
+
 
 ## 代码与资料边界
 
@@ -22,8 +22,8 @@ lite2_sim/               仿真与导航：controllers/、hardware/、rl/、tool
   runs/                   仿真运行输出（本地数据）
 plan/                    方案、进度、实施记录、历史记录与演示材料
 research/                专题调研与论文资料
-resources/               厂商/赛事原始资料、压缩包及安装包
-tmp/                     临时脚本、排障截图/日志和中间结果
+resources/               厂商与赛事参考资料
+tmp/                     本地临时脚本、排障截图/日志和中间结果
 ```
 
 新增的正式代码放入对应项目的 `app/`、`controllers/`、`hardware/` 或 `tools/`，测试放入同项目的 `tests/`；正式说明和可复用研究结论放入 `plan/` 或 `research/`。一次性探针、截图、临时配置和中间结果放入 `tmp/`，不要和源码、正式配置混放。需要长期保留的仿真输出放入 `lite2_sim/runs/`，大文件通过 Git LFS 管理。
